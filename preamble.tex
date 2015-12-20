@@ -1,0 +1,55 @@
+% vim: ts=4 sts=4 sw=4 et tw=75
+% preamble here.
+
+\documentclass[nofonts, oneside]{ctexbook}
+
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{amssymb}
+\usepackage{hyperref}
+% for number of footnote 
+\usepackage{pifont}
+% 一页结束时, 脚注编号清零
+\usepackage[perpage]{footmisc}
+
+% 脚注编号带圈
+\renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
+
+% from package geometry
+% 为边注加边框
+\let\oldmarginpar=\marginpar
+\renewcommand\marginpar[1]{%
+    \oldmarginpar{\framebox{#1}}%
+}
+\geometry{%
+    margin=1cm,
+    marginparsep = 0.5cm,
+    marginparwidth=1cm,
+    top = 2.5cm,
+    bottom = 2cm,
+    outer = 2.5cm,
+    inner = 2.5cm
+}
+
+% from package hyperref
+\hypersetup{
+    bookmarksnumbered = true,
+    pdftitle = {Hacking Vim 7.2},
+    pdfcreator = {wuzhouhui250@gmail.com},
+    pdfauthor = {Kim Schulz},
+    pdfsubject = {Vim},
+    pdfkeywords = {vim, text editing}
+}
+
+% from package fontspec and xeCJK
+\setCJKmainfont{AR PL KaitiM GB}
+\setCJKsansfont{WenQuanYi Zen Hei}
+\setCJKmonofont[Scale=0.9]{WenQuanYi Zen Hei}
+\setmainfont{Century Schoolbook L}
+\setsansfont{FreeSans}
+% "Mapping={}" make quote symbol straight
+\setmonofont[Mapping={}]{Courier 10 Pitch}
+
+\title{深入 Vim 7.2}
+\author{Kim Schulz \and \url{https://github.com/wuzhouhui/hacking_vim} }
