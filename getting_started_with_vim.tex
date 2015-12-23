@@ -66,3 +66,43 @@ vi 最早由 Bill Joy 于 1976 年发布, Vim 只是 vi 众多的衍生版之一
 接下来, 我们将会介绍一些比较著名 的 vi 克隆版, 并简要描述每个克隆版的
 特点.
 \marginpar{9}
+\subsection{vi}
+\label{subsec:vi}
+vi 是 Vim 家族的原始祖先, 由 Bill Joy 在 1976 年开发, 系统平台是 
+\textbf{BSD} (\textbf{Berkeley Software Distribution}) 的一个早期版本.
+vi 是当时最流行的编辑器 \textbf{ex} 的扩展版本. 而 ex 则是 Unix 编辑器 
+\textbf{ed} 的扩展版本. ``vi'' 的意思是 \textbf{visual in ex}, 正如这个
+名字所表示的那样, vi 仅仅是一个命令, 命令的作用是以可视化模式启动 ex 
+编辑器.
+
+vi 是最早的引入\textbf{模式} (\textbf{modality}) 概念的编辑器之一.
+模式指的是在处理不同的任务时, 编辑器可以处于不同的工作模式 --- 有的模式
+用来编辑文本, 有的模式用来选择文本, 还有一些模式用于执行命令.
+
+模式是 vi 的主要特性之一, 这个特性使得热爱 vi 的人更加热爱它, 但也会让
+讨厌 vi 的人更加讨厌 vi.
+
+自从第一个版本发布 之后, vi 就没有发生过比较大的变化, 但这并不妨碍它成
+为 Unix 社区最流行的编辑器之一, 这主要是因为 \textbf{SUS} (\textbf{Single
+Unix Specification}) 把 vi 列为 Unix 系统的必备软件之一 --- 只有符合 
+SUS 的系统才能称之为 Unix 系统.
+
+\subsection{STEVIE}
+\label{subsec:stevie}
+1987 年, Tim Thompson 获得了他的第一台 \texttt{Atari ST}
+(\textbf{Sixteen/Thirty-two}), 但这个平台还没有一款优秀的编辑器可供
+使用, 于是, 它决定把 vi 移值到这个平台中. 1987 年 6 月, 他发布了一款
+编辑器, 所使用的授权类似于后来的开源协议. 他在新闻组中发布了这款编辑器,
+并取名为 \textbf{STEVIE} --- 意为 \textbf{ST Editor for VI Enthusiasts}.
+
+这款编辑器非常简单, 只支持 vi 的一小部分功能, 但是它提供了一个对 vi 用
+户来说非常熟悉的环境, 这可以帮助他们在 ST 平台上继续高效地工作.
+
+发布之后, Tim Thompson 停止了 STEVIE 的开发工作, 但是 Tony Andrews 马上
+接手了过来, 并且在一年内, 就把它移植到了 Unix 和 OS/2 系统中. 在这过程中,
+越来越多的特性被加入到 STEVIE 中, 但是到了 1990 年, 开发工作又停止了.
+
+虽然 STEVIE 只生存了几年, 但是由于 Tim 和 Tony 把源代码放到了新闻组上,
+任何人都可以免费地浏览和下载, 正因为如此, 后来的许多 vi 衍生版都或多或
+少从这些代码中得到启发, 或以它们为基础再加以开发.
+\marginpar{10}
