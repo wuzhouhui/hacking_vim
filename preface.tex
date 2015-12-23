@@ -101,3 +101,46 @@ no, ro, 和 zh). 例如, 如果想要阅读德语版的 Vimtutor, 只需要在�
 \section*{排版约定}
 \label{sec:conventions}
 本书用不同风格的文本来表示不同种类的信息, 这里有一些例子.
+
+\marginpar{4}
+包含在正文中的代码会这样显示: ``键入 \texttt{:help 'statusline'}, 就可
+以打开 Vim 帮助系统, 查看与状态行有关的全部帮助信息.''
+
+代码块则是:
+\begin{vimscript}
+function! InfoGuiTooltip()
+    "get window count
+    let wincount = tabpagewinnr(tabpagenr(), '$')
+    let bufferlist=''
+    "get name of active buffers in windows
+    for i in tabpagebuflist()
+        let bufferlist .= '['.fnamemodify(bufname(i), ':t').'] '
+    endfor
+    return bufname($).' windows: '.wincount.' ' .bufferlist ' '
+endfunction
+\end{vimscript}
+
+命令模式的输入或输出写成:
+\begin{vimcmd}
+:amenu icon=/path/to/icon/myicon.png ToolBar.Bufferlist :buffers<cr>
+\end{vimcmd}
+
+\textbf{新的一项} 或 \texttt{重点内容} 加粗显示. 读者在屏幕上看到的内容,
+比如菜单或对话框, 会显示成: ``这个命令在所有行的开头查找单词 \textbf{Error}
+(带有脱字符 \^)''.
+
+\begin{warning}
+这种文本框用来显示警告或重要的提示.
+\end{warning}
+
+\begin{tips}
+这种文本框用来显示技巧和决窍.
+\end{tips}
+
+\section*{读者反馈}
+\label{sec:reader_feedback}
+对于读者的反馈我们总是非常欢迎. 请把你关于这本书的想法选择我们 --- 不管是
+优点还是缺点, 读者的反馈永远是我们不断进步的源泉.
+
+反馈信息请发送到 \email{feedback@packtpub.com}, 并在邮件的主题中包含相关
+的书名.
