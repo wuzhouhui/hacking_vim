@@ -44,10 +44,10 @@ vi 和 Vim 是同一个程序).
 http://www.vim.org
 \end{gencode}
 下载到 Vim 的最新版.
-\begin{waring}
+\begin{warning}
 本书主要讨论 Vim 7.2, 如果你用的 版本比较老, 请不要担心, 你可以随时
 更新到最新版.
-\end{waring}
+\end{warning}
 如果你所用的操作系统是 Microsoft Windows, 只需要双击运行下载的 \texttt{.exe}
 文件, 就可以开始安装过程. 安装完毕后, 在 ``开始'' 菜单中就会出现一个指
 向 gVim 的快捷键.
@@ -106,3 +106,40 @@ SUS 的系统才能称之为 Unix 系统.
 任何人都可以免费地浏览和下载, 正因为如此, 后来的许多 vi 衍生版都或多或
 少从这些代码中得到启发, 或以它们为基础再加以开发.
 \marginpar{10}
+
+\section{Elvis}
+\label{sec:elvis}
+STEVIE 是比较流利的编辑器之一, 但是它还有许多 bug, 限制也比较多. 当时 
+还在使用 Minix 的 Steve Kirkendall 注意到了 STEVIE 的一个缺点: 在编辑文件
+时, 它会把整个文件读取到内存中, 在 Minix 中这并不是一个很明智的做法.
+于是 Steve 决定修改 STEVIE, 让编辑器把一个文件当做缓冲区使用, 而不是
+在内存中编辑, 这产生了 \textbf{Elvis} v1.0.
+
+虽然和 vi 比较来, Elvis 已经得到了很大的改善, 但是它仍然受到同样的限制
+--- 行的最大长度, 以及单文件缓冲区.
+
+为了完全摆脱这些限制, Steve Kirkendall 决定重写 Elvis, 这产生了 Elvis
+v2, 当前可用的版本是 v2.2.
+
+在 Elvis 的第 2 版中, Steve 添加了许多 vi 原来没有的特性, 其中比较重要
+的有:
+\begin{itemize}
+\item 语法高亮
+\item 多窗口支持
+\item 网络支持 (HTTP 和 FTP)
+\item 简单的 GUI 前端
+\end{itemize}
+Elvis 现在已经停止了开发, 但仍然被广泛地使用, Elvis 支持的平台包括
+Unix, MS Windows (控制台程序, 或带有 GUI 的 WinElvis), 以及 OS/2.
+\begin{warning}
+关于 Elvis 的最新版请访问
+\url{http://elvis.the-little-red-haired-girl.org/}.
+\end{warning}
+
+\section{nvi}
+\label{sec:nvi}
+\textbf{nvi}, 全称 \textbf{new vi}, 是 AT\&T 与 加州大学伯克利分校 
+\textbf{Computer Science Research Group} (\textbf{CSRG}) 授权争论的
+结果. vi 使用了 ed 的源代码, 而 ed 使用了 AT\&T System V Unix 授权,
+所以 CSRG 无法使用 BSD 授权来发布 vi.
+\marginpar{11}
