@@ -141,5 +141,38 @@ Unix, MS Windows (控制台程序, 或带有 GUI 的 WinElvis), 以及 OS/2.
 \textbf{nvi}, 全称 \textbf{new vi}, 是 AT\&T 与 加州大学伯克利分校 
 \textbf{Computer Science Research Group} (\textbf{CSRG}) 授权争论的
 结果. vi 使用了 ed 的源代码, 而 ed 使用了 AT\&T System V Unix 授权,
-所以 CSRG 无法使用 BSD 授权来发布 vi.
+所以 CSRG 无法使用 BSD 授权来发布 vi, 于是他们决定发布 vi 的替代版本.
 \marginpar{11}
+
+新 vi 的开发人员是 Keith Bostic. vi 克隆了已经免费的 Elvis, 但是 
+Keith 希望新的编辑器和原始的 vi 尽量保持接近, 于是他采用了 Elvis 的代码,
+并开发出一个和 vi 完全兼容的衍生版 --- nvi. 在原始  vi 的功能集
+中, 只能 \newterm{打开模式} (\newterm{Open Mode}) 和 \newterm{lisp 编辑}
+(\newterm{lisp edit}) 被剔除出去.
+
+随着 4.4BSD 的发布, nvi 完全替代了 vi 编辑器, 而且再次使用了完全免费的
+授权来发布该软件.
+
+如今, 大多数基于 BSD 的操作系统都使用了 nvi 作为它们的默认 vi 编辑器,
+包括 NetBSD, FreeBSD, 还有 OpenBSD, 并且功能也越来越丰富.
+
+和原始的 vi 相比, nvi 主要包含的新特性包括:
+\begin{itemize}
+    \item 多个编辑缓冲区
+    \item 不限次数的撤消
+    \item 扩展的正则表达式
+    \item 支持 CScope
+    \item 简单的脚本支持, 脚本语言可以是 Perl 或 Tcl/Tk
+\end{itemize}
+
+Keith Bostic 现在依然在维护 nvi 的源代码, 但是开发量已经少了很多.
+\begin{warning}
+    可以到 \url{http://www.bostic.com/vi/} 获取最新版的 nvi.
+\end{warning}
+
+\section{Vim}
+\label{sec:vim}
+\newterm{Vim} 编辑器是 vi 家庭的天之骄子. 自从 Bram Moolenaar 在 1991 年
+发布了 Vim 的第 1 版之后, 这个编辑器已经成长为世界上功能最丰富的编辑器
+之一.
+\marginpar{12}
