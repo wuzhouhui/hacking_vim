@@ -69,13 +69,13 @@ vi 最早由 Bill Joy 于 1976 年发布, Vim 只是 vi 众多的衍生版之一
 \subsection{vi}
 \label{subsec:vi}
 vi 是 Vim 家族的原始祖先, 由 Bill Joy 在 1976 年开发, 系统平台是 
-\textbf{BSD} (\textbf{Berkeley Software Distribution}) 的一个早期版本.
-vi 是当时最流行的编辑器 \textbf{ex} 的扩展版本. 而 ex 则是 Unix 编辑器 
-\textbf{ed} 的扩展版本. ``vi'' 的意思是 \textbf{visual in ex}, 正如这个
+\newterm{BSD} (\newterm{Berkeley Software Distribution}) 的一个早期版本.
+vi 是当时最流行的编辑器 \newterm{ex} 的扩展版本. 而 ex 则是 Unix 编辑器 
+\newterm{ed} 的扩展版本. ``vi'' 的意思是 \newterm{visual in ex}, 正如这个
 名字所表示的那样, vi 仅仅是一个命令, 命令的作用是以可视化模式启动 ex 
 编辑器.
 
-vi 是最早的引入\textbf{模式} (\textbf{modality}) 概念的编辑器之一.
+vi 是最早的引入\newterm{模式} (\newterm{modality}) 概念的编辑器之一.
 模式指的是在处理不同的任务时, 编辑器可以处于不同的工作模式 --- 有的模式
 用来编辑文本, 有的模式用来选择文本, 还有一些模式用于执行命令.
 
@@ -83,17 +83,17 @@ vi 是最早的引入\textbf{模式} (\textbf{modality}) 概念的编辑器之�
 讨厌 vi 的人更加讨厌 vi.
 
 自从第一个版本发布 之后, vi 就没有发生过比较大的变化, 但这并不妨碍它成
-为 Unix 社区最流行的编辑器之一, 这主要是因为 \textbf{SUS} (\textbf{Single
+为 Unix 社区最流行的编辑器之一, 这主要是因为 \newterm{SUS} (\newterm{Single
 Unix Specification}) 把 vi 列为 Unix 系统的必备软件之一 --- 只有符合 
 SUS 的系统才能称之为 Unix 系统.
 
 \subsection{STEVIE}
 \label{subsec:stevie}
-1987 年, Tim Thompson 获得了他的第一台 \texttt{Atari ST}
-(\textbf{Sixteen/Thirty-two}), 但这个平台还没有一款优秀的编辑器可供
+1987 年, Tim Thompson 获得了他的第一台 \newterm{Atari ST}
+(\newterm{Sixteen/Thirty-two}), 但这个平台还没有一款优秀的编辑器可供
 使用, 于是, 它决定把 vi 移值到这个平台中. 1987 年 6 月, 他发布了一款
 编辑器, 所使用的授权类似于后来的开源协议. 他在新闻组中发布了这款编辑器,
-并取名为 \textbf{STEVIE} --- 意为 \textbf{ST Editor for VI Enthusiasts}.
+并取名为 \newterm{STEVIE} --- 意为 \newterm{ST Editor for VI Enthusiasts}.
 
 这款编辑器非常简单, 只支持 vi 的一小部分功能, 但是它提供了一个对 vi 用
 户来说非常熟悉的环境, 这可以帮助他们在 ST 平台上继续高效地工作.
@@ -113,7 +113,7 @@ STEVIE 是比较流利的编辑器之一, 但是它还有许多 bug, 限制也�
 还在使用 Minix 的 Steve Kirkendall 注意到了 STEVIE 的一个缺点: 在编辑文件
 时, 它会把整个文件读取到内存中, 在 Minix 中这并不是一个很明智的做法.
 于是 Steve 决定修改 STEVIE, 让编辑器把一个文件当做缓冲区使用, 而不是
-在内存中编辑, 这产生了 \textbf{Elvis} v1.0.
+在内存中编辑, 这产生了 \newterm{Elvis} v1.0.
 
 虽然和 vi 比较来, Elvis 已经得到了很大的改善, 但是它仍然受到同样的限制
 --- 行的最大长度, 以及单文件缓冲区.
@@ -138,8 +138,8 @@ Unix, MS Windows (控制台程序, 或带有 GUI 的 WinElvis), 以及 OS/2.
 
 \section{nvi}
 \label{sec:nvi}
-\textbf{nvi}, 全称 \textbf{new vi}, 是 AT\&T 与 加州大学伯克利分校 
-\textbf{Computer Science Research Group} (\textbf{CSRG}) 授权争论的
+\newterm{nvi}, 全称 \newterm{new vi}, 是 AT\&T 与 加州大学伯克利分校 
+\newterm{Computer Science Research Group} (\newterm{CSRG}) 授权争论的
 结果. vi 使用了 ed 的源代码, 而 ed 使用了 AT\&T System V Unix 授权,
 所以 CSRG 无法使用 BSD 授权来发布 vi, 于是他们决定发布 vi 的替代版本.
 \marginpar{11}
