@@ -1,0 +1,8 @@
+function! MyFoldFunction()
+   let line = getline(v:foldstart)
+	" cleanup unwanted things in first line
+ 	let sub = substitute(line, '/\*\|\*/\|^\s+', '', 'g')
+	" calculate lines in folded text
+   let lines = v:foldend - v:foldstart + 1
+   return  v:folddashes.sub.'...'.lines.' Lines...'.getline(v:foldend)
+endfunction
