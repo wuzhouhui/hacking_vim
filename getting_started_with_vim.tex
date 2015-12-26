@@ -3,8 +3,8 @@
 \label{chap:getting_started_with_vim}
 
 \marginpar{7}
-Vim (Vi IMproved) 编辑器最早由 Bram Moolenaar 于 1991 年 11 月发布,
-当时只是作为 Unix vi 编辑器的 Amiga 平台克隆版.
+\newterm{Vim} (\newterm{Vi IMproved}) 编辑器最早由 Bram Moolenaar 于
+1991 年 11 月发布, 当时只是作为 Unix vi 编辑器的 Amiga 平台克隆版.
 
 一年后, Unix 平台的 Vim 发布, 之后, 它迅速成为了 vi 的替代版本.
 
@@ -59,7 +59,7 @@ urpmi, Ubuntu 的是 Synaptics). 如果系统中没有软件包管理器, 你可
 \label{sec:vi_vim_and_friends}
 vi 最早由 Bill Joy 于 1976 年发布, Vim 只是 vi 众多的衍生版之一. 其中一些
 衍生版的特性和 vi 非常接近, 而另一些则新增了许多新特性, Vim 就属于后者.
-接下来, 我们将会介绍一些比较著名 的 vi 衍生版, 并简要描述每个克隆版的
+接下来, 我们将会介绍一些比较著名 的 vi 衍生版, 并简要描述每个衍生版的
 特点.
 \marginpar{9}
 \subsection{vi}
@@ -71,12 +71,12 @@ vi 是当时最流行的编辑器 \newterm{ex} 的扩展版本. 而 ex 则是 Un
 名字所表示的那样, vi 仅仅是一个命令, 命令的作用是以可视化模式启动 ex 
 编辑器.
 
-vi 是最早的引入\newterm{模式} (\newterm{modality}) 概念的编辑器之一.
+vi 是最早引入\newterm{模式} (\newterm{modality}) 概念的编辑器之一.
 模式指的是在处理不同的任务时, 编辑器可以处于不同的工作模式 --- 有的模式
 用来编辑文本, 有的模式用来选择文本, 还有一些模式用于执行命令.
 
 模式是 vi 的主要特性之一, 这个特性使得热爱 vi 的人更加热爱它, 但也会让
-讨厌 vi 的人更加讨厌 vi.
+讨厌 vi 的人更加讨厌.
 
 自从第一个版本发布 之后, vi 就没有发生过比较大的变化, 但这并不妨碍它成
 为 Unix 社区最流行的编辑器之一, 这主要是因为 \newterm{SUS} (\newterm{Single
@@ -87,7 +87,7 @@ SUS 的系统才能称之为 Unix 系统.
 \label{subsec:stevie}
 1987 年, Tim Thompson 获得了他的第一台 \newterm{Atari ST}
 (\newterm{Sixteen/Thirty-two}), 但这个平台还没有一款优秀的编辑器可供
-使用, 于是, 它决定把 vi 移值到这个平台中. 1987 年 6 月, 他发布了一款
+使用, 于是, 他决定把 vi 移值到这个平台中. 1987 年 6 月, 他发布了一款
 编辑器, 所使用的授权类似于后来的开源协议. 他在新闻组中发布了这款编辑器,
 并取名为 \newterm{STEVIE} --- 意为 \newterm{ST Editor for VI Enthusiasts}.
 
@@ -96,9 +96,9 @@ SUS 的系统才能称之为 Unix 系统.
 
 发布之后, Tim Thompson 停止了 STEVIE 的开发工作, 但是 Tony Andrews 马上
 接手了过来, 并且在一年内, 就把它移植到了 Unix 和 OS/2 系统中. 在这过程中,
-越来越多的特性被加入到 STEVIE 中, 但是到了 1990 年, 开发工作又停止了.
+越来越多的特性被加了进来, 但是到了 1990 年, 开发工作又停止了.
 
-虽然 STEVIE 只生存了几年, 但是由于 Tim 和 Tony 把源代码放到了新闻组上,
+虽然 STEVIE 只生存了几年, 但是 Tim 和 Tony 把源代码放到了新闻组上,
 任何人都可以免费地浏览和下载, 正因为如此, 后来的许多 vi 衍生版都或多或
 少从这些代码中得到启发, 或以它们为基础再加以开发.
 \marginpar{10}
@@ -107,11 +107,11 @@ SUS 的系统才能称之为 Unix 系统.
 \label{sec:elvis}
 STEVIE 是比较流行的编辑器之一, 但是它还有许多 bug, 限制也比较多. 当时 
 还在使用 Minix 的 Steve Kirkendall 注意到了 STEVIE 的一个缺点: 在编辑文件
-时, 它会把整个文件读取到内存中, 在 Minix 中这并不是一个很明智的做法.
+时, 它会把整个文件读取到内存中, 对 Minix 来说这并不是一个很明智的做法.
 于是 Steve 决定修改 STEVIE, 让编辑器把一个文件当做缓冲区使用, 而不是
 在内存中编辑, 这产生了 \newterm{Elvis} v1.0.
 
-虽然和 vi 比较来, Elvis 已经得到了很大的改善, 但是它仍然受到同样的限制
+虽然和 vi 比起来, Elvis 已经得到了很大的改善, 但是它仍然受到同样的限制
 --- 行的最大长度, 以及单文件缓冲区.
 
 为了完全摆脱这些限制, Steve Kirkendall 决定重写 Elvis, 这产生了 Elvis
@@ -152,7 +152,7 @@ Keith 希望新的编辑器和原始的 vi 尽量保持接近, 于是他采用�
 如今, 大多数基于 BSD 的操作系统都使用了 nvi 作为它们的默认 vi 编辑器,
 包括 NetBSD, FreeBSD, 还有 OpenBSD, 并且功能也越来越丰富.
 
-和原始的 vi 相比, nvi 主要包含的新特性包括:
+和原始的 vi 相比, nvi 包含的新特性主要有:
 \begin{itemize}
     \item 多个编辑缓冲区
     \item 不限次数的撤消

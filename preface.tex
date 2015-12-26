@@ -18,7 +18,7 @@
 世界上最先进的编辑器之一.
 
 每天都有大量的新用户加入 Vim 社区, 并开始用 Vim 处理他们的日常工作.
-虽然有时候 Vim 使用起来比较复杂, 但是与其他编辑器相比, 人们还是更愿意
+虽然有时候使用起来比较复杂, 但是与其他编辑器相比, 人们还是更愿意
 选择 Vim, 本书就是为这些用户而写.
 
 通过阅读本书, 用户可以更加得心应手地使用 Vim, 从而提高工作效率. 他们得
@@ -33,7 +33,7 @@
 第 \ref{chap:getting_started_with_vim} 章: 入门, 介绍 Vim 和它的几个
 比较有名的亲戚, 并简要介绍它们和 vi 的关系及其历史.
 
-第 \ref{chap:personalizing_vim} 章: 个性化 Vim, 介绍如何配置 Vim, 使得 
+第 \ref{chap:personalizing_vim} 章: 定制 Vim, 介绍如何配置 Vim, 使得 
 它更符合用户的个人需求. 主要介绍如何修改字体, 配色方案, 状态行, 菜单,
 与工具条.
 
@@ -43,8 +43,8 @@
 第 \ref{chap:production_boosters} 章: 助推器, 介绍 Vim 的若干特性, 
 描述了模版, 自动补全, 拆叠, 会话, 和寄存器的使用方法.
 
-第 \ref{chap:advanced_formatting} 章: 讨论如何对文本和代码进行格式化.
-它还介绍了如何使用外部工具, 使得 Vim 更加完美.
+第 \ref{chap:advanced_formatting} 章: 格式化进阶, 讨论如何对文本和代码进
+行格式化. 它还介绍了如何使用外部工具, 使得 Vim 更加完美.
 
 第 \ref{chap:basic_vim_scripting} 章: Vim 脚本基础, 这一章是为那些想学习
 如何通过脚本来扩展 Vim 功能的人而准备的, 它介绍了脚本的基础知识, 经过
@@ -55,8 +55,8 @@
 包括如何在 Vim 脚本中使用外部的脚本语言.
 
 附录 \ref{chap:vim_can_do_everything}: 无所不能的 Vim, 提供了一张游戏
-列表, 它们都是用 vim 脚本开发的, 这一章还简单讨论了如何使用脚本来实现
-聊天和邮件工具, 另外还介绍了如何将 Vim 作为一个 IDE 来使用.
+列表, 它们都是用 Vim 脚本开发的, 这一章还简单讨论了如何使用脚本来实现
+聊天和邮件工具, 另外还介绍了如何将 Vim 作为一个 IDE 使用.
 
 附录 \ref{chap:vim_configuration_alternatives}: Vim 配置管理, 展示如何
 通过在线副本来更好地管理和获取 Vim 配置文件.
@@ -70,18 +70,18 @@ Vim 已经移植到了多种平台中, 但并不是所有的功能对任意一�
 平台中可能并不提供.
 
 \marginpar{3}
-本书只关注 Vim 使用最广泛的两种平台:　Linux 与　Microsoft Windows. 由于 Linux 
-符合　Unix 标准,　所以同样的结论在其他类　Unix  系统中仍然成立.
+本书只关注 Vim 使用最广泛的两种平台: Linux 与 Microsoft Windows. 由于 Linux 
+符合 Unix 标准, 所以同样的结论在其他类 Unix 系统中仍然成立.
 
 \begin{warning}
-读者可以在　\url{www.vim.org} 上找到最新版的　vim 源代码与二进制包.　如果　
-你使用的　Linux, 那么系统中很可能已经安装了　Vim, 而且是默认的编辑器.
+读者可以在 \url{www.vim.org} 上找到最新版的 Vim 源代码与二进制包. 如果 
+你使用的是 Linux, 那么系统中很可能已经安装了 Vim, 而且是默认的编辑器.
 \end{warning}
 
 \section*{本书的目标读者}
 \label{sec:who_this_book_is_for}
-如果你已经是一位　Vim 用户,　而且想要学习更高级的技巧,　那么这本书就是为你
-而写的. 本书致力于帮助读者从一位Vim 中级用户,　上升为高级用户.
+如果你已经是一位 Vim 用户, 而且想要学习更高级的技巧, 那么这本书就是为你
+而写的. 本书致力于帮助读者从一位Vim 中级用户, 上升为高级用户.
 
 \section*{Vim 新手?}
 \label{sec:new_to_vim}
@@ -110,11 +110,11 @@ no, ro, 和 zh). 例如, 如果想要阅读德语版的 Vimtutor, 只需要在�
 \begin{vimscript}
 function! InfoGuiTooltip()
     "get window count
-    let wincount = tabpagewinnr(tabpagenr(), '$')
+    let wincount = tabpagewinnr(tabpagenr(),'$')
     let bufferlist=''
     "get name of active buffers in windows
     for i in tabpagebuflist()
-        let bufferlist .= '['.fnamemodify(bufname(i), ':t').'] '
+        let bufferlist .= '['.fnamemodify(bufname(i),':t').'] '
     endfor
     return bufname($).' windows: '.wincount.' ' .bufferlist ' '
 endfunction
@@ -126,8 +126,8 @@ endfunction
 \end{vimcmd}
 
 \textbf{新的术语} 或 \textbf{重点内容} 加粗显示. 读者在屏幕上看到的内容,
-比如菜单或对话框, 会显示成: ``这个命令在所有行的开头查找单词 \textbf{Error}
-(带有脱字符 \^)''.
+比如菜单或对话框中的信息, 会显示成: ``这个命令在所有行的开头查找单词
+\textbf{Error} (用脱字符 \textasciicircum 标记)''.
 
 \begin{warning}
 这种文本框用来显示警告或重要的提示.
@@ -139,7 +139,7 @@ endfunction
 
 \section*{读者反馈}
 \label{sec:reader_feedback}
-对于读者的反馈我们总是非常欢迎. 请把你关于这本书的想法选择我们 --- 不管是
+对于读者的反馈我们总是非常欢迎. 请把你关于这本书的想法告诉我们 --- 不管是
 优点还是缺点, 读者的反馈永远是我们不断进步的源泉.
 
 反馈信息请发送到 \email{feedback@packtpub.com}, 并在邮件的主题中写上相关
@@ -155,12 +155,12 @@ endfunction
 
 \section*{客户支持}
 \label{sec:customer_support}
-既然你买了 Packt 出版的书籍, 那么我们会尽最大的容易让你觉得物有所值.
+既然你买了 Packt 出版的书籍, 那么我们会尽最大的努力让你觉得物有所值.
 \begin{warning}
     \textbf{下载书中的示例源代码}
 
     登陆 \url{http://www.packtpub.com/files/code/0509_Code.zip} 下载书中 
-    的示例源代码. 下载的文件中包含有使用方法.
+    的示例源代码, 下载的文件中含有使用方法.
 \end{warning}
 
 \section*{勘误}
@@ -173,8 +173,8 @@ endfunction
 \url{http://www.packtpub.com/support}, 选择对应的书籍, 点击 \textbf{let us
 know}, 然后输入相关的勘误信息. 一旦勘误通过了校验, 你的提交信息就会被接受, 
 勘误也会上传到网页中, 或者加到书籍勘误列表, 这个列表可以在书籍的 Errata 
-部分找到. 登陆 \url{www.packtpub.com/support}, 选择对应的书籍, 读者就可
-以找到该书所有的已知勘误.
+部分找到. 登陆 \url{http://www.packtpub.com/support}, 选择对应的书籍,
+读者就可以找到该书所有的已知勘误.
 
 \section*{版权声明}
 \label{sec:piracy}
