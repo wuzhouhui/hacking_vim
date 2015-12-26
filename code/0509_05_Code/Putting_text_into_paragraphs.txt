@@ -1,0 +1,8 @@
+function! MyFormatter()
+   let first = v:num
+   let last = v:num + v:count
+    while(first<=last)
+       call setline(first, '> '. getline(first))
+       let first = first+1
+    endwhile
+endfunction 
