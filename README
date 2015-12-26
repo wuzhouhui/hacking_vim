@@ -1,7 +1,11 @@
-Hacking Vim 7.2 (Kim Schulz 著) 中文翻译, 采用 LaTeX 排版.
+Hacking Vim 7.2 (Kim Schulz 著) 中文翻译, 采用 LaTeX 排版. 因为翻译
+还未结束, 所以没有把 PDF 纳入版本管理, 如果你想要的话, 可以给我发
+邮件 (wuzhouhui250@gmail.com), 我把编译好的 PDF 发送给你.
 
 翻译进度:
 	12/228
 
 文件清单:
 	HackingVim7.2.pdf	英文原版
+	code/			书中出现过的程序代码
+	*.tex			LaTeX 源代码
