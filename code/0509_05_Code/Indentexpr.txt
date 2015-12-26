@@ -1,0 +1,6 @@
+function! MyIndenter()
+   " Find previous line and get it's indentation
+   let prev_lineno = s:prevnonblank( v:lnum)
+   let ind = indent( prev_lineno )
+   return ind
+endfunction

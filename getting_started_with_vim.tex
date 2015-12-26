@@ -3,8 +3,8 @@
 \label{chap:getting_started_with_vim}
 
 \marginpar{7}
-Vim (Vi IMproved) 编辑器最早由 Bram Moolenaar 于 1991 年 11 月发布,
-当时只是作为 Unix vi 编辑器的 Amiga 平台克隆版.
+\newterm{Vim} (\newterm{Vi IMproved}) 编辑器最早由 Bram Moolenaar 于
+1991 年 11 月发布, 当时只是作为 Unix vi 编辑器的 Amiga 平台克隆版.
 
 一年后, Unix 平台的 Vim 发布, 之后, 它迅速成为了 vi 的替代版本.
 
@@ -16,7 +16,7 @@ vi 和 Vim 是同一个程序).
 
 在九十年代后期, vi 在编辑器之战中所输掉的劣势, 重新又被 Vim 给赢了回来,
 编辑器之战指的是 vi 和 Emacs 之间的斗争. Bram 为 Vim 扩充了许多新特性, 
-而这些特性原本被  Emacs 党利用, 作为论证 vim/vi 不如 Emacs 的论据, 即
+而这些特性原本被  Emacs 党利用, 作为论证 Vim/vi 不如 Emacs 的论据, 即
 使如此, Bram 仍然没有忘记当初人们开发 vi 的初衷.
 
 如今, Vim 已经是一个功能丰富, 定制性强, 受人欢迎的编辑器. 它支持超过 200 
@@ -30,6 +30,145 @@ vi 和 Vim 是同一个程序).
     \item Vim 的发布许可证 
     \item 本书使用的公共术语
 \end{itemize}
-现在, 让我们正式开始本书的阅读过程.
+现在, 让我们正式开始.
 
 \marginpar{8}
+\section{获取 Vim}
+\label{sec:getting_vim}
+
+读者也许对 Vim 有了一定的了解, 而且也使用了一段时间, 然而, 如果你还没有
+使用过 Vim, 那么最好趁现在这个时候, 在自己的系统中安装 Vim.
+
+你可以从网站 \url{http://www.vim.org} 下载到 Vim 的最新版.
+\begin{warning}
+本书主要讨论 Vim 7.2, 如果你用的 版本比较老, 请不要担心, 你可以随时
+更新到最新版.
+\end{warning}
+如果你所用的操作系统是 Microsoft Windows, 只需要双击运行下载的 \texttt{.exe}
+文件, 就可以开始安装过程. 安装完毕后, 在 ``开始'' 菜单中就会出现一个指
+向 gVim 的快捷键.
+
+如果是 Linux, 那么安装方式取决于你所使用的 Linux 发行版. 如今, 在大多数
+发行版中已经预先安装了 Vim, 如果没有, 具体的安装方法请参考发行版
+的软件包管理器 (例如, debian 的软件包管理器是 Aptitude, Mandriva 是
+urpmi, Ubuntu 的是 Synaptics). 如果系统中没有软件包管理器, 你可以从
+上面所提供的网站中下载 Vim 的源代码, 手工编译安装, 具体的编译安装方法
+可以看一下源码包中的 \file{readme} 文件.
+
+\section{vi, Vim, 及其朋友}
+\label{sec:vi_vim_and_friends}
+vi 最早由 Bill Joy 于 1976 年发布, Vim 只是 vi 众多的衍生版之一. 其中一些
+衍生版的特性和 vi 非常接近, 而另一些则新增了许多新特性, Vim 就属于后者.
+接下来, 我们将会介绍一些比较著名 的 vi 衍生版, 并简要描述每个衍生版的
+特点.
+\marginpar{9}
+\subsection{vi}
+\label{subsec:vi}
+vi 是 Vim 家族的原始祖先, 由 Bill Joy 在 1976 年开发, 系统平台是 
+\newterm{BSD} (\newterm{Berkeley Software Distribution}) 的一个早期版本.
+vi 是当时最流行的编辑器 \newterm{ex} 的扩展版本. 而 ex 则是 Unix 编辑器 
+\newterm{ed} 的扩展版本. ``vi'' 的意思是 \newterm{visual in ex}, 正如这个
+名字所表示的那样, vi 仅仅是一个命令, 命令的作用是以可视化模式启动 ex 
+编辑器.
+
+vi 是最早引入\newterm{模式} (\newterm{modality}) 概念的编辑器之一.
+模式指的是在处理不同的任务时, 编辑器可以处于不同的工作模式 --- 有的模式
+用来编辑文本, 有的模式用来选择文本, 还有一些模式用于执行命令.
+
+模式是 vi 的主要特性之一, 这个特性使得热爱 vi 的人更加热爱它, 但也会让
+讨厌 vi 的人更加讨厌.
+
+自从第一个版本发布 之后, vi 就没有发生过比较大的变化, 但这并不妨碍它成
+为 Unix 社区最流行的编辑器之一, 这主要是因为 \newterm{SUS} (\newterm{Single
+Unix Specification}) 把 vi 列为 Unix 系统的必备软件之一 --- 只有符合 
+SUS 的系统才能称之为 Unix 系统.
+
+\subsection{STEVIE}
+\label{subsec:stevie}
+1987 年, Tim Thompson 获得了他的第一台 \newterm{Atari ST}
+(\newterm{Sixteen/Thirty-two}), 但这个平台还没有一款优秀的编辑器可供
+使用, 于是, 他决定把 vi 移值到这个平台中. 1987 年 6 月, 他发布了一款
+编辑器, 所使用的授权类似于后来的开源协议. 他在新闻组中发布了这款编辑器,
+并取名为 \newterm{STEVIE} --- 意为 \newterm{ST Editor for VI Enthusiasts}.
+
+这款编辑器非常简单, 只支持 vi 的一小部分功能, 但是它提供了一个对 vi 用
+户来说非常熟悉的环境, 这可以帮助他们在 ST 平台上继续高效地工作.
+
+发布之后, Tim Thompson 停止了 STEVIE 的开发工作, 但是 Tony Andrews 马上
+接手了过来, 并且在一年内, 就把它移植到了 Unix 和 OS/2 系统中. 在这过程中,
+越来越多的特性被加了进来, 但是到了 1990 年, 开发工作又停止了.
+
+虽然 STEVIE 只生存了几年, 但是 Tim 和 Tony 把源代码放到了新闻组上,
+任何人都可以免费地浏览和下载, 正因为如此, 后来的许多 vi 衍生版都或多或
+少从这些代码中得到启发, 或以它们为基础再加以开发.
+\marginpar{10}
+
+\section{Elvis}
+\label{sec:elvis}
+STEVIE 是比较流行的编辑器之一, 但是它还有许多 bug, 限制也比较多. 当时 
+还在使用 Minix 的 Steve Kirkendall 注意到了 STEVIE 的一个缺点: 在编辑文件
+时, 它会把整个文件读取到内存中, 对 Minix 来说这并不是一个很明智的做法.
+于是 Steve 决定修改 STEVIE, 让编辑器把一个文件当做缓冲区使用, 而不是
+在内存中编辑, 这产生了 \newterm{Elvis} v1.0.
+
+虽然和 vi 比起来, Elvis 已经得到了很大的改善, 但是它仍然受到同样的限制
+--- 行的最大长度, 以及单文件缓冲区.
+
+为了完全摆脱这些限制, Steve Kirkendall 决定重写 Elvis, 这产生了 Elvis
+v2, 当前可用的版本是 v2.2.
+
+在 Elvis 的第 2 版中, Steve 添加了许多 vi 原来没有的特性, 其中比较重要
+的有:
+\begin{itemize}
+\item 语法高亮
+\item 多窗口支持
+\item 网络支持 (HTTP 和 FTP)
+\item 简单的 GUI 前端
+\end{itemize}
+Elvis 现在已经停止了开发, 但仍然被广泛地使用, Elvis 支持的平台包括
+Unix, MS Windows (控制台程序, 或带有 GUI 的 WinElvis), 以及 OS/2.
+\begin{warning}
+关于 Elvis 的最新版请访问
+\url{http://elvis.the-little-red-haired-girl.org/}.
+\end{warning}
+
+\section{nvi}
+\label{sec:nvi}
+\newterm{nvi}, 全称 \newterm{new vi}, 是 AT\&T 与 加州大学伯克利分校 
+\newterm{Computer Science Research Group} (\newterm{CSRG}) 授权争论的
+结果. vi 使用了 ed 的源代码, 而 ed 使用了 AT\&T System V Unix 授权,
+所以 CSRG 无法使用 BSD 授权来发布 vi, 于是他们决定发布 vi 的替代版本.
+\marginpar{11}
+
+新 vi 的开发人员是 Keith Bostic. vi 克隆了已经免费的 Elvis, 但是 
+Keith 希望新的编辑器和原始的 vi 尽量保持接近, 于是他采用了 Elvis 的代码,
+并开发出一个和 vi 完全兼容的衍生版 --- nvi. 在原始  vi 的功能集
+中, 只能 \newterm{打开模式} (\newterm{Open Mode}) 和 \newterm{lisp 编辑}
+(\newterm{lisp edit}) 被剔除出去.
+
+随着 4.4BSD 的发布, nvi 完全替代了 vi 编辑器, 而且再次使用了完全免费的
+授权来发布该软件.
+
+如今, 大多数基于 BSD 的操作系统都使用了 nvi 作为它们的默认 vi 编辑器,
+包括 NetBSD, FreeBSD, 还有 OpenBSD, 并且功能也越来越丰富.
+
+和原始的 vi 相比, nvi 包含的新特性主要有:
+\begin{itemize}
+    \item 多个编辑缓冲区
+    \item 不限次数的撤消
+    \item 扩展的正则表达式
+    \item 支持 CScope
+    \item 简单的脚本支持, 脚本语言可以是 Perl 或 Tcl/Tk
+\end{itemize}
+
+Keith Bostic 现在依然在维护 nvi 的源代码, 但是开发量已经少了很多.
+\begin{warning}
+    可以到 \url{http://www.bostic.com/vi/} 获取最新版的 nvi.
+\end{warning}
+
+\section{Vim}
+\label{sec:vim}
+\newterm{Vim} 编辑器是 vi 家族的天之骄子. 自从 Bram Moolenaar 在 1991 年
+发布了 Vim 的第 1 版之后, 这个编辑器已经成长为世界上功能最丰富的编辑器
+之一.
+\marginpar{12}
