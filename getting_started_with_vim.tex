@@ -207,4 +207,45 @@ vi 用户转而投向 Vim 的怀抱.
     \item 与多种编译器, 解释器, 以及调试器的紧密结合
     \item 可在线免费获取超过 1500 份的 Vim 脚本程序
 \end{itemize}
-\marginpar{12}
+\marginpar{13}
+Vim 所支持的平台非常广泛, 比如所有的 Unix 系统, Linux, MS Dos, MS Windows,
+AmigaOS, Atari MiNT, OS/2, OS/390, MacOS, OpenVMS, RISC OS, 以及 QNX.
+
+\section{Vile}
+\newterm{Vile} 也许是所有衍生版中最不像vi的一个 --- 甚至有人认为它根本就
+不是 vi 的衍生版. Vile 试图把世界上最好的两个编辑器集成在一起 --- vi 的
+模式与 Emacs 的特性.
+
+这也解释了名字 Vile 的来源 --- \newterm{VI Like Emacs}.
+
+Paul Fox 在 1990 年的夏季启动了 Vile 的开发计划, 其源代码基于公开的
+\newterm{MicroEmacs} 编辑器, 在后面的日子里, Paul 为它添加了模式与其他
+的类 vi 特性.
+
+MicroEmacs 并没有具备 Emacs 编辑器的全部特性, 但是它支持长行, 以及在
+多个窗口中同时编辑多个文件. 这些特性 vi 并不具备, 但是许多程序员却很
+需要它们.
+
+为了把 MicroEmacs 改造成类 vi 编辑器, 开发人员做了大量的工作. 在这过程中 
+陆续有几位新成员加入到开发团队中, 其中就包括 Thomas E. Dickey, 他在 1992 
+参与进来, 他为 Vile 添加了许多新特性, 也修复了很多 bug.
+
+1994 年, Kevin Buettner 参与了进来, 着手开发 Vile 的 GUI 版本 ---
+\newterm{xvile}, xvile 支持当时最常用的一些部件, 比如 Athena, OpenLook,
+Motif, 以及 Xt Toolkit.
+
+如今 Thomas 是 Vile 的主要维护人员, 开发工作也由他掌控. 但是他花在开发
+上的时间十分有限, 在大多数情况下只是做一些 bug 修复工作.
+
+Vi 与 Vile 在工作方式上不太一样, 而且只有一小部分的 vi 特性被保留到了
+Vile 中. Vile 的主要特性包括:
+\begin{itemize}
+    \item 编辑模式 --- 为每一种文件类型配备一个模式
+    \item 为了支持宏而添加的 Vile  过程语言
+    \item Perl 支持 (实验性的)
+    \item 根据用户的需要, 把命名函数绑定到按键上
+\end{itemize}
+
+Vile 支持的平台包括 Unix, Linux, BeOS, OS/2, VMS, 和 MS Windows,
+每一种平台都同时拥有控制台版本和 GUI 版本.
+\marginpar{14}
