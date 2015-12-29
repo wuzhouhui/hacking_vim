@@ -292,3 +292,45 @@ Vim 达到 99\% 的 vi 兼容性, 你必须执行下列命令, 把它设置成�
 :set compatible
 \end{vimcmd}
 \marginpar{15}
+\begin{warning}
+    如果你想要了解更多的关于 vi 与 Vim 之间的差异, 请在 Vim 中输入命令:
+    \texttt{:help vi-differences}
+\end{warning}
+另一个比较有趣的地方是, 虽然 STEVIE 非常精确地实现了 vi 的一部分功能集,
+但由于比例过低, 所以人们并没有把它当作 vi 的近亲.
+
+\section{博爱的 Vim}
+\label{sec:vim_is_charityware}
+Vim 的开发人员 --- Bram Moolenaar --- 选择了一种称为慈善授权的许可证
+来发布 Vim. 该许可证允许你不受限制地复制 Vim, 但是它鼓励你向慈善团体捐赠.
+
+如果你想要了解更多的关于捐赠的信息, 在打开 Vim 后, 执行
+\begin{vimcmd}
+:help uganda
+\end{vimcmd}
+除此之外, 你还可以访问 \url{http://www.vim.org/sponsor/}, 来获取更多的
+关于如何赞助 Vim 项目的资料.
+
+如果你是一名 Vim 赞助人, 就有权利投票把哪些新特性加入到 Vim 中. 所以, 
+赞助不仅可以帮助他人, 还可以影响 Vim 的演变.
+
+\section{公共术语}
+\label{sec:common_terminology}
+
+有些单词在不同的语境中会拥有不同的涵义, 因此, 我们先在这里解释一些本书将
+会用到的重要术语:
+\begin{itemize}
+    \item \newterm{黑客} (\newterm{Hacker}): 技术迷, 喜欢钻研与技术相关
+        的事物, 并对它们进行优化, 以满足自己或他人的需求.
+    % TODO: 不知道该把 hacking 翻译成什么词比较合适
+    \item \newterm{Hacking}: 黑客对软件或硬件进行探索
+        和优化的过程. 因此 ``Hacking Vim'' 可以理解成为了满足黑客 (用户)
+        的需求, 对 Vim 编辑器进行优化的过程.
+    \item \newterm{脚本} (\newterm{Script}): 由一行或多行代码组成的文本
+        程序, 可以通过解释器来运行. 一个脚本程序可以用多种不同的编程语言
+        来编写, 但是在运行时必须选择一种与编程语言相匹配的解释器.
+    \item \newterm{解释器} (\newterm{Interpreter}): 一种程序, 它可以
+        从脚本中读取行, 然后一行接一行地加以执行. 解释器可以被构建到
+        另一个程序中 (比如 Vim).
+\end{itemize}
+\marginpar{16}
