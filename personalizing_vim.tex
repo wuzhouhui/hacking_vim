@@ -31,3 +31,41 @@ Vim 的方式, 比如按键绑定 --- 把某个组合键映射到特定的操作
     \item 个性化的工作区
 \end{itemize}
 \marginpar{18}
+其中有些配置可用多种方法来实现, 读者可以根据自已的喜好来选择.
+
+在我们正式使用 Vim 之前, 还需要知道一些和安装相关的事情, 比如 Vim
+配置文件的存放位置.
+
+\section{配置文件的存放位置}
+\label{sec:where_the_configuration_files}
+使用 Vim 时, 你必须了解它的一系列配置文件. 这些配置文件的存放位置取决于
+Vim 的安装目录, 以及你所使用的操作系统.
+
+通常来说, 你只需要知道如何找到以下 3 个配置文件:
+\begin{enumerate}
+    \item \file{vimrc}
+    \item \file{gvimrc}
+    \item \file{exrc}
+\end{enumerate}
+\file{vimrc} 是 Vim 的主要配置文件, 它有两个版本 --- 全局的和个人的.
+
+全局的 \file{vimrc} 存放在 Vim 系统文件的安装目录中, 为了找到该目录, 你
+需要启动 vim, 并在常规模式下执行
+\begin{vimcmd}
+:echo $VIM
+\end{vimcmd}
+输出的内容有可能是
+\begin{enumerate}
+    \item Linux: \texttt{/usr/share/vim/vimrc}
+    \item Windows: \texttt{c:\program files\vim\vimrc}
+\end{enumerate}
+个人的 \file{vimrc} 在用户的家目录, 家目录的位置取决于你所用的操作系统.
+Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件名前加一个
+句点符号, 从而隐藏起来. 在 Unxi 中, 以句点开始的文件名可以把文件隐藏起来,
+但在 Microsoft Windows 不起作用, 作为替代, 在这些系统中 \file{vimrc} 的
+文件名以下划线开始. 比如
+\begin{enumerate}
+    \item Linux: \texttt{/home/kim/.vimrc}
+    \item Windows: \texttt{c:\documents and settings\kim\_vimrc}
+\end{enumerate}
+\marginpar{19}
