@@ -7,11 +7,11 @@
 工作. 但是什么样的编辑器才能称之为优秀呢?
 
 通过观察不同的编辑器我们发现, 开发人员努力往编辑器身上加入他们认为用户需要
-的特性, 来使得编辑器越来越好用, 成为顶尖中的顶尖.  但是还有一些编辑器勇于
+的特性, 籍此希望编辑器越来越好用, 成为顶尖中的顶尖.  但是还有一些编辑器勇于
 承认自己的不足, 它们只希望能够尽量简单, 对用户友好, 能够更快速地启动.
 
 有了 Vim 编辑器, 没有人能够决定谁才是你的最佳选择. 相反, 你可以根据自己的
-需要, 对 Vim 进行大范围的修改, 使得它更符合你的口味. 这就意味着力量掌握在
+需要, 对 Vim 进行大范围的修改, 使它更符合你的口味. 这就意味着力量掌握在
 你自己的手中, 而不是编辑器的开发人员.
 
 有些设置和 Vim 的布局有关 (比如配色和菜单), 还有些设置可以影响我们使用
@@ -41,7 +41,7 @@ Vim 的方式, 比如按键绑定 --- 把某个组合键映射到特定的操作
 使用 Vim 时, 你必须了解它的一系列配置文件. 这些配置文件的存放位置取决于
 Vim 的安装目录, 以及你所使用的操作系统.
 
-通常来说, 你只需要知道如何找到以下 3 个配置文件:
+通常来说, 你只需要知道如何找到以下 3 个配置文件即可:
 \begin{enumerate}
     \item \file{vimrc}
     \item \file{gvimrc}
@@ -50,22 +50,24 @@ Vim 的安装目录, 以及你所使用的操作系统.
 \file{vimrc} 是 Vim 的主要配置文件, 它有两个版本 --- 全局的和个人的.
 
 全局的 \file{vimrc} 存放在 Vim 系统文件的安装目录中, 为了找到该目录, 你
-需要启动 vim, 并在常规模式下执行
+需要启动 Vim, 并在常规模式下执行
 \begin{vimcmd}
 :echo $VIM
 \end{vimcmd}
 输出的内容有可能是
-\begin{enumerate}
+\begin{itemize}
     \item Linux: \texttt{/usr/share/vim/vimrc}
-    \item Windows: \texttt{c:\\program files\\vim\\vimrc}
-\end{enumerate}
+    \item Windows: \texttt{c:\textbackslash program files\textbackslash
+        vim\textbackslash vimrc}
+\end{itemize}
 个人的 \file{vimrc} 在用户的家目录, 家目录的位置取决于你所用的操作系统.
 Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件名前加一个
 句点符号, 从而隐藏起来. 在 Unxi 中, 以句点开始的文件名可以把文件隐藏起来,
-但在 Microsoft Windows 不起作用, 作为替代, 在这些系统中 \file{vimrc} 的
+但在 Microsoft Windows 中不起作用, 作为替代, 在这些系统中 \file{vimrc} 的
 文件名以下划线开始. 比如
-\begin{enumerate}
+\begin{itemize}
     \item Linux: \texttt{/home/kim/.vimrc}
-    \item Windows: \texttt{c:\\documents and settings\\kim\\\_vimrc}
-\end{enumerate}
+    \item Windows: \texttt{c:\textbackslash documents and
+        settings\textbackslash kim\textbackslash \_vimrc}
+\end{itemize}
 \marginpar{19}
