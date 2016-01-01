@@ -75,7 +75,7 @@ Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件
 用户没有权限修改 (甚至访问) 全局 \file{vimrc}, 也可以通过修改个人的
 \file{vimrc} 来得到自己想要的配置效果.
 
-如果想要得到用户的家目录路径, 只需要在 Vim 的普通模块下执行命令:
+如果想要得到用户的家目录路径, 只需要在 Vim 的普通模式下执行命令:
 \begin{vimcmd}
 :echo $HOME
 \end{vimcmd}
@@ -86,7 +86,7 @@ Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件
 \end{vimcmd}
 
 \file{vimrc} 文件包含 \texttt{ex} (vi 预处理器) 命令, 每行一个, 在 Vim 
-启动过程中, 会自动从该文件中读取配置信息. 在剩下的内容里, 我们把 Vim 的
+启动过程中, 会自动从该文件中读取配置命令. 在剩下的内容里, 我们把 Vim 的
 配置文件都称为 \file{vimrc}, 而不考虑它的具体存放路径.
 
 \file{vimrc} 可以把其他文件作为配置信息的外部来源, 在 \file{vimrc} 中,
@@ -94,7 +94,7 @@ Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件
 \begin{vimcmd}
 source /path/to/external/file
 \end{vimcmd}
-这种方法可以使 \file{vimrc} 保持简练, 也可以使配置内容更具有结构化. (关于
+这种方法可以使 \file{vimrc} 保持简练, 也可以使配置文件更加结构化. (关于
 如何保持 \file{vimrc} 简练的更多方法, 请参考附录
 \ref{chap:vim_configuration_alternatives})
 
