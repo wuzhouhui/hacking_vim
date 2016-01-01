@@ -122,10 +122,11 @@ source /path/to/external/file
 与 \file{vimrc} 相同 (包括个人与全局), 使用方法也一样. 不过它很少被用到,
 除非用户把 Vim 设置成 vi 兼容模式.
 \marginpar{20}
+
 \section{更改字体}
 \label{sec:changing_the_fonts}
 对于普通版的 Vim 来说, 更改字体通常没什么好做的, 因为 Vim 的字体与终端
-字体一致. 然而, 对于 Gvim, 你可以根据自己的需要, 随意地修改字体.
+字体一致. 然而, 对于 Gvim, 你可以根据自己的需要随意地修改字体.
 
 在 Linux 中, 设置字体的主要命令是 \file{guifont}, 例如:
 \begin{vimcmd}
@@ -149,7 +150,8 @@ source /path/to/external/file
 \end{vimcmd}
 这个命令把字体设置成 Courier New, 大小为 12, 但是该设置仅对当前会话有效.
 如果希望每次打开 Vim 时都能够自动设置好字体, 那就得把命令添加到用户
-的 \file{gvimrc} 文件中 (删除 \texttt{set} 左边的 \texttt{:})
+的 \file{gvimrc} 文件中 (添加到配置文件中的命令需要删除 \texttt{set}
+左边的 \texttt{:})
 
 \begin{warning}
     在 Windows, Linux (使用 GTK+), Mac OS, 或 Photon 的 Gvim 中,
@@ -157,7 +159,8 @@ source /path/to/external/file
 \end{warning}
 
 用户可以根据不同的文件类型 (源代码文件, 普通文本文件, 日志文件等) 
-设置不同的字体. 例如, 用户希望如果打开的是一个普通文本文件 (\texttt{.txt}),
+设置不同的字体. 例如, 假设用户希望如果打开的是一个普通文本文件
+(\texttt{.txt}),
 就把字体设置为 Arial, 大小 12. 完成这个操作只需要在 \file{vimrc} 中添加:
 \begin{vimcmd}
 autocmd BufEnter *.txt set guifont=Arial\ 12
