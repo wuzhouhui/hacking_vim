@@ -71,3 +71,54 @@ Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件
         settings\textbackslash kim\textbackslash \_vimrc}
 \end{itemize}
 \marginpar{19}
+个人的 \file{vimrc} 配置会覆盖全局的 \file{vimrc} 配置效果, 因此, 即使
+用户没有权限修改 (甚至访问) 全局 \file{vimrc}, 也可以通过修改个人的
+\file{vimrc} 来得到自己想要的配置效果.
+
+如果想要得到用户的家目录路径, 只需要在 Vim 的普通模块下执行命令:
+\begin{vimcmd}
+:echo $HOME
+\end{vimcmd}
+
+获取个人 \file{vimrc} 路径的另一个方法是在普通模式下执行:
+\begin{vimcmd}
+:echo $MYVIMRC
+\end{vimcmd}
+
+\file{vimrc} 文件包含 \texttt{ex} (vi 预处理器) 命令, 每行一个, 在 Vim 
+启动过程中, 会自动从该文件中读取配置信息. 在剩下的内容里, 我们把 Vim 的
+配置文件都称为 \file{vimrc}, 而不考虑它的具体存放路径.
+
+\file{vimrc} 可以把其他文件作为配置信息的外部来源, 在 \file{vimrc} 中,
+可以这样使用 \texttt{source} 命令:
+\begin{vimcmd}
+source /path/to/external/file
+\end{vimcmd}
+这种方法可以使 \file{vimrc} 保持简练, 也可以使配置内容更具有结构化. (关于
+如何保持 \file{vimrc} 简练的更多方法, 请参考附录
+\ref{chap:vim_configuration_alternatives})
+
+\file{gvimrc} 是专门给 Gvim 使用的配置文件. 它类似于前面介绍过的
+\file{vimrc}, 个人的 \file{gvimrc} 存放目录与 \file{vimrc} 相同, 全局的 
+同样如此. 比如:
+\begin{itemize}
+    \item Linux: \texttt{/home/kim/.gvimrc} 与
+        \texttt{/usr/share/vim/gvimrc}
+    \item Windows: \texttt{c:\textbackslash documents and
+        settings\textbackslash kim\textbackslash\_gvimrc}  与
+        \texttt{c:\textbackslash program files\textbackslash
+        vim\textbackslash gvimrc}
+\end{itemize}
+\begin{warning}
+特定于 GUI 的配置项只有 Gvim 才能使用, 在剩下的内容里, 我们把 Gvim 的配置 
+文件都统一称为 \file{gvimrc}.
+\end{warning}
+
+\file{gvimrc} 不能替代 \file{vimrc}, 它仅仅是为了给 Vim 的 GUI 版本提供配置
+信息. 换句话说, 读者没必要把相同的配置信息同时写在 \file{vimrc} 与
+\file{gvimrc} 两个文件中.
+
+文件 \file{exrc} 只是为了保持对编辑器 vi/ex 的向后兼容. 它的存放位置
+与 \file{vimrc} 相同 (包括个人与全局), 使用方法也一样. 不过它很少被用到,
+除非用户把 Vim 设置成 vi 兼容模式.
+\marginpar{20}
