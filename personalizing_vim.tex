@@ -50,7 +50,7 @@ Vim 的安装目录, 以及你所使用的操作系统.
 \file{vimrc} 是 Vim 的主要配置文件, 它有两个版本 --- 全局的和个人的.
 
 全局的 \file{vimrc} 存放在 Vim 系统文件的安装目录中, 为了找到该目录, 你
-需要启动 vim, 并在常规模式下执行
+需要启动 vim, 并在普通模式下执行
 \begin{vimcmd}
 :echo $VIM
 \end{vimcmd}
@@ -69,3 +69,15 @@ Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件
     \item Windows: \texttt{c:\documents and settings\kim\_vimrc}
 \end{enumerate}
 \marginpar{19}
+个人的 \file{vimrc} 配置会覆盖全局的 \file{vimrc} 配置效果, 因此, 即使
+用户没有权限修改 (甚至访问) 全局 \file{vimrc}, 也可以通过修改个人的
+\file{vimrc} 来得到自己想要的配置效果.
+
+如果想要得到用户的家目录路径, 只需要在 Vim 的普通模块下执行命令:
+\begin{vimcmd}
+:echo $HOME
+\end{vimcmd}
+
+获取个人 \file{vimrc} 路径的另一个方法是在普通模式下执行:
+\begin{vimcmd}
+\end{vimcmd}

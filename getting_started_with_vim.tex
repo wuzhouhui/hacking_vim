@@ -69,13 +69,13 @@ vi 最早由 Bill Joy 于 1976 年发布, Vim 只是 vi 众多的衍生版之一
 \subsection{vi}
 \label{subsec:vi}
 vi 是 Vim 家族的原始祖先, 由 Bill Joy 在 1976 年开发, 系统平台是 
-\textbf{BSD} (\textbf{Berkeley Software Distribution}) 的一个早期版本.
-vi 是当时最流行的编辑器 \textbf{ex} 的扩展版本. 而 ex 则是 Unix 编辑器 
-\textbf{ed} 的扩展版本. ``vi'' 的意思是 \textbf{visual in ex}, 正如这个
+\newterm{BSD} (\newterm{Berkeley Software Distribution}) 的一个早期版本.
+vi 是当时最流行的编辑器 \newterm{ex} 的扩展版本. 而 ex 则是 Unix 编辑器 
+\newterm{ed} 的扩展版本. ``vi'' 的意思是 \newterm{visual in ex}, 正如这个
 名字所表示的那样, vi 仅仅是一个命令, 命令的作用是以可视化模式启动 ex 
 编辑器.
 
-vi 是最早的引入\textbf{模式} (\textbf{modality}) 概念的编辑器之一.
+vi 是最早的引入\newterm{模式} (\newterm{modality}) 概念的编辑器之一.
 模式指的是在处理不同的任务时, 编辑器可以处于不同的工作模式 --- 有的模式
 用来编辑文本, 有的模式用来选择文本, 还有一些模式用于执行命令.
 
@@ -83,17 +83,17 @@ vi 是最早的引入\textbf{模式} (\textbf{modality}) 概念的编辑器之�
 讨厌 vi 的人更加讨厌 vi.
 
 自从第一个版本发布 之后, vi 就没有发生过比较大的变化, 但这并不妨碍它成
-为 Unix 社区最流行的编辑器之一, 这主要是因为 \textbf{SUS} (\textbf{Single
+为 Unix 社区最流行的编辑器之一, 这主要是因为 \newterm{SUS} (\newterm{Single
 Unix Specification}) 把 vi 列为 Unix 系统的必备软件之一 --- 只有符合 
 SUS 的系统才能称之为 Unix 系统.
 
 \subsection{STEVIE}
 \label{subsec:stevie}
-1987 年, Tim Thompson 获得了他的第一台 \texttt{Atari ST}
-(\textbf{Sixteen/Thirty-two}), 但这个平台还没有一款优秀的编辑器可供
+1987 年, Tim Thompson 获得了他的第一台 \newterm{Atari ST}
+(\newterm{Sixteen/Thirty-two}), 但这个平台还没有一款优秀的编辑器可供
 使用, 于是, 它决定把 vi 移值到这个平台中. 1987 年 6 月, 他发布了一款
 编辑器, 所使用的授权类似于后来的开源协议. 他在新闻组中发布了这款编辑器,
-并取名为 \textbf{STEVIE} --- 意为 \textbf{ST Editor for VI Enthusiasts}.
+并取名为 \newterm{STEVIE} --- 意为 \newterm{ST Editor for VI Enthusiasts}.
 
 这款编辑器非常简单, 只支持 vi 的一小部分功能, 但是它提供了一个对 vi 用
 户来说非常熟悉的环境, 这可以帮助他们在 ST 平台上继续高效地工作.
@@ -113,7 +113,7 @@ STEVIE 是比较流利的编辑器之一, 但是它还有许多 bug, 限制也�
 还在使用 Minix 的 Steve Kirkendall 注意到了 STEVIE 的一个缺点: 在编辑文件
 时, 它会把整个文件读取到内存中, 在 Minix 中这并不是一个很明智的做法.
 于是 Steve 决定修改 STEVIE, 让编辑器把一个文件当做缓冲区使用, 而不是
-在内存中编辑, 这产生了 \textbf{Elvis} v1.0.
+在内存中编辑, 这产生了 \newterm{Elvis} v1.0.
 
 虽然和 vi 比较来, Elvis 已经得到了很大的改善, 但是它仍然受到同样的限制
 --- 行的最大长度, 以及单文件缓冲区.
@@ -138,8 +138,214 @@ Unix, MS Windows (控制台程序, 或带有 GUI 的 WinElvis), 以及 OS/2.
 
 \section{nvi}
 \label{sec:nvi}
-\textbf{nvi}, 全称 \textbf{new vi}, 是 AT\&T 与 加州大学伯克利分校 
-\textbf{Computer Science Research Group} (\textbf{CSRG}) 授权争论的
+\newterm{nvi}, 全称 \newterm{new vi}, 是 AT\&T 与 加州大学伯克利分校 
+\newterm{Computer Science Research Group} (\newterm{CSRG}) 授权争论的
 结果. vi 使用了 ed 的源代码, 而 ed 使用了 AT\&T System V Unix 授权,
-所以 CSRG 无法使用 BSD 授权来发布 vi.
+所以 CSRG 无法使用 BSD 授权来发布 vi, 于是他们决定发布 vi 的替代版本.
 \marginpar{11}
+
+新 vi 的开发人员是 Keith Bostic. vi 克隆了已经免费的 Elvis, 但是 
+Keith 希望新的编辑器和原始的 vi 尽量保持接近, 于是他采用了 Elvis 的代码,
+并开发出一个和 vi 完全兼容的衍生版 --- nvi. 在原始  vi 的功能集
+中, 只能 \newterm{打开模式} (\newterm{Open Mode}) 和 \newterm{lisp 编辑}
+(\newterm{lisp edit}) 被剔除出去.
+
+随着 4.4BSD 的发布, nvi 完全替代了 vi 编辑器, 而且再次使用了完全免费的
+授权来发布该软件.
+
+如今, 大多数基于 BSD 的操作系统都使用了 nvi 作为它们的默认 vi 编辑器,
+包括 NetBSD, FreeBSD, 还有 OpenBSD, 并且功能也越来越丰富.
+
+和原始的 vi 相比, nvi 主要包含的新特性包括:
+\begin{itemize}
+    \item 多个编辑缓冲区
+    \item 不限次数的撤消
+    \item 扩展的正则表达式
+    \item 支持 CScope
+    \item 简单的脚本支持, 脚本语言可以是 Perl 或 Tcl/Tk
+\end{itemize}
+
+Keith Bostic 现在依然在维护 nvi 的源代码, 但是开发量已经少了很多.
+\begin{warning}
+    可以到 \url{http://www.bostic.com/vi/} 获取最新版的 nvi.
+\end{warning}
+
+\section{Vim}
+\label{sec:vim}
+\newterm{Vim} 编辑器是 vi 家庭的天之骄子. 自从 Bram Moolenaar 在 1991 年
+发布了 Vim 的第 1 版之后, 这个编辑器已经成长为世界上功能最丰富的编辑器
+之一.
+\marginpar{12}
+Vim 的第 1 版和 Elvis 一样, 都是基于 STEVIE 的源代码. 然而, Bram 发布 
+的 Vim 只支持 Amiga 平台, 在当时, Amiga 是家庭计算机中最流行的平台之一.
+那时候 Vim 还只是 \newterm{Vi IMitation} 的缩写形式, 事实上也的确是这
+样, 因为当时仅仅希望 Vim 能尽量模拟 vi 的功能.
+
+可是就在一年之后, 到了 1992 年, Bram 把 Vim 移值到了 Unix 平台, 这样做
+的结果是 Vim 已经不仅仅是 vi 的衍生版, 而是变成了一个强有力的对手. Vim 
+的开发工作非常迅速, 仅用了很短的时间, Vim 就拥有了许多原始 vi 不支持
+的特性. 也正是由于这个原因, Vim 变成了 Vi IMproved 的缩写形式.
+
+两年之内, Vim 就拥有了一大堆 vi 用户朝思暮想的功能, 这也使得越来越多的
+vi 用户转而投向 Vim 的怀抱.
+
+1998 年, Vim 的第 5 代版本发布, 这个版本包含了如今使用得最广泛的一个
+特性: 脚本编程.
+
+现在, 用户可以根据自己的需要, 通过编写脚本来扩展 Vim 的功能. 这是一个
+非常大的进步, 因为在这以前, 如果想要为编辑器添加一个小功能, 通常需要用比较
+低级的语言编码, 然后再重新编译 --- 整个过程非常麻烦.
+
+最近十年, Vim 添加了许多新特性, 和其他编辑器, 以及 vi 的其他衍生版比起来,
+其中的许多特性显得非常与众不同.
+
+这里我们仅列出 Vim 最显著的一些特性, 完整的列表非常长, 不太适合放在这里:
+\begin{itemize}
+    \item 在多个缓冲区, 窗口, 和标签页中同时编辑多个文件
+    \item 高级脚本语言
+    \item 脚本语言支持 Perl 与 Python
+    \item 支持超过 200 种语言的语法高亮
+    \item 带有分支的, 不限次数的撤消/重做
+    \item 根据上下文来补全单词和函数
+    \item 通过正则表达式, 支持高级的模式匹配
+    \item 与多种编译器, 解释器, 以及调试器的紧密结合
+    \item 可在线免费获取超过 1500 份的 Vim 脚本程序
+\end{itemize}
+\marginpar{13}
+Vim 所支持的平台非常广泛, 比如所有的 Unix 系统, Linux, MS Dos, MS Windows,
+AmigaOS, Atari MiNT, OS/2, OS/390, MacOS, OpenVMS, RISC OS, 以及 QNX.
+
+\section{Vile}
+\newterm{Vile} 也许是所有衍生版中最不像vi的一个 --- 甚至有人认为它根本就
+不是 vi 的衍生版. Vile 试图把世界上最好的两个编辑器集成在一起 --- vi 的
+模式与 Emacs 的特性.
+
+这也解释了名字 Vile 的来源 --- \newterm{VI Like Emacs}.
+
+Paul Fox 在 1990 年的夏季启动了 Vile 的开发计划, 其源代码基于公开的
+\newterm{MicroEmacs} 编辑器, 在后面的日子里, Paul 为它添加了模式与其他
+的类 vi 特性.
+
+MicroEmacs 并没有具备 Emacs 编辑器的全部特性, 但是它支持长行, 以及在
+多个窗口中同时编辑多个文件. 这些特性 vi 并不具备, 但是许多程序员却很
+需要它们.
+
+为了把 MicroEmacs 改造成类 vi 编辑器, 开发人员做了大量的工作. 在这过程中 
+陆续有几位新成员加入到开发团队中, 其中就包括 Thomas E. Dickey, 他在 1992 
+参与进来, 他为 Vile 添加了许多新特性, 也修复了很多 bug.
+
+1994 年, Kevin Buettner 参与了进来, 着手开发 Vile 的 GUI 版本 ---
+\newterm{xvile}, xvile 支持当时最常用的一些部件, 比如 Athena, OpenLook,
+Motif, 以及 Xt Toolkit.
+
+如今 Thomas 是 Vile 的主要维护人员, 开发工作也由他掌控. 但是他花在开发
+上的时间十分有限, 在大多数情况下只是做一些 bug 修复工作.
+
+Vi 与 Vile 在工作方式上不太一样, 而且只有一小部分的 vi 特性被保留到了
+Vile 中. Vile 的主要特性包括:
+\begin{itemize}
+    \item 编辑模式 --- 为每一种文件类型配备一个模式
+    \item 为了支持宏而添加的 Vile  过程语言
+    \item Perl 支持 (实验性的)
+    \item 根据用户的需要, 把命名函数绑定到按键上
+\end{itemize}
+
+Vile 支持的平台包括 Unix, Linux, BeOS, OS/2, VMS, 和 MS Windows,
+每一种平台都同时拥有控制台版本和 GUI 版本.
+\marginpar{14}
+\begin{warning}
+    关于最新版的 vile 可以访问
+    \url{http://invisible-island.net/vile/vile.html}.
+\end{warning}
+
+\section{兼容性}
+\label{sec:compatibility}
+虽然所有的 vi 衍生版在某种程度上都试图表现得像 vi 一样, 但是其中大多数
+在朝着完全不同的方向发展. 这就意味着, 虽然它们都支持一些共同的功能,
+比如语法高亮, 但是这并不要求一定要用同样的方法来实现. 因此, 如果有一个 
+Vim 的语法文件, 那它就不能被 Elvis 所使用.
+
+即使是那些起源于 vi 的特性, 其实现方法也不一定相同. 有些衍生版所实现
+的特性不如其他衍生版准确. 也许特性背后的思想都是相同的, 但是使用它们
+的结果却有可能完全不同.
+
+在下这张表中, 我尽量精确地给出上面所提到的衍生版和 vi 的相似度百分比
+(兼容性的最低值用 0\% 表示, 100\% 表示完全兼容). 它们之间的比较说明了
+开发人员为了尽量精确地实现 vi 特性所付出的努力.
+\begin{tabular}{lll}
+    \hline
+    衍生版  & vi 兼容性 & 说明 \\
+    \hline
+    STEVIE  & 10\%      & 相同的特性集只有很小的一部分 \\
+    Vile    & 10\%      & 相同的部分只包括常规概念, 比如模式 \\
+    Elvis   & 80\%      & 有大量的特性集相同, 但是还有一些特性表现地很不
+        相同 \\
+    Nvi     & 95\%      & 接近完全兼容, 但是还是有一小部分特性表现地不
+        一样 \\
+    Vim     & 99\%      & 在 ``兼容模式'' 下, 几乎所有的特性都兼容 \\
+    \hline
+\end{tabular}
+表格只考虑了衍生版和 vi 共同拥有的特性, 也就是说虽然 Vim 拥有许多 vi 并
+不支持的特性, 但是在共同支持的特性上, Vim 仍然表现和 vi 非常类似.
+除此之外, Vim 还实现了 vi 几乎所有的特性, 有一些特性, Bram Moolenaar 把
+它们当作 vi 的 bug, 所以在 Vim 中用了不同的方法来实现. 注意, 为了能让
+Vim 达到 99\% 的 vi 兼容性, 你必须执行下列命令, 把它设置成兼容模式:
+\begin{vimcmd}
+:set compatible
+\end{vimcmd}
+\marginpar{15}
+\begin{warning}
+    如果你想要了解更多的关于 vi 与 Vim 之间的差异, 请在 Vim 中输入命令:
+    \texttt{:help vi-differences}
+\end{warning}
+另一个比较有趣的地方是, 虽然 STEVIE 非常精确地实现了 vi 的一部分功能集,
+但由于比例过低, 所以人们并没有把它当作 vi 的近亲.
+
+\section{博爱的 Vim}
+\label{sec:vim_is_charityware}
+Vim 的开发人员 --- Bram Moolenaar --- 选择了一种称为慈善授权的许可证
+来发布 Vim. 该许可证允许你不受限制地复制 Vim, 但是它鼓励你向慈善团体捐赠.
+
+如果你想要了解更多的关于捐赠的信息, 在打开 Vim 后, 执行
+\begin{vimcmd}
+:help uganda
+\end{vimcmd}
+除此之外, 你还可以访问 \url{http://www.vim.org/sponsor/}, 来获取更多的
+关于如何赞助 Vim 项目的资料.
+
+如果你是一名 Vim 赞助人, 就有权利投票把哪些新特性加入到 Vim 中. 所以, 
+赞助不仅可以帮助他人, 还可以影响 Vim 的演变.
+
+\section{公共术语}
+\label{sec:common_terminology}
+
+有些单词在不同的语境中会拥有不同的涵义, 因此, 我们先在这里解释一些本书将
+会用到的重要术语:
+\begin{itemize}
+    \item \newterm{黑客} (\newterm{Hacker}): 技术迷, 喜欢钻研与技术相关
+        的事物, 并对它们进行优化, 以满足自己或他人的需求.
+    % TODO: 不知道该把 hacking 翻译成什么词比较合适
+    \item \newterm{Hacking}: 黑客对软件或硬件进行探索
+        和优化的过程. 因此 ``Hacking Vim'' 的意思是为了满足黑客 (用户)
+        的需求, 对 Vim 编辑器进行优化的过程.
+    \item \newterm{脚本} (\newterm{Script}): 由一行或多行代码组成的文本
+        程序, 可以通过解释器来运行. 一个脚本程序可以用多种不同的编程语言
+        来编写, 但是在运行时必须选择一种与编程语言相匹配的解释器.
+    \item \newterm{解释器} (\newterm{Interpreter}): 一种程序, 它可以
+        从脚本中读取行, 然后一行接一行地加以执行. 解释器可以被构建到
+        另一个程序中 (比如 Vim).
+\end{itemize}
+\marginpar{16}
+\section{小结}
+\label{sec:getting_started_with_vim_summary}
+这一章简单地介绍了 Vim, 以及本书所讨论的内容. Vim 只是历史悠久的 Unix 
+vi 编辑器的众多衍生版之一, 为了让读者对 vi 家族有一个感性的认识, 我们 
+介绍了几种比较著名的 vi 衍生版. 它们的历史, 以及和 vi 之间的联系我们
+只进行了简单的介绍, 另外我们还了解到, 虽然这些衍生版都试图向 vi 靠拢,
+但它们之间并非完全兼容.
+
+接着我们简单地介绍了一些关于慈善授权的概念, 以及作者如何利用 Vim 来筹集
+善款, 从而帮助乌干达的儿童. 最后, 我们介绍了书中比较重要的几个术语, 
+并解释了本书书名 ``Hacking Vim'' 的意义.
+
+现在, 你可以继续往下阅读, 学习如何定制 Vim 编辑器.
