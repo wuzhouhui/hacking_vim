@@ -161,3 +161,10 @@ source /path/to/external/file
 autocmd BufEnter *.txt set guifont=Arial\ 12
 \end{vimcmd}
 \marginpar{21}
+每当字体发生变化时, Gvim 的窗口大小就会自行调整. 这就意味着如果使用了较小的
+字体, 窗口也会变小. 如果用户像之前说的那样, 对不同的文件类型设置了不同的
+字体, 每当用户切换到具有不同文件类型的缓冲区时, 字体就会发生变化, 于是
+窗口大小也会作相应的改变.
+\begin{warning}
+    用户可以到 Vim 帮助系统的 \textbf{Help | guifont} 中找到更多的资料.
+\end{warning}
