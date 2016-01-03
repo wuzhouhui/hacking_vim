@@ -209,7 +209,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 % TODO 这里缺了两幅图
 
 \section{个性化高亮}
-\label{sec:personal_hightlighting}
+\label{sec:personal_highlighting}
 在 Vim 中, 与高亮相关的最关键的技术是 \newterm{匹配} (\newterm{matching}).
 
 通过匹配, Vim 几乎可以标记字母, 单词, 数值, 语句, 和文本行的任意一种组合.
@@ -228,3 +228,46 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
     为了查看所有的色彩组, 执行 \texttt{:so \$VIMRUNTIME/syntax/hitest.vim}.
 \end{warning}
 \marginpar{23}
+第 2 个参数是待匹配的模式. 模式是一个正则表达式, 可以很简单, 也可以极其
+复杂 --- 取决于用户想要匹配什么样的内容. 匹配命令的一个比较简单的例子是:
+\begin{vimcmd}
+:match ErrorMsg /^Error/
+\end{vimcmd}
+\begin{center}
+\includegraphics[scale=0.7]{./images/page23.png}
+\end{center}
+
+这个命令查找位于行的开始位置的单词 \newterm{Error} (带有脱字符 \texttt{\^}),
+如果找到了一个匹配, 就把匹配的文本用色彩组 \texttt{ErrorMsg} 的颜色
+标记起来 (通常是红底白字).
+
+如果读者不太喜欢已有的色彩组, 也可以自己定义一个, 定义色彩组的命令是:
+\begin{vimcmd}
+:highlight MyGroup ctermbg=red guibg=red gctermfg=yellow
+        guifg=yellow term=bold
+\end{vimcmd}
+这个命令创建了一个名为 \file{MyGroup} 的色彩组, 红底黄字, 在控制台 (Vim)
+和 GUI (Gvim) 环境下都是如此. 用户可以根据自己的喜好, 修改下列选项:
+
+\begin{center}
+\begin{tabular}{ll}
+    \hline
+    \texttt{ctermbg}    & 控制台环境下的背景色 \\
+    \texttt{guibg}      & Gvim 环境下的背景色 \\
+    \texttt{ctermfg}     & 控制台环境下的文本颜色 \\
+    \texttt{guifg}      & Gvim 环境下的文本颜色 \\
+    \texttt{gui}        & Gvim 环境下的字体格式 \\
+    \texttt{term}       & 控制台环境下的字体格式 (比如粗体: bold) \\
+    \hline
+\end{tabular}
+\end{center}
+
+如果使用了已有的色彩组的名字, 那么在接下来的会话中如果用到了该色彩组,
+所使用的将会是修改后的效果.
+
+使用匹配命令时, 给定的模式会一直匹配下去, 直到执行一个新的匹配, 或者执行
+下列命令:
+\begin{vimcmd}
+:match NONE
+\end{vimcmd}
+\marginpar{24}
