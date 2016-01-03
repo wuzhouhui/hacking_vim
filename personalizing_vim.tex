@@ -202,5 +202,29 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 都是由用户提供的, 如果用户对某个配色方案不太满意, 他可能会对方案中的某
 一条配置进行修改, 然后再用另外一个名字重新发布.
 \marginpar{22}
+为了找到心仪的配色方案, 读者可以把所有的方案都试一遍. 读者可以从现在开始
+选择一种配色方案, 并查看是否对该方案的所有颜色配置都满意, 在第
+\ref{chap:basic_vim_scripting} 章, 我们会回过头来讨论如何改变配色方案的
+配置, 以满足用户的所有特殊需求.
+% TODO 这里缺了两幅图
 
+\section{个性化高亮}
+\label{sec:personal_hightlighting}
+在 Vim 中, 与高亮相关的最关键的技术是 \newterm{匹配} (\newterm{matching}).
 
+通过匹配, Vim 几乎可以标记字母, 单词, 数值, 语句, 和文本行的任意一种组合.
+你甚至可以决定如何标记它们 (例如 用红色标记错误, 用绿色标记重点内容).
+
+匹配通过下面这个命令完成:
+\begin{vimcmd}
+:match Group /pattern/
+\end{vimcmd}
+命令带有两个参数, 第一个参数是高亮文本时使用的色彩组的名字.
+\begin{warning}
+    配色方案影响的是全部的颜色设置, 而色彩组只是背景色 (或前景色) 的一个比
+    较小的组合, 用户可以将其应用到某个方面, 比如匹配. 当 Vim 启动时, 根据
+    所选择的配色方案, 大量的色彩组被设置成某个默认值.
+
+    为了查看所有的色彩组, 执行 \texttt{:so \$VIMRUNTIME/syntax/hitest.vim}.
+\end{warning}
+\marginpar{23}
