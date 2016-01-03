@@ -233,9 +233,11 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 \begin{vimcmd}
 :match ErrorMsg /^Error/
 \end{vimcmd}
+\begin{center}
 \includegraphics[scale=0.7]{./images/page23.png}
+\end{center}
 
-这个命令查找位于行的开始位置的单词 \newterm{Error} (带有标记 \textsf{\^}),
+这个命令查找位于行的开始位置的单词 \newterm{Error} (带有脱字符 \texttt{\^}),
 如果找到了一个匹配, 就把匹配的文本用色彩组 \texttt{ErrorMsg} 的颜色
 标记起来 (通常是红底白字).
 
@@ -246,6 +248,8 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 \end{vimcmd}
 这个命令创建了一个名为 \file{MyGroup} 的色彩组, 红底黄字, 在控制台 (Vim)
 和 GUI (Gvim) 环境下都是如此. 用户可以根据自己的喜好, 修改下列选项:
+
+\begin{center}
 \begin{tabular}{ll}
     \hline
     \texttt{ctermbg}    & 控制台环境下的背景色 \\
@@ -256,6 +260,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
     \texttt{term}       & 控制台环境下的字体格式 (比如粗体: bold) \\
     \hline
 \end{tabular}
+\end{center}
 
 如果使用了已有的色彩组的名字, 那么在接下来的会话中如果用到了该色彩组,
 所使用的将会是修改后的效果.
