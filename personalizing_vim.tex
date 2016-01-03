@@ -168,3 +168,34 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 \begin{warning}
     用户可以到 Vim 帮助系统的 \textbf{Help | guifont} 中找到更多的资料.
 \end{warning}
+\section{修改配色方案}
+\label{sec:changing_color_scheme}
+当在终端环境下工作时, 用户常常只能面对黑底白字的屏幕, 这样的屏幕不仅无趣,
+而且很昏暗, 如果能加点彩色就好了.
+
+在默认情况下, Vim 的窗口颜色与打开它的控制台相同, 但 Vim 还提供了更改颜色
+的能力. 通常情况下, 为了修改颜色, 只需要修改配色方案文件即可, 这些文件通常
+放在名为 \file{colors} 的目录中, 而目录 \file{colors} 位于 Vim 的安装目录.
+
+为了把配色方案修改成某个系统中已有的方案, 只需要执行:
+\begin{vimcmd}
+:colorscheme mycolors
+\end{vimcmd}
+在这个命令中, \texttt{mycolors} 是系统中已安装的某个配色方案的名字. 如果你 
+不太清楚系统中已经安装了哪些配色方案, 请把输完
+\begin{vimcmd}
+:colorscheme
+\end{vimcmd}
+之后, 再键入至少一个空格, 然后就可以通过不断地按 \key{Tab} 键来浏览系统中
+可用的所有配色方案. 如果看到了一个感兴趣的配色方案, 只需要按下 \key{Enter}
+键就可以把该方案应用到 Vim 中.
+
+除了前景色与背景色, 配色方案还会影响代码高亮, 错误标记, 以及文件中的其他可
+视化标记.
+
+用户将会发现有些配色方案非常类似, 相互之间差别不大, 这是因为很多配色方案
+都是由用户提供的, 如果用户对某个配色方案不太满意, 他可能会对方案中的某
+一条配置进行修改, 然后再用另外一个名字重新发布.
+\marginpar{22}
+
+
