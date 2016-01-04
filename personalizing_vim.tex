@@ -271,3 +271,38 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 :match NONE
 \end{vimcmd}
 \marginpar{24}
+匹配命令一次只能匹配一个模式, 但是 Vim 另外提供了 2 个命令用于一次匹配至
+多 3 个模式. 命令很容易记忆:
+\begin{vimcmd}
+:2match
+:3match
+\end{vimcmd}
+读者也许想知道这些匹配命令应该在什么样的情况下使用, 因为在平时的话这些命令
+没什么大用处. 这里有一些例子, 它们展示出了匹配的强大之处.
+
+\subsection{用彩色标记某列后面的文字}
+\label{subsec:mark_color_characters_after_a_certain}
+在写邮件时, 一条比较常见的规则是一行的长度不能超过 74 个字符 (在某些古老
+的编程语言中, 同样存在这样的规则). 在这种情况下, 当你在一行内写出的字符
+数超过某个上限时, 如果 Vim 能够发出提醒那就再好不过了.
+
+只需要下面这个命令就可以完成上面提到的功能:
+\begin{vimcmd}
+:match ErrorMsg /\%>73v.\+/
+\end{vimcmd}
+执行该命令后, 一行内的第 73 个字符之后的那些字符都会被标记成错误. 匹配命令 
+中含有一个正则表达式, 这个表达式可以拆成:
+\begin{center}
+\begin{tabular}{ll}
+    \hline
+    \verb'\%>'  & 匹配该列之后的内容, 列号紧跟在尖括号的右边 \\
+    \verb'73'   & 列号  \\
+    \verb'v'    & 只能工作在可见的列上面 \\
+    \verb'.\+'  & 匹配一个或多个字符 \\
+    \hline
+\end{tabular}
+\end{center}
+\begin{center}
+    \includegraphics[scale=0.7]{./images/page24.png}
+\end{center}
+\marginpar{25}
