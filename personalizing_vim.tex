@@ -280,7 +280,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 读者也许想知道这些匹配命令应该在什么样的情况下使用, 因为在平时的话这些命令
 没什么大用处. 这里有一些例子, 它们展示出了匹配的强大之处.
 
-\subsection{用彩色标记某列后面的文字}
+\subsection{示例 1: 用彩色标记某列后面的文字}
 \label{subsec:mark_color_characters_after_a_certain}
 在写邮件时, 一条比较常见的规则是一行的长度不能超过 74 个字符 (在某些古老
 的编程语言中, 同样存在这样的规则). 在这种情况下, 当你在一行内写出的字符
@@ -306,3 +306,41 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
     \includegraphics[scale=0.6]{./images/page24.png}
 \end{center}
 \marginpar{25}
+\subsection{示例 2: 标记代码中未被用作缩进的制表符}
+\label{subsec:mark_tabs_not_used_for_indentation_in_code}
+编码时, 一条很重要的规则是制表符只被用作缩进代码, 其他地方则不允许使用制表
+符. 然而, 对某些人来说常常会忘记该规则. 现在, 只需要一条简单的匹配命令, 就
+可以时刻提醒着程序员.
+
+下面这条命令把所有的, 不在行的开始位置上的制表符用错误信息的颜色标记出来:
+\begin{vimcmd}
+:match errorMsg /[^\t]\zs\t\+/
+\end{vimcmd}
+执行完该命令后, 你就可以看到是否违反了规则 --- 把制表符用在了代码内部. 把
+命令分解开来看, 它由下列这几个部分组成:
+\begin{center}
+    \begin{tabular}{ll}
+        \hline
+        \verb'[^'   & 字符组的开始标记, 组中的字符将不会被匹配到 \\
+        \verb'\t'   & 制表符 \\
+        \verb']'    & 字符组的结点标记 \\
+        \verb'\zs'  & 一个宽度为 0 的匹配, 它把 ``匹配'' 置于一行的开始,
+        并忽略任意的空格 \\
+        \verb'\t\+' & 匹配一个或多个制表符 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \includegraphics[scale=0.8]{./images/page25.png}
+\end{center}
+
+这个命令的意思是: 除了一行的开始, 不要匹配其他位置上的制表符 (忽略任意的
+空格).
+
+如果你想用空格来缩进代码, 而不是制表符, 为了检查代码, 只需要把命令改成:
+\begin{vimcmd}
+:match errorMsg /[\t]/
+\end{vimcmd}
+这条命令的意思是: 匹配所有的制表符.
+\marginpar{26}
