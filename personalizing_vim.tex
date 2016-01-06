@@ -7,11 +7,11 @@
 工作. 但是什么样的编辑器才能称之为优秀呢?
 
 通过观察不同的编辑器我们发现, 开发人员努力往编辑器身上加入他们认为用户需要
-的特性, 来使得编辑器越来越好用, 成为顶尖中的顶尖.  但是还有一些编辑器勇于
+的特性, 籍此希望编辑器越来越好用, 成为顶尖中的顶尖.  但是还有一些编辑器勇于
 承认自己的不足, 它们只希望能够尽量简单, 对用户友好, 能够更快速地启动.
 
 有了 Vim 编辑器, 没有人能够决定谁才是你的最佳选择. 相反, 你可以根据自己的
-需要, 对 Vim 进行大范围的修改, 使得它更符合你的口味. 这就意味着力量掌握在
+需要, 对 Vim 进行大范围的修改, 使它更符合你的口味. 这就意味着力量掌握在
 你自己的手中, 而不是编辑器的开发人员.
 
 有些设置和 Vim 的布局有关 (比如配色和菜单), 还有些设置可以影响我们使用
@@ -41,7 +41,7 @@ Vim 的方式, 比如按键绑定 --- 把某个组合键映射到特定的操作
 使用 Vim 时, 你必须了解它的一系列配置文件. 这些配置文件的存放位置取决于
 Vim 的安装目录, 以及你所使用的操作系统.
 
-通常来说, 你只需要知道如何找到以下 3 个配置文件:
+通常来说, 你只需要知道如何找到以下 3 个配置文件即可:
 \begin{enumerate}
     \item \file{vimrc}
     \item \file{gvimrc}
@@ -55,25 +55,27 @@ Vim 的安装目录, 以及你所使用的操作系统.
 :echo $VIM
 \end{vimcmd}
 输出的内容有可能是
-\begin{enumerate}
+\begin{itemize}
     \item Linux: \texttt{/usr/share/vim/vimrc}
-    \item Windows: \texttt{c:\\program files\\vim\\vimrc}
-\end{enumerate}
+    \item Windows: \texttt{c:\textbackslash program files\textbackslash
+        vim\textbackslash vimrc}
+\end{itemize}
 个人的 \file{vimrc} 在用户的家目录, 家目录的位置取决于你所用的操作系统.
 Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件名前加一个
-句点符号, 从而隐藏起来. 在 Unxi 中, 以句点开始的文件名可以把文件隐藏起来,
-但在 Microsoft Windows 不起作用, 作为替代, 在这些系统中 \file{vimrc} 的
+句点符号, 从而隐藏起来. 在 Unix 中, 以句点开始的文件名可以把文件隐藏起来,
+但在 Microsoft Windows 中不起作用, 作为替代, 在这些系统中 \file{vimrc} 的
 文件名以下划线开始. 比如
-\begin{enumerate}
+\begin{itemize}
     \item Linux: \texttt{/home/kim/.vimrc}
-    \item Windows: \texttt{c:\\documents and settings\\kim\\\_vimrc}
-\end{enumerate}
+    \item Windows: \texttt{c:\textbackslash documents and
+        settings\textbackslash kim\textbackslash \_vimrc}
+\end{itemize}
 \marginpar{19}
 个人的 \file{vimrc} 配置会覆盖全局的 \file{vimrc} 配置效果, 因此, 即使
 用户没有权限修改 (甚至访问) 全局 \file{vimrc}, 也可以通过修改个人的
 \file{vimrc} 来得到自己想要的配置效果.
 
-如果想要得到用户的家目录路径, 只需要在 Vim 的普通模块下执行命令:
+如果想要得到用户的家目录路径, 只需要在 Vim 的普通模式下执行命令:
 \begin{vimcmd}
 :echo $HOME
 \end{vimcmd}
@@ -84,7 +86,7 @@ Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件
 \end{vimcmd}
 
 \file{vimrc} 文件包含 \texttt{ex} (vi 预处理器) 命令, 每行一个, 在 Vim 
-启动过程中, 会自动从该文件中读取配置信息. 在剩下的内容里, 我们把 Vim 的
+启动过程中, 会自动从该文件中读取配置命令. 在剩下的内容里, 我们把 Vim 的
 配置文件都称为 \file{vimrc}, 而不考虑它的具体存放路径.
 
 \file{vimrc} 可以把其他文件作为配置信息的外部来源, 在 \file{vimrc} 中,
@@ -92,7 +94,7 @@ Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件
 \begin{vimcmd}
 source /path/to/external/file
 \end{vimcmd}
-这种方法可以使 \file{vimrc} 保持简练, 也可以使配置内容更具有结构化. (关于
+这种方法可以使 \file{vimrc} 保持简练, 也可以使配置文件更加结构化. (关于
 如何保持 \file{vimrc} 简练的更多方法, 请参考附录
 \ref{chap:vim_configuration_alternatives})
 
@@ -120,10 +122,11 @@ source /path/to/external/file
 与 \file{vimrc} 相同 (包括个人与全局), 使用方法也一样. 不过它很少被用到,
 除非用户把 Vim 设置成 vi 兼容模式.
 \marginpar{20}
+
 \section{更改字体}
 \label{sec:changing_the_fonts}
 对于普通版的 Vim 来说, 更改字体通常没什么好做的, 因为 Vim 的字体与终端
-字体一致. 然而, 对于 Gvim, 你可以根据自己的需要, 随意地修改字体.
+字体一致. 然而, 对于 Gvim, 你可以根据自己的需要随意地修改字体.
 
 在 Linux 中, 设置字体的主要命令是 \file{guifont}, 例如:
 \begin{vimcmd}
@@ -147,7 +150,8 @@ source /path/to/external/file
 \end{vimcmd}
 这个命令把字体设置成 Courier New, 大小为 12, 但是该设置仅对当前会话有效.
 如果希望每次打开 Vim 时都能够自动设置好字体, 那就得把命令添加到用户
-的 \file{gvimrc} 文件中 (删除 \texttt{set} 左边的 \texttt{:})
+的 \file{gvimrc} 文件中 (添加到配置文件中的命令需要删除 \texttt{set}
+左边的 \texttt{:})
 
 \begin{warning}
     在 Windows, Linux (使用 GTK+), Mac OS, 或 Photon 的 Gvim 中,
@@ -155,7 +159,8 @@ source /path/to/external/file
 \end{warning}
 
 用户可以根据不同的文件类型 (源代码文件, 普通文本文件, 日志文件等) 
-设置不同的字体. 例如, 用户希望如果打开的是一个普通文本文件 (\texttt{.txt}),
+设置不同的字体. 例如, 假设用户希望如果打开的是一个普通文本文件
+(\texttt{.txt}),
 就把字体设置为 Arial, 大小 12. 完成这个操作只需要在 \file{vimrc} 中添加:
 \begin{vimcmd}
 autocmd BufEnter *.txt set guifont=Arial\ 12
@@ -182,7 +187,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 :colorscheme mycolors
 \end{vimcmd}
 在这个命令中, \texttt{mycolors} 是系统中已安装的某个配色方案的名字. 如果你 
-不太清楚系统中已经安装了哪些配色方案, 请把输完
+不太清楚系统中已经安装了哪些配色方案, 请在输完
 \begin{vimcmd}
 :colorscheme
 \end{vimcmd}
@@ -228,9 +233,11 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 \begin{vimcmd}
 :match ErrorMsg /^Error/
 \end{vimcmd}
+\begin{center}
 \includegraphics[scale=0.7]{./images/page23.png}
+\end{center}
 
-这个命令查找位于行的开始位置的单词 \newterm{Error} (带有标记 \textsf{\^}),
+这个命令查找位于行的开始位置的单词 \newterm{Error} (带有脱字符 \texttt{\^}),
 如果找到了一个匹配, 就把匹配的文本用色彩组 \texttt{ErrorMsg} 的颜色
 标记起来 (通常是红底白字).
 
@@ -241,6 +248,8 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 \end{vimcmd}
 这个命令创建了一个名为 \file{MyGroup} 的色彩组, 红底黄字, 在控制台 (Vim)
 和 GUI (Gvim) 环境下都是如此. 用户可以根据自己的喜好, 修改下列选项:
+
+\begin{center}
 \begin{tabular}{ll}
     \hline
     \texttt{ctermbg}    & 控制台环境下的背景色 \\
@@ -251,6 +260,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
     \texttt{term}       & 控制台环境下的字体格式 (比如粗体: bold) \\
     \hline
 \end{tabular}
+\end{center}
 
 如果使用了已有的色彩组的名字, 那么在接下来的会话中如果用到了该色彩组,
 所使用的将会是修改后的效果.
@@ -288,12 +298,12 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
     \verb'\%>'  & 匹配该列之后的内容, 列号紧跟在尖括号的右边 \\
     \verb'73'   & 列号  \\
     \verb'v'    & 只能工作在可见的列上面 \\
-    \verb'.\+'  & 匹配一个或多个字符 \\
+    \verb'.\+'  & 匹配一个或多个任意的字符 \\
     \hline
 \end{tabular}
 \end{center}
 \begin{center}
-    \includegraphics[scale=0.7]{./images/page24.png}
+    \includegraphics[scale=0.6]{./images/page24.png}
 \end{center}
 \marginpar{25}
 \subsection{示例 2: 标记代码中未被用作缩进的制表符}
