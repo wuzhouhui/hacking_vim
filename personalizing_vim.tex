@@ -304,7 +304,33 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 
 下面这条命令把所有的, 不在行的开始位置上的制表符用错误信息的颜色标记出来:
 \begin{vimcmd}
-:match ErrorMsg /[^\t]\zs\t\+/
+:match errorMsg /[^\t]\zs\t\+/
 \end{vimcmd}
 执行完该命令后, 你就可以看到是否违反了规则 --- 把制表符用在了代码内部. 把
 命令分解开来看, 它由下列这几个部分组成:
+\begin{center}
+    \begin{tabular}{ll}
+        \hline
+        \verb'[^'   & 字符组的开始标记, 组中的字符将不会被匹配到 \\
+        \verb'\t'   & 制表符 \\
+        \verb']'    & 字符组的结点标记 \\
+        \verb'\zs'  & 一个宽度为 0 的匹配, 它把 ``匹配'' 置于一行的开始,
+        并忽略任意的空格 \\
+        \verb'\t\+' & 匹配一个或多个制表符 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \includegraphics[scale=0.8]{./images/page25.png}
+\end{center}
+
+这个命令的意思是: 除了一行的开始, 不要匹配其他位置上的制表符 (忽略任意的
+空格).
+
+如果你想用空格来缩进代码, 而不是制表符, 为了检查代码, 只需要把命令改成:
+\begin{vimcmd}
+:match errorMsg /[\t]/
+\end{vimcmd}
+这条命令的意思是: 匹配所有的制表符.
+\marginpar{26}
