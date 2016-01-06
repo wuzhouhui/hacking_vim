@@ -323,7 +323,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
         \hline
         \verb'[^'   & 字符组的开始标记, 组中的字符将不会被匹配到 \\
         \verb'\t'   & 制表符 \\
-        \verb']'    & 字符组的结点标记 \\
+        \verb']'    & 字符组的结束标记 \\
         \verb'\zs'  & 一个宽度为 0 的匹配, 它把 ``匹配'' 置于一行的开始,
         并忽略任意的空格 \\
         \verb'\t\+' & 匹配一个或多个制表符 \\
@@ -335,8 +335,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
     \includegraphics[scale=0.8]{./images/page25.png}
 \end{center}
 
-这个命令的意思是: 除了一行的开始, 不要匹配其他位置上的制表符 (忽略任意的
-空格).
+这个命令的意思是: 匹配所有的, 不在行的开始位置上的制表符 (忽略任意的空格).
 
 如果你想用空格来缩进代码, 而不是制表符, 为了检查代码, 只需要把命令改成:
 \begin{vimcmd}
