@@ -385,3 +385,37 @@ match errorMsg /\(2[5][6-9]\|2[6-9][0-9]\|[3-9][0-9][0-9]\)[.]
 当执行 Vim 命令时, 状态行就会消失, 取而代之的是命令行缓冲区. 如果所执行的
 命令带有输出信息, 那么这些信息就会出现在状态行的右侧.
 \marginpar{27}
+对于简单的文本编辑来说, 这样的状态行已经足够用了. 但是, 如果用户需要天天使用
+Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将会提供很大的帮助.
+
+在这一节, 我们将会通过几个例子, 来说明如何利用简单的办法来配置状态行, 使它
+具有更丰富的信息.
+
+配置状态行的命令具有形式:
+\begin{quotation}
+\texttt{:set statusline}\ \ \textit{format}
+\end{quotation}
+命令中的 \textit{format} 表示一个格式字符串 (就像 C 程序的 \texttt{printf}),
+它描述了状态行的显示格式.
+
+键入 \texttt{:help 'statusline'}, 打开 Vim 的帮助系统, 读者将会看到状态行
+可以包含相当多的信息, 其中有些信息在日常工作中非常有用.
+
+作者的状态行信息包括:
+\begin{itemize}
+    \item 正在编辑的文件名
+    \item 正在编辑的文件的格式 (比如 Dos, Unix)
+    \item 文件类型
+    \item 光标所在位置的字符的 ASCII 码值与十六进制值
+    \item 光标所在的行号与列号
+    \item 文件的长度 (以行为单位)
+\end{itemize}
+下面的命令可以让你的 Vim 状态行包含上面提到的所有信息:
+\begin{vimcmd}
+:set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ 
+ [HEX=\%02.2B]\ [POS=%04l,%04v]\ [%p%%]\ [LEN=%L]
+\end{vimcmd}
+\begin{center}
+    \includegraphics[scale=0.55]{images/page27.png}
+\end{center}
+\marginpar{28}
