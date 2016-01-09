@@ -406,7 +406,50 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
 :set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ 
  [HEX=\%02.2B]\ [POS=%04l,%04v]\ [%p%%]\ [LEN=%L]
 \end{vimcmd}
+我在每一种信息的左右两边都加上了中括号, 这样做更容易区分彼此. 加中括号只是为
+了增加一些视觉效果, 如果不喜欢的话可以直接删掉.
+
 \begin{center}
     \includegraphics[scale=0.8]{images/page27.png}
 \end{center}
 \marginpar{28}
+然而, 如果在安装 Vim 后没有做过多的配置, 即使执行了上面的状态行命令, 我
+们也看不到状态行有什么变化. 这是因为默认情况下 Vim 根本就不会显示状态行,
+它只会显示命令行缓冲区及其一小部分信息. 为了让 Vim 显示出真正的状态行, 用户
+必须把下面这条命令添加到 \file{vimrc} 文件中. 这条命令确保状态行始终显示在
+倒数第 2 行的位置上:
+\begin{vimcmd}
+:set laststatus=2
+\end{vimcmd}
+执行完该命令后, 你就会发现命令行缓冲区有了自己的位置: 窗口的最后一行. 通过
+这条命令就可以保证状态行始终拥有自己的显示位置, 而用户也就能一直看到文件的
+相关信息. 当然, 状态行会占据编辑区的一部分空间, 但是是否显示状态行由用户来
+决定. 下面这条命令关闭状态行, 直到当前会话结束:
+\begin{vimcmd}
+:set laststatus=0
+\end{vimcmd}
+
+\section{切换菜单与工具条}
+\label{sec:toggle_menu_and_toolbar}
+如果用户是在控制台中使用 Vim, 就会逐渐习惯没有菜单与工具条的窗口. 但是如果用
+的是 Gvim, 你就会发现窗口界面提供了菜单与工具条.
+
+许多人认为应该把额外的空间分配给更重要的文本使用, 而不是菜单与工具条. 如果你 
+也是这么认为的, 那么你可能希望在使用 Gvim 时, 移除菜单与工具条. 然而, 某
+些脚本在菜单中增加许多有用的功能, 而这些功能只能通过菜单来使用. 解决办法是
+根据实际需要, 随时切换菜单与工具条.
+
+下面的代码把组合键 \key{Ctrl+F2} 映射到菜单与工具条的切换操作上, 当然编辑
+器用的是 Gvim. 如果喜欢这个功能的话, 可以把代码写到 \file{vimrc} 中.
+\begin{vimcmd}
+map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
+                         \set guioptions-=T <Bar>
+                         \set guioptions-=m <bar>
+                    \else <Bar>
+                         \set guioptions+=T <Bar>
+                         \set guioptions+=m <Bar>
+                      \endif<CR>
+\end{vimcmd}
+现在, 无论何时, 只要你想关闭菜单与工具条, 好把空间留给文本, 只需要按下
+\key{Ctrl+F2} 即可, 如果想它们了, 再按一下 \key{Ctrl+F2}, 它们就回来了.
+\marginpar{29}
