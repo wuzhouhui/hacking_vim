@@ -27,7 +27,7 @@ Vim 的方式, 比如按键绑定 --- 把某个组合键映射到特定的操作
     \item 个性化的高亮
     \item 更丰富的状态行
     \item 切换菜单与工具条
-    \item 添加你自己的菜单与工具条按钮
+    \item 添加自己的菜单与工具条按钮
     \item 个性化的工作区
 \end{itemize}
 \marginpar{18}
@@ -462,3 +462,36 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
 现在, 无论何时, 只要你想关闭菜单与工具条, 好把空间留给文本, 只需要按下
 \key{Ctrl+F2} 即可, 如果想它们了, 再按一下 \key{Ctrl+F2}, 它们就回来了.
 \marginpar{29}
+如果用户希望一直隐藏菜单或工具条, 只需要在 \file{vimrc} 中添加下面两个命令
+中的一个即可.
+
+为了完全移除菜单, 添加:
+\begin{vimcmd}
+:set guioptions-=m
+\end{vimcmd}
+
+为了完全移除工具条, 添加:
+\begin{vimcmd}
+:set guioptions-=T
+\end{vimcmd}
+
+\begin{warning}
+    GUI 的其他设置可以通过命令 \texttt{set guioptions} 完成, 更多的信息可以
+    参考\texttt{:help 'guioptions'}.
+\end{warning}
+
+\section{添加自己菜单与工具条按钮}
+\label{sec:adding_your_own_menu_and_toolbar_buttons}
+如果使用的是 Gvim, 那么用户可以把经常用到的功能加入到菜单中. 也许用户并不总
+是需要通过菜单来使用某项功能, 但是如果忘记了具体的操作步骤, 我们还可以通过
+菜单来完成. 如果用户确实需要快速地执行某个功能, 还可以把它直接加入到 Gvim
+的工具条中.
+
+在这一节, 我们将会讨论如何在 Gvim 中制作菜单, 以及如何往工具条中加入额外
+的按钮. 先从构造菜单开始.
+
+\subsection{添加菜单}
+\label{subsec:adding_a_menu}
+简单来说, 为了构造一个菜单, 只需要为菜单中的每一个菜单项执行对应的命令即可.
+只要遵循良好的命名规则, 用户就可以得到一个使用方便, 功能齐全的菜单.
+\marginpar{30}
