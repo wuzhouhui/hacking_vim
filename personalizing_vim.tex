@@ -495,3 +495,45 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
 简单来说, 为了构造一个菜单, 只需要为菜单中的每一个菜单项执行对应的命令即可.
 只要遵循良好的命名规则, 用户就可以得到一个使用方便, 功能齐全的菜单.
 \marginpar{30}
+让我们从一个小例子开始, 假设用户想新增一个菜单, 比如缓冲区菜单, 但是只用于
+标签页.\footnote{ 原文是 Say you want to add a menu like the buffers menu,
+but for tabs.}
+
+% TODO: 缺了一副图
+\begin{center}
+\end{center}
+
+需要用到的命令是:
+\begin{quotation}
+\texttt{:menu}\ \ \textit{menupath}\ \ \textit{command}
+\end{quotation}
+这个命令的工作方式类似于命令 \texttt{map}, 后者把命令映射到一个组合键, 而前
+者是把命令映射到一个菜单项.
+
+命令带有两个参数. 第 1 个参数是菜单项在菜单中的实际路径, 第 2 个参数是菜单项 
+被点击时所执行的命令. 举个例子, 假设用户想要在菜单项 \newterm{Tabs} 中, 添加 
+一个新菜单项 \newterm{Next}, 只需要执行:
+\begin{vimcmd}
+:menu Tabs.Next <ESC>:tabnext<cr>
+\end{vimcmd}
+之后, 你就有了一个新菜单项 \newterm{Tabs}, 它只有一个子菜单项 \newterm{Next}.
+现在, 如果用户点击菜单项 \newterm{Next}, 就会执行:
+\begin{vimcmd}
+:tabnext
+\end{vimcmd}
+命令前面的 \texttt{<ESC>} 为的是让 Vim 切换到普通模式,
+后面的 \texttt{<cr>} 是真正执行命令的地方. 如果漏掉了 \texttt{<ESC>}, 那么 
+命令就无法正常地工作. 另外一种办法是根据当前的模式, 在命令前添加特定
+的菜单项, 为此, Vim 提供了几个 \texttt{:menu} 的替代命令:
+\begin{itemize}
+    \item \texttt{:nmenu} 用于 \newterm{普通}(\newterm{Normal}) 模式 
+    \item \texttt{:imenu} 用于 \newterm{插入}(\newterm{Insert}) 模式, 前置
+        \verb'^O'
+    \item \texttt{:vmenu} 用于 \newterm{可视}(\newterm{Visual}) 模式, 前置
+        \verb'^C', 后置 \verb'^\^G'
+    \item \texttt{:cmenu} 用于 \newterm{命令行}(\newterm{Command-line}) 模式,
+        前置 \verb'^C', 后置 \verb'^\^G'
+    \item \texttt{:omenu} 用于 \newterm{操作挂起} (\newterm{OP-pending})
+        模式, 前置 \verb'^C', 后置 \verb'^\^G'
+\end{itemize}
+\marginpar{31}
