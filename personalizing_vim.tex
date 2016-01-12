@@ -528,3 +528,36 @@ but for tabs.}
         模式, 前置 \texttt{\^C}, 后置 \texttt{\^\textbackslash\^G}
 \end{itemize}
 \marginpar{31}
+前置部分 (\verb'^O' 与 \verb'^C') 用于将 Vim 切换到普通模式.
+
+\verb'^O' (\key(Ctrl+O}) 专门用于插入模式, 因为它会在执行完命令之后让编辑器
+重新回到插入模式.
+
+\verb'^\^G' (\key{Ctrl+\textbackslash}, \key{Ctrl+G}) 用于这样一种特殊情况:
+全局插入模式被设置为真, 并且 Vim 把插入模式作为默认模式 (此时 Vim
+是无模式的), 此时, 它们就可以把模式还原成原来的样子.
+\begin{warning}
+没必要为每一种模式创建一个同样的菜单项, 这时候只需要使用下面这个命令即可:
+\begin{quotation}
+\texttt{:amenu}\ \ \textit{menu-path}\ \ \textit{command}
+\end{quotation}
+这个命令可以根据当前的模式, 设置正确的前置命令与后置命令.
+\end{warning}
+
+现在开始创建我们的新菜单 \newterm{Tabs}, 并添加几个新菜单项与功能. 执行了
+下面这些命令后, 新菜单就有点像 \newterm{Buffers} 菜单了:
+\begin{vimcmd}
+:amenu Tabs.&Delete :confirm tabclose<cr>
+:amenu Tabs.&Alternate :confirm tabn #<cr>
+:amenu <silent> Tabs.&Next :tabnext<cr>
+:amenu <silent>Tabs.&Previous :tabprevious<cr>
+\end{vimcmd}
+细心的读者会发现这些命令之中又多了点新东西.
+
+第一个是 \texttt{<silent>}, 它可以阻止命令执行过程中, 命令的内容被回显到命令行
+缓冲区. 当然, 这个功能只是装饰性的, 相比之下, 菜单路径中的 \verb'&' 就实
+用多了. 把字符 \verb'&' 加在菜单路径的最后一个部分的某个字母之前, 就可以为该
+菜单项定义一个快捷键. 有了快捷键, 定位并执行菜单项就方便多了.
+% TODO 缺了一副图
+\begin{center}
+\end{center}
