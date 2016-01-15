@@ -650,3 +650,70 @@ Vim 中, 它是组织打开文件的一种方式. 每一个标签都可以包含
 \begin{center}
 \end{center}
 \marginpar{34}
+有时候用户希望标签页的标签能提供更多的信息, 比如, 如果用户需要为每一个
+项目建一个标签页, 要是能根据项目的名称来对标签页进行命名的话, 那就方便
+多了.
+% TODO 缺了一副图
+\begin{center}
+\end{center}
+设置标签名的方法与状态行 (见 \ref{sec:a_more_informative_status_line} 节)
+非常类似. 但是在这里设置的是 \texttt{tabline} 的属性, 而不是
+\texttt{statusline}:
+\begin{quotation}
+\texttt{:set tabline}\ \ \textit{tabline-layout}
+\end{quotation}
+% TODO 缺了一副图
+\begin{center}
+\end{center}
+如果是 Gvim, 则是
+\begin{vimcmd}
+:set guitablabel
+\end{vimcmd}
+
+虽然 \texttt{tabline} 的设置方法类似于 \texttt{statusline}, 但是前者会
+更麻烦一点. 麻烦的主要原因在于用户必须时刻注意标签页是否处于活跃状态.
+我们从 Vim 的一个小例子开始.
+
+如果标签页过多, 标签就会占据太多的空间, 尤其是当它们包含了当前活跃缓冲区
+的完整文件名时. 我们希望只显示活跃缓冲区文件名的前 6 个字母, 而且当前
+活跃的标签名以红底白字的方式呈现, 就像错误信息那样.
+
+下面的 Vim 脚本程序完成的正是这个功能 (关于如何编写 Vim 脚本程序见第
+\ref{chap:basic_vim_scripting} 章).
+\begin{vimscript}
+function ShortTabLine()
+ let ret = ''
+ for i in range(tabpagenr('$'))
+   " select the color group for highlighting active tab
+     if i + 1 == tabpagenr()
+     let ret .= '%#errorMsg#'
+   else
+     let ret .= '%#TabLine#'
+    endif
+  
+    " find the buffername for the tablabel
+       let buflist = tabpagebuflist(i+1)
+       let winnr = tabpagewinnr(i+1)
+       let buffername = bufname(buflist[winnr - 1])
+       let filename = fnamemodify(buffername,':t')
+    " check if there is no name
+\end{vimscript}
+\marginpar{35}
+\begin{vimscript}
+    if filename == ''
+      let filename = 'noname'
+    endif
+    " only show the first 6 letters of the name  and
+    " .. if the filename is more than 8 letters long
+    if strlen(filename) >=8
+        let ret .= '['. filename[0:5].'..]'
+    else
+         let ret .= '['.filename.']'
+    endif
+ endfor
+
+ " after the last tab fill with TabLineFill and reset tab page #
+  let ret .= '%#TabLineFill#%T'
+  return ret
+endfunction
+\end{vimscript}
