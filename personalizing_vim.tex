@@ -605,3 +605,39 @@ but for tabs.}
 :amenu icon=/path/to/icon/myicon.png ToolBar.Bufferlist :buffers<cr>
 \end{vimcmd}
 \marginpar{33}
+当然, 用户必须把图标文件放在某个目录中, 并在命令中给出这个目录.
+
+图标文件的存放目录通过参数 \texttt{icon} 传递给命令 \texttt{amenu}. 如果只
+给出了文件名, 并没有给出路径, 那么 Vim 就会在运行时路径的 \texttt{bitmaps/}
+目录下搜索图标文件 (运行时路径可以通过 \texttt{:echo \$VIMRUNTIME}
+命令获取). 受支持的图标类型依赖于系统.
+
+到现在为止就大功告成了! 执行完命令之后, 用户就可以看到他的图标出现在了工具
+条中, 而且处在已有图标的最靠右的位置上. 如果点击该图标, Vim 就会执行命令
+\texttt{:buffers}, 显示缓冲区列表.
+
+和菜单一样, 可以通过特定于模式的菜单命令 \texttt{imenu}, \texttt{vmenu},
+\texttt{cmenu} 等, 使得工具按钮只会在特定的模式下才会显示出来.
+
+\begin{warning}
+默认情况下, 新增的菜单或按钮图标处在已有的菜单或图标的右边, 可以通过优
+先级来改变默认行为. 更多的信息请参考 \texttt{help menu-priority} 与 
+\texttt{:help sub-menu-priority}.
+\end{warning}
+
+\section{修改标签页}
+\label{sec:modifying_tabs}
+Vim 从 7.0 开始支持标签页. 标签页与其他应用程序中的标签不太一样 --- 在
+Vim 中, 它是组织打开文件的一种方式. 每一个标签都可以包含若干个缓冲区,
+甚至多个窗口.
+
+有了标签页之后, 原来的针对所有缓冲区或窗口的命令 (例如 \texttt{:bufdo},
+\texttt{:windo} 和 \texttt{:ball}) 将仅限于当前标签的窗口或缓冲区.
+
+一般情况下, 所有的标签页以一种标签列表的形式呈现在窗口的上方 (就在编辑区
+之上). 每一个标签页都有一个标签, 默认是处于当前活动缓冲区的文件名. 如果 
+一个标签页中同时打开了多个窗口, 那么标签也会显示窗口的数量.
+% TODO 缺了一副图
+\begin{center}
+\end{center}
+\marginpar{34}
