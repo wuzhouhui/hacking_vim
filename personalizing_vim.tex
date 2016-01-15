@@ -660,14 +660,14 @@ Vim 中, 它是组织打开文件的一种方式. 每一个标签都可以包含
 非常类似. 但是在这里设置的是 \texttt{tabline} 的属性, 而不是
 \texttt{statusline}:
 \begin{quotation}
-    \texttt{:set tabline}\ \ \textit{tabline-layout}
+\texttt{:set tabline}\ \ \textit{tabline-layout}
 \end{quotation}
 % TODO 缺了一副图
 \begin{center}
 \end{center}
 如果是 Gvim, 则是
 \begin{vimcmd}
-\texttt{:set guitablabel}
+:set guitablabel
 \end{vimcmd}
 
 虽然 \texttt{tabline} 的设置方法类似于 \texttt{statusline}, 但是前者会
@@ -675,7 +675,7 @@ Vim 中, 它是组织打开文件的一种方式. 每一个标签都可以包含
 我们从 Vim 的一个小例子开始.
 
 如果标签页过多, 标签就会占据太多的空间, 尤其是当它们包含了当前活跃缓冲区
-的全部文件名时. 我们希望只显示活跃缓冲区文件名的前 6 个字母, 而且当前
+的完整文件名时. 我们希望只显示活跃缓冲区文件名的前 6 个字母, 而且当前
 活跃的标签名以红底白字的方式呈现, 就像错误信息那样.
 
 下面的 Vim 脚本程序完成的正是这个功能 (关于如何编写 Vim 脚本程序见第
