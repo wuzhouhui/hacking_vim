@@ -708,3 +708,36 @@ function ShortTabLine()
   return ret
 endfunction
 \end{vimscript}
+
+现在, 我们需要把函数添加到 \file{vimrc}, 除此之外, 还要增加一行设置
+\texttt{tabline} 的命令, 具体的设置命令是:
+\begin{vimcmd}
+:set tabline=%!ShortTabLine()
+\end{vimcmd}
+命令的执行结果是产生了一个更加紧凑的标签列表, 下面是效果截图:
+\begin{center}
+% TODO 缺了一副图
+\end{center}
+
+在 Gvim 中设置 \texttt{tabline} 的方法稍有不同, 不过基本思想是一样的. 不过,
+在 GUI 中, 用户不必考虑活跃标签的颜色, 也不必担心某个标签当前是否处于活跃
+状态 --- 这些都是 GUI 自己需要考虑的东西.
+
+于是, 我们可以对函数 \texttt{ShortTabLine()} 进行简化 --- 只需要设置标签
+名即可:
+\begin{vimscript}
+function ShortTabLabel()
+ let bufnrlist = tabpagebuflist(v:lnum)
+ " show only the first 6 letters of the name + ..
+ let label = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
+ let filename = fnamemodify(label,':h')
+ " only add .. if string is more than 8 letters
+  if strlen(filename) >=8
+     let ret=filename[0:5].'..'
+  else
+    let ret = filename
+ endif
+     return ret
+ endfunction
+\end{vimscript}
+\marginpar{36}
