@@ -206,7 +206,9 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 选择一种配色方案, 并查看是否对该方案的所有颜色配置都满意, 在第
 \ref{chap:basic_vim_scripting} 章, 我们会回过头来讨论如何改变配色方案的
 配置, 以满足用户的所有特殊需求.
-% TODO 这里缺了两幅图
+\begin{center}
+\includegraphics[scale=0.4]{./images/page22.png}
+\end{center}
 
 \section{个性化高亮}
 \label{sec:personal_highlighting}
@@ -499,8 +501,8 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
 标签页.\footnote{ 原文是 Say you want to add a menu like the buffers menu,
 but for tabs.}
 
-% TODO: 缺了一副图
 \begin{center}
+\includegraphics[scale=0.42]{./images/page30.png}
 \end{center}
 
 需要用到的命令是:
@@ -567,8 +569,8 @@ but for tabs.}
 缓冲区. 当然, 这个功能只是装饰性的, 相比之下, 菜单路径中的 \verb'&' 就实
 用多了. 把字符 \verb'&' 加在菜单路径的最后一个部分的某个字母之前, 就可以为该
 菜单项定义一个快捷键. 有了快捷键, 定位并执行菜单项就方便多了.
-% TODO 缺了一副图
 \begin{center}
+\includegraphics[scale=0.42]{./images/page31.png}
 \end{center}
 \marginpar{32}
 假设用户想通过执行菜单项 \newterm{Tabs | Next} 来切换到下一个标签页, 现在,
@@ -646,15 +648,15 @@ Vim 中, 它是组织打开文件的一种方式. 每一个标签都可以包含
 一般情况下, 所有的标签页以一种标签列表的形式呈现在窗口的上方 (就在编辑区
 之上). 每一个标签页都有一个标签, 默认是处于当前活动缓冲区的文件名. 如果 
 一个标签页中同时打开了多个窗口, 那么标签也会显示窗口的数量.
-% TODO 缺了一副图
 \begin{center}
+\includegraphics[scale=0.48]{./images/page33.png}
 \end{center}
 \marginpar{34}
 有时候用户希望标签页的标签能提供更多的信息, 比如, 如果用户需要为每一个
 项目建一个标签页, 要是能根据项目的名称来对标签页进行命名的话, 那就方便
 多了.
-% TODO 缺了一副图
 \begin{center}
+\includegraphics[scale=0.48]{./images/page34-1.png}
 \end{center}
 设置标签名的方法与状态行 (见 \ref{sec:a_more_informative_status_line} 节)
 非常类似. 但是在这里设置的是 \texttt{tabline} 的属性, 而不是
@@ -662,8 +664,8 @@ Vim 中, 它是组织打开文件的一种方式. 每一个标签都可以包含
 \begin{quotation}
 \texttt{:set tabline}\ \ \textit{tabline-layout}
 \end{quotation}
-% TODO 缺了一副图
 \begin{center}
+\includegraphics[scale=0.48]{./images/page34-2.png}
 \end{center}
 如果是 Gvim, 则是
 \begin{vimcmd}
@@ -725,7 +727,7 @@ endfunction
 \end{vimcmd}
 命令的执行结果是产生了一个更加紧凑的标签列表, 下面是效果截图:
 \begin{center}
-% TODO 缺了一副图
+\includegraphics[scale=0.45]{./images/page35.png}
 \end{center}
 
 在 Gvim 中设置 \texttt{tabline} 的方法稍有不同, 不过基本思想是一样的. 然而
