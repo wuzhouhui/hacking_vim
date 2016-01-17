@@ -25,7 +25,7 @@ newpath 7.91647 3.37004 moveto
 10.42412 5.8777 lineto
 7.91647 5.8777 lineto
  closepath stroke
- 1 1 0 setrgbcolor
+ 1 1 1 setrgbcolor
 newpath 10.42412 5.8777 moveto
 10.42412 6.71078 lineto
 10.42412 9.21843 11.67581 9.63707 12.51314 10.88885 curveto
