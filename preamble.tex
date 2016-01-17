@@ -16,6 +16,9 @@
 \usepackage{verbatim}
 \usepackage{graphicx}
 
+% for fixing "Unable to load picture or PDF file 'bc-book.mps'"
+\DeclareGraphicsRule{.mps}{eps}{*}{}
+
 % 脚注编号带圈
 \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
 
@@ -58,12 +61,28 @@
 \newcommand\vim{\texttt{vim}}
 
 \newenvironment{warning}%
-{\begin{quotation}}
-{\end{quotation}}
+{
+    \begin{quotation}
+        \includegraphics[scale=2]{./images/bc-book.mps}
+    \quad
+    \begin{minipage}{33em}
+}
+{
+    \end{minipage}
+    \end{quotation}
+}
 
 \newenvironment{tips}%
-{\begin{quotation}}
-{\end{quotation}}
+{
+    \begin{quotation}
+        \includegraphics[scale=2]{./images/bc-lampe.mps}
+    \quad
+    \begin{minipage}{33em}
+}
+{
+    \end{minipage}
+    \end{quotation}
+}
 
 \newcommand\file[1]{\texttt{#1}}
 \newcommand\newterm[1]{#1}
