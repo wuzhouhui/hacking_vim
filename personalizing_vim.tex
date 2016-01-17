@@ -741,3 +741,61 @@ function ShortTabLabel()
  endfunction
 \end{vimscript}
 \marginpar{36}
+我们只要设置 \texttt{guitablabel} 的属性设置成函数的输出即可:
+\begin{vimcmd}
+:set guitablabel=%{ShortTabLabel()}
+\end{vimcmd}
+命令的执行效果如下图所示:
+\begin{center}
+\includegraphics[scale=0.8]{./images/page36}
+\end{center}
+
+\begin{warning}
+如果用户想要完全移除 Gvim 的标签栏, 只需要执行 \texttt{:set showtabline=0}
+(把 \texttt{showtabline} 设置成 1 则会重新显示标签栏).
+\end{warning}
+
+现在, 我们已经拥有了只含有有限的信息的标签, 但是我们还是希望能从其他地方
+得到信息, 为了完成这个功能需要用到一个小技巧 --- 使用工具提示.
+
+工具提示的优点是当用户没有激活它们时,
+% TODO hold your cursor over some area, for example, a tab
+就不会看到这些提示信息. 使用这种方法就可以做到在不填满整个编辑器的情况下, 
+仍然可以获取到信息.
+
+为了给一个标签页设置工具提示, 需要使用下面的命令:
+\begin{vimcmd}
+:set guitabtooltip
+\end{vimcmd}
+用户需要把它设置成当鼠标经过标签名时, 希望显示出来的信息\footnote{原文是
+ This property should be set to the value you want to show when the mouse
+ cursor hovers over the tab}.
+
+为了测试, 可以先输入一条简单的提示信息:
+\begin{vimcmd}
+:set guitabtooltip='my tooltip'
+\end{vimcmd}
+现在, 工具提示中就可以显示一条静态消息, 但我们需要更多的信息. 我们已经把
+文件的路径部分从标签中移走, 但是有时候仍然需要这个信息. 有了工具提示, 我们 
+就可以把路径信息显示在工具提示中:
+\begin{vimcmd}
+:set guitabtooltip=%!bufname($)
+\end{vimcmd}
+
+函数可以根据标签的不同, 显示对应的提示信息. 这里, 我们构造了一个小函数, 用
+于显示用户会在标签中看到的所有信息, 不过用了一种更加有条理的方式显示出来:
+\begin{vimscript}
+function! InfoGuiTooltip()
+    "get window count
+\end{vimscript}
+\marginpar{37}
+\begin{vimscript}
+    let wincount = tabpagewinnr(tabpagenr(),'$')
+    let bufferlist=''
+   "get name of active buffers in windows
+    for i in tabpagebuflist()
+        let bufferlist .= '['.fnamemodify(bufname(i),':t').'] ' 
+    endfor
+    return bufname($).' windows: '.wincount.' ' .bufferlist ' '
+endfunction
+\end{vimscript}
