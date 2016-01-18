@@ -810,3 +810,30 @@ function! InfoGuiTooltip()
     return bufname($).' windows: '.wincount.' ' .bufferlist ' '
 endfunction
 \end{vimscript}
+然后执行:
+\begin{vimcmd}
+:set guitabtooltip=%!InfoGuiTooltip()
+\end{vimcmd}
+下面这张截图展示了工具提示在 Gvim 中的效果:
+\begin{center}
+    \includegraphics[scale=0.4]{images/page37.png}
+\end{center}
+
+用户还可以想到许多其他有趣的用法, 来使用标签与工具提示所提供的功能, 有了前
+面的示例, 用户就可以自己动手来实现它们了.
+
+\section{工作区定制}
+\label{sec:work_area_personalization}
+
+在这一节, 我们将介绍一些专门针对 Vim 编辑区的设置内容, 之所以介绍这些,
+是因为当用户使用 Vim 编辑文本或代码时, 它们可以提高用户的工作效率.
+
+\subsection{为光标添加视觉效果}
+\label{subsec:adding_a_more_visual_cursor}
+有时候, 用户正在编辑的文件可能带有多种颜色的语法高亮, 这些颜色会干扰用户
+追踪光标的位置, 如果可以标记出光标当前所在的行, 那就方便多了.
+
+已经有很多人写过 Vim 脚本来解决这个问题, 但是绝大部分都没什么用 (主要 
+是因为太慢了, 当文本过长时, 滚动速度就难以接受). 直到 Vim 版本 7, 这个 
+问题才得以解决, 而且, 它还提供了两种可能的办法来追踪光标的位置.
+\marginpar{38}
