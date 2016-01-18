@@ -210,8 +210,8 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 \includegraphics[scale=0.4]{./images/page22.png}
 \end{center}
 
-\section{个性化高亮}
-\label{sec:personal_highlighting}
+\subsection{个性化高亮}
+\label{subsec:personal_highlighting}
 在 Vim 中, 与高亮相关的最关键的技术是 \newterm{匹配} (\newterm{matching}).
 
 通过匹配, Vim 几乎可以标记字母, 单词, 数值, 语句, 和文本行的任意一种组合.
@@ -282,8 +282,8 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 读者也许想知道这些匹配命令应该在什么样的情况下使用, 因为在平时的话这些命令
 没什么大用处. 这里有一些例子, 它们展示出了匹配的强大之处.
 
-\subsection{示例 1: 用彩色标记某列后面的文字}
-\label{subsec:mark_color_characters_after_a_certain}
+\subsubsection{示例 1: 用彩色标记某列后面的文字}
+\label{subsubsec:mark_color_characters_after_a_certain}
 在写邮件时, 一条比较常见的规则是一行的长度不能超过 74 个字符 (在某些古老
 的编程语言中, 同样存在这样的规则). 在这种情况下, 当你在一行内写出的字符
 数超过某个上限时, 如果 Vim 能够发出提醒那就再好不过了.
@@ -308,8 +308,8 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
     \includegraphics[scale=0.6]{./images/page24.png}
 \end{center}
 \marginpar{25}
-\subsection{示例 2: 标记代码中未被用作缩进的制表符}
-\label{subsec:mark_tabs_not_used_for_indentation_in_code}
+\subsubsection{示例 2: 标记代码中未被用作缩进的制表符}
+\label{subsubsec:mark_tabs_not_used_for_indentation_in_code}
 编码时, 一条很重要的规则是制表符只被用作缩进代码, 其他地方则不允许使用制表
 符. 然而, 对某些人来说常常会忘记该规则. 现在, 只需要一条简单的匹配命令, 就
 可以时刻提醒着程序员.
@@ -345,8 +345,8 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 \end{vimcmd}
 这条命令的意思是: 匹配所有的制表符.
 \marginpar{26}
-\subsection{示例 3: 检查IP地址的有效性}
-\label{subsec:preventing_errors_caused_by_ip_addresses}
+\subsubsection{示例 3: 检查IP地址的有效性}
+\label{subsubsec:preventing_errors_caused_by_ip_addresses}
 
 如果用户需要在文本中写上大量的 IP 地址, 难免会出现错误 (例如
 123.123.123.256). 为了防止出现这种情况, 可以把以下命令添加到文件
@@ -602,8 +602,8 @@ but for tabs.}
 \newterm{Tabs | Navigation | Next}, 只需要用菜单路径
 \texttt{Tabs.Navigation.\&Next} 来添加子菜单项 \newterm{Next}.
 
-\section{添加工具条图标}
-\label{sec:adding_toolbar_icons}
+\subsection{添加工具条图标}
+\label{subsec:adding_toolbar_icons}
 
 既然我们已经知道了如何创建菜单, 那么给工具条添加自定义的图标就容易多了.
 事实上, Vim 把工具条看作是带有特殊名字的菜单. 因此, 给工具条添加图标就像是
@@ -658,7 +658,7 @@ Vim 中, 它是组织打开文件的一种方式. 每一个标签都可以包含
 \begin{center}
 \includegraphics[scale=0.48]{./images/page34-1.png}
 \end{center}
-设置标签名的方法与状态行 (见 \ref{sec:a_more_informative_status_line} 节)
+设置标签名的方法与状态行 (见 \ref{subsec:a_more_informative_status_line} 节)
 非常类似. 但是在这里设置的是 \texttt{tabline} 的属性, 而不是
 \texttt{statusline}:
 \begin{quotation}
