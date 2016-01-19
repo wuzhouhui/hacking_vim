@@ -837,3 +837,38 @@ endfunction
 是因为太慢了, 当文本过长时, 滚动速度就难以接受). 直到 Vim 版本 7, 这个 
 问题才得以解决, 而且, 它还提供了两种可能的办法来追踪光标的位置.
 \marginpar{38}
+第一种办法是命令 \texttt{cursorline}, 它可以标记当前光标所在的行, 比如把
+当前行的背景色设置成另一种颜色, 而且不会破坏原来的语法高亮. 为了打开它,
+执行:
+\begin{vimcmd}
+:set cursorline
+\end{vimcmd}
+命令所使用的颜色由色彩组 \texttt{CursorLine} 定义, 用户可以它设置成任意一种
+颜色或风格, 比如:
+\begin{vimcmd}
+:highlight CursorLine guibg=lightblue ctermbg=lightgray
+\end{vimcmd}
+关于色彩组的更多内容请参考 \ref{sec:personal_highlighting} 节.
+
+\begin{center}
+    \includegraphics[scale=0.5]{./images/page38-1.png}
+\end{center}
+
+如果用户正在编辑的文件含有许多对齐的内容 (比如用制表符分隔的数据), 那么很自然
+地就会用到:
+\begin{vimcmd}
+:set cursorcolumn
+\end{vimcmd}
+
+这个命令标记光标当前所在的列, 例如, 我们可以用另外一种颜色来标记.
+
+和 \texttt{cursorline} 类似, 用户可以修改 \texttt{cursorcolumn} 的标记设置,
+它的色彩组为 \texttt{CursorColumn}\footnote{英文版为
+\texttt{cursorcolumn}, 有误 --- 译者注}.
+
+如果同时设置了 \texttt{cursorline} 与 \texttt{cursorcolumn}, 那么光标看起来
+就像一对十字线, 这样就再也不用怕把它跟丢了.
+\begin{center}
+    \includegraphics[scale=0.45]{./images/page38-2.png}
+\end{center}
+\marginpar{39}
