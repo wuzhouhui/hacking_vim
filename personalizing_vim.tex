@@ -872,3 +872,38 @@ endfunction
     \includegraphics[scale=0.45]{./images/page38-2.png}
 \end{center}
 \marginpar{39}
+\begin{warning}
+虽然 \texttt{cursorline} 与 \texttt{cursorcolumn} 是在 Vim 本地实现的, 但是 
+仍然会影响文件的滚动速度.
+\end{warning}
+
+\subsection{添加行号}
+\label{subsec:adding_line_numbers}
+在编译或调试代码时, 错误信息通常会报告错误所在的行号, 为了定位到这一行, 用户
+当然可以从第 1 行开始, 一行一行地往下数, 不过 Vim 提供了更为直接的办法. 只
+需要执行 \texttt{:}\textit{XXX} (\textit{XXX} 表示行号), 用户就可以马上到达
+第 \textit{XXX} 行.
+
+另一种办法是在普通模式 (按下 \key{Esc} 就可以切换到普通模式) 下, 执行 
+\textit{XXX}\texttt{gg} 或 \textit{XXX}\texttt{G} (同样, \textit{XXX} 表示 
+行号). 但是, 如果能随时随地地看到行号可能会更加方便, 这时候就可以执行命令:
+\begin{vimcmd}
+:set number
+\end{vimcmd}
+
+执行完命令后, 编辑器就会在窗口的左边显示每一行的行号. 默认情况下行号占据 4
+个空格的宽度, 3 个用于数字, 1 个用于空格. 这意味着行号所占据的宽度总是一样
+的, 除非总行数超过了 999 行. 如果总行数超过了 999 行, 行号所占据的宽度就
+会增加一列, 相应地, 文件内容就会右移一列.
+
+当然, 用户可以修改行号占据的列宽, 相应的命令是:
+\begin{quotation}
+\texttt{:set numberwidth=}\textit{XXX}
+\end{quotation}
+把 \textit{XXX} 替换成你想要的列宽度.
+
+\begin{warning}
+    用户可能希望通过加大列宽度的值, 使得代码与行号之间的间距更大一些, 
+    但是这个功能无法通过 \texttt{numberwidth} 实现, 因为行号是右对齐的.
+\end{warning}
+\marginpar{40}
