@@ -907,3 +907,39 @@ endfunction
     但是这个配置无法通过 \texttt{numberwidth} 实现, 因为行号是右对齐的.
 \end{warning}
 \marginpar{40}
+
+在下面的图片中, 读者可以看到: 当 \texttt{numberwidth} 的值增大时, 行号是如何
+右对齐的.
+
+\begin{center}
+\includegraphics[scale=0.4]{./images/page40.png}
+\end{center}
+
+\begin{warning}
+    用户可以通过修改色彩组 \texttt{LineNr} 来改变行号及其所在列的风格.
+\end{warning}
+
+\subsection{拼写检查}
+\label{subsec:spell_checking_your_language}
+
+这个道理我们都懂! 虽然我们对拼写都很在行, 但总会发生拼写错误或打错字的情况.
+过去, 为了进行拼写检查 (文本内容已经写在了 Vim 中), 用户需要使用某种拼写检查
+工具, 比如 Aspell 或 Ispell. 如果把拼写检查作为最后一项工作, 那么修改起来会
+非常得累人, 除非你想过一会儿就检查一遍.
+
+到了 Vim 版本 7, 这种麻烦的拼写检查方式终于可以结束了. 现在, Vim 内置了一个
+拼写检查工具, 它支持的语言超过 50 种.
+
+拼写检查工具会在用户输入单词的时候检查拼写的正确性, 所以如果有错误发生的话,
+用户可以马上发现.
+
+打开拼写检查的命令是
+\begin{vimcmd}
+:set spell
+\end{vimcmd}
+命令使用默认的语言 (英语) 打开拼写检查, 如果想要使用其他语言, 只需要把 
+\texttt{spelllang} 设置成该语言的代号即可. 比如:
+\begin{vimcmd}
+:set spelllang=de
+\end{vimcmd}
+\marginpar{41}
