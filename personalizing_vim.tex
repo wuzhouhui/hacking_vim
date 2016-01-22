@@ -943,3 +943,43 @@ endfunction
 :set spelllang=de
 \end{vimcmd}
 \marginpar{41}
+在这个命令中语言被设置为德语. 同一种语言可以用多种形式的格式来表达, 比如美式
+英文可以写成:
+\begin{itemize}
+    \item \texttt{en\_us}
+    \item \texttt{us}
+    \item \texttt{American}
+\end{itemize}
+
+语言的名字甚至可以是专业名词, 比如 \texttt{medical}. 如果 Vim 无法识别用户
+输入的语言名字, 那么在执行属性设置命令时, 它就会高亮显示无法识别的语言名字.
+
+\begin{warning}
+    如果把 \texttt{spelllang} 设置成某个还没有安装的语言, Vim 就会询问用户
+    是否自动从 Vim 主页上下载对应的语言.
+\end{warning}
+
+对我个人来说, 我经常要用 Vim 同时处理不同的语言, 而且我并不想每次都告诉 Vim 我
+现在用的是什么语言.
+
+对此 Vim 也有解决办法. 只要在设置属性 \texttt{spelllang} 时, 给它同时带上
+多种语言即可 (语言之间用逗号分开), 这样 Vim 就可以用多种语言来进行语法检查.
+\begin{vimcmd}
+:set spelllang=en,da,de,it
+\end{vimcmd}
+Vim 将会按照顺序, 轮流根据每一种语言检查单词的拼写是否正确. 如果单词对某一种
+语言来说是正确拼写的, 那它就不会被标记错误. 当然, 这就意味着如果有一个
+单词的拼写本来是错误的, 可是碰巧它在另一种语言中是正确的, 那么它也不会被
+当成错误, 这将会引入一个难以察觉的错误.
+
+\begin{warning}
+    用户可以到 Vim 的 FTP 站点 \url{ftp://ftp.vim.org/pub/vim/runtime/spell}
+    上找到大量的语言包.
+\end{warning}
+
+Vim 与 Gvim 对错误单词的标记方法稍有不同.
+
+在普通的 Vim 中, 拼写错误的单词使用色彩组 \texttt{SpellBad} 标记 (一般情况下 
+是红底白字).
+\marginpar{42}
+
