@@ -981,3 +981,30 @@ Vim 与 Gvim 对错误单词的标记方法稍有不同.
 是红底白字).
 \marginpar{42}
 
+在 Gvim 中, 拼写错误的单词用红色的波浪线标记, 当然, 这也可以通过设置色彩组
+来改变颜色 (关于如何设置色彩组见 \ref{sec:personal_highlighting} 节).
+
+\begin{center}
+    \includegraphics[scale=0.6]{./images/page42-1.png}
+\end{center}
+
+无论用户是在什么时候碰到拼写错误的单词, 都可以向 Vim 询问正确的拼写方式.
+为此, 需要把光标置于单词中, 并切换到普通模式 (按 \key{Esc}), 然后按
+\texttt{z=}.
+
+\begin{center}
+    \includegraphics[scale=0.6]{./images/page42-2.png}
+\end{center}
+
+如果可能的话, Vim 将会猜测用户试图输入的单词的正确形式, 并给出一个候选列表.
+在每个候选单词的前面都有一个数字, 如果其中有你想要的单词, 就输入单词前面的
+数字或者单词本身, 然后按 \key{回车键}.
+
+除非用户把单词完全拼写错了, 否则的话, Vim 会给出一长串的候选单词. 如果单词 
+的正确形式在候选单词的前 5 个中, 而且用户也不想看到一长串的列表, 那么他就
+可以用命令
+\begin{quotation}
+    \texttt{:set spellsuggest=}\textit{X}
+\end{quotation}
+来限制列表的长度, 其中 \textit{X} 是列表的最大长度.
+\marginpar{43}
