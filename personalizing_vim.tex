@@ -1021,9 +1021,9 @@ Vim 会给出一长串的候选单词, 除非用户把单词完全拼写错了, 
 编辑区是 Vim 中面积最大的部分, 所以, 为什么不利用工具提示, 在编辑区中添加
 一些额外的信息呢?
 
-在 Vim 中, 编辑区的工具提示称为 balloons, 只在当鼠标停在这个单词的某个字
-符的上方时, 提示信息才会显示出来. 为了使用 balloons, 用户必须知道下面这
-几个命令:
+在 Vim 中, 编辑区的工具提示称为 balloons, 只在当鼠标停在组成这个单词的
+某个字符的上方时, 提示信息才会显示出来. 为了使用 balloons, 用户必须知道
+下面这几个命令:
 \begin{itemize}
     \item 第 1 个命令是在 Vim 中启用 balloons:
     \begin{vimcmd}
@@ -1045,8 +1045,8 @@ Vim 会给出一长串的候选单词, 除非用户把单词完全拼写错了, 
 \begin{center}
 \begin{tabular}{ll}
     \hline
-    \texttt{v:beval\_bufnr} & 鼠标所在位置的缓冲区个数 \\
-    \texttt{v:beval\_winnr} & 鼠标所在位置的窗口的个数 \\
+    \texttt{v:beval\_bufnr} & 鼠标所在区域的缓冲区个数 \\
+    \texttt{v:beval\_winnr} & 鼠标所在区域的窗口的个数 \\
     \texttt{v:beval\_lnum}  & 鼠标所在的行号 \\
     \texttt{v:beval\_col}   & 鼠标所在的列号 \\
     \texttt{v:beval\_text}  & 触发提示信息的字符所在的单词 \\
