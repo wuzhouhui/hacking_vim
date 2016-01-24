@@ -1008,3 +1008,47 @@ Vim 与 Gvim 对错误单词的标记方法稍有不同.
 \end{quotation}
 来限制列表的长度, 其中 \textit{X} 是列表的最大长度.
 \marginpar{43}
+
+\subsection{添加帮助性的工具提示}
+\label{subsec:adding_helpful_tool_tips}
+
+在 \ref{sec:modifying_tabs} 节, 我们学习了如何利用工具提示, 使得在占据较少
+空间的情况下, 存放更多的信息, 以此为基础, 我们将把工具提示应用在编辑器的其中
+地方.
+
+编辑区是 Vim 中面积最大的部分, 所以, 为什么不利用工具提示, 在编辑区中添加
+一些额外的信息呢?
+
+在 Vim 中, 编辑区的工具提示称为 balloons, 只在当鼠标停在这个单词的某个字
+符的上方时, 提示信息才会显示出来. 为了使用 balloons, 用户必须知道下面这
+几个命令:
+\begin{itemize}
+    \item 第 1 个命令是在 Vim 中启用 balloons:
+    \begin{vimcmd}
+    :set ballooneval
+    \end{vimcmd}
+    \item 第 2 个命令告诉 Vim 在显示信息之前需要等待多长时间 (默认是 600
+    毫秒):
+    \begin{vimcmd}
+    :set balloondelay=400
+    \end{vimcmd}
+    \item 最后一个命令是设置信息的内容:
+    \begin{vimcmd}
+    :set balloonexpr="textstring"
+    \end{vimcmd}
+    信息的内容既可以是静态的文本字符串, 也可以是函数的返回值.
+\end{itemize}
+
+为了访问鼠标所在的位置的相关信息, Vim 提供了一些变量:
+\begin{center}
+\begin{tabular}{ll}
+    \hline
+    \texttt{v:beval\_bufnr} & 鼠标所在位置的缓冲区个数 \\
+    \texttt{v:beval\_winnr} & 鼠标所在位置的窗口的个数 \\
+    \texttt{v:beval\_lnum}  & 鼠标所在的行号 \\
+    \texttt{v:beval\_col}   & 鼠标所在的列号 \\
+    \texttt{v:beval\_text}  & 触发提示信息的字符所在的单词 \\
+    \hline
+\end{tabular}
+\end{center}
+\marginpar{44}
