@@ -1043,3 +1043,44 @@ Vim 与 Gvim 对错误单词的标记方法稍有不同.
 \end{tabular}
 \end{center}
 \marginpar{44}
+有了这些变量之后, 我们来看一些具体的例子.
+
+\subsubsection{示例 1}
+\label{subsubsec:example_1}
+
+第 1 个例子基于 Vim 的帮助系统, 它展示了如何编写一个简单的函数, 用来显示
+所有的变量.
+\begin{vimscript}
+function! SimpleBalloon()
+   return 'Cursor is at line/column: ' . v:beval_lnum .
+		\'/' . v:beval_col .
+		\ ' in file ' .  bufname(v:beval_bufnr) .
+		\ '. Word under cursor is: "' . v:beval_text . '"'
+endfunction
+set balloonexpr=SimpleBalloon()
+set ballooneval
+\end{vimscript}
+脚本的运行结果如下图所示:
+\begin{center}
+    \includegraphics[scale=0.5]{./images/page44.png}
+\end{center}
+
+\subsubsection{示例 2}
+\label{subsubsec:example_2}
+
+现在来看一个更高级的例子, 这个例子把 balloons 应用到编辑区的特定区域上.
+在这个例子中, 我们将会开发一个函数, 这个函数可以同时显示两种 balloons 
+信息:
+\begin{itemize}
+    \item 拼写错误的单词: 这个 balloons 信息给出候选单词.
+    \item 折叠的文本: 这个 balloons 信息给出被折叠的文本的预览.
+\end{itemize}
+
+现在, 我们需要知道什么样的函数可以帮助我们判断鼠标是停在拼写错误的单词上,
+还是停在一个折叠行 (这个折叠行代表了折叠后的多个文本行) 上.
+
+为了判断单词的拼写是否错误, 我们需要打开拼写检查功能:
+\begin{vimcmd}
+:set spell
+\end{vimcmd}
+\marginpar{45}
