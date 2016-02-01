@@ -1169,15 +1169,15 @@ set ballooneval
 对于重复性工作我们都深有体会, 但这种现象却恰恰是 Vim 想要极力避免的.
 \marginpar{47}
 Vim 的设计哲学是: 如果用户曾经为某件事物写过一次, 那就不需要再写第二次.
-然而, 如果用户发现自己正在一次又一次地写同一个东西, 那就说明他需要找到
+然而, 如果用户发现自己正在一次又一次地输入同一个内容, 那就说明他需要找到
 一个更好的办法.
 
-为了避免多次写同一个句子, 用户可以使用 \textbf{缩写} (abbreviations).
+为了避免多次输入同一个内容, 用户可以使用 \textbf{缩写} (abbreviations).
 
 根据不同的使用模式, 可以使用以下三个命令来创建缩写:
 \begin{itemize}
     \item \texttt{:abbreviate}: 创建在所有模式中均可使用的缩写
-    \item \texttt{:iabbrev}: 创建只能在插入模式中使用缩写
+    \item \texttt{:iabbrev}: 创建只能在插入模式中使用的缩写
     \item \texttt{:cabbrev}: 创建只能在命令行中使用的缩写
 \end{itemize}
 
@@ -1209,7 +1209,7 @@ Vim 非常聪明, 它可以判断用户是在输入一个缩写词, 还是仅仅
     \texttt{abc<space>} and & 扩展 \\
     \texttt{abc<enter>}     & 扩展 \\
     \texttt{123abc<space}   & 不会扩展, 因为缩写词现在是某个单词的一部分 \\
-    \texttt{abcd<space>}    & 不会扩展, 因为在缩写词紧跟着是字母 \\
+    \texttt{abcd<space>}    & 不会扩展, 因为在缩写词后面紧跟着的是字母 \\
     \texttt{abc}            & 不会扩展, 除非接下来输入另一个特殊字符 \\
     \hline
 \end{tabular}
