@@ -1214,3 +1214,51 @@ Vim 非常聪明, 它可以判断用户是在输入一个缩写词, 还是仅仅
 \end{center}
 \marginpar{48}
 
+为了避免每次都执行一次缩写命令, 用户可以把它们放在 \texttt{VIMHOME} 的某个 
+文件中, 假设文件名就叫 \texttt{abbreviations.vim}, 然后在文件 \texttt{vimrc}
+使用命令 \texttt{source} 来使能该文件 (需确保该文件是可读的):
+\begin{vimcmd}
+:source $VIM/abbreviations.vim
+\end{vimcmd}
+
+每当用户需要一个新的缩写词时, 可以先在编辑器创建缩写词, 然后再把它加入到文件
+\texttt{abbreviations.vim} 中.
+
+也许读者已经意识到, 除了这些, 缩写可以应用在其他有趣的地方. 但无论如何,
+这里有一些例子, 或许可以向你提供一些思路:
+\begin{itemize}
+    \item 纠正常见的拼写错误:
+    \begin{vimcmd}
+    :iabbr teh the
+    \end{vimcmd}
+    \item 编程模版
+    \begin{vimcmd}
+    :iabbr forx for(x=0;x<100;x++){<cr><cr>}
+    \end{vimcmd}
+    \item 更短的命令
+    \begin{vimcmd}
+    :cabbr csn colorscheme night
+    \end{vimcmd}
+\end{itemize}
+
+如果读者发现了一个新的缩写, 或许它看起来有点古怪, 刚开始用的时候还有点麻烦,
+但是读者应该习惯这一点, 因为到最后将会发现, 它可以帮助你节省大量的时间.
+用户唯一所要做的事就是把新的缩写加入到配置文件中, 然后再重新加载即可.
+
+但是有时候缩写可能会比较恼人, 因为它自作聪明地扩展了用户并不希望扩展的单词.
+比如, 用户有一个地址的缩写词是 ``addr'', 但是用户其实想写的是单词
+``addressed''. 在这种情况下, 缩写功能会突然冒出来, 用户也很难轻易地写出他
+所想要的单词.
+
+一种解决办法是在插入单词之间, 让缩写调用一个函数, 该函数询问用户是否缩写
+扩展功能.
+
+该函数的一种实现是:
+\begin{vimscript}
+function! s:AbbrAsk(abbr,expansion)
+    let answer = confirm("use the abbreviation '" . a:addr . "'?",
+        "&Yes\n&No", 1)
+    return answer ==  1 ? a:expansion : a:abbr
+endfunction
+\end{vimscript}
+\marginpar{49}
