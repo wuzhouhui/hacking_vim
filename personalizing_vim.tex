@@ -1253,3 +1253,11 @@ function! s:AbbrAsk(abbr,expansion)
 endfunction
 \end{vimscript}
 \marginpar{49}
+
+函数需要两个参数, 第 1 个参数是缩写诩, 第 2 个参数缩写词扩展后的形式,
+对我们的例子来说, 该函数的用法是:
+\begin{vimcmd}
+:iabbrev <expr> addr <SID>AbbrAsk('addr', "your full address here")
+\end{vimcmd}
+
+所以, 当用户写下 \texttt{addr} 时, Vim 会询问用户是否对缩写词进行扩展.
