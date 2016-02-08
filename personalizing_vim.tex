@@ -1262,3 +1262,40 @@ function! s:AbbrAsk(abbr,expansion)
 endfunction
 \end{vimscript}
 \marginpar{49}
+
+函数需要两个参数, 第 1 个参数是缩写诩, 第 2 个参数缩写词扩展后的形式,
+对我们的例子来说, 该函数的用法是:
+\begin{vimcmd}
+:iabbrev <expr> addr <SID>AbbrAsk('addr', "your full address here")
+\end{vimcmd}
+
+所以, 当用户写下 \texttt{addr} 时, Vim 会询问用户是否对缩写词进行扩展.
+
+\subsection{修改按键绑定}
+\label{subsec:modifying_key_bindings}
+
+我们中的大部分人可能除了 Vim 之外, 还用过其他的编辑器, 正因为如此, 我们经常
+需要用到一些特定的快捷键来完成不同的任务.
+
+虽然 Vim 中的快捷键绑定在最开始设计时都是力求使用方便且快速, 但是在某些情况
+下, 使用用户已经熟悉的快捷键可能会更快.
+
+为了完成这个功能, Vim 几乎可以对任何一个单独的按键进行重新绑定.
+
+在这一节, 我们将会学习到在不同的模式下, 如何对 Vim 的按键绑定进行修改.
+
+处理按键绑定的命令主要有:
+\begin{itemize}
+    \item \texttt{:map}: 用于普通模式, 插入模式, 可视模式, 与命令行模式
+    \item \texttt{:imap}: 只能用于插入模式
+    \item \texttt{:cmap}: 只能用于命令行模式
+    \item \texttt{:nmap}: 只能用于普通模式
+    \item \texttt{:vmap}: 只能用于可视模式
+\end{itemize}
+
+每一个命令都需要两个参数, 第一个参数是被绑定的按键, 第二个参数是被绑定的命
+令. 现在让我们看几个例子.
+
+假设用户不太习惯在普通模式下用命令 \texttt{:w} 来保存文件, 因为你已经习惯了
+\key{Ctrl-S}, 并且想继续使用下去.
+\marginpar{50}
