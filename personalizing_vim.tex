@@ -1301,3 +1301,51 @@ endfunction
 假设用户不太习惯在普通模式下用命令 \texttt{:w} 来保存文件, 因为你已经习惯了
 \key{Ctrl-S}, 并且想继续使用下去.
 \marginpar{50}
+解决这个问题的一个映射可以是:
+\begin{vimcmd}
+:map <C-s> :w<cr>
+\end{vimcmd}
+
+注意命令中的 \texttt{<C-s>}, 这是组合键 \key{Ctrl+S} 在 Vim 中的表示方式.
+除了 \texttt{C}(\key{Ctrl}), 用户还可以用 \texttt{A}(\key{Alt}) 或
+\texttt{M} (\key{Meta}). 命令末尾的 \texttt{<cr>} 是真正执行命令的地方.
+如果缺了它, 命令只会被显示在命令行中, 而不会被执行.
+
+除了 \texttt{<cr>}, 还有其他的一些用来表示按键的特殊记号, 下面这张表显示了
+比较常见的记号:
+\begin{center}
+    \begin{tabular}{ll}
+        \hline
+        按键        & 记号  \\
+        \hline
+        \texttt{<BS>}   & 退格 \\
+        \texttt{<Tab>}   &  制表符 \\
+        \texttt{<CR>}   & 回车  \\
+        \texttt{<Enter>}   & 回车 \\
+        \texttt{<Return>}   & 回车 \\
+        \texttt{<Esc>}   & 转义 \\
+        \texttt{<Space>}   & 空格 \\
+        \texttt{<Up>}   & 方向键, 上 \\
+        \texttt{<Down>}   & 方向键, 下 \\
+        \texttt{<Left>}   & 方向键, 左 \\
+        \texttt{<Right>}   & 方向键, 右 \\
+        \texttt{<F1>} - \texttt{<F12>}  & 功能键, \texttt{F1} 到
+            \texttt{F12} \\
+        \texttt{\#1}, \texttt{\#2},...,\texttt{\#9}, \texttt{\#0}  & 功能键, 从
+            \texttt{F1} 到 \texttt{F10} \\
+        \texttt{<Insert>}   & 插入 \\
+        \texttt{<Del>}   & 删除 \\
+        \texttt{<Home>}   & 返回到行的开始 \\
+        \texttt{<End>}   & 返回到行的结束 \\
+        \texttt{<PageUp>}   & 下一页 \\
+        \texttt{<PageDown>}   & 上一页 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+如果用户只可能在插入模式下才会保存文件, 而且在保存之后想要继续在插入模式下
+工作, 那么用户就需要执行:
+\begin{vimcmd}
+:imap <C-s> <esc>:w<cr>a
+\end{vimcmd}
+\marginpar{51}
