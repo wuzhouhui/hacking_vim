@@ -1349,3 +1349,52 @@ endfunction
 :imap <C-s> <esc>:w<cr>a
 \end{vimcmd}
 \marginpar{51}
+
+之后, \key{Ctrl+S} 就被映射成几个按键的组合. 首先, 按下 \texttt{<esc>}
+(\key{Escape} 键), 使 Vim 从插入模式进入到普通模式. 然后, 使用 
+\texttt{:w<cr>} 完成实际的文件保存操作. 最后, 用 \texttt{a} 再回到插入模式,
+并将光标移到行的末尾.
+
+用户可以通过映射来适应大多数应用程序的标准的 复制/粘贴/剪切/保存 快捷键,
+具体来说, 可以这样做:
+\begin{vimscript}
+" save file (ctrl-s)
+:map <C-s> :w<cr>
+" copy selected text (ctrl-c)
+:vmap <C-c> y
+" Paste clipboard contents (ctrl-v)
+:imap <C-p> <esc>P
+" cut selected text (ctrl-x)
+:vmap <C-x> x
+\end{vimscript}
+
+如果是 Gvim, 甚至可以打开 \texttt{Save-as} 与 \texttt{Open} 的对话框:
+\begin{vimscript}
+" Open new file dialog (ctrl-n)
+:map <C-n> :browse confirm e<cr>
+" Open save-as dialog (ctrl-shift-s)
+:map <C-S-s> :browse confirm saveas<cr>
+\end{vimscript}
+
+用户可能会遇到这样一种情况: 组合键的第一个按键已经绑定到了 Vim 的某个功能
+上. 举个例子, 按键 \verb'$', 它的功能是把光标移到一行的末尾. 用户可能希望 
+为 \verb'$1' 新绑定一个功能, 为 \verb'$2' 绑定另一个功能, 如此等等. 具体的 
+形式是:
+\begin{vimscript}
+:map $1 :MyFunction1()<cr>
+:map $2 :MyFunction2()<cr>
+\end{vimscript}
+
+现在, 如果用户按下了 \key{\$}, Vim 就会等待一秒, 等待另一个按键被按下, 
+如果在这一秒之内没有按键按下, Vim 就会执行原来的功能: 把光标移到一行的末尾.
+相反, 如果在 1 秒之内用户按下了 \key{1}, Vim 就会执行函数
+\texttt{MyFunction1()}.
+
+有了按键映射功能, 用户就有了一个强大的工具来根据自己的需要, 对 Vim 进行 
+修改.
+
+\begin{tips}
+    关于映射的更多的帮助信息, 可以查看 Vim 的帮助系统: \texttt{:help
+    key-mapping}.
+\end{tips}
+\marginpar{52}
