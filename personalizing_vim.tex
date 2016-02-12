@@ -374,8 +374,8 @@ match errorMsg /\(2[5][6-9]\|2[6-9][0-9]\|[3-9][0-9][0-9]\)[.]
 \end{vimcmd}
 \end{warning}
 
-\subsection{更丰富的状态行}
-\label{subsec:a_more_informative_status_line}
+\section{更丰富的状态行}
+\label{sec:a_more_informative_status_line}
 在 Vim 窗口的底部, 你会发现两样东西:
 \begin{itemize}
     \item 命令行缓冲区 (输入命令的地方)
@@ -440,8 +440,8 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
 :set laststatus=0
 \end{vimcmd}
 
-\subsection{切换菜单与工具条}
-\label{subsec:toggle_menu_and_toolbar}
+\section{切换菜单与工具条}
+\label{sec:toggle_menu_and_toolbar}
 如果用户是在控制台中使用 Vim, 就会逐渐习惯没有菜单与工具条的窗口. 但是如果用
 的是 Gvim, 你就会发现窗口界面提供了菜单与工具条.
 
@@ -482,8 +482,8 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
     参考\texttt{:help 'guioptions'}.
 \end{warning}
 
-\subsection{添加自己菜单与工具条按钮}
-\label{subsec:adding_your_own_menu_and_toolbar_buttons}
+\section{添加自己菜单与工具条按钮}
+\label{sec:adding_your_own_menu_and_toolbar_buttons}
 如果使用的是 Gvim, 那么用户可以把经常用到的功能加入到菜单中. 也许用户并不总
 是需要通过菜单来使用某项功能, 但是如果忘记了具体的操作步骤, 我们还可以通过
 菜单来完成. 如果用户确实需要快速地执行某个功能, 还可以把它直接加入到 Gvim
@@ -658,7 +658,7 @@ Vim 中, 它是组织打开文件的一种方式. 每一个标签都可以包含
 \begin{center}
 \includegraphics[scale=0.48]{./images/page34-1.png}
 \end{center}
-设置标签名的方法与状态行 (见 \ref{subsec:a_more_informative_status_line} 节)
+设置标签名的方法与状态行 (见 \ref{sec:a_more_informative_status_line} 节)
 非常类似. 但是在这里设置的是 \texttt{tabline} 的属性, 而不是
 \texttt{statusline}:
 \begin{quotation}
