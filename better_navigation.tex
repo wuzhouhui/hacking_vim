@@ -1,4 +1,4 @@
-% vim: ts=4 sts=4 sw=4 et tw=75
+% vim: ts=4 sts=4 sw=4 et tw=80
 \chapter{更好的导航}
 \label{chap:better_navigation}
 \marginpar{53}
@@ -110,3 +110,40 @@ we
 前面提到的命令用于 word, 当然, WORD 也会有相应的命令, 只不过使用的是大写形式
 (比如用 \texttt{W} 移到下一个 WORD 的首字母).
 \marginpar{56}
+\begin{warning}
+    如果读者希望在一行内多次执行本小节中提到的命令, 只需要在执行命令前加上一个
+    数字即可, 这个数字表示命令执行的次数. 例如, \texttt{5w} 表示光标向前移动 5
+    个单词.
+\end{warning}
+
+\subsubsection{在代码文件中移动}
+\label{subsubsec:moving_in_a_code_file}
+
+和普通文本文件相比, 代码文件并没有段落或句子上的概念, 它包含的是大量的结构和块,
+其中每一个结构或块都有特定的上下文含义. 一个简单的例子是:
+\begin{verbatim}
+    if (a == b)
+    {
+        print "a and b are the same"
+    }
+\end{verbatim}
+代码中, 带有 \texttt{print} 的行在 \texttt{if} 块的上下文环境中.
+
+因为 Vim 深受众多程序员的喜爱, 所以它提供了许多在代码中移动的命令. Common for
+all of them is that the parts of the code you want to jump between need to have
+a contextual connection to each other.\footnote{TODO}
+
+一个简单的例子可以是 C 语言中的 \texttt{\#if}-\texttt{\#else}-\texttt{\#endif}
+代码块, 这三个元素分别处于代码块的开始, 中间, 和结束.
+
+如果用户此时正位于 \texttt{\#if} 所在的行, 执行命令:
+\begin{vimcmd}
+%
+\end{vimcmd}
+就可以跳转到 \texttt{\#else} 所在的行, 此时再按一次 \verb'%', 又会跳转到
+\texttt{\#endif} 所在的行, 再按一次 \verb'%' 就会回到最初的 \texttt{\#if}.
+
+Vim 无法识别所有的编程语言的构造, 不过在默认情况下, 它可以识别 C 语言的大部分
+结构. 除此之外, 它还可以识别出大部分编程语言的普通代码块 --- 代码块通过圆括号
+与花括号定界 (例如, \verb'{' 标出了块的开始, 而 \verb'}' 则表示块的结束).
+\marginpar{57}
