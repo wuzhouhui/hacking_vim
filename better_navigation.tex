@@ -133,15 +133,15 @@ we
 all of them is that the parts of the code you want to jump between need to have
 a contextual connection to each other.\footnote{TODO}
 
-一个简单的例子可以是 C 语言中的 \texttt{#if}-\texttt{#else}-\texttt{#endif}
+一个简单的例子可以是 C 语言中的 \texttt{\#if}-\texttt{\#else}-\texttt{\#endif}
 代码块, 这三个元素分别处于代码块的开始, 中间, 和结束.
 
-如果用户此时正位于 \texttt{#if} 所在的行, 按下命令:
+如果用户此时正位于 \texttt{\#if} 所在的行, 按下命令:
 \begin{vimcmd}
 %
 \end{vimcmd}
-就可以跳转到 \texttt{#else} 所在的行, 此时再按一次 \verb'%', 又会跳转到
-\texttt{#endif} 所在的行, 再按一次 \verb'%' 就会回到最初的 \texttt{#if}.
+就可以跳转到 \texttt{\#else} 所在的行, 此时再按一次 \verb'%', 又会跳转到
+\texttt{\#endif} 所在的行, 再按一次 \verb'%' 就会回到最初的 \texttt{\#if}.
 
 Vim 无法识别所有的编程语言的构造, 不过在默认情况下, 它可以识别 C 语言的大部分
 结构. 除此之外, 它还可以识别出大部分编程语言的普通代码块 --- 代码块通过圆括号
