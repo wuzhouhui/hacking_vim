@@ -288,3 +288,30 @@ Vim 自带了非常完善的帮助系统, 用户此时应该已经用到了这�
 nmap <buffer> <CR> <C-]>
 \end{vimcmd}
 
+如果用户正在使用网页浏览器, 并且想要回到之前浏览过的页面中, 这个操作可以通过按
+退格键来完成. 如果在 Vim 帮助系统中也加上这个功能, 那就再好不过了. 下面这个映射
+可以用来完成这个功能:
+\begin{vimcmd}
+nmap <buffer> <BS> <C-T>
+\end{vimcmd}
+
+现在, 我们可以通过容易记忆的按键绑定, 在 Vim 帮助系统中前进或后退. 接下来, 不
+妨添加几个导航键, 用于寻找当前打开着的 \texttt{help} 文件中的 下一个/前一个 主
+题或选项链接. 有了这些导航键的帮助, 我们就可以在 \texttt{help} 文件中快速地滚动
+搜索, 直到找到我们想要的信息.
+\begin{vimcmd}
+nmap <buffer> o /''[a-z]\{2,\}''<CR>
+nmap <buffer> O ?''[a-z]\{2,\}''<CR>
+nmap <buffer> s /\|\S\+\|<CR>
+nmap <buffer> S ?\|\S\+\|<CR>
+\end{vimcmd}
+
+现在, 用户可以按下 \texttt{o} 前进到下一个选项链接, 按 \texttt{s} 前进到下一个 
+主题链接, 后退的操作是类似的, 只不过把小写字母改成大写字母 --- 按下 \texttt{O}
+后退到前一个选项链接, 按下 \texttt{S} 后退到前一个主题链接.
+
+\begin{warning}
+    为了防止按键映射之间互相干扰, 用户可以把它们添加到文件 \texttt{help.vim} 中,
+    并把该文件存放到 \verb'$VIMHOME/ftplugin/'.
+\end{warning}
+\marginpar{61}
