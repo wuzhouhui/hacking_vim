@@ -15,7 +15,7 @@ Vim 的处世哲学是不浪费用户的宝贵时间, 所以它提供了许多�
 \begin{itemize}
     \item 在单个文件中更快地导航
     \item 在 Vim 帮助系统中更快地导航
-    \item 在多个缓冲区更快地导航
+    \item 在多个缓冲区中更快地导航
     \item 使用 Vim 文件浏览器, 以便更快地搜索文件
     \item 文件内搜索
     \item 使用 \texttt{vimgrep} 在多个文件或多个缓冲区中搜索
@@ -314,3 +314,51 @@ nmap <buffer> S ?\|\S\+\|<CR>
     并把该文件存放到 \verb'$VIMHOME/ftplugin/'.
 \end{warning}
 \marginpar{61}
+
+到目前为止, 对于 Vim 帮助系统导航的提升, 我们只剩下最后一点工作: 我们需要一种
+快速打开帮助系统的方法. 通常来说, 当用户按下 \key{F1} 时, 帮助系统就在默认页面
+打开. 然而, 如果在按下 \key{F1} 时, Vim 能够自动搜索光标当前位置下的单词, 那
+就方便多了. 完成这个功能的按键映射是:
+\begin{vimcmd}
+:map <F1> <ESC>:exec "help ".expand(<"cWORD>")<CR>
+\end{vimcmd}
+这个例子稍微有点难以理解. 命令 \texttt{:help} 用于查找待搜索的命令, 而跟在它后
+面的命令并不会被解释执行, 正因为如此, 我们必须用 \texttt{:exec} 把命令包裹起来.
+
+为了获取光标下的单词, 我们使用了 \texttt{cWORD}. 大写部分 \texttt{WORD} 表示:除
+了空白字符 (空格与制表符) 外的所有字符都可以是单词的构成成分. 我们需要这样的单词
+定义, 因为 Vim 的命令除了字母数字, 还可以包含其他特殊字符 (比如说, 我们想要查找
+\texttt{<cWORD>} 的帮助信息).
+
+这个按键映射可以从帮助系统的外部调用, 也可以把它写到 \texttt{vimrc}, 但不能写
+到 \texttt{help.vim}.
+
+% FIXME: 应该是 section, 而非 subsection
+\subsection{在多个缓冲区中更快地导航}
+\label{subsec:faster_navigation_in_multiple_buffers}
+
+许多情况下, 用户并不是在处理一个文件, 对于每一个打开过的文件, Vim 都会打开一个
+缓冲区. 缓冲区可以被显示出来或隐藏, 这意味着为了找到某个文件, 用户必须找到与它
+对应的缓冲区.
+
+当然, 用户可以打开缓冲区列表, 然后在列表中一个个搜索. 为了打开缓冲区列表, 需要 
+执行:
+\begin{vimcmd}
+:buffers
+\end{vimcmd}
+
+这份列表是不可交互的. 为了选择期望中的缓冲区, 用户需要查看缓冲区列表左边的数字,
+这个数字表示文件所在的缓冲区号码. 有了这个号码, 用户就可以直接打开与该号码对应的
+缓冲区, 具体的命令是:
+\begin{quotation}
+\texttt{:buffer }\textit{N}
+\end{quotation}
+\textit{N} 表示缓冲区的号码.
+
+这种打开缓冲区的方法并不总是最高效的. 用户还可以用下面这两个命令来循环遍历所有
+的缓冲区:
+\begin{itemize}
+    \item \texttt{:bnext}
+    \item \texttt{:bprevious}
+\end{itemize}
+\marginpar{62}
