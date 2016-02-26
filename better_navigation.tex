@@ -363,3 +363,45 @@ nmap <buffer> S ?\|\S\+\|<CR>
     \item \textt{:bprevious}
 \end{itemize}
 \marginpar{62}
+
+虽然这些命令拥有缩进形式 (\texttt{:bn} 与 \texttt{:bp}), 但它们仍然需要在普通
+模式下输入并执行. 这意味着为了执行这两个命令, 至少需要按 5 个按键, 还是不太方
+便.
+
+为了更快地遍历缓冲区, 用户可以把下面这两个按键映射加入到 \texttt{vimrc}:
+\begin{vimcmd}
+map <C-right> <ESC>:bn<CR>
+map <C-left> <ESC>:bp<CR>
+\end{vimcmd}
+上面两行命令的功能是用组合键 \key{Ctrl+Left} 打开前一个缓冲区, 用
+\key{Ctrl+Right} 打开下一个缓冲区. 于是, 在按住 \key{Ctrl} 的同时, 重复地按下
+左/右方向键, 就可以快速地遍历缓冲区列表.
+
+\begin{warning}
+    如果用户只想在当前文件和前一个文件之间切换, 可以用 \key{Ctrl+6} (插入模式下
+    用 \key{Ctrl+o} \key{Ctrl+6}) 或者 \texttt{:e #}.
+\end{warning}
+
+\subsection{快速打开引用的文件}
+\label{subsec:open_referenced_files_faster}
+
+在许多程序设计语言中, 你可以在当前文件中包含其他文件, 这样就可以把一个文件的内
+容切分后放到多个文件中. 文件的包含类似于:
+\begin{verbatim}
+    #include "somefile.h"
+\end{verbatim}
+在上面的示例中, \texttt{somefile.h} 是被包含的文件的名字.
+
+如果能有一个简便的方法用来打开被包含的文件, 那就太棒了. Vim 的确提供了这样的
+命令. 把光标移动到你想要打开的文件名上, 再在普通模式下执行:
+\begin{vimcmd}
+gf
+\end{vimcmd}
+可以把这个命令记成 ``goto file''. 执行这个命令时, Vim 会在下列几个地方寻找文件:
+\begin{itemize}
+    \item Vim 首先在选项 \texttt{path} 中定义的, 并且相对于当前打开着的文件的
+        目录中寻找.
+    \item 如果没有找到, Vim 就使用函数 \texttt{suffixadd}, 查看是否可以通过加上
+        一个后缀来搜索到文件 (比如, 在文件名后面加上 \texttt{.c})
+\end{itemize}
+\marginpar{63}
