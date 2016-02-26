@@ -402,5 +402,41 @@ gf
         目录中寻找.
     \item 如果没有找到, Vim 就使用函数 \texttt{suffixadd}, 查看是否可以通过加上
         一个后缀来搜索到文件 (比如, 在文件名后面加上 \texttt{.c})
-\end{itemize}
 \marginpar{63}
+    \item 如果还是没有找到, Vim 就使用表达式 \texttt{includeexpr}, 把文件名转换
+        成更像文件名的形式 (例如, 把 \texttt{java.com.http} 转换成
+        \texttt{java/com/http.java})
+\end{itemize}
+
+如果 Vim 找到了文件, 它就会在当前缓冲区中打开它, 如果没有找到, 就返回一条错误
+消息. 如果当前所在的缓冲区有更新的内容还没有被保存, 或者是其他正在进行的工作
+阻止了 Vim 丢弃当前打开着的文件, 那么 Vim 就无法打开另一个文件. 有时候这相当
+恼人, 但我们有办法阻止这各种情况发生. 只要把下面这行命令添加到 \texttt{vimrc},
+Vim 就会在另一个缓冲区中打开新文件, 这样 Vim 就不需要丢弃当前打开着的文件:
+\begin{vimcmd}
+:map gf :edit <cfile><CR>
+\end{vimcmd}
+这行代码覆盖了命令 \texttt{gf} 原来的功能, 取而代之的是用命令 \texttt{:edit} 打
+开光标下的文件. 如果文件不存在, 命令就会打开一个新的空缓冲区.
+
+\begin{warning}
+    使用 \texttt{gf} 时, 如果想让 Vim 支持带空格的文件名, 可以把 \texttt{set
+    isfname+=32} 添加到 \texttt{vimrc}, \texttt{32} 是空格字符在 ASCII 表中的
+    十进制值.
+\end{warning}
+
+\section{搜索即可得到}
+\label{sec:search_and_you_will_find}
+
+我们都有过这种感觉: 依稀记得自己在某个地方给写错了, 可就是想不起来是在哪里.
+解决这种问题的办法通常是搜索.
+
+Vim 当然也可以搜索. 现在, 让我们把 Vim 的搜索分成三类:
+\begin{itemize}
+    \item 在当前文件中搜索
+    \item 在多个文件中搜索
+    \item 在帮助系统中搜索
+\end{itemize}
+
+在下面的一节里, 我们将会向读者展示这三类搜索的使用秘诀.
+\marginpar{64}
