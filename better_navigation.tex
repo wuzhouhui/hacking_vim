@@ -478,3 +478,42 @@ Vim 当然也可以搜索. 现在, 让我们把 Vim 的搜索分成三类:
     需要按下 \key{Esc}.
 \end{warning}
 \marginpar{65}
+
+\subsubsection{搜索光标下的单词}
+\label{subsubsec:search_for_a_word_under_the_cursor}
+
+如果用户已经很接近待搜索单词的某次出现, 但它并非你所想要的那次出现. 或者是你想要
+遍历某个单词所有出现过的地方, 并且这个单词已经写出来了, 那就没有必要把单词再
+打一遍, Vim 提供了应对这种情况的命令. 把光标移动到待搜索的单词上, 再在普通模式 
+下按下下面任意一个键:
+\begin{vimcmd}
+#
+*
+\end{vimcmd}
+第一个命令搜索光标下的单词的前一次出现, 第二个命令搜索单词的下一次出现. 多次执 
+行命令可以重复地跳转到单词的 下一次/前一次 出现. 有了这两个命令的帮助, 遍历某个 
+单词的所有出现 就方便多了.
+
+也许用户想要搜索的内容并不是一个完整的单词, 只是单词的一部分. 对此 Vim 也有解决 
+办法, 在普通模式下执行下面命令中任意一个:
+\begin{vimcmd}
+g#
+g*
+\end{vimcmd}
+现在, 光标不仅会跳转到单词的下一次出现, 还包括包含该单词的单词. 例如: 把光标移 
+到单词 ``foo'' 上, 再按下 \texttt{g\#}, 如果上文含有单词 ``foobar'' 与 ``food'',
+光标就会陆续跳转到这两个单词上.
+
+\subsection{在多个文件内搜索}
+\label{subsec:search_in_multiple_files}
+
+也许用户想要搜索的内容并不在当前文件内, 甚至不知道在哪个文件中. 在
+类 Unix 系统中, 比如 GNU/Linux, 用户可以用 Shell 命令 \texttt{grep}, 在多个指
+定的文件内搜索特定的单词或模式. Windows 操作也有类似的命令: \texttt{FIND} 和
+\texttt{FINDSTR}, 但是用户很少使用它们. 为了向所有的的 Vim 用户 (无论他们使用
+的是什么操作系统) 提供在多个文件内搜索的方法, Vim 配备了自己的 \texttt{grep} 
+命令. 命令的使用方式是:
+\begin{vimcmd}
+:vimgrep /pattern/[j][g] file file2... fileN
+\end{vimcmd}
+\marginpar{66}
