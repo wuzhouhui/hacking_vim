@@ -517,3 +517,33 @@ g*
 :vimgrep /pattern/[j][g] file file2... fileN
 \end{vimcmd}
 \marginpar{66}
+这个命令需要两个参数. 第一个参数是用户想要搜索的模式, 用户既可以使用 Vim 的正
+则表达式, 也可以直接输入单词. 模式需要用一对 \texttt{/} 括起来, 在右边的
+\texttt{/} 后面, 用户可以添加一个标志: \texttt{j} 或 \texttt{g}. 标志可以帮助
+用户选取结果, 以及如何展示搜索结果.
+\begin{warning}
+    除了 \texttt{/}, 你也可以用任意一个 非 ID 字符. 一个非 ID 字符指的是没有
+    定义在选项 \texttt{isindent} 中的字符.
+\end{warning}
+
+如果添加了标志 \texttt{g}, 那么搜索结果就会包含一行内的所有匹配. 意思是说如果
+在同一行内, 待搜索的模式出现了三次, 那么在搜索结果中该行就会显示三次. 如果添加 
+标志 \texttt{j}, 那么用户将看不到搜索的结果, 其实 Vim 是把搜索结果更新到了
+quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信息, 参考
+\texttt{:help quickfix}). 如果没有标志 \texttt{j}, 那么光标将会直接跳转到第一个
+匹配, 剩下的匹配结果则添加到 quickfix 列表.
+
+\begin{warning}
+    为了显示 \texttt{vimgrep} 搜索结果的 quickfix 列表, 可以使用命令
+    \texttt{clist} 命令, 或者用 \texttt{:cnext}/\texttt{:cprevious} 跳转到前一
+    个/后一个匹配.
+\end{warning}
+
+\texttt{vimgrep} 的第二个参数是待搜索的文件列表. 文件列表可以由单独的文件名,
+或文件名列表, 或包含通配符的模式 (比如 \texttt{*.c *.h}) 组成. 用户还可以使用
+双星号通配符 \texttt{**}, 比如用 \texttt{**/*.c}, 来搜索当前目录中的所有 C 文
+件, 并递归搜索子目录.
+\begin{center}
+    \includegraphics[scale=0.7]{./images/page66.png}
+\end{center}
+\marginpar{67}
