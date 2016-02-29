@@ -523,7 +523,7 @@ g*
 用户选取结果, 以及如何展示搜索结果.
 \begin{warning}
     除了 \texttt{/}, 你也可以用任意一个 非 ID 字符. 一个非 ID 字符指的是没有
-    定义在选项 \texttt{isindent} 中的字符.
+    定义在选项 \texttt{isindent}\footnote{? --- 译者注} 中的字符.
 \end{warning}
 
 如果添加了标志 \texttt{g}, 那么搜索结果就会包含一行内的所有匹配. 意思是说如果
@@ -534,9 +534,8 @@ quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信
 匹配, 剩下的匹配结果则添加到 quickfix 列表.
 
 \begin{warning}
-    为了显示 \texttt{vimgrep} 搜索结果的 quickfix 列表, 可以使用命令
-    \texttt{clist} 命令, 或者用 \texttt{:cnext}/\texttt{:cprevious} 跳转到前一
-    个/后一个匹配.
+    为了显示 \texttt{vimgrep} 搜索结果的 quickfix 列表, 可以使用 \texttt{:clist}
+    命令, 或者用 \texttt{:cnext} / \texttt{:cprevious} 跳转到前一个/后一个匹配.
 \end{warning}
 
 \texttt{vimgrep} 的第二个参数是待搜索的文件列表. 文件列表可以由单独的文件名,
