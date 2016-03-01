@@ -546,3 +546,41 @@ quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信
     \includegraphics[scale=0.7]{./images/page66.png}
 \end{center}
 \marginpar{67}
+\subsection{搜索帮助系统}
+\label{subsec:search_the_help_system}
+
+有时候需要从 Vim 中得到某些帮助信息, 此时用户可能并不确切地知道应该查找哪些信
+息. 当然, 你可以在整个帮助系统中从头开始查找, 不过, Vim 的帮助系统包含众多的文
+件, 以及数以千计的关键词.
+
+为了解决这个问题, Vim 提供了一个专门的命令. 在前一节中, 我们用的是
+\texttt{vimgre}, 而对于 Vim 帮助系统, 则用的是下面这个命令:
+\begin{vimcmd}
+:helpgrep pattern [@LANG]
+\end{vimcmd}
+命令需要一个必填参数 --- 你所想要搜索的模式 --- 还一个是可选参数, 用于限定语
+言, 让我们来看一个例子. 比如说用户需要一些关于自动实例的帮助信息, 但是不知道
+从哪里开始查找. 因为用户只了解英文, 所以你希望帮助信息也是英文的. 完成这个搜索
+的命令是:
+\begin{vimcmd}
+:helpgrep completion@en
+\end{vimcmd}
+命令所执行的操作是在所有的英文 (\texttt{en}) 文档中搜索单词 \texttt{completion}.
+搜索完成后, 光标会跳转到第一个匹配, 剩下的匹配结果则添加到 quickfix 列表, 以便 
+稍后检索.
+
+\begin{warning}
+    如果用户想使用 location 列表, 而不是 quickfix 列表, 就用 \texttt{:lhelpgrep}
+    替换 \texttt{:helpgrep}.
+\end{warning}
+
+实际上, 命令 \texttt{helpgrep} 并没有遍历所有的文档, 而且使用了 tag list 来搜索 
+模式. tag list 并不会自动生成, 所以, 如果用户安装的插件带有自己的文档, 那就必须
+使用下面的命令:
+\begin{vimcmd}
+    :helptags /path/to/documentation
+\end{vimcmd}
+把 \texttt{/path/to/documentation} 替换成新文档的安装位置, 但是为了能让 Vim 找
+到文档, 新文档必须放在 Vim 选项 \texttt{runtimepath} 定义的几个目录的
+\texttt{docs/} 子目录中 (参考 \texttt{:help 'runtimepath'}).
+\marginpar{68}
