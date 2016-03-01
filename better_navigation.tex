@@ -554,12 +554,12 @@ quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信
 件, 以及数以千计的关键词.
 
 为了解决这个问题, Vim 提供了一个专门的命令. 在前一节中, 我们用的是
-\texttt{vimgre}, 而对于 Vim 帮助系统, 则用的是下面这个命令:
+\texttt{vimgrep}, 而对于 Vim 帮助系统, 则用的是下面这个命令:
 \begin{vimcmd}
 :helpgrep pattern [@LANG]
 \end{vimcmd}
-命令需要一个必填参数 --- 你所想要搜索的模式 --- 还一个是可选参数, 用于限定语
-言, 让我们来看一个例子. 比如说用户需要一些关于自动实例的帮助信息, 但是不知道
+命令需要一个必填参数 --- 你所想要搜索的模式 --- 还有一个是可选参数, 用于限定语
+言, 让我们来看一个例子. 比如说用户需要一些关于自动补全的帮助信息, 但是不知道
 从哪里开始查找. 因为用户只了解英文, 所以你希望帮助信息也是英文的. 完成这个搜索
 的命令是:
 \begin{vimcmd}
@@ -571,7 +571,7 @@ quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信
 
 \begin{warning}
     如果用户想使用 location 列表, 而不是 quickfix 列表, 就用 \texttt{:lhelpgrep}
-    替换 \texttt{:helpgrep}.
+    替换掉 \texttt{:helpgrep}.
 \end{warning}
 
 实际上, 命令 \texttt{helpgrep} 并没有遍历所有的文档, 而且使用了 tag list 来搜索 
