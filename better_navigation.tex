@@ -584,3 +584,47 @@ quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信
 到文档, 新文档必须放在 Vim 选项 \texttt{runtimepath} 定义的几个目录的
 \texttt{docs/} 子目录中 (参考 \texttt{:help 'runtimepath'}).
 \marginpar{68}
+
+\section{标记位置}
+\label{sec:x_marks_the_spot}
+
+有时, 当我们在编辑文件的某一行时, 需要跳到另一个地方查看一下. 之后, 我们可能很
+难找到原来的那一行.
+
+如果能在离开前作一下标记, 这样的话, 找到离开时的位置就方便多了.
+
+为此, Vim 提供了一些工具用于完成这个功能. 这些工具可以分成两类:
+\begin{itemize}
+    \item 可见的标记
+    \item 隐藏的标记
+\end{itemize}
+
+\subsection{可见的标记 --- 使用符号}
+\label{subsec:visible_markers_using_signs}
+
+在 Vim 中, 我们可以用一个可见的标记 --- 符号 --- 来标记一行. 一个符号指的是一
+个标记, 它会显示在编辑器最靠左的列中.
+
+\begin{warning}
+    如果用户想改变显示符号的列的颜色, 可以使用下面这个命令:
+    \begin{vimcmd}
+    :highlight SignColumn guibg=darkgrey
+    \end{vimcmd}
+\end{warning}
+
+根据所使用的 Vim 版本 (控制台或 GUI) 的不同, 符号或者是一些字符的组合 (比如
+\texttt{>>}), 或者是一个图标. 为了使用符号, 需要作一些设置. 如果把设置信息写
+在 \texttt{vimrc} 中, 就用不着每次都设置一遍.
+
+第一件要做的事是定义你想用的符号. 定义符号的命令是:
+\begin{quotation}
+\texttt{:sign define}\ \textit{name}\ \textit{arguments}
+\end{quotation}
+\textit{arguments} 可以是下面几种之一:
+\begin{itemize}
+    \item \texttt{linehl}: 用于标记行的色彩组
+    \item \texttt{text}: 该文本将作为符号, 显示在控制台 Vim 中 (比如
+        \texttt{>>!!} 或 \texttt{++}). 每一个符号最多可以用两个字符.
+    \item \texttt{texthl}: 用于标记符号文本的色彩组
+\end{itemize}
+\marginpar{69}
