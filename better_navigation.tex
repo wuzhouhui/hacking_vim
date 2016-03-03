@@ -643,7 +643,7 @@ to/information.xpm
 expand("%:p") \end{vimcmd}
 用户可以把数字 \texttt{123} 替换成任意一个数字, 它将作为这个符号的 ID.
 
-正如你所看到的那样, 放置符号的命令有点写起来有点麻烦, 但是我们可以把它映射到一
+正如你所看到的那样, 放置符号的命令写起来有点麻烦, 但是我们可以把它映射到一
 个键上.
 
 命令的效果是把名字为 \texttt{information}, 且 ID 号为 \texttt{123} 的符号放置
@@ -656,9 +656,10 @@ file=" . expand("%:p")<CR>
 上面的命令把符号 \texttt{infomation} 映射到键 \key{F7}, 当你按下 \texttt{F7} 
 时, 符号就会被放置到当前行.
 \begin{center}
-    \includegraphics[scale=0.7]{./images/page69.png}
+    \includegraphics[scale=0.6]{./images/page69.png}
 \end{center}
 有时候, 我们想要移除符号, 用术语来讲, 叫作 ``unplace'' 一个符号:
 \begin{vimcmd}
 :sign unplace ID
 \end{vimcmd}
+\marginpar{70}
