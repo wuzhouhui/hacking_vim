@@ -628,5 +628,39 @@ quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信
     \item \texttt{text}: 该文本将作为符号, 显示在控制台 Vim 中 (比如,
         \texttt{>>!!} 或 \texttt{++}). 每一个符号最多可以用两个字符.
     \item \texttt{texthl}: 用于标记符号文本的色彩组
+    \item \texttt{icon}: 图标的完整路径, 该图标可用在 Gvim 的符号中. 图标应该
+        足够小, 小到能够放到两个字符的空间中. 图标文件的格式可以是位图文件,
+        不过最好是 \texttt{.xpm}.
 \end{itemize}
 \marginpar{69}
+一个简单的例子是:
+\begin{vimcmd}
+:sign define information text=!> linehl=Warning texthl=Error icon=/path/
+to/information.xpm
+\end{vimcmd}
+现在, 我们已经定义了一个符号, 并且把定义的命令添加到了 \texttt{vimrc} 中, 我们 
+已经准备好把该符号放到文件中的某个位置, 放置符号的命令是:
+\begin{vimcmd}
+:exe ":sign place 123 line=" . line(.) ."name=information file=" .
+expand("%:p") \end{vimcmd}
+用户可以把数字 \texttt{123} 替换成任意一个数字, 它将作为这个符号的 ID.
+
+正如你所看到的那样, 放置符号的命令有点写起来有点麻烦, 但是我们可以把它映射到一
+个键上.
+
+命令的效果是把名字为 \texttt{information}, 且 ID 号为 \texttt{123} 的符号放置
+到当前打开文件 (\verb'expand("%:p")') 的当前行 (\texttt{line(.)}). 映射的命令
+是:
+\begin{vimcmd}
+:map <F7> :exe ":sign place 123 line=" . line(".") ."name=infomation
+file=" . expand("%:p")<CR>
+\end{vimcmd}
+上面的命令把符号 \texttt{infomation} 映射到键 \key{F7}, 当你按下 \texttt{F7} 
+时, 符号就会被放置到当前行.
+\begin{center}
+    \includegraphics[scale=0.7]{./images/page69.png}
+\end{center}
+有时候, 我们想要移除符号, 用术语来讲, 叫作 ``unplace'' 一个符号:
+\begin{vimcmd}
+:sign unplace ID
+\end{vimcmd}
