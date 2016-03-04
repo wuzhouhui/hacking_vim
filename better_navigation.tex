@@ -661,6 +661,28 @@ file=" . expand("%:p")<CR>
     \includegraphics[scale=0.7]{./images/page69.png}
 \end{center}
 有时候, 我们想要移除符号, 用术语来讲, 叫作 ``unplace'' 一个符号:
+\begin{quotation}
+\texttt{:sign unplace}\ \textit{ID}
+\end{quotation}
+
+命令中的 \textit{ID} 是放置符号时的 ID (在前面的例子中就是 \texttt{123}). 这个 
+命令会把所有的, 用该 ID 放置的符号移除. 用户可能只想把当前文件中的指定符号移
+除, 这时候可以在命令的末尾加上另一个参数, 用来指定文件:
+\begin{quotation}
+\texttt{:sign unplace}\ \textit{ID}\ \texttt{file=}\textit{name}
+\end{quotation}
+或者用下面这个命令从当前缓冲区中移除符号:
+\begin{quotation}
+\texttt{:sign unplace}\ \textit{ID}\ \texttt{buffer=}\textit{bufferno}
+\end{quotation}
+命令中的 \textit{bufferno} 是当前缓冲区的编号 (可以通过命令 \texttt{:buffers}
+查看).
+
+如果只想移除当前行的符号, 用:
 \begin{vimcmd}
-:sign unplace ID
+:sign unplace
+\end{vimcmd}
+为了和放置符号的按键映射相对应, 我们可以把它映射到 \key{Ctrl+F7} 上:
+\begin{vimcmd}
+:map <C-F7> :sign unplace<CR>
 \end{vimcmd}
