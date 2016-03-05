@@ -662,6 +662,7 @@ file=" . expand("%:p")<CR>
 \begin{quotation}
 \texttt{:sign unplace}\ \textit{ID}
 \end{quotation}
+\marginpar{70}
 
 命令中的 \textit{ID} 是放置符号时的 ID (在前面的例子中就是 \texttt{123}). 这个 
 命令会把所有的, 用该 ID 放置的符号移除. 用户可能只想把当前文件中的指定符号移
@@ -684,7 +685,6 @@ file=" . expand("%:p")<CR>
 \begin{vimcmd}
 :map <C-F7> :sign unplace<CR>
 \end{vimcmd}
-\marginpar{70}
 
 \begin{warning}
     如果你在同一个文件中, 用同一个 ID 添加了多个符号, 那么上面的命令只会移除
@@ -701,7 +701,7 @@ file=" . expand("%:p")<CR>
 \textit{bufferno}.
 
 同样, 如果在同一个文件/缓冲区内用同一个 ID 添加了多个符号, 那么命令只能跳转到
-文件内的第一个符号.
+该 ID 在文件内的第一个符号.
 
 \begin{warning}
     Paul Rouget 开发了一个 Vim 脚本, 通过它我们可以非常方便地使用符号. 脚本的
