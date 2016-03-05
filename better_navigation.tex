@@ -659,7 +659,52 @@ file=" . expand("%:p")<CR>
     \includegraphics[scale=0.6]{./images/page69.png}
 \end{center}
 有时候, 我们想要移除符号, 用术语来讲, 叫作 ``unplace'' 一个符号:
+\begin{quotation}
+\texttt{:sign unplace}\ \textit{ID}
+\end{quotation}
+
+命令中的 \textit{ID} 是放置符号时的 ID (在前面的例子中就是 \texttt{123}). 这个 
+命令会把所有的, 用该 ID 放置的符号移除. 用户可能只想把当前文件中的指定符号移
+除, 这时候可以在命令的末尾加上另一个参数, 用来指定文件:
+\begin{quotation}
+\texttt{:sign unplace}\ \textit{ID}\ \texttt{file=}\textit{name}
+\end{quotation}
+或者用下面这个命令从当前缓冲区中移除符号:
+\begin{quotation}
+\texttt{:sign unplace}\ \textit{ID}\ \texttt{buffer=}\textit{bufferno}
+\end{quotation}
+命令中的 \textit{bufferno} 是当前缓冲区的编号 (可以通过命令 \texttt{:buffers}
+查看).
+
+如果只想移除当前行的符号, 用:
 \begin{vimcmd}
-:sign unplace ID
+:sign unplace
+\end{vimcmd}
+为了和放置符号的按键映射相对应, 我们可以把它映射到 \key{Ctrl+F7} 上:
+\begin{vimcmd}
+:map <C-F7> :sign unplace<CR>
 \end{vimcmd}
 \marginpar{70}
+
+\begin{warning}
+    如果你在同一个文件中, 用同一个 ID 添加了多个符号, 那么上面的命令只会移除
+    文件内最靠前的符号, 而非当前行的符号.
+\end{warning}
+
+既然本章讨论的是导航, 那么我们也要介绍一下如何跳转到一个符号. 这种跳转在 Vim 中
+称为 符号跳转 (sign-jumping), 所使用的命令是:
+\begin{quotation}
+\texttt{:sign jump}\ \textit{ID}\ \texttt{file=}\textit{file}
+\end{quotation}
+命令中的 \textit{ID} 是你想要跳转到的符号 ID, \textit{file} 指定在哪个文件中
+搜索该符号. 除了 \texttt{file=}\textit{file}, 还可以用 \texttt{buffer=}%
+\textit{bufferno}.
+
+同样, 如果在同一个文件/缓冲区内用同一个 ID 添加了多个符号, 那么命令只能跳转到
+文件内的第一个符号.
+
+\begin{warning}
+    Paul Rouget 开发了一个 Vim 脚本, 通过它我们可以非常方便地使用符号. 脚本的
+    下载地址是 \url{http://www.vim.org/scripts/script.php?script_id=1580}.
+\end{warning}
+\marginpar{71}
