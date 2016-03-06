@@ -709,3 +709,55 @@ file=" . expand("%:p")<CR>
     下载地址是 \url{http://www.vim.org/scripts/script.php?script_id=1580}.
 \end{warning}
 \marginpar{71}
+
+\subsection{隐藏的标记}
+\label{subsec:hidden_markers_using_marks}
+
+为了给当前行作标记, 我们可以使用标记 (mark). 它的使用方法非常简单, 总的来说,
+它由两个在普通模式下使用的命令组成, 一个用于设置标记, 另一个用于跳转到标记.
+除非打开标记列表, 否则用户无法判断某一行是否含有标记.
+
+我们首先来看一下如何标记当前行. 为了标记当前行, 我们只需要在普通模式下按下
+\texttt{m}, 后面再紧跟着某个字符, 这个字符可以是 \texttt{0}-\texttt{9},
+\texttt{a}-\texttt{z},或 \texttt{A}-\texttt{Z} 中的一个. 例如, 如果用户执行
+了 \texttt{ma}, 那就是说用名字为 \texttt{a} 的标记来标记当前行. 然后, 如果用户 
+想要跳转到标记 \texttt{a} 所在的行, 只需要按下 \texttt{'a} (单引号 + 标记名),
+光标就会马上跳转到该行的开始 (如果该行是缩进过的, 那就是该行的第一个非空白字
+符).
+
+有时候, 光是跳转到一行的开始可能还不够, 如果能直接跳转到添加标记时光标所在的具
+体位置可能会更好一点. 为了达到这个目的, 需要把跳转命令中的单引号改成反单引号
+(\texttt{`}), 于是, 跳转到标记 \texttt{a} 的命令就变成了 \texttt{`a}.
+
+不同的标记名含有不同的意义, 它们的工作区如下所示:
+\begin{center}
+\begin{tabular}{ll}
+    \hline
+    标记        & 用法 \\
+    \hline
+    \texttt{0}-\texttt{9} & 这个标记集来源于文件 \texttt{.viminfo}, 通常保留
+    给 Vim 内部使用 (比如, 标记 \texttt{0} 表示文件最后一次退出时, 光标所在的
+    位置. 然而, 用户可以利用这些标记来实现 ``打开最近使用过的文件''. \\
+    \texttt{a}-\texttt{z} & 这些标记只在当前文件内有效, 当文件关闭时删除这些
+    标记. 如果用户此时是在当前文件的缓冲区内, 那么只能通过这些小写字母标记在
+    文件内跳转. \\
+    \texttt{A}-\texttt{Z} & 这些标记可以跨越文件使用. 即使没有打开目的标记所在
+    的文件, 也可以直接跳转到标记所在的位置. 如果 \texttt{.viminfo} 文件是可用
+    的, 那么这些标记就会被保存下来, 直到下一次对文件进行编辑.
+\end{tabular}
+\end{center}
+
+用户可以通过下面这个命令来获取完整的, 正在使用的标记列表:
+\begin{vimcmd}
+:marks
+\end{vimcmd}
+命令显示了每个标记所在的文件与行号. 为了删除一个或多个标记, 执行:
+\begin{quotation}
+\texttt{:delmarks}\ \textit{markid markid...markid}
+\end{quotation}
+具体的使用例子有:
+\begin{vimcmd}
+:delmarks a b c
+:delmarks a-c
+\end{vimcmd}
+\marginpar{72}
