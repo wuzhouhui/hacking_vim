@@ -68,3 +68,49 @@
 我们在 \texttt{VIMHOME} 目录下创建一个新目录 \texttt{templates/}, 并把上面的
 模版文件保存到这个目录中, 假设我们把模版文件命令为 \texttt{html.tpl}.
 \marginpar{75}
+现在, 第一个模版已经准备就绪, 不过, 当我们创建一个新的 HTML 文件时, 需要加载
+模版文件, 为了完成加载, 把下面这行命令添加到 \texttt{vimrc} 中:
+\begin{vimcmd}
+:autocmd BufNewFile *.html 0r $VIMHOME/templates/html.tpl
+\end{vimcmd}
+这个命令可以确保当我们新建一个 \texttt{*.html} 文件时, 模版文件的内容会自动加
+载到新文件中. 于是, 当我们开始编辑新文件前, 文件中就已经包含了模版的内容.
+
+本来这样做没什么问题, 但是当添加的模版文件越来越多时, 我们可能会越来越讨厌每
+次都要往 \texttt{vimrc} 中添加一行加载命令. 所以, 让我们把加载模版的命令写得
+更灵活一点:
+\begin{vimcmd}
+:autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
+\end{vimcmd}
+命令的功能是: 无论何时打开一个新文件, Vim 就在模版目录中搜索以文件扩展名命名
+的模版. 比如, 创建一个 \texttt{index.html} 文件时, Vim 就在
+\texttt{\$VIMHOME/templates/} 中搜索名为 \texttt{html.tpl} 的模版文件.
+
+如果没有找到指定的模版, Vim 就创建一个空文件.
+
+让我们把模版写得更完善一点: 添加对占位符 (占位符指的是你将要添加文本的地方) 的
+支持. 一个占位符看起来可以非常得与众不同, 这取决于你, 笔者通常把它们显示成类似
+于 \texttt{<+KERWORD+>} 的形式. 如果我们在前面的 HTML 模版中添加上占位符,
+模版的内容就变成了:
+\begin{vimcmd}
+<html>
+    <head>
+        <title><+TITLE+></title>
+            <meta name="generator" content="<+GENERATOR+>" />
+            <meta name="author" content="<+AUTHOR+>" />
+    </head>
+    <body>
+        <p><+CONTENT+></p>
+    </body>
+</html>
+\end{vimcmd}
+
+现在, 我们已经准备好了占位符, 接下来的工作就是在占位符之间跳转. 为了让跳转更加
+方便, 我们把跳转命令添加到 \texttt{vimrc} 中. 我们想要把组合键 \key{Ctrl+j}
+映射到跳转命令, 因为这样做的话便于在插入模式下使用, 组合键中 \texttt{j} (意
+指 jump) 也更容易记忆. 映射组合键的命令是:
+\begin{vimcmd}
+nnoremap <c-j> /<+.\{-1,}+><cr>c/+>/e<cr>
+inoremap <c-j> <ESC>/<+.\{-1,}+><cr>c/+>/e<cr>
+\end{vimcmd}
+\marginpar{76}
