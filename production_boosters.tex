@@ -26,3 +26,45 @@
 
 阅读完这一章之后, 用户使用 Vim 的工作效率应该可以提高好几个百分点.
 \marginpar{74}
+
+\section{使用模版}
+\label{sec:using_templates}
+
+无论编辑的是哪一种类型的文件, 当打开一个新文件时, 总有一些基础性的工作需要完成.
+手动完成这些基础工作是一件非常乏味的事件, 更讨厌的是每次打开一个新文件时, 都
+要重新再做一遍. 所以说干嘛要花这么多的时间, 来做一件使用模版就可以完成的事情?
+
+在接下来的两节, 我们将会看到一些不同类型的模版. 其中一些模版特定于文件类型, 另
+外一些则会使用用户的输入来触发小内容模版 (比如, 程序员经常用到的代码片断).
+
+\subsection{使用模版文件}
+\label{subsec:using_template_files}
+
+每次打开一个新文件时, 用户做的第一件事经常是输入某些头部信息, 当然, 所要输入的
+信息取决于文件的类型. 比较常见的例子包括:
+\begin{itemize}
+    \item 在新的 HTML 文件中添加基本结构 (\texttt{<html>}, \texttt{<head>},
+        \texttt{<body>}).
+    \item 在所有的 C 文件添加头部信息, 在文件 \texttt{main.c} 中添加
+        \texttt{main()} 函数.
+    \item 在 Java 文件中添加主类.
+\end{itemize}
+除了这些, 你应该还能想到其他一些例子.
+
+那么, 我们怎么才能创建一个模版文件? 不妨让我们用 HTML 文件作为例子来进行讲解.
+这种文件的结构是静态的, 因此非常适合用模版来处理. HTML 模版的内容是:
+\begin{vimcmd}
+<html>
+    <head>
+        <title></title>
+            <meta name="generator" content="Vim" />
+            <meta name="author" content="Kim Schulz" />
+    </head>
+    <body>
+        <p>Content goes here...</p>
+    </body>
+</html>
+\end{vimcmd}
+我们在 \texttt{VIMHOME} 目录下创建一个新目录 \texttt{templates/}, 并把上面的
+模版文件保存到这个目录中, 假设我们把模版文件命令为 \texttt{html.tpl}.
+\marginpar{75}
