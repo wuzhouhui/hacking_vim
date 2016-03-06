@@ -730,3 +730,34 @@ file=" . expand("%:p")<CR>
 (\texttt{`}), 于是, 跳转到标记 \texttt{a} 的命令就变成了 \texttt{`a}.
 
 不同的标记名含有不同的意义, 它们的工作区如下所示:
+\begin{center}
+\begin{tabular}{ll}
+    \hline
+    标记        & 用法 \\
+    \hline
+    \texttt{0}-\texttt{9} & 这个标记集来源于文件 \texttt{.viminfo}, 通常保留
+    给 Vim 内部使用 (比如, 标记 \texttt{0} 表示文件最后一次退出时, 光标所在的
+    位置. 然而, 用户可以利用这些标记来实现 ``打开最近使用过的文件''. \\
+    \texttt{a}-\texttt{z} & 这些标记只在当前文件内有效, 当文件关闭时删除这些
+    标记. 如果用户此时是在当前文件的缓冲区内, 那么只能通过这些小写字母标记在
+    文件内跳转. \\
+    \texttt{A}-\texttt{Z} & 这些标记可以跨越文件使用. 即使没有打开目的标记所在
+    的文件, 也可以直接跳转到标记所在的位置. 如果 \texttt{.viminfo} 文件是可用
+    的, 那么这些标记就会被保存下来, 直到下一次对文件进行编辑.
+\end{tabular}
+\end{center}
+
+用户可以通过下面这个命令来获取完整的, 正在使用的标记列表:
+\begin{vimcmd}
+:marks
+\end{vimcmd}
+命令显示了每个标记所在的文件与行号. 为了删除一个或多个标记, 执行:
+\begin{quotation}
+\texttt{:delmarks}\ \textit{markid markid...markid}
+\end{quotation}
+具体的使用例子有:
+\begin{vimcmd}
+:delmarks a b c
+:delmarks a-c
+\end{vimcmd}
+\marginpar{72}
