@@ -114,3 +114,46 @@ nnoremap <c-j> /<+.\{-1,}+><cr>c/+>/e<cr>
 inoremap <c-j> <ESC>/<+.\{-1,}+><cr>c/+>/e<cr>
 \end{vimcmd}
 \marginpar{76}
+现在, 只需要按下组合键 \key{Ctrl+j}, 你就可以方便地跳转到文件中的下一个占位符,
+输入文本, 然后再跳转到下一个占位符.
+
+通过在占位符中添加关键字, 就可以提醒用户应该在占位符中输入什么样的内容.
+
+\begin{warning}
+可以通过命令 \texttt{match} 高亮显示占位符, 具体的设置命令是: \texttt{match
+Todo /<+.\++>/}, 把这行命令添加到 \texttt{vimrc} 中 (可以把命令中的
+\texttt{Todo} 替换成任意一种你喜欢的色彩组.
+\end{warning}
+
+\subsection{把缩写作为模版}
+\label{subsec:abbreviations_as_templates}
+
+在前面的小节里, 我们学习了如何为不同类型的文件制作模版. 那么, 现在就来介绍一下
+如何为文件的内容制作模版.
+
+在第 \ref{chap:personalizing_vim} 章, 我们简单地介绍了如何通过缩写来减少击键的
+次数, 现在我们就把缩写应用到模版中. 回忆一下下面这个命令的作用:
+\begin{vimcmd}
+:iabbrev match replace-string
+\end{vimcmd}
+我们只想让上面的命令工作在插入模式, 这是因为模式模版本来就应该工作在插入模式下.
+对于 C 文件来说, 一个常见的例子是:
+\begin{vimcmd}
+:iabbrev <buffer> for( for (x=0;x<var;x++){<cr><cr>}
+\end{vimcmd}
+无论我们在什么时候输入文本 \texttt{for(}, Vim 都会自动插入一段 \texttt{for} 循
+环. \texttt{(} 可以防止手工输入的 \texttt{for} 循环被自动转换. 插入的内容看起
+来就像:
+\begin{vimcmd}
+for (x=0;x<var;x++){
+
+}
+\end{vimcmd}
+
+\begin{warning}
+    缩写词左边的 \texttt{<buffer>} 限制了命令的作用范围仅限于当前缓冲区.
+\end{warning}
+
+正如你所看到的那样, 生成的代码模版是静态的. 为了让模版更灵活一点, 把前面一节介
+绍占位符应用进来.
+\marginpar{77}
