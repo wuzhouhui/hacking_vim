@@ -157,3 +157,46 @@ for (x=0;x<var;x++){
 正如你所看到的那样, 生成的代码模版是静态的. 为了让模版更灵活一点, 把前面一节介
 绍占位符应用进来.
 \marginpar{77}
+在这种情景下使用的占位符更像是一个跳转点, 因为我们把它们简化成 \texttt{<+++>}.
+除此之外, 在插入模式模版之后, 我们需要在光标的下一个位置上放置一个占位符, 对于
+前面的例子来说, 光标的下一个位置应该是左括号的右边.
+
+为了实现这个目标, 我们引入 \texttt{!cursor!} 占位符, 命令的内容是:
+\begin{vimcmd}
+iabbrev for( for(!cursor!;<+++>;<+++>){<cr><+++><cr>}<Esc>
+    :call search('!cursor!','b')<cr>cf!:
+\end{vimcmd}
+(上面的命令都在同一行上)
+
+现在, 无论何时输入 \texttt{for(}, Vim 都会自动插入一段 \texttt{for} 循环, 然后 
+把光标移动到占位符 \texttt{!cursor!} (当光标移过来时, 占位符上原来的内容会自动
+被移除). 接下来, 你就可以方便地填写 \texttt{for} 循环的参数, 并用 \key{Ctrl+j}
+跳转到下一个参数的位置.
+
+也许你已经知道, 许多编程语言都有相同的主要结构 (比如 \texttt{for} 循环), 但是 
+它们之间的差异导致了无法使用同一个模式模版. 让我们回过头来看一下手上已有的东西,
+看看是否可以让它们识别文件类型.
+
+在前面的一节里, 我们介绍了如何根据文件的扩展名来加载相应的模版文件, 具体的命令
+是:
+\begin{vimcmd}
+:autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
+\end{vimcmd}
+让我们对这个命令进行修改, 使得 Vim 可以根据文件的类型, 为我们的模式版本自动加
+载适当的缩写.
+
+为了能让命令更聪明一点, 我们把命令的功能用函数来实现. 函数的代码是:
+\begin{vimcmd}
+function! LoadTemplate(extension)
+    silent! :execute '0r $VIMHOME/templates/'. a:extension. '.tpl'
+    silent! execute 'source $VIMHOME/templates/'.a:extension.'.patterns.tpl'
+endfunction
+\end{vimcmd}
+为了调用函数, 我们把 \texttt{autocmd} 修改成:
+\begin{vimcmd}
+:autocmd BufNewFile * silent! call LoadTemplate('%:e')
+\end{vimcmd}
+函数 \texttt{LoadTemplate} 在 \texttt{\$VIMHOME} 的 \texttt{templates} 子目录
+下搜索两个文件: \texttt{EXTENSION.tpl} 与 \texttt{EXTENSION.patterns.tpl}.
+其中 \texttt{EXTENSION} 表示当前打开的文件的扩展名.
+\marginpar{78}
