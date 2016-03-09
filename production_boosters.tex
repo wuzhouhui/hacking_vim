@@ -200,3 +200,42 @@ endfunction
 下搜索两个文件: \texttt{EXTENSION.tpl} 与 \texttt{EXTENSION.patterns.tpl}.
 其中 \texttt{EXTENSION} 表示当前打开的文件的扩展名.
 \marginpar{78}
+第 1 个文件包含了特定文件类型的模版, 而第 2 个文件则包含了特定文件类型的缩写
+命令. 如果没有找到对应的文件, 那么命令 \texttt{silent!} 就会抑制错误信息的显
+示, 而仅仅是什么都没有返回.
+
+现在, 模版文件中该包含什么样的内容完全由用户来决定.
+
+\begin{warning}
+    已经有人为 Vim 编写了大量的模版系统脚本, 其中大部分都是以本章介绍的概念为基础,
+    但是增加了许多额外的功能. 除了这里介绍的之外, 如何用户还想要更多的模版选项,
+    笔者推荐你看一下由 Gergely Kontra 编写的 mu-template, 可以到下面这
+    个网址下载: \url{http://www.vim.org/scripts/script.php?script_id=222}.
+\end{warning}
+
+\subsection{snipMate 脚本}
+\label{subsec:snippets_with_the_snipmate_script}
+
+虽然已经有大量的模版系统脚本可供使用, 而且它们中的大部分都是以本章介绍的概念
+为基础, 但是有时候对于特定的文件格式, Vim 还是没有提供足够的支持. 对于这些情况,
+用户可以使用 snippet 脚本. Snippet 和用在模版中的缩写有点类似, 但是要更高级一
+点.
+
+如果你想在 Vim 中使用 snippet, 笔者推荐你看一下 snipMate 脚本, 下载地址是
+\url{http://www.vim.org/scripts/script.php?script_id=2540}.
+
+snipMate 可以让用户在不需要了解 Vim 脚本的前提下, 为自己的文件格式定义高级的
+snippet.
+
+假设用户想为 \texttt{for} 循环创建一个 snippet (在前面的一节里我们用的是 
+\texttt{iabbrev}),  那就这样做:
+\begin{vimcmd}
+snippet for
+    for (${1:i} = 0; $1 < ${2:count}; $1${3:++}) {
+        ${4:/* code */}
+    }
+\end{vimcmd}
+把上面这段文本写到一个文件中, 再把这个文件放到 \texttt{\$VIMHOME/snippets} 目
+录下, 把文件命名为 \texttt{FILETYPE.snippet} (\texttt{FILETYPE} 表示文件类型,
+比如 C 代码就是 \texttt{c}, PHP 代码就是 \texttt{php}).
+\marginpar{79}
