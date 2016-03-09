@@ -157,7 +157,7 @@ for (x=0;x<var;x++){
 正如你所看到的那样, 生成的代码模版是静态的. 为了让模版更灵活一点, 把前面一节介
 绍的占位符应用进来.
 \marginpar{77}
-在这种情景下使用的占位符更像是一个跳转点, 因为我们把它们简化成 \texttt{<+++>}.
+在这种情景下使用的占位符更像是一个跳转点, 因此我们把它们简化成 \texttt{<+++>}.
 除此之外, 在插入模式模版之后, 我们需要在光标的下一个位置上放置一个占位符, 对于
 前面的例子来说, 光标的下一个位置应该是左括号的右边.
 
@@ -182,7 +182,7 @@ iabbrev for( for(!cursor!;<+++>;<+++>){<cr><+++><cr>}<Esc>
 \begin{vimcmd}
 :autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
 \end{vimcmd}
-让我们对这个命令进行修改, 使得 Vim 可以根据文件的类型, 为我们的模式版本自动加
+让我们对这个命令进行修改, 使得 Vim 可以根据文件的类型, 为我们的模式模版自动加
 载适当的缩写.
 
 为了能让命令更聪明一点, 我们把命令的功能用函数来实现. 函数的代码是:
@@ -198,11 +198,11 @@ endfunction
 \end{vimcmd}
 函数 \texttt{LoadTemplate} 在 \texttt{\$VIMHOME} 的 \texttt{templates} 子目录
 下搜索两个文件: \texttt{EXTENSION.tpl} 与 \texttt{EXTENSION.patterns.tpl}.
-其中 \texttt{EXTENSION} 表示当前打开的文件的扩展名.
+其中 \texttt{EXTENSION} 表示当前打开着的文件的扩展名.
 \marginpar{78}
 第 1 个文件包含了特定文件类型的模版, 而第 2 个文件则包含了特定文件类型的缩写
-命令. 如果没有找到对应的文件, 那么命令 \texttt{silent!} 就会抑制错误信息的显
-示, 而仅仅是什么都没有返回.
+命令. 如果没有找到对应的文件, 那么命令 \texttt{silent!} 就会抑制错误信息的输
+出, 什么也不会显示出来.
 
 现在, 模版文件中该包含什么样的内容完全由用户来决定.
 
