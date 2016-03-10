@@ -267,10 +267,10 @@ snipMate 系统通过查找由 \texttt{\$\{NUMBER:INITIAL\_VALUE\}} 创建的特
 如果 \texttt{NUMBER} 是 1, 那么光标会首先处在这个位置上, 如果 \texttt{NUMBER} 
 是 3, 那么它就是按下两次 \key{Tab} 后光标所在的位置, 以此类推.
 \texttt{INITIAL\_VALUE} 是在你修改 snippet 之前, 首先插入到 snippet 中的文本.
-比如 \texttt{\$\{1:i\}} 把 \texttt{i} 作为文本插入到 snippet 中, 并把光标放在
-此处.
+比如 \texttt{\$\{1:i\}} 把 \texttt{i} 作为文本插入到 snippet 中, 并首先把光标
+放在此处.
 
-如果你需要在多个地方使用同一个变量, 要以通过 \texttt{\$NUMBER} 来引用. 比如说,
+如果你需要在多个地方使用同一个变量, 可以通过 \texttt{\$NUMBER} 来引用. 比如说,
 你想要让 \texttt{i} 出现在多个地方, 那就在需要出现 \texttt{i} 的地方写上
 \texttt{\$1} 即可. 写上 \texttt{\$1} 所有地方在开始时都会显示成 \texttt{i},
 当改变 \texttt{i} 时, 其他地方的 \texttt{i} 也会自动更新.
