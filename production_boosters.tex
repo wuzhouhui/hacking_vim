@@ -229,13 +229,57 @@ snippet.
 
 假设用户想为 \texttt{for} 循环创建一个 snippet (在前面的一节里我们用的是 
 \texttt{iabbrev}),  那就这样做:
-\begin{vimcmd}
+\begin{vimscript}
 snippet for
     for (${1:i} = 0; $1 < ${2:count}; $1${3:++}) {
         ${4:/* code */}
     }
-\end{vimcmd}
+\end{vimscript}
 把上面这段文本写到一个文件中, 再把这个文件放到 \texttt{\$VIMHOME/snippets} 目
 录下, 把文件命名为 \texttt{FILETYPE.snippet} (\texttt{FILETYPE} 表示文件类型,
 比如 C 代码就是 \texttt{c}, PHP 代码就是 \texttt{php}).
 \marginpar{79}
+脚本的第一行表示开始一个新的 snippet, 当输入 \texttt{for} 并且后面再紧跟着一个
+\key{Tab} 键时, 执行 snippet 脚本.
+
+再接下来的一行是最神奇的, 脚本实际生成的代码看起来就像:
+% FIXME
+\begin{vimcmd}
+    for (i = 0; I < count; i++) {
+        /* code */
+    }
+\end{vimcmd}
+
+snippet 被插入之后, 它把光标放在了第 1 个 \texttt{i} 的位置, 并切换到插入
+模式, 因此你可以轻易地把 \texttt{i} 换成另一个变量. 现在, 最神奇的事情发生了,
+% FIXME
+当你把第 1 个 \texttt{i} 换掉之后, 第 2 个 \texttt{i} (后面带有 \texttt{++}
+的那个) 也会被自动更新成新变量. 修改了 \texttt{i} 之后 (如果需要的话), 按下
+\key{Tab} 键, 光标就会跳转到 \texttt{count}, 并再次切换到插入模式. 现在你可以
+以同样的步骤来修改 \texttt{count} 并按下 \key{Tab} 键, 之后, 光标跳转到
+\texttt{++}, 再按下 \key{Tab} 跳到 \texttt{/* code */}, 你可以在这里写下其他代
+码.
+
+在 snippet 的不同变量之间跳转, 简直不能再简单了.
+
+snipMate 系统通过查找由 \texttt{\$\{NUMBER:INITIAL\_VALUE\}} 创建的特殊标记来进行
+工作. 标记中的 \texttt{NUMBER} 指出了当你按下 \key{Tab} 时, 将要跳转到的序列.
+如果 \texttt{NUMBER} 是 1, 那么光标会首先处在这个位置上, 如果 \texttt{NUMBER} 
+是 3, 那么它就是按下两次 \key{Tab} 后光标所在的位置, 以此类推.
+\texttt{INITIAL\_VALUE} 是在你修改 snippet 之前, 首先插入到 snippet 中的文本.
+比如 \texttt{\$\{1:i\}} 把 \texttt{i} 作为文本插入到 snippet 中, 并首先把光标
+放在此处.
+
+如果你需要在多个地方使用同一个变量, 可以通过 \texttt{\$NUMBER} 来引用. 比如说,
+你想要让 \texttt{i} 出现在多个地方, 那就在需要出现 \texttt{i} 的地方写上
+\texttt{\$1} 即可. 写上 \texttt{\$1} 所有地方在开始时都会显示成 \texttt{i},
+当改变 \texttt{i} 时, 其他地方的 \texttt{i} 也会自动更新.
+
+这里介绍的只是创建 snippet 的基础知识, 不过一旦在你的系统中安装了 snipMate,
+你就可以通过 Vim 的帮助系统学习到更多的高级知识.
+
+用户还可以在 snipMate 中找到更多的惊喜. 你将会发现, snipMate 已经为许多常见
+的文件格式准备好了 snippet 脚本, 包括 \texttt{.c}, \texttt{.php},
+\texttt{.perl}, \texttt{.java}, \texttt{.html}, \texttt{.tex}, 甚至还包括 Vim 
+脚本.
+\marginpar{80}
