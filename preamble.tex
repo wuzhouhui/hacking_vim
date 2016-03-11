@@ -13,8 +13,8 @@
 % 一页结束时, 脚注编号清零
 \usepackage[perpage]{footmisc}
 % verbatim and endverbatim
-\usepackage{verbatim}
 \usepackage{graphicx}
+\usepackage{listings}
 
 % 脚注编号带圈
 \renewcommand\thefootnote{\ding{\numexpr171+\value{footnote}}}
@@ -70,9 +70,11 @@
 \newcommand\email[1]{\href{mailto:#1}{#1}}
 \newcommand\key[1]{\textit{#1}}
 
-\newenvironment{vimcode}
-{\verbatim}
-{\endverbatim}
+\lstnewenvironment{vimcode}
+    {\lstset{basicstyle=\ttfamily,
+        xleftmargin=2em,
+        tabsize=4}}
+    {}
 
 \title{深入 Vim 7.2}
 \author{Kim Schulz \and \url{https://github.com/wuzhouhui/hacking_vim} }
