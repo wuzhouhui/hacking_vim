@@ -283,3 +283,77 @@ snipMate 系统通过查找由 \texttt{\$\{NUMBER:INITIAL\_VALUE\}} 创建的特
 \texttt{.perl}, \texttt{.java}, \texttt{.html}, \texttt{.tex}, 甚至还包括 Vim 
 脚本.
 \marginpar{80}
+
+\begin{warning}
+    关于下载与如何使用 snipMate 脚本, 用户可以访问
+    \url{http://www.vim.org/scripts/script.php?script_id=2540}.
+\end{warning}
+
+\section{Tag List}
+\label{sec:using_tag_list}
+
+Tag list 就像是程序的字典. Tag list 实际上是一个包含了所有种类的关键词的文件,
+这些关键词可以用来识别程序的各个要素, 包括函数名, 变量名, 类的方法, 具体的要素
+依赖于编程语言. Tag list 文件并非由 Vim 生成, 而是 tag list 生成程序. Tag list
+生成程序有很多种, 比较常见的有:
+\begin{itemize}
+    \item Exuberant Ctags: 用于 C, C++, Java, Perl, Python, Vim, Ruby (以及其
+        他 25 种语言)
+    \item Vtags: 用于 Verilog 文件
+    \item Jtags: 用于 Java 文件
+    \item Hdrtags: 用于 C/C++, Asm, Lex/Yacc, LaTeX, Vim, Maple
+    \item Ptags: 用于 Perl 文件
+\end{itemize}
+
+因为 Exuberant Ctags (简称 Ctags) 使用得最为广泛, 支持的语言也是最多的, 因此 
+在下面的例子里我们用它来生成 tag list.
+
+我们以一个小项目来进行讲解, 这个项目包含了 3 个 C 文件:
+\begin{itemize}
+    \item \texttt{main.c}: 包含 \texttt{main} 函数的文件
+    \item \texttt{myfunctions.c}: 包含了程序中用到的各个函数
+    \item \texttt{myfunctions.h}: \texttt{myfunctions.c} 中的函数的头文件
+\end{itemize}
+假设代码已经写完, 现在让我们为这些代码文件生成一个 tag list 文件.
+
+在存放源代码文件的目录下执行命令:
+\begin{vimcmd}
+ctags *.c *.h
+\end{vimcmd}
+命令执行完毕后, 你将会发现在当前目录下出现了一个新文件, 文件名是 \texttt{tags}.
+这个文件就是 tag list 文件, 它包含了源代码中所有函数与变量的信息.
+\marginpar{81}
+\begin{warning}
+    \texttt{ctags} 命令提供了大量的参数, 用于指定编程语言, 更多的信息可以通过
+    \texttt{ctags --help} 来查看.
+\end{warning}
+启动 Vim 后, 我们必须告诉它去使用 \texttt{tags} 文件, 这可以通过设置选项
+\texttt{tags} 来完成:
+\begin{vimcmd}
+:set tags=/path/to/tags
+\end{vimcmd}
+现在, Vim 已经知道了 \texttt{tags} 文件的存在, 接下来, 你就可以在 Vim  使用它.
+
+在 \texttt{main.c}, 我们调用了 \texttt{myfunctions.c} 中定义的函数. 假设我们 
+知道有一个函数叫作 \texttt{calcValue}, 但却不知道该函数接收什么样的参数, 比较 
+好的做法是看一下函数是如何定义的, 这时候就可以使用 \texttt{tags} 文件提供的功
+能. 假设用户已经在源代码文件中写下了:
+\begin{vimcmd}
+myvalue = calcValue(
+\end{vimcmd}
+为了查看函数 \texttt{calcValue} 的定义, 把光标移动到函数名上, 按下组合键
+\key{Ctrl+]}, 此时会出现下面两种情况中的一种:
+\begin{itemize}
+    \item 只找到一个匹配, 于是光标会直接跳转到定义函数的地方
+    \teim 找到多个匹配, 于是 Vim 把这些匹配以列表的形式显示出来
+\end{itemize}
+在第 2 种情况下, 用户可以选择跳转到哪一个匹配. 如果用户使用的编程语言支持重载,
+就会出现这种情况: 同一个函数有多个版本.
+
+函数看完之后, 用户需要回到之前离开的地方, 继续往下工作. 按下组合键
+\texttt{Ctrl+t} 就可以跳转到上一次离开的地方.
+
+\begin{warning}
+    如果用的是 Gvim, 还可以通过鼠标来跳转到关键词的定义: 按住 \key{Ctrl} 键
+    的同时, 按下鼠标左键.
+\end{warning}
