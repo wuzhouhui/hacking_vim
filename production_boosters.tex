@@ -279,3 +279,37 @@ ctags *.c *.h
 命令执行完毕后, 你将会发现在当前目录下出现了一个新文件, 文件名是 \texttt{tags}.
 这个文件就是 tag list 文件, 它包含了源代码中所有函数与变量的信息.
 \marginpar{81}
+\begin{warning}
+    \texttt{ctags} 命令提供了大量的参数, 用于指定编程语言, 更多的信息可以通过
+    \texttt{ctags --help} 来查看.
+\end{warning}
+启动 Vim 后, 我们必须告诉它去使用 \texttt{tags} 文件, 这可以通过设置选项
+\texttt{tags} 来完成:
+\begin{vimcmd}
+:set tags=/path/to/tags
+\end{vimcmd}
+现在, Vim 已经知道了 \texttt{tags} 文件的存在, 接下来, 你就可以在 Vim  使用它.
+
+在 \texttt{main.c}, 我们调用了 \texttt{myfunctions.c} 中定义的函数. 假设我们 
+知道有一个函数叫作 \texttt{calcValue}, 但却不知道该函数接收什么样的参数, 比较 
+好的做法是看一下函数是如何定义的, 这时候就可以使用 \texttt{tags} 文件提供的功
+能. 假设用户已经在源代码文件中写下了:
+\begin{vimcmd}
+myvalue = calcValue(
+\end{vimcmd}
+为了查看函数 \texttt{calcValue} 的定义, 把光标移动到函数名上, 按下组合键
+\key{Ctrl+]}, 此时会出现下面两种情况中的一种:
+\begin{itemize}
+    \item 只找到一个匹配, 于是光标会直接跳转到定义函数的地方
+    \teim 找到多个匹配, 于是 Vim 把这些匹配以列表的形式显示出来
+\end{itemize}
+在第 2 种情况下, 用户可以选择跳转到哪一个匹配. 如果用户使用的编程语言支持重载,
+就会出现这种情况: 同一个函数有多个版本.
+
+函数看完之后, 用户需要回到之前离开的地方, 继续往下工作. 按下组合键
+\texttt{Ctrl+t} 就可以跳转到上一次离开的地方.
+
+\begin{warning}
+    如果用的是 Gvim, 还可以通过鼠标来跳转到关键词的定义: 按住 \key{Ctrl} 键
+    的同时, 按下鼠标左键.
+\end{warning}
