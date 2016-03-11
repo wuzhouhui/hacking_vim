@@ -56,30 +56,30 @@ Vim 支持根据文件的结构, 在文件中跳转. 它还提供了一些按键
 突然意识到自己忘了把本段的第一个字母大写. 虽然用户可以通过方向键, 或
 \texttt{h}, \texttt{j}, \texttt{k}, \texttt{l}, 把光标移到段落的首字母. 然而, 在普通 
 模式下, 直接按下面这个按键可以得到更好的效果:
-\begin{vimcmd}
+\begin{vimcode}
 {
-\end{vimcmd}
+\end{vimcode}
 
 按完这个按键之后, 光标已经停在了段落的开头, 或者是段落正上方的空行 (如果 
 有的话). 现在, 用户可以通过按下 \key{Esc} 进入到普通模式, 再按 \texttt{\{},
 把光标移到段落的开始. 与此类似, 用户只要按下和 \texttt{\{} 相对的按键, 即:
-\begin{vimcmd}
+\begin{vimcode}
 }
-\end{vimcmd}
+\end{vimcode}
 就可以把光标移到段落的末尾.
 
 也许用户并不是在段落的末尾工作, 而是在修改段落中的某些错误. Vim 可以记住
 用户之前修改过的地方 (实际上, Vim 可以记住最近 999 个被修改过的地方), 因此
 用户可以通过询问这些信息, 从而回到正确的地点. 在普通模式下执行下面这个命令:
-\begin{vimcmd}
+\begin{vimcode}
 g,
-\end{vimcmd}
+\end{vimcode}
 \marginpar{55}
 执行该命令几次, 就可以遍历之前修改过的地方. 和 \texttt{\{} 一样, 它也有一个相反
 的命令, 用于反向遍历之前修改过的地方, 这个命令是
-\begin{vimcmd}
+\begin{vimcode}
 g;
-\end{vimcmd}
+\end{vimcode}
 如果没有更多的地方可供遍历, Vim 就会发出一个警告.
 
 还有一种情况是, 用户并不是在段落的开头忘记了大写字母, 而是在句子的开头, 对此,
@@ -98,9 +98,9 @@ Vim 不希望用户在移动光标上花费太多的时间, 虽然用户可以�
     \item \texttt{e}: 移到单词的末尾
 \end{itemize}
 这些命令可以互相组合, 比如, 用户想要移到下一个单词的末尾, 只需要执行:
-\begin{vimcmd}
+\begin{vimcode}
 we
-\end{vimcmd}
+\end{vimcode}
 
 对于单词的定义, Vim 有两套标准:
 \begin{itemize}
@@ -137,9 +137,9 @@ a contextual connection to each other.\footnote{TODO}
 代码块, 这三个元素分别处于代码块的开始, 中间, 和结束.
 
 如果用户此时正位于 \texttt{\#if} 所在的行, 执行命令:
-\begin{vimcmd}
+\begin{vimcode}
 %
-\end{vimcmd}
+\end{vimcode}
 就可以跳转到 \texttt{\#else} 所在的行, 此时再按一次 \verb'%', 又会跳转到
 \texttt{\#endif} 所在的行, 再按一次 \verb'%' 就会回到最初的 \texttt{\#if}.
 
@@ -215,9 +215,9 @@ Vim 还提供了其他一些方便的命令:
 提供了一个用于查看变量定义 (或变量第一次出现的地方, 如果是解释型语言 --- 比如
 Python --- 就可能有这个需求) 的命令, 不过前提是变量是在当前文件内定义的. 当光标
 位于变量名上时, 按下下面这个命令, 就可以跳到变量的声明位置:
-\begin{vimcmd}
+\begin{vimcode}
 gd
-\end{vimcmd}
+\end{vimcode}
 这个变量非常容易记忆, 它可以看成 ``Goto Declaration'' 的缩写形式.
 
 当执行这个命令时, Vim 所做的操作是跳到当前区段的开始 (回忆命令 \verb'[['), 因为
@@ -230,9 +230,9 @@ gd
 如果用户已经知道变量是在全局定义的, 又或者是想要查找变量的全局定义, 那么可以使
 用 Vim 的一个命令, 该命令从文件的第 1 行开始查找, 而不是在当前区段内查找. 这个 
 命令是:
-\begin{vimcmd}
+\begin{vimcode}
 gD
-\end{vimcmd}
+\end{vimcode}
 Vim 非常聪明, 它会自动忽略注释块中的变量引用, 因为这里绝不可能出现变量的声明.
 
 如果 Vim 找到了变量的定义 (或者是该变量在文件内的第一次使用\footnote{原文是 
@@ -258,12 +258,12 @@ or the first available usage of the variable in the file}), 那么光标就会�
 假如用户希望在按住 \key{Alt} 的同时, 再用方向键 上/下 来移动光标, 那么 Vim 
 就应该按照视觉上的行 --- 而不是实际的行 --- 来响应. 为了完成这样的效果, 需要在
 文件 \texttt{vimrc} 中添加几行按键映射:
-\begin{vimcmd}
+\begin{vimcode}
 map <A-DOWN> gj
 map <A-UP> gk
 imap <A-UP> <ESC>gki
 imap <A-DOWN> <ESC>gji
-\end{vimcmd}
+\end{vimcode}
 
 映射只能在普通模式与插入模式下使用. 如果用户希望在没有按住 \key{Alt} 的情况下
 也能正常工作, 只需要删除掉按键组合中的 \texttt{A-} 部分即可 (例如把第一条命令
@@ -283,27 +283,27 @@ Vim 自带了非常完善的帮助系统, 用户此时应该已经用到了这�
 可能就无法用单个按键来表示 \texttt{]}, 在这种情况下, 重新映射按键会比较好. 在一
 个网络浏览器中, 用户可以跳转到一个链接上, 再按下 \key{Enter}, 为了完成这样的效 
 果, 用户可以执行:
-\begin{vimcmd}
+\begin{vimcode}
 nmap <buffer> <CR> <C-]>
-\end{vimcmd}
+\end{vimcode}
 
 如果用户正在使用网页浏览器, 并且想要回到之前浏览过的页面中, 这个操作可以通过按
 退格键来完成. 如果在 Vim 帮助系统中也加上这个功能, 那就再好不过了. 下面这个映射
 可以用来完成这个功能:
-\begin{vimcmd}
+\begin{vimcode}
 nmap <buffer> <BS> <C-T>
-\end{vimcmd}
+\end{vimcode}
 
 现在, 我们可以通过容易记忆的按键绑定, 在 Vim 帮助系统中前进或后退. 接下来, 不
 妨添加几个导航键, 用于寻找当前打开着的 \texttt{help} 文件中的 下一个/前一个 主
 题或选项链接. 有了这些导航键的帮助, 我们就可以在 \texttt{help} 文件中快速地滚动
 搜索, 直到找到我们想要的信息.
-\begin{vimcmd}
+\begin{vimcode}
 nmap <buffer> o /''[a-z]\{2,\}''<CR>
 nmap <buffer> O ?''[a-z]\{2,\}''<CR>
 nmap <buffer> s /\|\S\+\|<CR>
 nmap <buffer> S ?\|\S\+\|<CR>
-\end{vimcmd}
+\end{vimcode}
 
 现在, 用户可以按下 \texttt{o} 前进到下一个选项链接, 按 \texttt{s} 前进到下一个 
 主题链接, 后退操作是类似的, 只不过把小写字母改成大写字母 --- 按下 \texttt{O}
@@ -319,9 +319,9 @@ nmap <buffer> S ?\|\S\+\|<CR>
 快速打开帮助系统的方法. 通常来说, 当用户按下 \key{F1} 时, 帮助系统就在默认页面
 打开. 然而, 如果在按下 \key{F1} 时, Vim 能够自动搜索光标当前位置下的单词, 那
 就方便多了. 完成这个功能的按键映射是:
-\begin{vimcmd}
+\begin{vimcode}
 :map <F1> <ESC>:exec "help ".expand(<"cWORD>")<CR>
-\end{vimcmd}
+\end{vimcode}
 这个例子稍微有点难以理解. 命令 \texttt{:help} 用于查找待搜索的命令, 而跟在它后
 面的命令并不会被解释执行, 正因为如此, 我们必须用 \texttt{:exec} 把命令包裹起来.
 
@@ -343,9 +343,9 @@ nmap <buffer> S ?\|\S\+\|<CR>
 
 当然, 用户可以打开缓冲区列表, 然后在列表中一个个搜索. 为了打开缓冲区列表, 需要 
 执行:
-\begin{vimcmd}
+\begin{vimcode}
 :buffers
-\end{vimcmd}
+\end{vimcode}
 
 这份列表是不可交互的. 为了选择期望中的缓冲区, 用户需要查看缓冲区列表左边的数字,
 这个数字表示文件所在的缓冲区号码. 有了这个号码, 用户就可以直接打开与该号码对应的
@@ -368,10 +368,10 @@ nmap <buffer> S ?\|\S\+\|<CR>
 便.
 
 为了更快地遍历缓冲区, 用户可以把下面这两个按键映射加入到 \texttt{vimrc}:
-\begin{vimcmd}
+\begin{vimcode}
 map <C-right> <ESC>:bn<CR>
 map <C-left> <ESC>:bp<CR>
-\end{vimcmd}
+\end{vimcode}
 上面两行命令的功能是用组合键 \key{Ctrl+Left} 打开前一个缓冲区, 用
 \key{Ctrl+Right} 打开下一个缓冲区. 于是, 在按住 \key{Ctrl} 的同时, 重复地按下
 左/右方向键, 就可以快速地遍历缓冲区列表.
@@ -393,9 +393,9 @@ map <C-left> <ESC>:bp<CR>
 
 如果能有一个简便的方法用来打开被包含的文件, 那就太棒了. Vim 的确提供了这样的
 命令. 把光标移动到你想要打开的文件名上, 再在普通模式下执行:
-\begin{vimcmd}
+\begin{vimcode}
 gf
-\end{vimcmd}
+\end{vimcode}
 可以把这个命令记成 ``goto file''. 执行这个命令时, Vim 会在下列几个地方寻找文件:
 \begin{itemize}
     \item Vim 首先在选项 \texttt{path} 中定义的, 并且相对于当前打开着的文件的
@@ -413,9 +413,9 @@ gf
 阻止了 Vim 丢弃当前打开着的文件, 那么 Vim 就无法打开另一个文件. 有时候这相当
 恼人, 但我们有办法阻止这各种情况发生. 只要把下面这行命令添加到 \texttt{vimrc},
 Vim 就会在另一个缓冲区中打开新文件, 这样 Vim 就不需要丢弃当前打开着的文件:
-\begin{vimcmd}
+\begin{vimcode}
 :map gf :edit <cfile><CR>
-\end{vimcmd}
+\end{vimcode}
 这行代码覆盖了命令 \texttt{gf} 原来的功能, 取而代之的是用命令 \texttt{:edit} 打
 开光标下的文件. 如果文件不存在, 命令就会打开一个新的空缓冲区.
 
@@ -452,15 +452,15 @@ Vim 当然也可以搜索. 现在, 让我们把 Vim 的搜索分成三类:
 
 用户知道在单词 ``someWord'' 的附近有自己感兴趣的内容, 为了找到它, 可以在普通模
 式下执行:
-\begin{vimcmd}
+\begin{vimcode}
 ?someWord
-\end{vimcmd}
+\end{vimcode}
 该命令在文件内向后搜索问号右边的单词的第一次出现. 如果光标当前是在文件的末尾,
 用它来搜索单词正好合适. 然而, 如果当前光标是在文件的开始, 那么向前搜索可能会
 更合理一点. 为了向前搜索单词, 只需要把问号改成斜杆:
-\begin{vimcmd}
+\begin{vimcode}
 /someWord
-\end{vimcmd}
+\end{vimcode}
 被搜索的单词可能会多次出现, 第一次找到的地方可能不是你所想要的. 不用担心, 按下 
 \texttt{n} 就可以按照搜索方向, 前进到单词的下一次出现. 如果想要临时改变搜索方向,
 按下 \texttt{N}, 就会跳转到单词的前一次出现.
@@ -486,20 +486,20 @@ Vim 当然也可以搜索. 现在, 让我们把 Vim 的搜索分成三类:
 遍历某个单词所有出现过的地方, 并且这个单词已经写出来了, 那就没有必要把单词再
 打一遍, Vim 提供了应对这种情况的命令. 把光标移动到待搜索的单词上, 再在普通模式 
 下按下下面任意一个键:
-\begin{vimcmd}
+\begin{vimcode}
 #
 *
-\end{vimcmd}
+\end{vimcode}
 第一个命令搜索光标下的单词的前一次出现, 第二个命令搜索单词的下一次出现. 多次执 
 行命令可以重复地跳转到单词的 下一次/前一次 出现. 有了这两个命令的帮助, 遍历某个 
 单词的所有出现 就方便多了.
 
 也许用户想要搜索的内容并不是一个完整的单词, 只是单词的一部分. 对此 Vim 也有解决 
 办法, 在普通模式下执行下面命令中任意一个:
-\begin{vimcmd}
+\begin{vimcode}
 g#
 g*
-\end{vimcmd}
+\end{vimcode}
 现在, 光标不仅会跳转到单词的下一次出现, 还包括包含该单词的单词. 例如: 把光标移 
 到单词 ``foo'' 上, 再按下 \texttt{g\#}, 如果上文含有单词 ``foobar'' 与 ``food'',
 光标就会陆续跳转到这两个单词上.
@@ -513,9 +513,9 @@ g*
 \texttt{FINDSTR}, 但是用户很少使用它们. 为了向所有的的 Vim 用户 (无论他们使用
 的是什么操作系统) 提供在多个文件内搜索的方法, Vim 配备了自己的 \texttt{grep} 
 命令. 命令的使用方式是:
-\begin{vimcmd}
+\begin{vimcode}
 :vimgrep /pattern/[j][g] file file2... fileN
-\end{vimcmd}
+\end{vimcode}
 \marginpar{66}
 这个命令需要两个参数. 第一个参数是用户想要搜索的模式, 用户既可以使用 Vim 的正
 则表达式, 也可以直接输入单词. 模式需要用一对 \texttt{/} 括起来, 在右边的
@@ -555,16 +555,16 @@ quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信
 
 为了解决这个问题, Vim 提供了一个专门的命令. 在前一节中, 我们用的是
 \texttt{vimgrep}, 而对于 Vim 帮助系统, 则用的是下面这个命令:
-\begin{vimcmd}
+\begin{vimcode}
 :helpgrep pattern [@LANG]
-\end{vimcmd}
+\end{vimcode}
 命令需要一个必填参数 --- 你所想要搜索的模式 --- 还有一个是可选参数, 用于限定语
 言, 让我们来看一个例子. 比如说用户需要一些关于自动补全的帮助信息, 但是不知道
 从哪里开始查找. 因为用户只了解英文, 所以你希望帮助信息也是英文的. 完成这个搜索
 的命令是:
-\begin{vimcmd}
+\begin{vimcode}
 :helpgrep completion@en
-\end{vimcmd}
+\end{vimcode}
 命令所执行的操作是在所有的英文 (\texttt{en}) 文档中搜索单词 \texttt{completion}.
 搜索完成后, 光标会跳转到第一个匹配, 剩下的匹配结果则添加到 quickfix 列表, 以便 
 稍后检索.
@@ -577,9 +577,9 @@ quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信
 实际上, 命令 \texttt{helpgrep} 并没有遍历所有的文档, 而且使用了 tag list 来搜索 
 模式. tag list 并不会自动生成, 所以, 如果用户安装的插件带有自己的文档, 那就必须
 使用下面的命令:
-\begin{vimcmd}
+\begin{vimcode}
     :helptags /path/to/documentation
-\end{vimcmd}
+\end{vimcode}
 把 \texttt{/path/to/documentation} 替换成新文档的安装位置, 但是为了能让 Vim 找
 到文档, 新文档必须放在 Vim 选项 \texttt{runtimepath} 定义的几个目录的
 \texttt{docs/} 子目录中 (参考 \texttt{:help 'runtimepath'}).
@@ -607,9 +607,9 @@ quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信
 
 \begin{warning}
     如果用户想改变显示符号的列的颜色, 可以使用下面这个命令:
-    \begin{vimcmd}
+    \begin{vimcode}
     :highlight SignColumn guibg=darkgrey
-    \end{vimcmd}
+    \end{vimcode}
 \end{warning}
 
 根据所使用的 Vim 版本 (控制台或 GUI) 的不同, 符号或者是一些字符的组合 (比如
@@ -632,15 +632,15 @@ quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信
 \end{itemize}
 \marginpar{69}
 一个简单的例子是:
-\begin{vimcmd}
+\begin{vimcode}
 :sign define information text=!> linehl=Warning texthl=Error icon=/path/
 to/information.xpm
-\end{vimcmd}
+\end{vimcode}
 现在, 我们已经定义了一个符号, 并且把定义的命令添加到了 \texttt{vimrc} 中, 我们 
 已经准备好把该符号放到文件中的某个位置, 放置符号的命令是:
-\begin{vimcmd}
+\begin{vimcode}
 :exe ":sign place 123 line=" . line(.) ."name=information file=" .
-expand("%:p") \end{vimcmd}
+expand("%:p") \end{vimcode}
 用户可以把数字 \texttt{123} 替换成任意一个数字, 它将作为这个符号的 ID.
 
 正如你所看到的那样, 放置符号的命令写起来有点麻烦, 但是我们可以把它映射到一
@@ -649,10 +649,10 @@ expand("%:p") \end{vimcmd}
 命令的效果是把名字为 \texttt{information}, 且 ID 号为 \texttt{123} 的符号放置
 到当前打开文件 (\verb'expand("%:p")') 的当前行 (\texttt{line(.)}). 映射的命令
 是:
-\begin{vimcmd}
+\begin{vimcode}
 :map <F7> :exe ":sign place 123 line=" . line(".") ."name=infomation
 file=" . expand("%:p")<CR>
-\end{vimcmd}
+\end{vimcode}
 上面的命令把符号 \texttt{infomation} 映射到键 \key{F7}, 当你按下 \texttt{F7} 
 时, 符号就会被放置到当前行.
 \begin{center}
@@ -678,13 +678,13 @@ file=" . expand("%:p")<CR>
 查看).
 
 如果只想移除当前行的符号, 用:
-\begin{vimcmd}
+\begin{vimcode}
 :sign unplace
-\end{vimcmd}
+\end{vimcode}
 为了和放置符号的按键映射相对应, 我们可以把它映射到 \key{Ctrl+F7} 上:
-\begin{vimcmd}
+\begin{vimcode}
 :map <C-F7> :sign unplace<CR>
-\end{vimcmd}
+\end{vimcode}
 
 \begin{warning}
     如果你在同一个文件中, 用同一个 ID 添加了多个符号, 那么上面的命令只会移除
@@ -748,24 +748,24 @@ file=" . expand("%:p")<CR>
 \end{center}
 
 用户可以通过下面这个命令来获取完整的, 正在使用的标记列表:
-\begin{vimcmd}
+\begin{vimcode}
 :marks
-\end{vimcmd}
+\end{vimcode}
 命令显示了每个标记所在的文件与行号. 为了删除一个或多个标记, 执行:
 \begin{quotation}
 \texttt{:delmarks}\ \textit{markid markid...markid}
 \end{quotation}
 具体的使用例子有:
-\begin{vimcmd}
+\begin{vimcode}
 :delmarks a b c
 :delmarks a-c
 :delmarks a f-i 1-4
-\end{vimcmd}
+\end{vimcode}
 \marginpar{72}
 如果用户想要删除当前缓冲区内的所有标记, 执行:
-\begin{vimcmd}
+\begin{vimcode}
 :delmarks!
-\end{vimcmd}
+\end{vimcode}
 
 当使用 Vim 时, 它会自动设置其他类型的标记. 其他类型的标记包括但不限于: 最后
 一次退出插入模式时光标所在的位置; 可视模式下被选中的文本的开始与结束; 最后一

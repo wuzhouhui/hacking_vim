@@ -53,7 +53,7 @@
 
 那么, 我们怎么才能创建一个模版文件? 不妨让我们用 HTML 文件作为例子来进行讲解.
 这种文件的结构是静态的, 因此非常适合用模版来处理. HTML 模版的内容是:
-\begin{vimcmd}
+\begin{vimcode}
 <html>
     <head>
         <title></title>
@@ -64,24 +64,24 @@
         <p>Content goes here...</p>
     </body>
 </html>
-\end{vimcmd}
+\end{vimcode}
 我们在 \texttt{VIMHOME} 目录下创建一个新目录 \texttt{templates/}, 并把上面的
 模版文件保存到这个目录中, 假设我们把模版文件命令为 \texttt{html.tpl}.
 \marginpar{75}
 现在, 第一个模版已经准备就绪, 不过, 当我们创建一个新的 HTML 文件时, 需要加载
 模版文件, 为了完成加载, 把下面这行命令添加到 \texttt{vimrc} 中:
-\begin{vimcmd}
+\begin{vimcode}
 :autocmd BufNewFile *.html 0r $VIMHOME/templates/html.tpl
-\end{vimcmd}
+\end{vimcode}
 这个命令可以确保当我们新建一个 \texttt{*.html} 文件时, 模版文件的内容会自动加
 载到新文件中. 于是, 当我们开始编辑新文件前, 文件中就已经包含了模版的内容.
 
 本来这样做没什么问题, 但是当添加的模版文件越来越多时, 我们可能会越来越讨厌每
 次都要往 \texttt{vimrc} 中添加一行加载命令. 所以, 让我们把加载模版的命令写得
 更灵活一点:
-\begin{vimcmd}
+\begin{vimcode}
 :autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
-\end{vimcmd}
+\end{vimcode}
 命令的功能是: 无论何时打开一个新文件, Vim 就在模版目录中搜索以文件扩展名命名
 的模版. 比如, 创建一个 \texttt{index.html} 文件时, Vim 就在
 \texttt{\$VIMHOME/templates/} 中搜索名为 \texttt{html.tpl} 的模版文件.
@@ -92,7 +92,7 @@
 支持. 一个占位符看起来可以非常得与众不同, 这取决于你, 笔者通常把它们显示成类似
 于 \texttt{<+KERWORD+>} 的形式. 如果我们在前面的 HTML 模版中添加上占位符,
 模版的内容就变成了:
-\begin{vimcmd}
+\begin{vimcode}
 <html>
     <head>
         <title><+TITLE+></title>
@@ -103,16 +103,16 @@
         <p><+CONTENT+></p>
     </body>
 </html>
-\end{vimcmd}
+\end{vimcode}
 
 现在, 我们已经准备好了占位符, 接下来的工作就是在占位符之间跳转. 为了让跳转更加
 方便, 我们把跳转命令添加到 \texttt{vimrc} 中. 我们想要把组合键 \key{Ctrl+j}
 映射到跳转命令, 因为这样做的话便于在插入模式下使用, 组合键中 \texttt{j} (意
 指 jump) 也更容易记忆. 映射组合键的命令是:
-\begin{vimcmd}
+\begin{vimcode}
 nnoremap <c-j> /<+.\{-1,}+><cr>c/+>/e<cr>
 inoremap <c-j> <ESC>/<+.\{-1,}+><cr>c/+>/e<cr>
-\end{vimcmd}
+\end{vimcode}
 \marginpar{76}
 现在, 只需要按下组合键 \key{Ctrl+j}, 你就可以方便地跳转到文件中的下一个占位符,
 输入文本, 然后再跳转到下一个占位符.
@@ -133,22 +133,22 @@ inoremap <c-j> <ESC>/<+.\{-1,}+><cr>c/+>/e<cr>
 
 在第 \ref{chap:personalizing_vim} 章, 我们简单地介绍了如何通过缩写来减少击键的
 次数, 现在我们就把缩写应用到模版中. 回忆一下下面这个命令的作用:
-\begin{vimcmd}
+\begin{vimcode}
 :iabbrev match replace-string
-\end{vimcmd}
+\end{vimcode}
 我们只想让上面的命令工作在插入模式, 这是因为模式模版本来就应该工作在插入模式下.
 对于 C 文件来说, 一个常见的例子是:
-\begin{vimcmd}
+\begin{vimcode}
 :iabbrev <buffer> for( for (x=0;x<var;x++){<cr><cr>}
-\end{vimcmd}
+\end{vimcode}
 无论我们在什么时候输入文本 \texttt{for(}, Vim 都会自动插入一段 \texttt{for} 循
 环. \texttt{(} 可以防止手工输入的 \texttt{for} 循环被自动转换. 插入的内容看起
 来就像:
-\begin{vimcmd}
+\begin{vimcode}
 for (x=0;x<var;x++){
 
 }
-\end{vimcmd}
+\end{vimcode}
 
 \begin{warning}
     缩写词左边的 \texttt{<buffer>} 把命令的作用范围限制在当前缓冲区内.
@@ -162,10 +162,10 @@ for (x=0;x<var;x++){
 前面的例子来说, 光标的下一个位置应该是左括号的右边.
 
 为了实现这个目标, 我们引入 \texttt{!cursor!} 占位符, 命令的内容是:
-\begin{vimcmd}
+\begin{vimcode}
 iabbrev for( for(!cursor!;<+++>;<+++>){<cr><+++><cr>}<Esc>
     :call search('!cursor!','b')<cr>cf!:
-\end{vimcmd}
+\end{vimcode}
 (上面的命令都在同一行上)
 
 现在, 无论何时输入 \texttt{for(}, Vim 都会自动插入一段 \texttt{for} 循环, 然后 
@@ -179,23 +179,23 @@ iabbrev for( for(!cursor!;<+++>;<+++>){<cr><+++><cr>}<Esc>
 
 在前面的一节里, 我们介绍了如何根据文件的扩展名来加载相应的模版文件, 具体的命令
 是:
-\begin{vimcmd}
+\begin{vimcode}
 :autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
-\end{vimcmd}
+\end{vimcode}
 让我们对这个命令进行修改, 使得 Vim 可以根据文件的类型, 为我们的模式模版自动加
 载适当的缩写.
 
 为了能让命令更聪明一点, 我们把命令的功能用函数来实现. 函数的代码是:
-\begin{vimcmd}
+\begin{vimcode}
 function! LoadTemplate(extension)
     silent! :execute '0r $VIMHOME/templates/'. a:extension. '.tpl'
     silent! execute 'source $VIMHOME/templates/'.a:extension.'.patterns.tpl'
 endfunction
-\end{vimcmd}
+\end{vimcode}
 为了调用函数, 我们把 \texttt{autocmd} 修改成:
-\begin{vimcmd}
+\begin{vimcode}
 :autocmd BufNewFile * silent! call LoadTemplate('%:e')
-\end{vimcmd}
+\end{vimcode}
 函数 \texttt{LoadTemplate} 在 \texttt{\$VIMHOME} 的 \texttt{templates} 子目录
 下搜索两个文件: \texttt{EXTENSION.tpl} 与 \texttt{EXTENSION.patterns.tpl}.
 其中 \texttt{EXTENSION} 表示当前打开着的文件的扩展名.
@@ -229,12 +229,12 @@ snippet.
 
 假设用户想为 \texttt{for} 循环创建一个 snippet (在前面的一节里我们用的是 
 \texttt{iabbrev}),  那就这样做:
-\begin{vimscript}
+\begin{vimcode}
 snippet for
     for (${1:i} = 0; $1 < ${2:count}; $1${3:++}) {
         ${4:/* code */}
     }
-\end{vimscript}
+\end{vimcode}
 把上面这段文本写到一个文件中, 再把这个文件放到 \texttt{\$VIMHOME/snippets} 目
 录下, 把文件命名为 \texttt{FILETYPE.snippet} (\texttt{FILETYPE} 表示文件类型,
 比如 C 代码就是 \texttt{c}, PHP 代码就是 \texttt{php}).
@@ -244,11 +244,11 @@ snippet for
 
 再接下来的一行是最神奇的, 脚本实际生成的代码看起来就像:
 % FIXME
-\begin{vimcmd}
+\begin{vimcode}
     for (i = 0; I < count; i++) {
         /* code */
     }
-\end{vimcmd}
+\end{vimcode}
 
 snippet 被插入之后, 它把光标放在了第 1 个 \texttt{i} 的位置, 并切换到插入
 模式, 因此你可以轻易地把 \texttt{i} 换成另一个变量. 现在, 最神奇的事情发生了,
@@ -317,9 +317,9 @@ Tag list 就像是程序员的字典. Tag list 实际上是一个包含了所有
 假设代码已经写完, 现在让我们为这些代码文件生成一个 tag list 文件.
 
 在存放源代码文件的目录下执行命令:
-\begin{vimcmd}
+\begin{vimcode}
 ctags *.c *.h
-\end{vimcmd}
+\end{vimcode}
 命令执行完毕后, 你将会发现在当前目录下出现了一个新文件, 文件名是 \texttt{tags}.
 这个文件就是 tag list 文件, 它包含了源代码中所有函数与变量的信息.
 \marginpar{81}
@@ -329,18 +329,18 @@ ctags *.c *.h
 \end{warning}
 启动 Vim 后, 我们必须告诉它去使用 \texttt{tags} 文件, 这可以通过设置选项
 \texttt{tags} 来完成:
-\begin{vimcmd}
+\begin{vimcode}
 :set tags=/path/to/tags
-\end{vimcmd}
+\end{vimcode}
 现在, Vim 已经知道了 \texttt{tags} 文件的存在, 接下来, 你就可以在 Vim  使用它.
 
 在 \texttt{main.c}, 我们调用了 \texttt{myfunctions.c} 中定义的函数. 假设我们 
 知道有一个函数叫作 \texttt{calcValue}, 但却不知道该函数接收什么样的参数, 比较 
 好的做法是看一下函数是如何定义的, 这时候就可以使用 \texttt{tags} 文件提供的功
 能. 假设用户已经在源代码文件中写下了:
-\begin{vimcmd}
+\begin{vimcode}
 myvalue = calcValue(
-\end{vimcmd}
+\end{vimcode}
 为了查看函数 \texttt{calcValue} 的定义, 把光标移动到函数名上, 按下组合键
 \key{Ctrl+]}, 此时会出现下面两种情况中的一种:
 \begin{itemize}
