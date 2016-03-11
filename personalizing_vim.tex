@@ -51,9 +51,9 @@ Vim 的安装目录, 以及你所使用的操作系统.
 
 全局的 \file{vimrc} 存放在 Vim 系统文件的安装目录中, 为了找到该目录, 你
 需要启动 vim, 并在普通模式下执行
-\begin{vimcmd}
+\begin{vimcode}
 :echo $VIM
-\end{vimcmd}
+\end{vimcode}
 输出的内容有可能是
 \begin{itemize}
     \item Linux: \texttt{/usr/share/vim/vimrc}
@@ -76,14 +76,14 @@ Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件
 \file{vimrc} 来得到自己想要的配置效果.
 
 如果想要得到用户的家目录路径, 只需要在 Vim 的普通模式下执行命令:
-\begin{vimcmd}
+\begin{vimcode}
 :echo $HOME
-\end{vimcmd}
+\end{vimcode}
 
 获取个人 \file{vimrc} 路径的另一个方法是在普通模式下执行:
-\begin{vimcmd}
+\begin{vimcode}
 :echo $MYVIMRC
-\end{vimcmd}
+\end{vimcode}
 
 \file{vimrc} 文件包含 \texttt{ex} (vi 预处理器) 命令, 每行一个, 在 Vim 
 启动过程中, 会自动从该文件中读取配置命令. 在剩下的内容里, 我们把 Vim 的
@@ -91,9 +91,9 @@ Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件
 
 \file{vimrc} 可以把其他文件作为配置信息的外部来源, 在 \file{vimrc} 中,
 可以这样使用 \texttt{source} 命令:
-\begin{vimcmd}
+\begin{vimcode}
 source /path/to/external/file
-\end{vimcmd}
+\end{vimcode}
 这种方法可以使 \file{vimrc} 保持简练, 也可以使配置文件更加结构化. (关于
 如何保持 \file{vimrc} 简练的更多方法, 请参考附录
 \ref{chap:vim_configuration_alternatives})
@@ -129,25 +129,25 @@ source /path/to/external/file
 字体一致. 然而, 对于 Gvim, 你可以根据自己的需要随意地修改字体.
 
 在 Linux 中, 设置字体的主要命令是 \file{guifont}, 例如:
-\begin{vimcmd}
+\begin{vimcode}
 :set guifont=Courier\ 14
-\end{vimcmd}
+\end{vimcode}
 可以把 \texttt{Courier} 替换成你喜欢的任意一种字体的名字, 字体大小 14 
 也能够按照你的需求更改 (字体大小的单位是点 --- pt).
 
 在 Windows 中修改字体用:
-\begin{vimcmd}
+\begin{vimcode}
 :set guifont=Courier:14
-\end{vimcmd}
+\end{vimcode}
 如果不确定系统中是否存在某种字体, 用户可以在命令的末尾再添加一种字体,
 两种字体间用逗号分开, 例如:
-\begin{vimcmd}
+\begin{vimcode}
 :set guifont=Courier\ New\ 12,Arial\ 10
-\end{vimcmd}
+\end{vimcode}
 如果字体的名字中包含了空格或逗号, 那就必须用反斜杆转义, 例如:
-\begin{vimcmd}
+\begin{vimcode}
 :set guifont=Courier\ New\ 12
-\end{vimcmd}
+\end{vimcode}
 这个命令把字体设置成 Courier New, 大小为 12, 但是该设置仅对当前会话有效.
 如果希望每次打开 Vim 时都能够自动设置好字体, 那就得把命令添加到用户
 的 \file{gvimrc} 文件中 (添加到配置文件中的命令需要删除 \texttt{set}
@@ -162,9 +162,9 @@ source /path/to/external/file
 设置不同的字体. 例如, 假设用户希望如果打开的是一个普通文本文件
 (\texttt{.txt}),
 就把字体设置为 Arial, 大小 12. 完成这个操作只需要在 \file{vimrc} 中添加:
-\begin{vimcmd}
+\begin{vimcode}
 autocmd BufEnter *.txt set guifont=Arial\ 12
-\end{vimcmd}
+\end{vimcode}
 \marginpar{21}
 每当字体发生变化时, Gvim 的窗口大小就会自行调整. 这就意味着如果使用了较小的
 字体, 窗口也会变小. 如果用户像之前说的那样, 对不同的文件类型设置了不同的
@@ -183,14 +183,14 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 放在名为 \file{colors} 的目录中, 而目录 \file{colors} 位于 Vim 的安装目录.
 
 为了把配色方案修改成某个系统中已有的方案, 只需要执行:
-\begin{vimcmd}
+\begin{vimcode}
 :colorscheme mycolors
-\end{vimcmd}
+\end{vimcode}
 在这个命令中, \texttt{mycolors} 是系统中已安装的某个配色方案的名字. 如果你 
 不太清楚系统中已经安装了哪些配色方案, 请在输完
-\begin{vimcmd}
+\begin{vimcode}
 :colorscheme
-\end{vimcmd}
+\end{vimcode}
 之后, 再键入至少一个空格, 然后就可以通过不断地按 \key{Tab} 键来浏览系统中
 可用的所有配色方案. 如果看到了一个感兴趣的配色方案, 只需要按下 \key{Enter}
 键就可以把该方案应用到 Vim 中.
@@ -218,9 +218,9 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 你甚至可以决定如何标记它们 (例如 用红色标记错误, 用绿色标记重点内容).
 
 匹配通过下面这个命令完成:
-\begin{vimcmd}
+\begin{vimcode}
 :match Group /pattern/
-\end{vimcmd}
+\end{vimcode}
 命令带有两个参数, 第一个参数是高亮文本时使用的色彩组的名字.
 \begin{warning}
     配色方案影响的是全部的颜色设置, 而色彩组只是背景色 (或前景色) 的一个比
@@ -232,9 +232,9 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 \marginpar{23}
 第 2 个参数是待匹配的模式. 模式是一个正则表达式, 可以很简单, 也可以极其
 复杂 --- 取决于用户想要匹配什么样的内容. 匹配命令的一个比较简单的例子是:
-\begin{vimcmd}
+\begin{vimcode}
 :match ErrorMsg /^Error/
-\end{vimcmd}
+\end{vimcode}
 \begin{center}
 \includegraphics[scale=0.7]{./images/page23.png}
 \end{center}
@@ -244,10 +244,10 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 标记起来 (通常是红底白字).
 
 如果读者不太喜欢已有的色彩组, 也可以自己定义一个, 定义色彩组的命令是:
-\begin{vimcmd}
+\begin{vimcode}
 :highlight MyGroup ctermbg=red guibg=red gctermfg=yellow
         guifg=yellow term=bold
-\end{vimcmd}
+\end{vimcode}
 这个命令创建了一个名为 \file{MyGroup} 的色彩组, 红底黄字, 在控制台 (Vim)
 和 GUI (Gvim) 环境下都是如此. 用户可以根据自己的喜好, 修改下列选项:
 
@@ -269,16 +269,16 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 
 使用匹配命令时, 给定的模式会一直匹配下去, 直到执行一个新的匹配, 或者执行
 下列命令:
-\begin{vimcmd}
+\begin{vimcode}
 :match NONE
-\end{vimcmd}
+\end{vimcode}
 \marginpar{24}
 匹配命令一次只能匹配一个模式, 但是 Vim 另外提供了 2 个命令用于一次匹配至
 多 3 个模式. 命令很容易记忆:
-\begin{vimcmd}
+\begin{vimcode}
 :2match
 :3match
-\end{vimcmd}
+\end{vimcode}
 读者也许想知道这些匹配命令应该在什么样的情况下使用, 因为在平时的话这些命令
 没什么大用处. 这里有一些例子, 它们展示出了匹配的强大之处.
 
@@ -289,9 +289,9 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 数超过某个上限时, 如果 Vim 能够发出提醒那就再好不过了.
 
 只需要下面这个命令就可以完成上面提到的功能:
-\begin{vimcmd}
+\begin{vimcode}
 :match ErrorMsg /\%>73v.\+/
-\end{vimcmd}
+\end{vimcode}
 执行该命令后, 一行内的第 73 个字符之后的那些字符都会被标记成错误. 匹配命令 
 中含有一个正则表达式, 这个表达式可以拆成:
 \begin{center}
@@ -315,9 +315,9 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 可以时刻提醒着程序员.
 
 下面这条命令把所有的, 不在行的开始位置上的制表符用错误信息的颜色标记出来:
-\begin{vimcmd}
+\begin{vimcode}
 :match errorMsg /[^\t]\zs\t\+/
-\end{vimcmd}
+\end{vimcode}
 执行完该命令后, 你就可以看到是否违反了规则 --- 把制表符用在了代码内部. 把
 命令分解开来看, 它由下列这几个部分组成:
 \begin{center}
@@ -340,9 +340,9 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 这个命令的意思是: 匹配所有的, 不在行的开始位置上的制表符 (忽略任意的空格).
 
 如果你想用空格来缩进代码, 而不是制表符, 为了检查代码, 只需要把命令改成:
-\begin{vimcmd}
+\begin{vimcode}
 :match errorMsg /[\t]/
-\end{vimcmd}
+\end{vimcode}
 这条命令的意思是: 匹配所有的制表符.
 \marginpar{26}
 \subsubsection{示例 3: 检查IP地址的有效性}
@@ -351,7 +351,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 如果用户需要在文本中写上大量的 IP 地址, 难免会出现错误 (例如
 123.123.123.256). 为了防止出现这种情况, 可以把以下命令添加到文件
 \file{vimrc} 中:
-\begin{vimcmd}
+\begin{vimcode}
 match errorMsg /\(2[5][6-9]\|2[6-9][0-9]\|[3-9][0-9][0-9]\)[.]
                \[0-9]\{1,3\}[.][0-9]\{1,3\}[.][0-9]\{1,3\}\|
                \[0-9]\{1,3\}[.]\(2[5][6-9]\|2[6-9][0-9]\|\
@@ -361,17 +361,17 @@ match errorMsg /\(2[5][6-9]\|2[6-9][0-9]\|[3-9][0-9][0-9]\)[.]
              \\|[0-9]\{1,3\}[.][0-9]\{1,3\}[.][0-9]\{1,3\}[.]
              \\(2[5][6-9]\|2[6-9][0-9]\|\[3-9][0-9][0-9]\)/
 
-\end{vimcmd}
+\end{vimcode}
 相对于问题来说, 解决方法似乎有点太复杂了, 但请记住, 即使这条命令只能帮助你
 一次, 但也值得把它加到配置文件.
 \begin{warning}
 从另一方面来看, 如果想匹配有效的 IP 地址, 只需要执行:
-\begin{vimcmd}
+\begin{vimcode}
     match todo /\(\(25[0-5]\|2[0-4][0-9]\|[01]\?[0-9]
                     [0-9]\?\)\.\)
                     \\ \{3\}\(25[0-5]\|2[0-4][0-9]\|[01]\?
                     [0-9][0-9]\?\)/
-\end{vimcmd}
+\end{vimcode}
 \end{warning}
 
 \section{更丰富的状态行}
@@ -413,10 +413,10 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
     \item 文件的长度 (以行为单位)
 \end{itemize}
 下面的命令可以让你的 Vim 状态行包含上面提到的所有信息:
-\begin{vimcmd}
+\begin{vimcode}
 :set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ 
  [HEX=\%02.2B]\ [POS=%04l,%04v]\ [%p%%]\ [LEN=%L]
-\end{vimcmd}
+\end{vimcode}
 我在每一种信息的左右两边都加上了中括号, 这样做就更容易区分彼此. 加中括号只是为
 了增加一些视觉效果, 如果不喜欢的话可以直接删掉.
 
@@ -429,16 +429,16 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
 它只会显示命令行缓冲区及其一小部分信息. 为了让 Vim 显示出真正的状态行, 用户
 必须把下面这条命令添加到 \file{vimrc} 文件中. 这条命令确保状态行始终显示在
 倒数第 2 行的位置上:
-\begin{vimcmd}
+\begin{vimcode}
 :set laststatus=2
-\end{vimcmd}
+\end{vimcode}
 执行完该命令后, 你就会发现命令行缓冲区有了自己的位置: 窗口的最后一行. 通过
 这条命令就可以保证状态行始终拥有自己的显示位置, 而用户也就能一直看到文件的
 相关信息. 当然, 状态行会占据编辑区的一部分空间, 但是是否显示状态行由用户来
 决定. 下面这条命令关闭状态行, 直到当前会话结束:
-\begin{vimcmd}
+\begin{vimcode}
 :set laststatus=0
-\end{vimcmd}
+\end{vimcode}
 
 \section{切换菜单与工具条}
 \label{sec:toggle_menu_and_toolbar}
@@ -452,7 +452,7 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
 
 下面的代码把组合键 \key{Ctrl+F2} 映射到菜单与工具条的切换操作上, 当然编辑
 器用的是 Gvim. 如果喜欢这个功能的话, 可以把代码写到 \file{vimrc} 中.
-\begin{vimcmd}
+\begin{vimcode}
 map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
                          \set guioptions-=T <Bar>
                          \set guioptions-=m <bar>
@@ -460,7 +460,7 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
                          \set guioptions+=T <Bar>
                          \set guioptions+=m <Bar>
                       \endif<CR>
-\end{vimcmd}
+\end{vimcode}
 现在, 无论何时, 只要你想关闭菜单与工具条, 好把空间留给文本, 只需要按下
 \key{Ctrl+F2} 即可, 如果想它们了, 再按一下 \key{Ctrl+F2}, 它们就回来了.
 \marginpar{29}
@@ -468,14 +468,14 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
 中的一个即可.
 
 为了完全移除菜单, 添加:
-\begin{vimcmd}
+\begin{vimcode}
 :set guioptions-=m
-\end{vimcmd}
+\end{vimcode}
 
 为了完全移除工具条, 添加:
-\begin{vimcmd}
+\begin{vimcode}
 :set guioptions-=T
-\end{vimcmd}
+\end{vimcode}
 
 \begin{warning}
     GUI 的其他设置可以通过命令 \texttt{set guioptions} 完成, 更多的信息可以
@@ -515,14 +515,14 @@ but for tabs.}
 命令带有两个参数. 第 1 个参数是菜单项在菜单中的实际路径, 第 2 个参数是菜单项 
 被点击时所执行的命令. 举个例子, 假设用户想要在菜单项 \newterm{Tabs} 中, 添加 
 一个新菜单项 \newterm{Next}, 只需要执行:
-\begin{vimcmd}
+\begin{vimcode}
 :menu Tabs.Next <ESC>:tabnext<cr>
-\end{vimcmd}
+\end{vimcode}
 之后, 你就有了一个新菜单项 \newterm{Tabs}, 它只有一个子菜单项 \newterm{Next}.
 现在, 如果用户点击菜单项 \newterm{Next}, 就会执行:
-\begin{vimcmd}
+\begin{vimcode}
 :tabnext
-\end{vimcmd}
+\end{vimcode}
 命令前面的 \texttt{<ESC>} 为的是让 Vim 切换到普通模式,
 后面的 \texttt{<cr>} 是真正执行命令的地方. 如果漏掉了 \texttt{<ESC>}, 那么 
 命令就无法正常地工作. 另外一种办法是根据当前的模式, 在命令前添加特定
@@ -557,12 +557,12 @@ but for tabs.}
 
 现在开始创建我们的新菜单 \newterm{Tabs}, 并添加几个新菜单项与功能. 执行了
 下面这些命令后, 新菜单就有点像 \newterm{Buffers} 菜单了:
-\begin{vimcmd}
+\begin{vimcode}
 :amenu Tabs.&Delete :confirm tabclose<cr>
 :amenu Tabs.&Alternate :confirm tabn #<cr>
 :amenu <silent> Tabs.&Next :tabnext<cr>
 :amenu <silent>Tabs.&Previous :tabprevious<cr>
-\end{vimcmd}
+\end{vimcode}
 细心的读者会发现这些命令之中又多了点新东西.
 
 第一个是 \texttt{<silent>}, 它可以阻止命令执行过程中, 命令的内容被回显到命令行
@@ -581,9 +581,9 @@ but for tabs.}
 \begin{warning}
     如果用户希望下拉菜单的各项之间用一条横线分开, 可以使用 \texttt{SEP} 
     (针对菜单项) 或 ``\texttt{:}'' (针对命令):
-\begin{vimcmd}
+\begin{vimcode}
 :amenu Tabs.-SEP-:
-\end{vimcmd}
+\end{vimcode}
 用户创建的菜单仅对当前会话有效, 如果想要让菜单在下一次启动 Vim 时仍然存在,
 可以把菜单的创建命令写到 \file{vimrc} 中 (写到 \file{vimrc} 的命令不需要前
 面的冒号 \texttt{:}).
@@ -612,9 +612,9 @@ but for tabs.}
 对于工具菜单, 为了给它添加一个子项目, 需要使用以 \texttt{ToolBar} 开始的
 菜单路径. 为了给工具条添加一个用于执行命令 \texttt{:buffers} (列出打开的
 缓冲区) 的子项目, 用户需要执行命令:
-\begin{vimcmd}
+\begin{vimcode}
 :amenu icon=/path/to/icon/myicon.png ToolBar.Bufferlist :buffers<cr>
-\end{vimcmd}
+\end{vimcode}
 \marginpar{33}
 当然, 用户必须把图标文件放在某个目录中, 并在命令中给出这个目录.
 
@@ -668,9 +668,9 @@ Vim 中, 它是组织打开文件的一种方式. 每一个标签都可以包含
 \includegraphics[scale=0.48]{./images/page34-2.png}
 \end{center}
 如果是 Gvim, 则是
-\begin{vimcmd}
+\begin{vimcode}
 :set guitablabel
-\end{vimcmd}
+\end{vimcode}
 
 虽然 \texttt{tabline} 的设置方法类似于 \texttt{statusline}, 但是前者会
 更麻烦一点. 麻烦的主要原因在于用户必须时刻注意标签页是否处于活跃状态.
@@ -682,7 +682,7 @@ Vim 中, 它是组织打开文件的一种方式. 每一个标签都可以包含
 
 下面的 Vim 脚本程序完成的正是这个功能 (关于如何编写 Vim 脚本程序见第
 \ref{chap:basic_vim_scripting} 章).
-\begin{vimscript}
+\begin{vimcode}
 function ShortTabLine()
  let ret = ''
  for i in range(tabpagenr('$'))
@@ -699,9 +699,9 @@ function ShortTabLine()
        let buffername = bufname(buflist[winnr - 1])
        let filename = fnamemodify(buffername,':t')
     " check if there is no name
-\end{vimscript}
+\end{vimcode}
 \marginpar{35}
-\begin{vimscript}
+\begin{vimcode}
     if filename == ''
       let filename = 'noname'
     endif
@@ -718,13 +718,13 @@ function ShortTabLine()
   let ret .= '%#TabLineFill#%T'
   return ret
 endfunction
-\end{vimscript}
+\end{vimcode}
 
 现在, 我们需要把函数添加到 \file{vimrc}, 除此之外, 还要增加一行设置
 \texttt{tabline} 的命令, 具体的设置命令是:
-\begin{vimcmd}
+\begin{vimcode}
 :set tabline=%!ShortTabLine()
-\end{vimcmd}
+\end{vimcode}
 命令的执行结果是产生了一个更加紧凑的标签列表, 下面是效果截图:
 \begin{center}
 \includegraphics[scale=0.45]{./images/page35.png}
@@ -736,7 +736,7 @@ endfunction
 
 于是, 我们可以对函数 \texttt{ShortTabLine()} 进行简化 --- 只需要设置标签
 名即可:
-\begin{vimscript}
+\begin{vimcode}
 function ShortTabLabel()
  let bufnrlist = tabpagebuflist(v:lnum)
  " show only the first 6 letters of the name + ..
@@ -750,12 +750,12 @@ function ShortTabLabel()
  endif
      return ret
  endfunction
-\end{vimscript}
+\end{vimcode}
 \marginpar{36}
 我们只要把 \texttt{guitablabel} 的属性设置成函数的输出即可:
-\begin{vimcmd}
+\begin{vimcode}
 :set guitablabel=%{ShortTabLabel()}
-\end{vimcmd}
+\end{vimcode}
 命令的执行效果如下图所示:
 \begin{center}
 \includegraphics[scale=0.5]{./images/page36}
@@ -775,32 +775,32 @@ function ShortTabLabel()
 仍然可以获取到信息.
 
 为了给一个标签页设置工具提示, 需要使用下面的命令:
-\begin{vimcmd}
+\begin{vimcode}
 :set guitabtooltip
-\end{vimcmd}
+\end{vimcode}
 用户需要把它设置成当鼠标经过标签名时, 希望显示出来的信息\footnote{原文是
  This property should be set to the value you want to show when the mouse
  cursor hovers over the tab}.
 
 为了测试, 可以先输入一条简单的提示信息:
-\begin{vimcmd}
+\begin{vimcode}
 :set guitabtooltip='my tooltip'
-\end{vimcmd}
+\end{vimcode}
 现在, 工具提示中就可以显示一条静态消息, 但我们需要更多的信息. 我们已经把
 文件的路径部分从标签中移走, 但是有时候仍然需要这个信息. 有了工具提示, 我们 
 就可以把路径信息显示在工具提示中:
-\begin{vimcmd}
+\begin{vimcode}
 :set guitabtooltip=%!bufname($)
-\end{vimcmd}
+\end{vimcode}
 
 函数可以根据标签的不同, 显示对应的提示信息. 这里, 我们构造了一个小函数, 用
 于显示用户会在标签中看到的所有信息, 不过用了一种更加有条理的方式显示出来:
-\begin{vimscript}
+\begin{vimcode}
 function! InfoGuiTooltip()
     "get window count
-\end{vimscript}
+\end{vimcode}
 \marginpar{37}
-\begin{vimscript}
+\begin{vimcode}
     let wincount = tabpagewinnr(tabpagenr(),'$')
     let bufferlist=''
    "get name of active buffers in windows
@@ -809,11 +809,11 @@ function! InfoGuiTooltip()
     endfor
     return bufname($).' windows: '.wincount.' ' .bufferlist ' '
 endfunction
-\end{vimscript}
+\end{vimcode}
 然后执行:
-\begin{vimcmd}
+\begin{vimcode}
 :set guitabtooltip=%!InfoGuiTooltip()
-\end{vimcmd}
+\end{vimcode}
 下面这张截图展示了工具提示在 Gvim 中的效果:
 \begin{center}
     \includegraphics[scale=0.4]{images/page37.png}
@@ -840,14 +840,14 @@ endfunction
 第一种办法是命令 \texttt{cursorline}, 它可以标记当前光标所在的行, 比如把
 当前行的背景色设置成另一种颜色, 而且不会破坏原来的语法高亮. 为了打开它,
 执行:
-\begin{vimcmd}
+\begin{vimcode}
 :set cursorline
-\end{vimcmd}
+\end{vimcode}
 命令所使用的颜色由色彩组 \texttt{CursorLine} 定义, 用户可以它设置成任意一种
 颜色或风格, 比如:
-\begin{vimcmd}
+\begin{vimcode}
 :highlight CursorLine guibg=lightblue ctermbg=lightgray
-\end{vimcmd}
+\end{vimcode}
 关于色彩组的更多内容请参考 \ref{subsec:personal_highlighting} 节.
 
 \begin{center}
@@ -856,9 +856,9 @@ endfunction
 
 如果用户正在编辑的文件含有许多对齐的内容 (比如用制表符分隔的数据), 那么很自然
 地就会用到:
-\begin{vimcmd}
+\begin{vimcode}
 :set cursorcolumn
-\end{vimcmd}
+\end{vimcode}
 
 这个命令标记光标当前所在的列, 例如, 我们可以用另外一种颜色来标记.
 
@@ -887,9 +887,9 @@ endfunction
 另一种办法是在普通模式 (按下 \key{Esc} 就可以切换到普通模式) 下, 执行 
 \textit{XXX}\texttt{gg} 或 \textit{XXX}\texttt{G} (同样, \textit{XXX} 表示 
 行号). 但是, 如果能随时随地地看到行号可能会更加方便, 这时候就可以执行命令:
-\begin{vimcmd}
+\begin{vimcode}
 :set number
-\end{vimcmd}
+\end{vimcode}
 
 执行完命令后, 编辑器就会在窗口的左边显示每一行的行号. 默认情况下行号占据 4
 个空格的宽度, 3 个用于数字, 1 个用于空格. 这意味着行号所占据的宽度总是一样
@@ -934,14 +934,14 @@ endfunction
 用户可以马上发现.
 
 打开拼写检查的命令是
-\begin{vimcmd}
+\begin{vimcode}
 :set spell
-\end{vimcmd}
+\end{vimcode}
 命令使用默认的语言 (英语) 打开拼写检查, 如果想要使用其他语言, 只需要把 
 \texttt{spelllang} 设置成该语言的代号即可. 比如:
-\begin{vimcmd}
+\begin{vimcode}
 :set spelllang=de
-\end{vimcmd}
+\end{vimcode}
 \marginpar{41}
 在这个命令中语言被设置为德语. 同一种语言可以用多种形式的格式来表达, 比如美式
 英文可以写成:
@@ -964,9 +964,9 @@ endfunction
 
 对此 Vim 也有解决办法. 只要在设置属性 \texttt{spelllang} 时, 给它同时带上
 多种语言即可 (语言之间用逗号分开), 这样 Vim 就可以用多种语言来进行语法检查.
-\begin{vimcmd}
+\begin{vimcode}
 :set spelllang=en,da,de,it
-\end{vimcmd}
+\end{vimcode}
 Vim 将会按照顺序, 轮流根据每一种语言检查单词的拼写是否正确. 如果单词对某一种
 语言来说是正确拼写的, 那它就不会被标记错误. 当然, 这就意味着如果有一个
 单词的拼写本来是错误的, 可是碰巧它在另一种语言中是正确的, 那么它也不会被
@@ -1026,18 +1026,18 @@ Vim 会给出一长串的候选单词, 除非用户把单词完全拼写错了, 
 下面这几个命令:
 \begin{itemize}
     \item 第 1 个命令是在 Vim 中启用 balloons:
-    \begin{vimcmd}
+    \begin{vimcode}
     :set ballooneval
-    \end{vimcmd}
+    \end{vimcode}
     \item 第 2 个命令告诉 Vim 在显示信息之前需要等待多长时间 (默认是 600
     毫秒):
-    \begin{vimcmd}
+    \begin{vimcode}
     :set balloondelay=400
-    \end{vimcmd}
+    \end{vimcode}
     \item 最后一个命令是设置信息的内容:
-    \begin{vimcmd}
+    \begin{vimcode}
     :set balloonexpr="textstring"
-    \end{vimcmd}
+    \end{vimcode}
     信息的内容既可以是静态的文本字符串, 也可以是函数的返回值.
 \end{itemize}
 
@@ -1061,7 +1061,7 @@ Vim 会给出一长串的候选单词, 除非用户把单词完全拼写错了, 
 
 第 1 个例子基于 Vim 的帮助系统, 它展示了如何编写一个简单的函数, 用来显示
 所有的变量.
-\begin{vimscript}
+\begin{vimcode}
 function! SimpleBalloon()
    return 'Cursor is at line/column: ' . v:beval_lnum .
 		\'/' . v:beval_col .
@@ -1070,7 +1070,7 @@ function! SimpleBalloon()
 endfunction
 set balloonexpr=SimpleBalloon()
 set ballooneval
-\end{vimscript}
+\end{vimcode}
 脚本的运行结果如下图所示:
 \begin{center}
     \includegraphics[scale=0.5]{./images/page44.png}
@@ -1091,9 +1091,9 @@ set ballooneval
 还是停在一个折叠行 (这个折叠行代表了折叠后的多个文本行) 上.
 
 为了判断单词的拼写是否错误, 我们需要打开拼写检查功能:
-\begin{vimcmd}
+\begin{vimcode}
 :set spell
-\end{vimcmd}
+\end{vimcode}
 \marginpar{45}
 打开后, 如果鼠标所在的单词有拼写错误, 被调用的内置拼写检查函数 ---
 \texttt{spellsuggest()} --- 就会返回候选单词. 所以, 为了判断某个单词的拼写
@@ -1113,7 +1113,7 @@ set ballooneval
 之外的其他值, 那么我们就在一个折叠块中.
 
 把上面提到的所有内容都搜集起来, 就得到了下面这个函数:
-\begin{vimscript}
+\begin{vimcode}
 function! FoldSpellBalloon()
   let foldStart = foldclosed(v:beval_lnum )
   let foldEnd   = foldclosedend(v:beval_lnum)
@@ -1137,15 +1137,15 @@ function! FoldSpellBalloon()
     endif
   endif
   " return result
-\end{vimscript}
+\end{vimcode}
 \marginpar{46}
-\begin{vimscript}
+\begin{vimcode}
   return join( lines, has( "balloon_multiline" ) ? "\n" : " " )
 endfunction
 
 set balloonexpr=FoldSpellBalloon()
 set ballooneval
-\end{vimscript}
+\end{vimcode}
 
 这些帮助性的 balloons 可以极大地提高用户的工作效率, 下面的图展示了折叠块
 的预览效果:
@@ -1192,9 +1192,9 @@ Vim 的设计哲学是: 如果用户曾经为某件事物写过一次, 那就不
 次都把整个地址都写出来.
 
 命令的具体形式是:
-\begin{vimcmd}
+\begin{vimcode}
 :iabbrev myAddr 32 Lincoln Road, Birminham B27 6PA, United Kingdom
-\end{vimcmd}
+\end{vimcode}
 每当我想要输入自己的地址时, 我只需要键入 \texttt{myAddr}, 紧接着按一下空格
 键, Vim 就会把 \texttt{myAddr} 自动地扩展为完整的地址.
 
@@ -1219,9 +1219,9 @@ Vim 非常聪明, 它可以判断用户是在输入一个缩写词, 还是仅仅
 为了避免每次都执行一次缩写命令, 用户可以把它们放在 \texttt{VIMHOME} 的某个 
 文件中, 假设文件名就叫 \texttt{abbreviations.vim}, 然后在文件 \texttt{vimrc}
 使用命令 \texttt{source} 来使能该文件 (需确保该文件是可读的):
-\begin{vimcmd}
+\begin{vimcode}
 :source $VIM/abbreviations.vim
-\end{vimcmd}
+\end{vimcode}
 
 每当用户需要一个新的缩写词时, 可以先在编辑器中创建缩写词, 然后再把它加入到文件
 \texttt{abbreviations.vim}.
@@ -1230,17 +1230,17 @@ Vim 非常聪明, 它可以判断用户是在输入一个缩写词, 还是仅仅
 这里有一些例子, 或许可以向你提供一些思路:
 \begin{itemize}
     \item 纠正常见的拼写错误:
-    \begin{vimcmd}
+    \begin{vimcode}
     :iabbr teh the
-    \end{vimcmd}
+    \end{vimcode}
     \item 编程模版
-    \begin{vimcmd}
+    \begin{vimcode}
     :iabbr forx for(x=0;x<100;x++){<cr><cr>}
-    \end{vimcmd}
+    \end{vimcode}
     \item 更短的命令
-    \begin{vimcmd}
+    \begin{vimcode}
     :cabbr csn colorscheme night
-    \end{vimcmd}
+    \end{vimcode}
 \end{itemize}
 
 如果读者发现了一个新的缩写, 或许它看起来有点古怪, 刚开始用的时候还有点麻烦,
@@ -1256,20 +1256,20 @@ Vim 非常聪明, 它可以判断用户是在输入一个缩写词, 还是仅仅
 扩展功能.
 
 该函数的一种实现是:
-\begin{vimscript}
+\begin{vimcode}
 function! s:AbbrAsk(abbr,expansion)
     let answer = confirm("use the abbreviation '" . a:addr . "'?",
         "&Yes\n&No", 1)
     return answer ==  1 ? a:expansion : a:abbr
 endfunction
-\end{vimscript}
+\end{vimcode}
 \marginpar{49}
 
 函数需要两个参数, 第 1 个参数是缩写诩, 第 2 个参数缩写词扩展后的形式,
 对我们的例子来说, 该函数的用法是:
-\begin{vimcmd}
+\begin{vimcode}
 :iabbrev <expr> addr <SID>AbbrAsk('addr', "your full address here")
-\end{vimcmd}
+\end{vimcode}
 
 所以, 当用户写下 \texttt{addr} 时, Vim 会询问用户是否对缩写词进行扩展.
 
@@ -1302,9 +1302,9 @@ endfunction
 \key{Ctrl-S}, 并且想继续使用下去.
 \marginpar{50}
 解决这个问题的一个映射可以是:
-\begin{vimcmd}
+\begin{vimcode}
 :map <C-s> :w<cr>
-\end{vimcmd}
+\end{vimcode}
 
 注意命令中的 \texttt{<C-s>}, 这是组合键 \key{Ctrl+S} 在 Vim 中的表示方式.
 除了 \texttt{C} (\key{Ctrl}), 用户还可以用 \texttt{A} (\key{Alt}) 或
@@ -1345,9 +1345,9 @@ endfunction
 
 如果用户只可能在插入模式下才会保存文件, 而且在保存之后想要继续在插入模式下
 工作, 那么用户就需要执行:
-\begin{vimcmd}
+\begin{vimcode}
 :imap <C-s> <esc>:w<cr>a
-\end{vimcmd}
+\end{vimcode}
 \marginpar{51}
 
 之后, \key{Ctrl+S} 就被映射成几个按键的组合. 首先, 按下 \texttt{<esc>}
@@ -1357,7 +1357,7 @@ endfunction
 
 用户可以通过映射来适应大多数应用程序的标准的 复制/粘贴/剪切/保存 快捷键,
 具体来说, 可以这样做:
-\begin{vimscript}
+\begin{vimcode}
 " save file (ctrl-s)
 :map <C-s> :w<cr>
 " copy selected text (ctrl-c)
@@ -1366,24 +1366,24 @@ endfunction
 :imap <C-p> <esc>P
 " cut selected text (ctrl-x)
 :vmap <C-x> x
-\end{vimscript}
+\end{vimcode}
 
 如果是 Gvim, 甚至可以打开 \texttt{Save-as} 与 \texttt{Open} 的对话框:
-\begin{vimscript}
+\begin{vimcode}
 " Open new file dialog (ctrl-n)
 :map <C-n> :browse confirm e<cr>
 " Open save-as dialog (ctrl-shift-s)
 :map <C-S-s> :browse confirm saveas<cr>
-\end{vimscript}
+\end{vimcode}
 
 用户可能会遇到这样一种情况: 组合键的第一个按键已经绑定到了 Vim 的某个功能
 上. 举个例子, 按键 \verb'$', 它的功能是把光标移到一行的末尾. 用户可能希望 
 为 \verb'$1' 新绑定一个功能, 为 \verb'$2' 绑定另一个功能, 如此等等. 具体的 
 形式是:
-\begin{vimscript}
+\begin{vimcode}
 :map $1 :MyFunction1()<cr>
 :map $2 :MyFunction2()<cr>
-\end{vimscript}
+\end{vimcode}
 
 现在, 如果用户按下了 \key{\$}, Vim 就会等待一秒, 等待另一个按键被按下, 
 如果在这一秒之内没有按键按下, Vim 就会执行原来的功能: 把光标移到一行的末尾.

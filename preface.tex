@@ -107,7 +107,7 @@ no, ro, 和 zh). 例如, 如果想要阅读德语版的 Vimtutor, 只需要在�
 以打开 Vim 帮助系统, 查看与状态行有关的全部帮助信息.''
 
 代码块则是:
-\begin{vimscript}
+\begin{vimcode}
 function! InfoGuiTooltip()
     "get window count
     let wincount = tabpagewinnr(tabpagenr(),'$')
@@ -118,12 +118,12 @@ function! InfoGuiTooltip()
     endfor
     return bufname($).' windows: '.wincount.' ' .bufferlist ' '
 endfunction
-\end{vimscript}
+\end{vimcode}
 
 命令模式的输入或输出写成:
-\begin{vimcmd}
+\begin{vimcode}
 :amenu icon=/path/to/icon/myicon.png ToolBar.Bufferlist :buffers<cr>
-\end{vimcmd}
+\end{vimcode}
 
 \textbf{新的术语} 或 \textbf{重点内容} 加粗显示. 读者在屏幕上看到的内容,
 比如菜单或对话框中的信息, 会显示成: ``这个命令在所有行的开头查找单词
