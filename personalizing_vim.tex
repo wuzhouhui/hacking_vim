@@ -394,9 +394,9 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
 具有更丰富的信息.
 
 配置状态行的命令具有形式:
-\begin{quotation}
+\begin{vimcmdform}
 \texttt{:set statusline}\ \ \textit{format}
-\end{quotation}
+\end{vimcmdform}
 命令中的 \textit{format} 表示一个格式字符串 (就像 C 程序的 \texttt{printf}),
 它描述了状态行的显示格式.
 
@@ -506,9 +506,9 @@ but for tabs.}
 \end{center}
 
 需要用到的命令是:
-\begin{quotation}
+\begin{vimcmdform}
 \texttt{:menu}\ \ \textit{menupath}\ \ \textit{command}
-\end{quotation}
+\end{vimcmdform}
 这个命令的工作方式类似于命令 \texttt{map}, 后者把命令映射到一个组合键, 而前
 者是把命令映射到一个菜单项.
 
@@ -549,9 +549,9 @@ but for tabs.}
 是无模式的), 此时, 它们就可以把模式还原成原来的样子.
 \begin{warning}
 没必要为每一种模式创建一个同样的菜单项, 这时候只需要使用下面这个命令即可:
-\begin{quotation}
+\begin{vimcmdform}
 \texttt{:amenu}\ \ \textit{menu-path}\ \ \textit{command}
-\end{quotation}
+\end{vimcmdform}
 这个命令可以根据当前的模式, 设置正确的前置命令与后置命令.
 \end{warning}
 
@@ -661,9 +661,9 @@ Vim 中, 它是组织打开文件的一种方式. 每一个标签都可以包含
 设置标签名的方法与状态行 (见 \ref{sec:a_more_informative_status_line} 节)
 非常类似. 但是在这里设置的是 \texttt{tabline} 的属性, 而不是
 \texttt{statusline}:
-\begin{quotation}
+\begin{vimcmdform}
 \texttt{:set tabline}\ \ \textit{tabline-layout}
-\end{quotation}
+\end{vimcmdform}
 \begin{center}
 \includegraphics[scale=0.48]{./images/page34-2.png}
 \end{center}
@@ -897,9 +897,9 @@ endfunction
 会增加一列, 相应地, 文件内容就会右移一列.
 
 当然, 用户可以修改行号占据的列宽, 相应的命令是:
-\begin{quotation}
+\begin{vimcmdform}
 \texttt{:set numberwidth=}\textit{XXX}
-\end{quotation}
+\end{vimcmdform}
 把 \textit{XXX} 替换成你想要的列宽度.
 
 \begin{warning}
@@ -1005,9 +1005,9 @@ Vim 与 Gvim 对错误单词的标记方法稍有不同.
 Vim 会给出一长串的候选单词, 除非用户把单词完全拼写错了, 否则的话, 单词的正
 确形式应该就在候选单词的前 5 个中, 如果用户不想看到一长串的列表, 那么他就
 可以用命令
-\begin{quotation}
-    \texttt{:set spellsuggest=}\textit{X}
-\end{quotation}
+\begin{vimcmdform}
+\texttt{:set spellsuggest=}\textit{X}
+\end{vimcmdform}
 来限制列表的长度, 其中 \textit{X} 是列表的最大长度.
 \marginpar{43}
 

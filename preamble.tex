@@ -70,6 +70,10 @@
 \newcommand\email[1]{\href{mailto:#1}{#1}}
 \newcommand\key[1]{\textit{#1}}
 
+\newenvironment{vimcmdform}
+    {\list{}{\leftmargin=2em\rightmargin=0em}\item[]}
+    {\endlist}
+
 \lstnewenvironment{vimcode}
     {\lstset{basicstyle=\ttfamily,
         xleftmargin=2em,
