@@ -239,3 +239,43 @@ snippet for
 录下, 把文件命名为 \texttt{FILETYPE.snippet} (\texttt{FILETYPE} 表示文件类型,
 比如 C 代码就是 \texttt{c}, PHP 代码就是 \texttt{php}).
 \marginpar{79}
+
+\begin{warning}
+    关于下载与如何使用 snipMate 脚本, 用户可以访问
+    \url{http://www.vim.org/scripts/script.php?script_id=2540}.
+\end{warning}
+
+\section{Tag List}
+\label{sec:using_tag_list}
+
+Tag list 就像是程序的字典. Tag list 实际上是一个包含了所有种类的关键词的文件,
+这些关键词可以用来识别程序的各个要素, 包括函数名, 变量名, 类的方法, 具体的要素
+依赖于编程语言. Tag list 文件并非由 Vim 生成, 而是 tag list 生成程序. Tag list
+生成程序有很多种, 比较常见的有:
+\begin{itemize}
+    \item Exuberant Ctags: 用于 C, C++, Java, Perl, Python, Vim, Ruby (以及其
+        他 25 种语言)
+    \item Vtags: 用于 Verilog 文件
+    \item Jtags: 用于 Java 文件
+    \item Hdrtags: 用于 C/C++, Asm, Lex/Yacc, LaTeX, Vim, Maple
+    \item Ptags: 用于 Perl 文件
+\end{itemize}
+
+因为 Exuberant Ctags (简称 Ctags) 使用得最为广泛, 支持的语言也是最多的, 因此 
+在下面的例子里我们用它来生成 tag list.
+
+我们以一个小项目来进行讲解, 这个项目包含了 3 个 C 文件:
+\begin{itemize}
+    \item \texttt{main.c}: 包含 \texttt{main} 函数的文件
+    \item \texttt{myfunctions.c}: 包含了程序中用到的各个函数
+    \item \texttt{myfunctions.h}: \texttt{myfunctions.c} 中的函数的头文件
+\end{itemize}
+假设代码已经写完, 现在让我们为这些代码文件生成一个 tag list 文件.
+
+在存放源代码文件的目录下执行命令:
+\begin{vimcmd}
+ctags *.c *.h
+\end{vimcmd}
+命令执行完毕后, 你将会发现在当前目录下出现了一个新文件, 文件名是 \texttt{tags}.
+这个文件就是 tag list 文件, 它包含了源代码中所有函数与变量的信息.
+\marginpar{81}
