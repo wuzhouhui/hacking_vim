@@ -350,9 +350,9 @@ nmap <buffer> S ?\|\S\+\|<CR>
 这份列表是不可交互的. 为了选择期望中的缓冲区, 用户需要查看缓冲区列表左边的数字,
 这个数字表示文件所在的缓冲区号码. 有了这个号码, 用户就可以直接打开与该号码对应的
 缓冲区, 具体的命令是:
-\begin{quotation}
+\begin{vimcmdform}
 \texttt{:buffer }\textit{N}
-\end{quotation}
+\end{vimcmdform}
 \textit{N} 表示缓冲区的号码.
 
 这种打开缓冲区的方法并不总是最高效的. 用户还可以用下面这两个命令来循环遍历所有
@@ -617,9 +617,9 @@ quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信
 在 \texttt{vimrc} 中, 就用不着每次都设置一遍.
 
 第一件要做的事是定义你想用的符号. 定义符号的命令是:
-\begin{quotation}
+\begin{vimcmdform}
 \texttt{:sign define}\ \textit{name}\ \textit{arguments}
-\end{quotation}
+\end{vimcmdform}
 \textit{arguments} 可以是下面几种之一:
 \begin{itemize}
     \item \texttt{linehl}: 用于标记行的色彩组
@@ -659,21 +659,21 @@ file=" . expand("%:p")<CR>
     \includegraphics[scale=0.6]{./images/page69.png}
 \end{center}
 有时候, 我们想要移除符号, 用术语来讲, 叫作 ``unplace'' 一个符号:
-\begin{quotation}
+\begin{vimcmdform}
 \texttt{:sign unplace}\ \textit{ID}
-\end{quotation}
+\end{vimcmdform}
 \marginpar{70}
 
 命令中的 \textit{ID} 是放置符号时的 ID (在前面的例子中就是 \texttt{123}). 这个 
 命令会把所有的, 用该 ID 放置的符号移除. 用户可能只想把当前文件中的指定符号移
 除, 这时候可以在命令的末尾加上另一个参数, 用来指定文件:
-\begin{quotation}
+\begin{vimcmdform}
 \texttt{:sign unplace}\ \textit{ID}\ \texttt{file=}\textit{name}
-\end{quotation}
+\end{vimcmdform}
 或者用下面这个命令从当前缓冲区中移除符号:
-\begin{quotation}
+\begin{vimcmdform}
 \texttt{:sign unplace}\ \textit{ID}\ \texttt{buffer=}\textit{bufferno}
-\end{quotation}
+\end{vimcmdform}
 命令中的 \textit{bufferno} 是当前缓冲区的编号 (可以通过命令 \texttt{:buffers}
 查看).
 
@@ -693,9 +693,9 @@ file=" . expand("%:p")<CR>
 
 既然本章讨论的是导航, 那么我们也要介绍一下如何跳转到一个符号. 这种跳转在 Vim 中
 称为 符号跳转 (sign-jumping), 所使用的命令是:
-\begin{quotation}
+\begin{vimcmdform}
 \texttt{:sign jump}\ \textit{ID}\ \texttt{file=}\textit{file}
-\end{quotation}
+\end{vimcmdform}
 命令中的 \textit{ID} 是你想要跳转到的符号 ID, \textit{file} 指定在哪个文件中
 搜索该符号. 除了 \texttt{file=}\textit{file}, 还可以用 \texttt{buffer=}%
 \textit{bufferno}.
@@ -752,9 +752,9 @@ file=" . expand("%:p")<CR>
 :marks
 \end{vimcode}
 命令显示了每个标记所在的文件与行号. 为了删除一个或多个标记, 执行:
-\begin{quotation}
+\begin{vimcmdform}
 \texttt{:delmarks}\ \textit{markid markid...markid}
-\end{quotation}
+\end{vimcmdform}
 具体的使用例子有:
 \begin{vimcode}
 :delmarks a b c
