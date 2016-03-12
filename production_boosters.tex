@@ -360,3 +360,37 @@ myvalue = calcValue(
 用户可以把在 tag 间的跳转当成栈操作. 当跳转到一个关键词时, 相当于把关键词的 tag 
 压栈, 从 tag 返回时, 相当于把栈顶的 tag 弹出栈.
 \marginpar{82}
+使用下面这个命令查看当前的栈状态:
+\begin{vimcmd}
+:tags
+\end{vimcmd}
+\begin{center}
+    \includegraphics[scale=0.7]{./images/page82.png}
+\end{center}
+上图中带有以 \texttt{>} 开始的行是当前所在的 tag. 除了组合键 \key{Ctrl+]}
+与 \key{Ctrl+t}, 还可以用下面这两个命令完成同样的功能:
+\begin{itemize}
+    \item \texttt{:tag}: 跳转到这个 tag
+    \item \texttt{:pop}: 回到上一个 tag
+\end{itemize}
+
+如果匹配的 tag 比较多, 如果能把这些 tag 以列表的形式罗列出来可能会比较方便.
+为了得到这个列表, 可以用下面两个命令中的任意一个:
+\begin{itemize}
+    \item \texttt{:tselect}
+    \item \texttt{:ptselect}
+\end{itemize}
+第 1 个命令列出所有匹配的 tag, 为了选择其中一个, 需要输入 tag 所在行的行首的
+数字.
+
+第 2 个命令完成同样的工作, 但是它会在预览窗口中显示列表. 如果用户选错了 tag,
+或者是想查看列表中的下一个 tag, 可以用下面的命令在 tag 间移动:
+\begin{itemize}
+    \item \texttt{:tnext}: 移动到列表中的下一个 tag
+    \item \texttt{:tprev}: 移动到列表中的前一个 tag
+\end{itemize}
+
+用户可能还没有从前面的例子中体会到 tag list 的强大之外, 想像一下, 假设项目中的
+文件不只 3 个, 而是散布在数百个目录中的上千个文件, 这时候, 用户肯定没办法记住
+每个函数所在的位置, 这时候就非常需要一个强大的索引工具, 就像 tag list.
+\marginpar{83}
