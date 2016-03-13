@@ -427,5 +427,42 @@ Taglist 不仅可以用来查找函数与变量的定义, 还可以用来查找�
         脚本可以在状态条或窗口标题栏中显示光标所在位置的函数的名字. 脚本使用
         Exuberant Ctags 为当前打开的文件自动生成 tag 文件. 脚本的下载地址是
         \url{http://www.vim.org/scripts/script.php?script_id=610}.
+    \item \texttt{autoproto.vim}: Jochen Baier 专门为 C 程序员开发的脚本. 当
+        程序员输入函数名与第一个左括号后, 脚本在预览窗口中显示该函数的原型.
+        脚本的下载地址是
+        \url{http://www.vim.org/scripts/script.php?script_id=1553}.
 \end{itemize}
 \marginpar{84}
+\begin{warning}
+    关于 tag 的更多信息与使用方法, 可以查阅 Vim 的帮助系统 \texttt{:help tags}.
+\end{warning}
+
+\section{使用自动补全}
+\label{sec:using_autocompletion}
+
+作为一个遵循 Vim 哲学的用户, 总是希望用最少的击键来完成一件事, 因为额外的击键
+意味着额外的时间.
+
+所以说, 如果 Vim 可以猜出我们正想打的单词, 并且可以自动补全, 那我们又何必每次
+都从头输到尾呢?
+
+在 Vim 中有多种办法来自动补全单词, 其中一些只能补全用户曾经在某个打开的缓冲区
+中输过的单词, 还有一些牵涉到了对当前正在使用的代码的分析 --- 不仅仅是当前打开
+文件, 还包括整个源代码树.
+
+在接下来的小节里, 我们将会讨论使用自动补全的三种方法:
+\begin{itemize}
+    \item 已知单词的自动补全
+    \item 使用字典的自动补全
+    \item 识别上下文的自动补全
+\end{itemize}
+除此之外, 我们还会介绍一些使用技巧, 通过按键绑定来更方便地使用自动补全.
+
+\subsection{已知单词的自动补全}
+\label{subsec:autocompletion_with_known_words}
+
+在这一节, 我们将会看到自动补全的最简单的用法 --- 为已知单词进行补全.
+
+无论用户在写什么内容, 都会出现输入重复单词的情况. 在 Vim 中, 用户可以在输入
+完单词的头两个字母后, 按下组合键 \key{Ctrl+n}.
+\marginpar{85}
