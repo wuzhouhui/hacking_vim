@@ -466,3 +466,36 @@ Taglist 不仅可以用来查找函数与变量的定义, 还可以用来查找�
 无论用户在写什么内容, 都会出现输入重复单词的情况. 在 Vim 中, 用户可以在输入
 完单词的头两个字母后, 按下组合键 \key{Ctrl+n}.
 \marginpar{85}
+
+示例:
+
+假设用户想要在 Vim 中输入 ``I have beautiful flowers in my flower graden''.
+
+在刚开始时, 文件中没有任何其他的内容, 因此用户不得不一个字母一个字母地写下
+文本的开始部分, 直到 ``I have beautiful flowers in my f''.
+
+用户接下来会输入单词 ``flower'', 但是, 由于我们在前面已经输入了 ``flowers'',
+当输入 ``f'' 后, 按下 \key{Ctrl+n}, Vim 就会把 ``f'' 自动扩展为 ``flowers'',
+我们只要把多余的 ``s'' 删掉即可. 和输入整单词相比, 这要快很多.
+
+随着文本的增多, 你会发现越来越多的单词可以自动补全.
+
+组合键 \key{Ctrl+n} 所做的工作是向前搜索匹配的单词. 如果用户知道自己刚刚才输入
+过同样的单词, 那么用 \key{Ctrl+p} 会更快一点, 因为这个组合键是向后搜索匹配.
+一般来说, 除非文件非常大, 或者可能的匹配非常多, 否则 \key{Ctrl+n} 与
+\key{Ctrl+p} 对用户来说并没有太大的区别.
+
+\subsection{使用字典的自动补全}
+\label{subsec:autocompletion_using_dictionary_lookup}
+
+一个比较好的使用技巧是把用户所使用的语言的全部单词, 都搜集到一个巨大的字典
+文件中, 然后再把这个文件作为字典加载到 Vim 中 (在因特网上很容易搜索到这种文件).
+为了把文件作为字典载入到 Vim 中, 执行下面的命令:
+\begin{vimcode}
+:set dictionary+=/path/to/dictionary/file/with/words
+\end{vimcode}
+现在, Vim 已经事先知晓了大量的单词, 用户可以利用这些单词进行自动补全. 不过,
+有一些地方会不一样. 因为补全时被搜索的单词并非在任意一个打开的缓冲区中, 而是 
+在选项 \texttt{dictionary} 所配置的字典文件中, 所以需要用另一个快捷键:
+\key{Ctrl+x+k}.
+\marginpar{86}
