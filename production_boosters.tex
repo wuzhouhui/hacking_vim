@@ -469,14 +469,14 @@ Taglist 不仅可以用来查找函数与变量的定义, 还可以用来查找�
 
 示例:
 
-假设用户想要在 Vim 中输入 ``I have beautiful flowers in my flower graden''.
+假设用户想要在 Vim 中输入 ``I have beautiful flowers in my flower garden''.
 
 在刚开始时, 文件中没有任何其他的内容, 因此用户不得不一个字母一个字母地写下
 文本的开始部分, 直到 ``I have beautiful flowers in my f''.
 
 用户接下来会输入单词 ``flower'', 但是, 由于我们在前面已经输入了 ``flowers'',
 当输入 ``f'' 后, 按下 \key{Ctrl+n}, Vim 就会把 ``f'' 自动扩展为 ``flowers'',
-我们只要把多余的 ``s'' 删掉即可. 和输入整单词相比, 这要快很多.
+我们只要把多余的 ``s'' 删掉即可. 和输入整个单词相比, 这要快很多.
 
 随着文本的增多, 你会发现越来越多的单词可以自动补全.
 
@@ -495,7 +495,7 @@ Taglist 不仅可以用来查找函数与变量的定义, 还可以用来查找�
 :set dictionary+=/path/to/dictionary/file/with/words
 \end{vimcode}
 现在, Vim 已经事先知晓了大量的单词, 用户可以利用这些单词进行自动补全. 不过,
-有一些地方会不一样. 因为补全时被搜索的单词并非在任意一个打开的缓冲区中, 而是 
+有一些地方会不一样. 因为补全时被搜索的单词并非在某个打开的缓冲区中, 而是 
 在选项 \texttt{dictionary} 所配置的字典文件中, 所以需要用另一个快捷键:
 \key{Ctrl+x+k}.
 \marginpar{86}
