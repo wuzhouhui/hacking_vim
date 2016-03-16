@@ -529,3 +529,59 @@ Vim 7.0 引入了一种全新的补全技术 --- omnicompletion. 它使得用户
 补全功能应该如何工作. 实际上, 用户需要自己来编写补全函数 (除非已经有人把函数
 写好了).
 \marginpar{87}
+和前一节介绍的一样, 激活补全的方法是先输入几个字母, 按下 \key{Ctrl+x} 进入到
+补全模式, 再紧接着按下 \key{Ctrl+o} 使用 omnicompletion.
+
+为了添加用户自定义的补全函数, 执行:
+\begin{vimcode}
+:set omnifunc=MyCompleteFunction
+\end{vimcode}
+现在, 你只需要定义函数 \texttt{MyCompleteFunction}, 这个函数用于完成补全操作.
+上面的命令只在当前活动缓冲区内才有效, 如果希望每个缓冲区都可以使用该补全函数,
+那么就要对每个缓冲区执行这个设置命令.
+\begin{warning}
+    \texttt{omnifunc} 的设置通常在文件类型插件内完成, 这样的话, 补全函数就可以绑
+    定到特定的文件类型上.
+\end{warning}
+
+现在让我们来看一个补全函数的例子. 假设你有一个文件, 文件的内容是人名及其邮件
+地址, 就像:
+\begin{vimcode}
+Kim Schulz|kim@schulz.dk
+John Doe|john.doe@somedomain.com
+Jane Dame|jd@somedomain2.com
+Johannes Burg|jobu@somedomain3.net
+Kimberly B. Schwartz|kbs@somedomain.com
+\end{vimcode}
+
+现在, 你想在写完一个人名后, 通过补全插入对应的邮件地址, 完成这个功能的函数是:
+\begin{vimcode}
+function! CompleteEmails(findstart, base)
+	  if a:findstart
+	    " locate the start of the word
+	    let line = getline('.')
+	    let start = col('.') - 1
+	    while start > 0 && line[start - 1] =~ '\a'
+	      let start -= 1
+	    endwhile
+	    return start
+	  else
+	    " find contact names matching with "a:base"
+	    let res = []
+		 " we read contactlist file and sort the result
+	    for m in sort(readfile('/home/kim/.vim/contacts.txt'))
+	      if m =~ '^' . a:base
+				let contactinfo = split(m, '|')
+\end{vimcode}
+\marginpar{88}
+\begin{vimcode}
+		      " show names in list, but insert email address 
+		      call add(res, {'word': contactinfo[1], 
+                     \ 'abbr': contactinfo[0].' <'.contactinfo[1].'>',
+                 \ 'icase': 1} )
+	      endif
+	    endfor
+	    return res
+	  endif
+	endfunction
+\end{vimcode}
