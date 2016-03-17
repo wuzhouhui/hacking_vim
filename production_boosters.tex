@@ -545,7 +545,7 @@ Vim 7.0 引入了一种全新的补全技术 --- omnicompletion. 它使得用户
     定到特定的文件类型上.
 \end{warning}
 
-现在让我们来看一个补全函数的例子. 假设你有一个文件, 文件的内容是人名及其邮件
+现在让我们来看一个补全函数的例子. 假设你有一个通讯录文件, 文件的内容是人名及其邮件
 地址, 就像:
 \begin{vimcode}
 Kim Schulz|kim@schulz.dk
@@ -586,3 +586,35 @@ function! CompleteEmails(findstart, base)
 	  endif
 	endfunction
 \end{vimcode}
+
+函数接收两个参数 --- 所有的 omnicompletion 函数都是如此. Vim 第一次调用函数时,
+把第 1 个参数 \texttt{findstart} 设置为 1 (\texttt{base} 为空). 这样的参数状态
+表示这是第一次调用, 函数应该搜索用户当前所写的单词的开始.
+
+然后, Vim 再次调用函数, 这次调用把 \texttt{findstart} 设置为 0, 把 \texttt{base}
+设置成已经自动补全的单词. 这一次, 函数会打开通讯录文件, 以行为单词, 把文件读到
+一个列表中. 对列表排序, 然后遍历列表.
+
+每一行的内容按照 \texttt{|} 分割, 如果某个单词, 是以用于补全的单词的字母作为开
+始, 那就把这个单词添加到结果列表中, 这个结果列表最后会作为函数的返回值返回.
+函数可以修改弹出内容的外观, 和它所匹配的内容, 这两个功能无法通过添加电子邮件
+地址来完成, 而是要通过构建一个字典 (见 \texttt{:help Dictionary}), 在构建字典
+时会接触到一些特定的关键词. 在这个案例中, 我们使用下列三个关键词:
+\begin{itemize}
+    \item Word: 应该插入的真正的单词
+    \item Abbr: 在弹出列表中使用的单词, 而非直接使用 word
+    \item Icase: 如果其值非零, 则匹配是匹配大小写的
+\end{itemize}
+
+其他的关键词及其意义可以在 Vim 的帮助系统中找到:
+\begin{vimcode}
+:help 'omnifunc'
+\end{vimcode}
+
+现在 Vim 已经有了一个单词列表用于补全, 在这个案例中则是一些像下面这样的行:
+\begin{vimcode}
+"Kim Schulz <kim@schulz.dk>"
+\end{vimcode}
+无论何时写下一些字母,比如 \texttt{ki}, 然后按下 \key{Ctrl+x Ctrl+o}, Vim 就会 
+以列表的形式, 弹出所有的, 以 \texttt{ki} 开始的名字.
+\marginpar{89}
