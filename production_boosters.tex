@@ -617,3 +617,35 @@ function! CompleteEmails(findstart, base)
 无论何时写下一些字母,比如 \texttt{ki}, 然后按下 \key{Ctrl+x Ctrl+o}, Vim 就会 
 以列表的形式, 弹出所有的, 以 \texttt{ki} 开始的名字.
 \marginpar{89}
+\begin{center}
+    \includegraphics[scale=0.6]{./images/page89.png}
+\end{center}
+按 \key{Ctrl+o} 可以循环遍历列表中的条目. 另外, 还可以用 \key{Ctrl+n} 向前遍历,
+用 \key{Ctrl+p} 向后遍历.
+
+\subsection{多合一补全}
+\label{subsec:all_in_one_completion}
+
+用户可能不想记住这么多的补全快捷键, 为什么就不能为所有的补全类型只使用一个快捷
+键. Vim 可以帮助你实现这个愿望, 让我们来看一下具体要怎么做.
+
+大部分支持补全的编辑器通常把这个功能映射到 \key{Tab} 键.
+
+通过下面这个命令, 用户可以在 Vim 的帮助系统中找到一个叫作
+\texttt{CleverTab()} 的函数:
+\begin{vimcode}
+:help ins-completion
+\end{vimcode}
+这个函数可以让用户使用 \key{Tab} 键来补全单词, 而非 \key{Ctrl+n}. 函数可以自动
+区分是应该插入一个制表符, 还是应该做补全操作. 如果用户是在一行的开始, 或者是 
+某个空白符的后面按下 \key{Tab} 键, 那就是插入一个制表符. 在其他的情况下, 函数 
+会试图完成已知单词的补全.
+
+我们借用帮助系统中的 \texttt{CleverTab} 函数, 并对它加以扩展, 使得它可以从下
+面的, 带有优先级的列表中选择补全方法:
+\begin{itemize}
+    \item omnicompletion
+    \item 字典补全
+    \item 已知单词的补全
+\end{itemize}
+\marginpar{90}
