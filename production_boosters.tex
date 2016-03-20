@@ -690,3 +690,47 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 完成这个工作的接口非常简单, 更强大的是, 几乎任何东西都可以录制, 接下来我们就
 来介绍这个强有力的工具.
 \marginpar{91}
+
+让我们先来看一下将会用到的命令:
+\begin{itemize}
+    \item \texttt{qa}: 从现在开始录制, 并记录到寄存器 \texttt{a}. 可以使用任意
+        的寄存器, 用寄存器 \texttt{a} 只是为方便起见.\footnote{原文是 Any
+            register can be used, but \texttt{q} is often used for simplicity.
+        应该是笔误}
+    \item \texttt{q}: 如果是在正在录制时按下, 则停止录制
+    \item \texttt{@a}: 执行记录在寄存器 \texttt{a} 中的宏 (可以把 \texttt{a}
+        替换成其他的寄存器)
+    \item \texttt{@@}: 执行上一次所执行的宏命令
+\end{itemize}
+可以在 \texttt{@} 前加上任意的数字, 表示重复执行该命令多少次. 例如,
+\texttt{15@a} 表示把寄存器 \texttt{a} 中所记录的命令重复执行 15 遍.
+
+现在让我们看一下一次普通的录制会话:
+\begin{vimcode}
+qq
+command1
+command2
+....
+commandN
+q
+10@q
+\end{vimcode}
+读者可能会好奇这有什么用, 因为这只是在重复执行一串命令罢了. 这种问题最好通过
+例子来说明.
+
+想像一下你有一大串的信息需要处理, Unix 系统的日志文件就属于这种类型. 日志文件
+的内容类似于:
+\begin{vimcode}
+Mar 20 17:23:54 Inspiron kernel: [33604.866998] ath9k 0000:09:00.0: no hotplug settings from platform
+Mar 20 17:23:54 Inspiron kernel: [33604.867007] pcieport 0000:00:1c.7: no hotplug settings from platform
+Mar 20 17:23:54 Inspiron kernel: [33604.867015] ehci-pci 0000:00:1d.0: no hotplug settings from platform
+Mar 20 17:23:54 Inspiron kernel: [33604.867020] ehci-pci 0000:00:1d.0: using default PCI settings
+Mar 20 17:23:54 Inspiron kernel: [33604.867039] lpc_ich 0000:00:1f.0: no hotplug settings from platform
+Mar 20 17:23:54 Inspiron kernel: [33604.867043] lpc_ich 0000:00:1f.0: using default PCI settings
+Mar 20 17:23:54 Inspiron kernel: [33604.867063] ahci 0000:00:1f.2: no hotplug settings from platform
+Mar 20 17:23:54 Inspiron kernel: [33604.867067] ahci 0000:00:1f.2: using default PCI settings
+Mar 20 17:23:54 Inspiron kernel: [33604.867084] pci 0000:00:1f.3: no hotplug settings from platform
+Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default PCI settings
+...
+\end{vimcode}
+\marginpar{92}
