@@ -649,3 +649,44 @@ function! CompleteEmails(findstart, base)
     \item 已知单词的补全
 \end{itemize}
 \marginpar{90}
+下面是实现该函数的一个例子:
+\begin{vimcode}
+function! SuperCleverTab()
+	'check if at beginning of line or after a space
+    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+      return "\<Tab>"
+    else
+		" do we have omni completion available
+       if &omnifunc != ''
+		" use omni-completion 1. priority
+          return "\<C-X>\<C-O>"
+       elseif &dictionary != ''
+			" no omni completion, try dictionary completio
+			return "\<C-K>"
+		else
+			"use omni completion or dictionary completion
+			"use known-word completion
+          return "\<C-N>"
+      endif
+    endif
+endfunction
+
+" bind function to the tab key
+inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+\end{vimcode}
+
+把函数的代码与按键绑定添加到 \texttt{vimrc} 中, 然后你就可以用 \key{Tab} 键来 
+完成各种类型的补全.
+
+按下 \key{Tab} 键进行补全时, 函数检查此时是否是要插入一个制表符. 如果不是, 那
+就检查 omnicompletion 函数 (通过 \texttt{omnifunc} 设置) 是否可用. 如果函数不
+可用, 那就检查字典是否可用. 如果字典还是不可用, 那就使用最简单的已知单词补全.
+
+\section{宏录制}
+\label{sec:using_macro_recording}
+
+编辑具有单一结构的文本时, 或许最好的功能就是录制一段输入宏, 然后再重复执行宏.
+
+完成这个工作的接口非常简单, 更强大的是, 几乎任何东西都可以录制, 接下来我们就
+来介绍这个强有力的工具.
+\marginpar{91}
