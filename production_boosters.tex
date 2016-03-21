@@ -732,3 +732,45 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
 ...
 \end{vimcode}
 \marginpar{92}
+
+现在, 用户想要把这个日志文件转换成 HTML, 并以表格的形式呈现数据, 看起来就像:
+\begin{vimcode}
+<tr><td>Oct 8 21:23:34</td><td>laptopia</td><td>kernel:</td><td>ACPI...</td><tr>
+\end{vimcode}
+
+用户可以选择一行一行地编辑文件, 直到最后一行. 但也可以这样做, 先编辑一行, 并把 
+编辑命令录制下来, 然后再把录制下来的命令应用到剩下的每一行. 最开始的编辑命令可
+以是下面这些 (假设光标原来是在第一行的开始):
+\begin{center}
+    \begin{tabular}{ll}
+    \hline
+    \texttt{qa}             & 开始录制, 并把内容记录到寄存器 \texttt{a} 中 \\
+    \texttt{i<tr><td>[ESC]} & 切换到插入模式, 插入 HTML 标记, 再回到普通模式 \\
+    \texttt{/ [CR]}         & 向前搜索空格 \\
+    \texttt{3n}             & 向前搜索到第 3 个空格 \\
+    \texttt{xi</td><td>[ESC]}& 删除空格, 切换到插入模式, 添加 HTML 标记, 再切换
+        到普通模式 \\
+    \texttt{n}              & 前进到下一个空格 \\
+    \texttt{xi</td><td>[ESC]}& 删除空格, 切换到插入模式, 添加 HTML 标记, 再切换
+        到普通模式 \\
+    \texttt{n}              & 前进到下一个空格 \\
+    \texttt{xi</td><td>[ESC]}& 删除空格, 切换到插入模式, 添加 HTML 标记, 再切换
+        到普通模式 \\
+    \texttt{A</td></tr>[ESC]}&在行的末尾添加 HTML 标记, 再切换到普通模式 \\
+    \texttt{j\^}            & 前进到下一行的开始 \\
+    \texttt{q}              & 宏录制结束 \\
+    \hline
+\end{tabular}
+\end{center}
+
+\begin{warning}
+    \texttt{[ESC]} 指的是按下转码键: \key{Esc}, \texttt{[CR]} 指的是按下回车键:
+    \key{Enter}.
+\end{warning}
+
+现在我们已经准备好了完整的宏, 光标的位置也已就位, 这意味着我们现在可以重复地
+执行宏, 并且在每次执行完宏后, 光标都会处在就绪的位置下.
+
+用户可以用 \texttt{@a} 来回放存放在寄存器 \texttt{a} 中的宏, 除此之外, 用户还 
+需要做的就是添加 HTML 的头部与尾部信息, 这很简单.
+\marginpar{93}
