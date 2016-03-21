@@ -750,6 +750,30 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
     \texttt{qa}             & 开始录制, 并把内容记录到寄存器 \texttt{a} 中 \\
     \texttt{i<tr><td>[ESC]} & 切换到插入模式, 插入 HTML 标记, 再回到普通模式 \\
     \texttt{/ [CR]}         & 向前搜索空格 \\
-    \texttt{3n}             & 
+    \texttt{3n}             & 向前搜索到第 3 个空格 \\
+    \texttt{xi</td><td>[ESC]}& 删除空格, 切换到插入模式, 添加 HTML 标记, 再切换
+        到普通模式 \\
+    \texttt{n}              & 前进到下一个空格 \\
+    \texttt{xi</td><td>[ESC]}& 删除空格, 切换到插入模式, 添加 HTML 标记, 再切换
+        到普通模式 \\
+    \texttt{n}              & 前进到下一个空格 \\
+    \texttt{xi</td><td>[ESC]}& 删除空格, 切换到插入模式, 添加 HTML 标记, 再切换
+        到普通模式 \\
+    \texttt{A</td></tr>[ESC]}&在行的末尾添加 HTML 标记, 再切换到普通模式 \\
+    \texttt{j\^}            & 前进到下一行的开始 \\
+    \texttt{q}              & 宏录制结束 \\
+    \hline
 \end{tabular}
 \end{center}
+
+\begin{warning}
+    \texttt{[ESC]} 指的是按下转码键: \key{Esc}, \texttt{[CR]} 指的是按下回车键:
+    \key{Esc}.
+\end{warning}
+
+现在我们已经准备好了完整的宏, 光标的位置也已就位, 这意味着我们现在可以重复地
+执行宏, 并且在每次执行完宏后, 光标都会处在就绪的位置下.
+
+用户可以用 \texttt{@a} 来回放存放在寄存器 \texttt{a} 中的宏, 除此之外, 用户还 
+需要做的就是添加 HTML 的头部与尾部信息, 这很简单.
+\marginpar{93}
