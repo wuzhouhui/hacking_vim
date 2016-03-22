@@ -817,7 +817,7 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
 \texttt{:mkview}\ \textit{file}
 \end{vimcmdform}
 \marginpar{94}
-命令中的 \textit{file} 用户指定的, 用于保存会话或视图的文件名. 如果没有指定该
+命令中的 \textit{file} 是用户指定的, 用于保存会话或视图的文件名. 如果没有指定该
 参数, 则默认保存到当前工作目录的 \texttt{Session.vim} 文件中.
 
 \begin{warning}
@@ -825,7 +825,7 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
     尾紧跟上一个感叹号 \texttt{!}.
 \end{warning}
 
-使用视图, 你可以同时拥有多个不同的视图. 如果每个视图都保存到当前工作目录下, 那
+使用视图时, 你可以同时拥有多个不同的视图. 如果每个视图都保存到当前工作目录下, 那
 么不用多长时间, 工作目录就会被视图文件填满. 为了避免这个问题, 可以用下面的命令 
 告诉 Vim, 应该把视图文件放到哪个目录下:
 \begin{vimcode}
@@ -848,7 +848,7 @@ vim -S Session.vim
 :source Session.vim
 \end{vimcode}
 
-对于视图, 则加载方式是:
+对于视图, 加载方式是:
 \begin{vimcode}
 :loadview View.vim
 \end{vimcode}
