@@ -813,9 +813,48 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
 置, 则是默认会话) 保存到会话文件中, 这样就可以在需要时重新加载会话. 保存会话
 的命令是:
 \begin{vimcmdform}
-\texttt{:mksession}\ \textit{FILE}
+\texttt{:mksession}\ \textit{file}
 \end{vimcmdform}
 保存当前视图的命令是:
 \begin{vimcmdform}
-\texttt{:mkview}\ \textit{FILE}
+\texttt{:mkview}\ \textit{file}
 \end{vimcmdform}
+\marginpar{94}
+命令中的 \textit{file} 用户指定的, 用于保存会话或视图的文件名. 如果没有指定该
+参数, 则默认保存到当前工作目录的 \texttt{Session.vim} 文件中.
+
+\begin{warning}
+    如果文件事先存在, 为了覆盖掉文件原来的内容, 需要在 \texttt{mksession} 的末
+    尾紧跟上一个感叹号 \texttt{!}.
+\end{warning}
+
+使用视图, 你可以同时拥有多个不同的视图. 如果每个视图都保存到当前工作目录下, 那
+么不用多长时间, 工作目录就会被视图文件填满. 为了避免这个问题, 可以用下面的命令 
+告诉 Vim, 应该把视图文件放到哪个目录下:
+\begin{vimcode}
+:set viewdir=$HOME/.vim/views
+\end{vimcode}
+上面的命令会把所有的视图文件保存到目录 \texttt{\$HOME/.vim/views}.
+
+假设用户当前打开了三个窗口, 在退出 Vim 之前, 用户执行了:
+\begin{vimcode}
+:mksession
+\end{vimcode}
+在下一次准备打开文件时, 用户希望用相同的会话来启动 Vim, 此时可以用命令行选项
+\texttt{-S}:
+\begin{vimcode}
+vim -S Session.vim
+\end{vimcode}
+
+除此之外, 用户也可以选择在启动 Vim 后, 用下面的命令来加载会话文件:
+\begin{vimcode}
+:source Session.vim
+\end{vimcode}
+
+对于视图, 则加载方式是:
+\begin{vimcode}
+:loadview View.vim
+\end{vimcode}
+
+加载一个会话会改变编辑器的整体布局, 而加载一个视图则只会改变当前活动窗口的布局.
+\marginpar{95}
