@@ -808,3 +808,14 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
 
 \subsection{简单的会话使用}
 \label{subsec:simple_session_usage}
+
+在使用会话的过程中, 最经常做的事就是把当前正在运行的会话 (如果没有经过特别的设
+置, 则是默认会话) 保存到会话文件中, 这样就可以在需要时重新加载会话. 保存会话
+的命令是:
+\begin{vimcmdform}
+\texttt{:mksession}\ \textit{FILE}
+\end{vimcmdform}
+保存当前视图的命令是:
+\begin{vimcmdform}
+\texttt{:mkview}\ \textit{FILE}
+\end{vimcmdform}
