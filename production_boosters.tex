@@ -856,18 +856,18 @@ vim -S Session.vim
 加载一个会话会改变编辑器的整体布局, 而加载一个视图则只会改变当前活动窗口的布局.
 \marginpar{95}
 \begin{warning}
-    用户如果希望 Vim 把所有的设置信息, 比如光标的位置与折叠信息, 那么就需要在
+    用户如果希望 Vim 记住所有的设置信息, 比如光标的位置与折叠信息, 那么就需要在
     \texttt{vimrc} 中添加如下内容:
     \begin{vimcode}
     set viewdir=$VIMHOME/views/
     autocmd BufWinLeave * mkview
     autocmd BufWinEnter * silent loadview
     \end{vimcode}
-    无论何时在同一个窗口打开另一个缓冲区, 之前的缓冲区的视图都会被自动保存下来,
-    并且当再次打开缓冲区时, 会自动还原保存的视图.
+    无论何时在同一个窗口中打开另一个缓冲区, 之前的缓冲区的视图都会被自动保存下来,
+    并且当再次打开之前的缓冲区时, 会自动还原保存的视图.
 \end{warning}
 
-会话的一个常用技巧是定义一个命令, 功能是在退出 Vim 时自动保存会话, 而在打开 Vim
+会话的一个常用技巧是定义一个命令, 命令的功能是在退出 Vim 时自动保存会话, 而在打开 Vim
 时自动还原保存的会话. 使用这个方法就可以让用户在不丢失设置, 已打开文件列表等
 信息的前提下, 自由地启动与退出 Vim. 为了完成这个功能, 可以在 \texttt{vimrc} 中
 添加如下命令:
@@ -884,7 +884,7 @@ function! LoadSession()
    endif
 endfunction
 \end{vimcode}
-关闭 Vim 后, 会话保存到 \texttt{\$HOME/.vim/sessions/session.vim}
+关闭 Vim 后, 会话保存到 \texttt{\$HOME/.vim/sessions/session.vim}.
 
 根据打开 Vim 方式的不同, 或者是打开由命令行参数指定的文件, 或者是打开最后一次
 会话. 比如说:
