@@ -906,20 +906,20 @@ endfunction
 \label{subsec:satify_you_own_session_needs}
 
 用户可能并不需要会话文件中存放的所有信息, 有时, 用户可能仅仅是想要保存打开过
-的文件的信息, 而在其他时候, 可能是所有的会话信息. 幸运的是, Vim 提供了用于设置
-会话保存信息的方法.
+的文件的信息, 而在其他时候, 可能是所有的会话信息. 幸运的是, Vim 提供了设置
+保存会话信息的方法.
 
 所使用的设置命令是 \texttt{sessionoptions}, 使用方法是:
 \begin{vimcmdform}
-\texttt{:set sessionoptions=}\ \textit{options}
+\texttt{:set sessionoptions=}\textit{options}
 \end{vimcmdform}
 \textit{options} 是一个由逗号分隔的列表, 列表中可以出现下列选项:
 \begin{center}
-    \begin{tabular}{ll}
+    \begin{tabular}{lp{35em}}
         \hline
         \texttt{blank}  & 保存空白窗口 \\
         \texttt{buffers} & 保存所有缓冲区的信息, 包括隐藏的与未加载的缓冲区 \\
-        \texttt{curdir} & 保存关于当前工作目录的信息 \\
+        \texttt{curdir} & 保存当前工作目录的相关信息 \\
         \texttt{folds} & 保存缓冲区内容中的折叠信息 \\
         \texttt{globals} & 保存全局变量的相关信息, 这里的全局变量指的是以大写
         字母开始, 且类型为字符串或数值的变量 \\
@@ -929,10 +929,10 @@ endfunction
         \texttt{options} & 保存所有的选项信息, 包含全局的与局部的 \\
         \texttt{resize} & 保存 UI 窗口的尺寸信息 (行数与列数) \\
         \texttt{sesdir} & 如果设置了该选项, 当前目录就会是会话文件的存放目录
-        (如果同时设置了 \texttt{curdir}, 则不可用) \\
-        \texttt{slash} & 把所有路径中的斜杆换成反斜杆 (这样做就可以让 Unix 兼容
-        Windows 的路径) \\
-        \texttt{tagpages} & 保存所有的标签页信息, 如果没有设置该选项, 则只会保
+        (如果同时设置了 \texttt{curdir}, 则该选项不可用) \\
+        \texttt{slash} & 把所有文件路径中的反斜杆换成斜杆 (这样做就可以让 Unix
+        兼容 Windows 的文件路径) \\
+        \texttt{tabpages} & 保存所有的标签页信息, 如果没有设置该选项, 则只会保
         存当前处于活跃状态的标签页 \\
         \texttt{unix} & 使用 Unix 格式的行结束符, 而非 Windows 格式 \\
         \texttt{winpos} & 保存 UI 窗口的屏幕位置信息 \\
