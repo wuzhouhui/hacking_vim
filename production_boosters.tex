@@ -963,13 +963,13 @@ endfunction
 \label{subsec:sessions_as_a_project_manager}
 
 有时候, 用户可能想要把会话文件作为某种原始的项目文件来使用, 这些项目文件包含了
-项目的相关信息. 因此, 当用户正在处理某个项目, 并且打开了大量的文件与窗口, 只需 
+项目的相关信息. 因此, 如果用户正在处理某个项目, 并且打开了大量的文件与窗口, 只需
 执行:
 \begin{vimcode}
 :mksession!
 \end{vimcode}
 该命令会把当前会话保存到当前工作目录的 \texttt{Session.vim} 文件中. 如果用户希望
-Vim 在打开某个项目文件时, 自动加载会话文件, 可以把下面这行命令添加到
+在启动 Vim 时, 自动加载会话文件 (如果存在的话) , 可以把下面这行命令添加到
 \texttt{vimrc}:
 \begin{vimcode}
 silent source! Session.vim
