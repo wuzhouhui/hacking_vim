@@ -971,3 +971,13 @@ endfunction
 \begin{vimcode}
 :mksession!
 \end{vimcode}
+该命令会把当前会话保存到当前工作目录的 \texttt{Session.vim} 文件中. 如果用户希望
+Vim 在打开某个项目文件时, 自动加载会话文件, 可以把下面这行命令添加到
+\texttt{vimrc}:
+\begin{vimcode}
+silent source! Session.vim
+\end{vimcode}
+添加了该命令之后, 如果在当前工作目录中存在 \texttt{Session.vim} 文件, 就可以自
+动加载. 所以, 只要让会话文件保持在项目目录中, 用户就可以方便把项目加载到 Vim,
+但是请记住, 如果打开了新文件, 或者是修改了窗口/缓冲区, 都需要重新保存会话文件.
+\marginpar{98}
