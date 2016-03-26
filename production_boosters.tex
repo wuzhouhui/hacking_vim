@@ -944,3 +944,40 @@ endfunction
     \end{tabular}
 \end{center}
 \marginpar{97}
+% TODO 粗体显示
+粗体显示的是 Vim 的默认设置选项. 每次设置选项时并不需要全部设置, 可以通过运算符
+\texttt{+=} 和 \texttt{-=} 来增加或移除选项. 比如说, 用户想要在默认选项的基础上
+添加 \texttt{winpos}, 并移除 \texttt{folds}, 则可以这样做:
+\begin{vimcode}
+:set sessionoptions+=winpos
+:set sessionoptions-=folds
+\end{vimcode}
+可以用下面的命令显示当前的会话选项:
+\begin{vimcode}
+:echo &sessionoptions
+\end{vimcode}
+
+\begin{warning}
+    实际上, 用户可以用该方法查看所有的 Vim 设置: 通过执行命令 \texttt{:echo},
+    并在选项名的前面加上 \texttt{\&}, 比如 \texttt{:echo &somesessting}.
+\end{warning}
+
+\subsection{会话与项目管理}
+\label{subsec:sessions_as_a_project_manager}
+
+有时候, 用户可能想要把会话文件作为某种原始的项目文件来使用, 这些项目文件包含了
+项目的相关信息. 因此, 当用户正在处理某个项目, 并且打开了大量的文件与窗口, 只需 
+执行:
+\begin{vimcode}
+:mksession!
+\end{vimcode}
+该命令会把当前会话保存到当前工作目录的 \texttt{Session.vim} 文件中. 如果用户希望
+Vim 在打开某个项目文件时, 自动加载会话文件, 可以把下面这行命令添加到
+\texttt{vimrc}:
+\begin{vimcode}
+silent source! Session.vim
+\end{vimcode}
+添加了该命令之后, 如果在当前工作目录中存在 \texttt{Session.vim} 文件, 就可以自
+动加载. 所以, 只要让会话文件保持在项目目录中, 用户就可以方便把项目加载到 Vim,
+但是请记住, 如果打开了新文件, 或者是修改了窗口/缓冲区, 都需要重新保存会话文件.
+\marginpar{98}
