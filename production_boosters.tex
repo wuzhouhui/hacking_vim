@@ -1070,15 +1070,14 @@ Vim 是不会让这种事情发生的.
 指定了一个特定的寄存器, 匿名寄存器也可以正常工作. 比如说, 命令 \texttt{"xdd}
 会把被删除的文本同时存入寄存器 \texttt{x} 与匿名寄存器.
 
-如何用命令 \texttt{p} 或 \texttt{P} 粘贴文本时没有指定寄存器, 那么 Vim 就从匿
+如果用命令 \texttt{p} 或 \texttt{P} 粘贴文本时没有指定寄存器, 那么 Vim 就从匿名
 寄存器获取被粘贴的文本.
 
 \subsubsection{行内删除寄存器}
 \label{subsubsec:the_small_delete_register}
 
 如果用户删除的文本小于一行, 那么 Vim 就把删除的文本存入一个特殊的寄存器 --- 行
-内删除寄存器 (small delete register, \texttt{"-}), 前提是用户没有指定其他的寄存
-器.
+内删除寄存器 \texttt{"-}, 前提是用户没有指定其他的寄存器.
 
 \subsubsection{带编号的寄存器}
 \label{subsubsec:the_numberred_registers}
