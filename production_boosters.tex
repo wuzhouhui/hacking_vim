@@ -1051,3 +1051,47 @@ Vim 是不会让这种事情发生的.
 \texttt{"xP} 或 \texttt{"xp}
 \end{vimcmdform}
 \marginpar{100}
+
+如果用户忘记自己使用了哪些寄存器, 可以执行命令:
+\begin{vimcode}
+:registers
+\end{vimcode}
+
+现在, 用户已经知道了如何在基本命令中使用寄存器, 那么接下来, 我们将会分别介绍每
+一种寄存器类型.
+
+\subsubsection{匿名寄存器}
+\label{subsubsec:the_unnamed_register}
+
+之所以称为匿名寄存器, 是因为它只能通过 \texttt{""} 来访问. 每当用户使用命令
+\texttt{y} 复制文本, 或者是用 \texttt{d} (删除), \texttt{c} (删除, 并进入插入
+模式), \texttt{s} (替换), \texttt{x} (剪切) 删除文本时, Vim 都会自动填充该寄存
+器. 匿名寄存器始终指向最近使用的寄存器, 也就是说, 即使用户在删除/复制文本时,
+指定了一个特定的寄存器, 匿名寄存器也可以正常工作. 比如说, 命令 \texttt{"xdd}
+会把被删除的文本同时存入寄存器 \texttt{x} 与匿名寄存器.
+
+如何用命令 \texttt{p} 或 \texttt{P} 粘贴文本时没有指定寄存器, 那么 Vim 就从匿
+寄存器获取被粘贴的文本.
+
+\subsubsection{行内删除寄存器}
+\label{subsubsec:the_small_delete_register}
+
+如果用户删除的文本小于一行, 那么 Vim 就把删除的文本存入一个特殊的寄存器 --- 行
+内删除寄存器 (small delete register, \texttt{"-}), 前提是用户没有指定其他的寄存
+器.
+
+\subsubsection{带编号的寄存器}
+\label{subsubsec:the_numberred_registers}
+
+带编号的寄存器包括 \texttt{"0}, \texttt{"1}, 一直到 \texttt{"9}. 带编号的寄存
+器分为两类, 第一类是寄存器 \texttt{"0}, 它总是包含了最近一次被删除 (\texttt{d}
+或 \texttt{x})/修改 (\texttt{c}) 的文本. 如果用户删除或修改了新的文本, 寄存器
+\texttt{"0} 的内容就会被新文本覆盖.
+
+类似于寄存器 \texttt{"0}, 寄存器 \texttt{"1} 也包含了最近一次被删除/修改的文本.
+然而, 如果用户指定了其他的寄存器, 又或者是文本的长度少于一行 (此时会自动使用
+行内删除寄存器), 那么寄存器 \texttt{"1} 的内容就不会被覆盖. 为了和 vi 兼容, 如
+果在删除/修改文本时, 使用下面这些移动命令: \verb'%', \verb'(', \verb')',
+\verb'{', \verb'}', \verb'`', \verb'/', \verb'?', \verb'n', \verb'N', 那就总是
+使用寄存器 \texttt{"1}, 如果文本少于一行, 还会把文本存入寄存器 \texttt{"-}.
+\marginpar{101}
