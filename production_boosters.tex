@@ -1098,3 +1098,47 @@ Vim 不会让这种事情发生.
 \verb'{', \verb'}', \verb'`', \verb'/', \verb'?', \verb'n', \verb'N', 那就总是
 使用寄存器 \texttt{"1}, 如果文本少于一行, 还会把文本存入寄存器 \texttt{"-}.
 \marginpar{101}
+
+和寄存器 \texttt{"0} 有所不同的是, 寄存器 \texttt{"1} 的内容并不会因为新内容的
+加入而被删除, 相反, 原有的内容会移到寄存器 \texttt{"2}. 如果寄存器 \texttt{"2}
+原来是满的, 那么寄存器 \texttt{"2} 的内容会先移到寄存器 \texttt{"3}, 以此类推,
+直到寄存器 \texttt{"9}. 寄存器 \texttt{"9} 的原有内容会由于新内容的加入而被覆
+盖掉. 通过这种方式, 寄存器 \texttt{"1} 到寄存器 \texttt{"9} 就可以记住删除/修
+改的历史内容, 即使用户删除了新的文本, 也可以通过这 9 个寄存器访问到早先被删除
+的文本.
+
+\subsubsection{命名寄存器}
+\label{subsubsec:the_named_registers}
+
+命名寄存器分为两种 --- \texttt{"a} 到 \texttt{"z} 与 \texttt{"A} 到
+\texttt{"Z}.
+
+如果使用的是小写字母的寄存器, 比如 \texttt{"a}, 那么它们就像普通的寄存器那样
+工作 --- 将删除或复制的文本存入该寄存器. 当有新的内容被添加进来时, 寄存器中原
+来的内容就会被覆盖掉.
+
+如果使用的是大写字母的寄存器, 比如 \texttt{"A}, 那么当有新的内容被添加进来时,
+原来的内容并不会被覆盖掉, 而是把新内容追加到原有内容的末尾.
+
+\begin{warning}
+    如果往选项 \texttt{coptions} 添加新值 \texttt{'>'}, 那么追加到大写字母寄
+    存器的新文本与旧文本之间将会以换行符分开, 给选项设置新值的命令是:
+    \texttt{:set coptions+='>'}.
+\end{warning}
+
+因为用户对命名寄存器具有完全的控制力, 因此用户应该最先熟悉如何使用它们.
+
+\subsubsection{只读寄存器}
+\label{subsubsec:the_read_only_registers}
+
+有四个只读寄存器, 它们的特殊之外在于只有 Vim 才有权限修改它们. 用户只能
+通过命令 \texttt{P}, \texttt{p} 或 \texttt{:put} 来访问它们的内容. 四个只读寄
+存器存放的内容有所不同:
+\begin{itemize}
+    \item \texttt{"%}: 该寄存器包含了当前活动缓冲区的文件名.
+    \item \texttt{"#}: 该寄存器包含了当前活动缓冲区上一次打开的文件, 也被称为
+        备选文件.
+    \item \texttt{".}: 该寄存器总是包含了最近一次插入的文本. 因此, 用户可以通
+        过执行 \texttt{".P} 来重复粘贴最近一次插入的文本.
+\end{itemize}
+\marginpar{102}
