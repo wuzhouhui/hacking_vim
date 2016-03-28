@@ -1136,5 +1136,47 @@ Vim 是不会让这种事情发生的.
         备选文件.
     \item \texttt{".}: 该寄存器总是包含了最近一次插入的文本. 因此, 用户可以通
         过执行 \texttt{".p} 来重复粘贴最近一次插入的文本.
-\end{itemize}
 \marginpar{102}
+    \item \texttt{":}: 该寄存器包含了用户上一次在命令行执行的命令. 如果用户重
+    复执行一条历史命令, 那么寄存器的内容就不会被覆盖. 为了使被执行的命令存入
+        该寄存器, 用户至少需要输入命令中的一个字符.
+\end{itemize}
+
+\subsubsection{选择与投递寄存器}
+\label{subsubsec:the_selection_and_drop_registers}
+
+这种寄存器类型包含了三个寄存器: \texttt{"*}, \texttt{"+} 与 \texttt{"\~}. 这 3
+个寄存器用于存放与检索用户在 Gvim 中选择的文本. 寄存器 \texttt{"*} 实际上访问
+的是窗口系统的剪贴板. 如果使用的操作系统是 Miscrosoft Windows, 那么用户在使用
+寄存器 \texttt{"*} 与 寄存器 \texttt{"+} 并不会感到有什么不同. 然而, 如果是
+Linux, 那就不一样了, 因为 X11 (Linux 的窗口系统) 的选择寄存器不止一个, 而是三
+个. 寄存器 \texttt{"+} 存放的是用户所选择的任意一段文本, 典型的选择方式是通过
+鼠标完成. 然而, 仅当用户显式地告诉 Vim 去复制文本时, 寄存器 \texttt{"*} 的内
+容才会改变.
+
+These registers can be accessed from any GUI application, and are part of the
+normal copy-paste procedure you know from your daily work.
+\footnote{TODO}
+
+最后一个寄存器 \texttt{"\~} 称为投递寄存器, 它包含了最近一次投递到 Vim 的文本.
+所以说, 如果用户在另一个程序中选择了一段文本, 并把它拖动到 Vim 的窗口中, 那么
+寄存器 \texttt{"\~} 就包含了这段文本.
+
+\subsubsection{黑洞寄存器}
+\label{subsubsec:the_black_hole_register}
+
+顾名思义, 这个寄存器就像黑洞那样工作 --- 进入该寄存器的任意内容都无法再被取
+回. 如果用户希望彻底删除某些文本, 也不想让任意一个寄存器记录被删除的文本, 此
+时就可以用黑洞寄存器. 黑洞寄存器的名字是 \texttt{"\_}, 使用寄存器的例子有
+\texttt{"\_x} 或 \texttt{"\_dd}. 如果用户试图读取刚刚写入到该寄存器的内容, 将
+会发现, 无论如何尝试, 都不会返回任何内容.
+
+\subsubsection{搜索模式寄存器}
+\label{subsubsec:search_pattern_register}
+
+无论何时使用命令 \texttt{/}, 被搜索的模式都会自动存入搜索模式寄存器. 寄存器
+的名字 \texttt{"/} 非常容易记忆, 因为它就是在搜索命令 \texttt{/} 前加上了双
+引号, 表明这是一个寄存器. 如果打开了选项 \texttt{hlsearch}, Vim 就会根据寄存
+器中的内容来高亮文本. 用户可以利用这个特点, 修改寄存器的内容, 从而高亮显示
+其他文本. 在不执行搜索的前提下修改寄存器内容的方法是:
+\marginpar{103}
