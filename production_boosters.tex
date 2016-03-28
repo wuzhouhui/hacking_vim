@@ -1138,14 +1138,14 @@ Vim 是不会让这种事情发生的.
         过执行 \texttt{".p} 来重复粘贴最近一次插入的文本.
 \marginpar{102}
     \item \texttt{":}: 该寄存器包含了用户上一次在命令行执行的命令. 如果用户重
-        复一条历史命令, 那么寄存器的内容就不会被覆盖. 为了使被执行的命令存入
+    复执行一条历史命令, 那么寄存器的内容就不会被覆盖. 为了使被执行的命令存入
         该寄存器, 用户至少需要输入命令中的一个字符.
 \end{itemize}
 
 \subsubsection{选择与投递寄存器}
 \label{subsubsec:the_selection_and_drop_registers}
 
-这种寄存器类型包含了三个寄存器: \texttt{"*}, \texttt{"+} 与 \texttt{"~}. 这 3
+这种寄存器类型包含了三个寄存器: \texttt{"*}, \texttt{"+} 与 \texttt{"\~}. 这 3
 个寄存器用于存放与检索用户在 Gvim 中选择的文本. 寄存器 \texttt{"*} 实际上访问
 的是窗口系统的剪贴板. 如果使用的操作系统是 Miscrosoft Windows, 那么用户在使用
 寄存器 \texttt{"*} 与 寄存器 \texttt{"+} 并不会感到有什么不同. 然而, 如果是
@@ -1158,9 +1158,9 @@ These registers can be accessed from any GUI application, and are part of the
 normal copy-paste procedure you know from your daily work.
 \footnote{TODO}
 
-最后一个寄存器 \texttt{"~} 称为投递寄存器, 它包含了最近一次投递到 Vim 的文本.
+最后一个寄存器 \texttt{"\~} 称为投递寄存器, 它包含了最近一次投递到 Vim 的文本.
 所以说, 如果用户在另一个程序中选择了一段文本, 并把它拖动到 Vim 的窗口中, 那么
-寄存器 \texttt{"~} 就包含了这段文本.
+寄存器 \texttt{"\~} 就包含了这段文本.
 
 \subsubsection{黑洞寄存器}
 \label{subsubsec:the_black_hole_register}
