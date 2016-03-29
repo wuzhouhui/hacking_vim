@@ -1183,4 +1183,16 @@ normal copy-paste procedure you know from your daily work.
 引号, 表明这是一个寄存器. 如果打开了选项 \texttt{hlsearch}, Vim 就会根据寄存
 器中的内容来高亮文本. 用户可以利用这个特点, 修改寄存器的内容, 从而高亮显示
 其他文本. 在不执行搜索的前提下修改寄存器内容的方法是:
+\footnote{原文是 \texttt{:let "/ = }\textit{PATTERN}, 应该有误. --- 译者注}
 \marginpar{103}
+\begin{vimcmdform}
+    \texttt{:let @/="}\textit{pattern}\texttt{"}
+\end{vimcmdform}
+命令中的 \textit{pattern} 是 \texttt{hlsearch} 将要高亮显示的字符串.
+
+\subsubsection{表达式寄存器}
+\label{subsubsec:the_expression_register}
+
+Vim 的最后一种寄存器类型是表达式寄存器, 然而, 称它为寄存器并不恰当, 因为它并不
+像其他通常的寄存器那样存放文本, 用户甚至不能写该寄存器. 取而代之的是, 它允许用
+户访问命令行, 对表达式求值并返回运算结果, 就好像它一开始就存放在寄存器中似的.
