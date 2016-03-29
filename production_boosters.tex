@@ -168,12 +168,12 @@ iabbrev for( for(!cursor!;<+++>;<+++>){<cr><+++><cr>}<Esc>
 \end{vimcode}
 (上面的命令都在同一行上)
 
-现在, 无论何时输入 \texttt{for(}, Vim 都会自动插入一段 \texttt{for} 循环, 然后 
+现在, 无论何时输入 \texttt{for(}, Vim 都会自动插入一段 \texttt{for} 循环, 然后
 把光标移动到占位符 \texttt{!cursor!} (当光标移过来时, 占位符上原来的内容会自动
 被移除). 接下来, 你就可以方便地填写 \texttt{for} 循环的参数, 并用 \key{Ctrl+j}
 跳转到下一个参数的位置.
 
-也许你已经知道, 许多编程语言都有相同的主要结构 (比如 \texttt{for} 循环), 但是 
+也许你已经知道, 许多编程语言都有相同的主要结构 (比如 \texttt{for} 循环), 但是
 它们之间的差异导致了无法使用同一个模式模版. 让我们回过头来看一下手上已有的东西,
 看看是否可以让它们识别文件类型.
 
@@ -227,7 +227,7 @@ endfunction
 snipMate 可以让用户在不需要了解 Vim 脚本的前提下, 为自己的文件格式定义高级的
 snippet.
 
-假设用户想为 \texttt{for} 循环创建一个 snippet (在前面的一节里我们用的是 
+假设用户想为 \texttt{for} 循环创建一个 snippet (在前面的一节里我们用的是
 \texttt{iabbrev}),  那就这样做:
 \begin{vimcode}
 snippet for
@@ -264,7 +264,7 @@ snippet 被插入之后, 它把光标放在了第 1 个 \texttt{i} 的位置, �
 
 snipMate 系统通过查找由 \texttt{\$\{NUMBER:INITIAL\_VALUE\}} 创建的特殊标记来进行
 工作. 标记中的 \texttt{NUMBER} 指出了当你按下 \key{Tab} 时, 将要跳转到的序列.
-如果 \texttt{NUMBER} 是 1, 那么光标会首先处在这个位置上, 如果 \texttt{NUMBER} 
+如果 \texttt{NUMBER} 是 1, 那么光标会首先处在这个位置上, 如果 \texttt{NUMBER}
 是 3, 那么它就是按下两次 \key{Tab} 后光标所在的位置, 以此类推.
 \texttt{INITIAL\_VALUE} 是在你修改 snippet 之前, 首先插入到 snippet 中的文本.
 比如 \texttt{\$\{1:i\}} 把 \texttt{i} 作为文本插入到 snippet 中, 并首先把光标
@@ -280,7 +280,7 @@ snipMate 系统通过查找由 \texttt{\$\{NUMBER:INITIAL\_VALUE\}} 创建的特
 
 用户还可以在 snipMate 中找到更多的惊喜. 你将会发现, snipMate 已经为许多常见
 的文件格式准备好了 snippet 脚本, 包括 \texttt{.c}, \texttt{.php},
-\texttt{.perl}, \texttt{.java}, \texttt{.html}, \texttt{.tex}, 甚至还包括 Vim 
+\texttt{.perl}, \texttt{.java}, \texttt{.html}, \texttt{.tex}, 甚至还包括 Vim
 脚本.
 \marginpar{80}
 
@@ -305,7 +305,7 @@ Tag list 就像是程序员的字典. Tag list 实际上是一个包含了所有
     \item Ptags: 用于 Perl 文件
 \end{itemize}
 
-因为 Exuberant Ctags (简称 Ctags) 使用得最为广泛, 支持的语言也是最多的, 因此 
+因为 Exuberant Ctags (简称 Ctags) 使用得最为广泛, 支持的语言也是最多的, 因此
 在下面的例子里我们用它来生成 tag list.
 
 我们以一个小项目来进行讲解, 这个项目包含了 3 个 C 文件:
@@ -334,8 +334,8 @@ ctags *.c *.h
 \end{vimcode}
 现在, Vim 已经知道了 \texttt{tags} 文件的存在, 接下来, 你就可以在 Vim  使用它.
 
-在 \texttt{main.c}, 我们调用了 \texttt{myfunctions.c} 中定义的函数. 假设我们 
-知道有一个函数叫作 \texttt{calcValue}, 但却不知道该函数接收什么样的参数, 比较 
+在 \texttt{main.c}, 我们调用了 \texttt{myfunctions.c} 中定义的函数. 假设我们
+知道有一个函数叫作 \texttt{calcValue}, 但却不知道该函数接收什么样的参数, 比较
 好的做法是看一下函数是如何定义的, 这时候就可以使用 \texttt{tags} 文件提供的功
 能. 假设用户已经在源代码文件中写下了:
 \begin{vimcode}
@@ -357,7 +357,7 @@ myvalue = calcValue(
     如果用的是 Gvim, 还可以通过鼠标来跳转到关键词的定义: 按住 \key{Ctrl} 键
     的同时, 按下鼠标左键.
 \end{warning}
-用户可以把在 tag 间的跳转当成栈操作. 当跳转到一个关键词时, 相当于把关键词的 tag 
+用户可以把在 tag 间的跳转当成栈操作. 当跳转到一个关键词时, 相当于把关键词的 tag
 压栈, 从 tag 返回时, 相当于把栈顶的 tag 弹出栈.
 \marginpar{82}
 使用下面这个命令查看当前的栈状态:
@@ -495,7 +495,7 @@ Taglist 不仅可以用来查找函数与变量的定义, 还可以用来查找�
 :set dictionary+=/path/to/dictionary/file/with/words
 \end{vimcode}
 现在, Vim 已经事先知晓了大量的单词, 用户可以利用这些单词进行自动补全. 不过,
-有一些地方会不一样. 因为补全时被搜索的单词并非在某个打开的缓冲区中, 而是 
+有一些地方会不一样. 因为补全时被搜索的单词并非在某个打开的缓冲区中, 而是
 在选项 \texttt{dictionary} 所配置的字典文件中, 所以需要用另一个快捷键:
 \key{Ctrl+x+k}.
 \marginpar{86}
@@ -575,8 +575,8 @@ function! CompleteEmails(findstart, base)
 \end{vimcode}
 \marginpar{88}
 \begin{vimcode}
-		      " show names in list, but insert email address 
-		      call add(res, {'word': contactinfo[1], 
+		      " show names in list, but insert email address
+		      call add(res, {'word': contactinfo[1],
                      \ 'abbr': contactinfo[0].' <'.contactinfo[1].'>',
                  \ 'icase': 1} )
 	      endif
@@ -614,7 +614,7 @@ function! CompleteEmails(findstart, base)
 \begin{vimcode}
 "Kim Schulz <kim@schulz.dk>"
 \end{vimcode}
-无论何时写下一些字母,比如 \texttt{ki}, 然后按下 \key{Ctrl+x Ctrl+o}, Vim 就会 
+无论何时写下一些字母,比如 \texttt{ki}, 然后按下 \key{Ctrl+x Ctrl+o}, Vim 就会
 以列表的形式, 弹出所有的, 以 \texttt{ki} 开始的名字.
 \marginpar{89}
 \begin{center}
@@ -637,8 +637,8 @@ function! CompleteEmails(findstart, base)
 :help ins-completion
 \end{vimcode}
 这个函数可以让用户使用 \key{Tab} 键来补全单词, 而非 \key{Ctrl+n}. 函数可以自动
-区分是应该插入一个制表符, 还是应该做补全操作. 如果用户是在一行的开始, 或者是 
-某个空白符的后面按下 \key{Tab} 键, 那就是插入一个制表符. 在其他的情况下, 函数 
+区分是应该插入一个制表符, 还是应该做补全操作. 如果用户是在一行的开始, 或者是
+某个空白符的后面按下 \key{Tab} 键, 那就是插入一个制表符. 在其他的情况下, 函数
 会试图完成已知单词的补全.
 
 我们借用帮助系统中的 \texttt{CleverTab} 函数, 并对它加以扩展, 使得它可以从下
@@ -675,7 +675,7 @@ endfunction
 inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 \end{vimcode}
 
-把函数的代码与按键绑定添加到 \texttt{vimrc} 中, 然后你就可以用 \key{Tab} 键来 
+把函数的代码与按键绑定添加到 \texttt{vimrc} 中, 然后你就可以用 \key{Tab} 键来
 完成各种类型的补全.
 
 按下 \key{Tab} 键进行补全时, 函数检查此时是否是要插入一个制表符. 如果不是, 那
@@ -738,7 +738,7 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
 <tr><td>Oct 8 21:23:34</td><td>laptopia</td><td>kernel:</td><td>ACPI...</td><tr>
 \end{vimcode}
 
-用户可以选择一行一行地编辑文件, 直到最后一行. 但也可以这样做, 先编辑一行, 并把 
+用户可以选择一行一行地编辑文件, 直到最后一行. 但也可以这样做, 先编辑一行, 并把
 编辑命令录制下来, 然后再把录制下来的命令应用到剩下的每一行. 最开始的编辑命令可
 以是下面这些 (假设光标原来是在第一行的开始):
 \begin{center}
@@ -771,7 +771,7 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
 现在我们已经准备好了完整的宏, 光标的位置也已就位, 这意味着我们现在可以重复地
 执行宏, 并且在每次执行完宏后, 光标都会处在就绪的位置下.
 
-用户可以用 \texttt{@a} 来回放存放在寄存器 \texttt{a} 中的宏, 除此之外, 用户还 
+用户可以用 \texttt{@a} 来回放存放在寄存器 \texttt{a} 中的宏, 除此之外, 用户还
 需要做的就是添加 HTML 的头部与尾部信息, 这很简单.
 \marginpar{93}
 这只是宏应用的一个简单示例, 如果读者认真回忆一下, 可能会想到更多的, 可以用宏
@@ -826,7 +826,7 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
 \end{warning}
 
 使用视图时, 你可以同时拥有多个不同的视图. 如果每个视图都保存到当前工作目录下, 那
-么不用多长时间, 工作目录就会被视图文件填满. 为了避免这个问题, 可以用下面的命令 
+么不用多长时间, 工作目录就会被视图文件填满. 为了避免这个问题, 可以用下面的命令
 告诉 Vim, 应该把视图文件放到哪个目录下:
 \begin{vimcode}
 :set viewdir=$HOME/.vim/views
@@ -1009,7 +1009,7 @@ Vim 是不会让这种事情发生的.
     \item 寄存器: 寄存器是一种带有多个缓冲区的高级剪贴板, 可以用来存放被剪切,
         删除或复制的文本.
 \marginpar{99}
-    \item 撤消分支: 撤消分支是 Vim 版本控制的一种简单形式. 利用撤消分支, 用户 
+    \item 撤消分支: 撤消分支是 Vim 版本控制的一种简单形式. 利用撤消分支, 用户
         可以把文件回滚到某个特定的时刻, 或者是回滚一定的次数. 如果用户对某些
         撤消操作感到后悔, 还可以回过头来找到包含这些修改的撤消分支.
 \end{itemize}
@@ -1045,7 +1045,7 @@ Vim 是不会让这种事情发生的.
 \end{vimcode}
 
 现在, 用户已经在寄存器 \texttt{"x} 中存放了一段文本, 并且想要把这段文本粘贴到
-正式文本中, 可以用命令 \texttt{P} (粘贴在光标位置之前) 或 \texttt{p} (粘贴在 
+正式文本中, 可以用命令 \texttt{P} (粘贴在光标位置之前) 或 \texttt{p} (粘贴在
 光标位置之后), 但在粘贴之前, 我们要先指定寄存器:
 \begin{vimcmdform}
 \texttt{"xP} 或 \texttt{"xp}

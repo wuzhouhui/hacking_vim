@@ -15,11 +15,11 @@
 vi 和 Vim 是同一个程序).
 
 在九十年代后期, vi 在编辑器之战中所输掉的劣势, 重新又被 Vim 给赢了回来,
-编辑器之战指的是 vi 和 Emacs 之间的斗争. Bram 为 Vim 扩充了许多新特性, 
+编辑器之战指的是 vi 和 Emacs 之间的斗争. Bram 为 Vim 扩充了许多新特性,
 而这些特性原本被  Emacs 党利用, 作为论证 Vim/vi 不如 Emacs 的论据, 即
 使如此, Bram 仍然没有忘记当初人们开发 vi 的初衷.
 
-如今, Vim 已经是一个功能丰富, 定制性强, 受人欢迎的编辑器. 它支持超过 200 
+如今, Vim 已经是一个功能丰富, 定制性强, 受人欢迎的编辑器. 它支持超过 200
 种语言的语法高亮, 自动补全, 折叠, 撤消/重做, 多重缓冲区/窗口/标签, 以及
 其他特性.
 
@@ -27,7 +27,7 @@ vi 和 Vim 是同一个程序).
 \begin{itemize}
     \item 如何获取与安装 Vim 编辑器
     \item Vim 编辑器家族
-    \item Vim 的发布许可证 
+    \item Vim 的发布许可证
     \item 本书使用的公共术语
 \end{itemize}
 现在, 让我们正式开始.
@@ -64,11 +64,11 @@ vi 最早由 Bill Joy 于 1976 年发布, Vim 只是 vi 众多的衍生版之一
 \marginpar{9}
 \subsection{vi}
 \label{subsec:vi}
-vi 是 Vim 家族的原始祖先, 由 Bill Joy 在 1976 年开发, 系统平台是 
+vi 是 Vim 家族的原始祖先, 由 Bill Joy 在 1976 年开发, 系统平台是
 \newterm{BSD} (\newterm{Berkeley Software Distribution}) 的一个早期版本.
-vi 是当时最流行的编辑器 \newterm{ex} 的扩展版本. 而 ex 则是 Unix 编辑器 
+vi 是当时最流行的编辑器 \newterm{ex} 的扩展版本. 而 ex 则是 Unix 编辑器
 \newterm{ed} 的扩展版本. ``vi'' 的意思是 \newterm{visual in ex}, 正如这个
-名字所表示的那样, vi 仅仅是一个命令, 命令的作用是以可视化模式启动 ex 
+名字所表示的那样, vi 仅仅是一个命令, 命令的作用是以可视化模式启动 ex
 编辑器.
 
 vi 是最早引入\newterm{模式} (\newterm{modality}) 概念的编辑器之一.
@@ -80,7 +80,7 @@ vi 是最早引入\newterm{模式} (\newterm{modality}) 概念的编辑器之一
 
 自从第一个版本发布 之后, vi 就没有发生过比较大的变化, 但这并不妨碍它成
 为 Unix 社区最流行的编辑器之一, 这主要是因为 \newterm{SUS} (\newterm{Single
-Unix Specification}) 把 vi 列为 Unix 系统的必备软件之一 --- 只有符合 
+Unix Specification}) 把 vi 列为 Unix 系统的必备软件之一 --- 只有符合
 SUS 的系统才能称之为 Unix 系统.
 
 \subsection{STEVIE}
@@ -105,7 +105,7 @@ SUS 的系统才能称之为 Unix 系统.
 
 \subsection{Elvis}
 \label{subsec:elvis}
-STEVIE 是比较流行的编辑器之一, 但是它还有许多 bug, 限制也比较多. 当时 
+STEVIE 是比较流行的编辑器之一, 但是它还有许多 bug, 限制也比较多. 当时
 还在使用 Minix 的 Steve Kirkendall 注意到了 STEVIE 的一个缺点: 在编辑文件
 时, 它会把整个文件读取到内存中, 对 Minix 来说这并不是一个很明智的做法.
 于是 Steve 决定修改 STEVIE, 让编辑器把一个文件当做缓冲区使用, 而不是
@@ -134,13 +134,13 @@ Unix, MS Windows (控制台程序, 或带有 GUI 的 WinElvis), 以及 OS/2.
 
 \subsection{nvi}
 \label{subsec:nvi}
-\newterm{nvi}, 全称 \newterm{new vi}, 是 AT\&T 与 加州大学伯克利分校 
+\newterm{nvi}, 全称 \newterm{new vi}, 是 AT\&T 与 加州大学伯克利分校
 \newterm{Computer Science Research Group} (\newterm{CSRG}) 授权争论的
 结果. vi 使用了 ed 的源代码, 而 ed 使用了 AT\&T System V Unix 授权,
 所以 CSRG 无法使用 BSD 授权来发布 vi, 于是他们决定发布 vi 的替代版本.
 \marginpar{11}
 
-新 vi 的开发人员是 Keith Bostic. vi 克隆了已经免费的 Elvis, 但是 
+新 vi 的开发人员是 Keith Bostic. vi 克隆了已经免费的 Elvis, 但是
 Keith 希望新的编辑器和原始的 vi 尽量保持接近, 于是他采用了 Elvis 的代码,
 并开发出一个和 vi 完全兼容的衍生版 --- nvi. 在原始  vi 的功能集
 中, 只有 \newterm{打开模式} (\newterm{Open Mode}) 和 \newterm{lisp 编辑}
@@ -172,13 +172,13 @@ Keith Bostic 现在依然在维护 nvi 的源代码, 但是开发量已经少了
 发布了 Vim 的第 1 版之后, 这个编辑器已经成长为世界上功能最丰富的编辑器
 之一.
 \marginpar{12}
-Vim 的第 1 版和 Elvis 一样, 都是基于 STEVIE 的源代码. 然而, Bram 发布 
+Vim 的第 1 版和 Elvis 一样, 都是基于 STEVIE 的源代码. 然而, Bram 发布
 的 Vim 只支持 Amiga 平台, 在当时, Amiga 是家庭计算机中最流行的平台之一.
 那时候 Vim 还只是 \newterm{Vi IMitation} 的缩写形式, 事实上也的确是这
 样, 因为当时仅仅希望 Vim 能尽量模拟 vi 的功能.
 
 可是就在一年之后, 到了 1992 年, Bram 把 Vim 移值到了 Unix 平台, 这样做
-的结果是 Vim 已经不仅仅是 vi 的衍生版, 而是变成了一个强有力的竞争对手. Vim 
+的结果是 Vim 已经不仅仅是 vi 的衍生版, 而是变成了一个强有力的竞争对手. Vim
 的开发工作非常迅速, 仅用了很短的时间, Vim 就拥有了许多原始 vi 不支持
 的特性. 也正是由于这个原因, Vim 变成了 Vi IMproved 的缩写形式.
 
@@ -227,8 +227,8 @@ MicroEmacs 并没有具备 Emacs 编辑器的全部特性, 但是它支持冗长
 以及在 多个窗口中同时编辑多个文件. 这些特性 vi 并不具备, 但是许多程序
 员却很 需要它们.
 
-为了把 MicroEmacs 改造成类 vi 编辑器, 开发人员做了大量的工作. 在这过程中 
-陆续有几位新成员加入到开发团队中, 其中就包括 Thomas E. Dickey, 他在 1992 
+为了把 MicroEmacs 改造成类 vi 编辑器, 开发人员做了大量的工作. 在这过程中
+陆续有几位新成员加入到开发团队中, 其中就包括 Thomas E. Dickey, 他在 1992
 参与进来, 他为 Vile 添加了许多新特性, 也修复了很多 bug.
 
 1994 年, Kevin Buettner 参与了进来, 着手开发 Vile 的 GUI 版本 ---
@@ -259,7 +259,7 @@ Vile 支持的平台包括 Unix, Linux, BeOS, OS/2, VMS, 和 MS Windows,
 \label{subsec:compatibility}
 虽然所有的 vi 衍生版在某种程度上都试图表现得像 vi 一样, 但是其中大多数
 其实在朝着完全不同的方向发展. 这就意味着, 虽然它们都支持一些共同的功能,
-比如语法高亮, 但是这并不要求一定要用同样的方法来实现. 因此, 如果有一个 
+比如语法高亮, 但是这并不要求一定要用同样的方法来实现. 因此, 如果有一个
 Vim 的语法文件, 那它就不能被 Elvis 所使用.
 
 即使是那些起源于 vi 的特性, 其实现方法也不一定相同. 有些衍生版所实现
@@ -312,7 +312,7 @@ Vim 的开发人员 --- Bram Moolenaar --- 选择了一种称为慈善授权的�
 除此之外, 你还可以访问 \url{http://www.vim.org/sponsor/}, 来获取更多的
 关于如何赞助 Vim 项目的资料.
 
-如果你是一名 Vim 赞助人, 就有权利投票把哪些新特性加入到 Vim 中. 所以, 
+如果你是一名 Vim 赞助人, 就有权利投票把哪些新特性加入到 Vim 中. 所以,
 赞助不仅可以帮助他人, 还可以影响 Vim 的演变.
 
 \section{公共术语}
@@ -337,14 +337,14 @@ Vim 的开发人员 --- Bram Moolenaar --- 选择了一种称为慈善授权的�
 \marginpar{16}
 \section{小结}
 \label{sec:getting_started_with_vim_summary}
-这一章简单地介绍了 Vim, 以及本书所关注的内容. Vim 只是历史悠久的 Unix 
-vi 编辑器的众多衍生版之一, 为了让读者对 vi 家族有一个感性的认识, 我们 
+这一章简单地介绍了 Vim, 以及本书所关注的内容. Vim 只是历史悠久的 Unix
+vi 编辑器的众多衍生版之一, 为了让读者对 vi 家族有一个感性的认识, 我们
 介绍了几种比较著名的 vi 衍生版. 它们的历史, 以及和 vi 之间的联系我们
 只进行了简单的介绍, 另外我们还了解到, 虽然这些衍生版都试图向 vi 靠拢,
 但它们之间并非完全兼容.
 
 接着我们简单地介绍了一些关于慈善授权的概念, 以及作者如何利用 Vim 来筹集
-善款, 从而帮助乌干达的儿童. 最后, 我们介绍了书中比较重要的几个术语, 
+善款, 从而帮助乌干达的儿童. 最后, 我们介绍了书中比较重要的几个术语,
 并解释了本书书名 ``Hacking Vim'' 的意义.
 
 现在, 你可以继续往下阅读, 学习如何定制 Vim 编辑器.
