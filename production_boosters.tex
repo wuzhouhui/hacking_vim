@@ -1183,4 +1183,43 @@ normal copy-paste procedure you know from your daily work.
 引号, 表明这是一个寄存器. 如果打开了选项 \texttt{hlsearch}, Vim 就会根据寄存
 器中的内容来高亮文本. 用户可以利用这个特点, 修改寄存器的内容, 从而高亮显示
 其他文本. 在不执行搜索的前提下修改寄存器内容的方法是:
+\footnote{原文是 \texttt{:let "/ = }\textit{PATTERN}, 应该有误. --- 译者注}
 \marginpar{103}
+\begin{vimcmdform}
+    \texttt{:let @/="}\textit{pattern}\texttt{"}
+\end{vimcmdform}
+命令中的 \textit{pattern} 是 \texttt{hlsearch} 将要高亮显示的字符串.
+
+\subsubsection{表达式寄存器}
+\label{subsubsec:the_expression_register}
+
+Vim 的最后一种寄存器类型是表达式寄存器, 然而, 称它为寄存器并不恰当, 因为它并不
+像其他通常的寄存器那样存放文本, 用户甚至不能写该寄存器. 取而代之的是, 它允许用
+户访问命令行, 对表达式求值并返回运算结果, 就好像它一开始就存放在寄存器中似的.
+
+访问表达式寄存器的方式是输入它的名字 \texttt{"=}. 输入完等于号后, 光标自动跳转
+到命令行窗口, 如果命令行窗口的第一个字符是等于号, 则说明用户现在工作在表达式寄
+存器. 现在用户可以输入待求值的表达式, 并以回车键结束, 之后, 可以用命令
+\texttt{p} 或 \texttt{:put} 把运算结果粘贴到正文中. 如果不想对已输入的表达式
+进行求值, 则按 \Key{Esc} 结束. 如果用户在按回车键之前没有输入表达式, Vim 就会
+使用上一次输入的表达式. 表达式必须是有效的, 而且应该返回一个字符串. 如果表达式
+的结果是数值, Vim 会自动把它转换成字符串. 如果用户无法确定运算结果的类型, 可以
+使用函数 \texttt{string()} 把结果转换成字符中再返回.\footnote{对表达式寄存器更
+方便的用法是: 在插入模式下, 按 \texttt{<c-r>=} (按组合键 \textit{Ctrl+R}, 再
+按等号), 接着输入待求值的表达式, 输入完按回车键, 运算结果就会自动插入到正文中.
+--- 译者注}
+
+\begin{warning}
+    执行 \texttt{:help expression}, 查看如何输入有效的表达式.
+\end{warning}
+
+\subsection{撤消分支}
+\label{subsec:using_undo_branching}
+
+用户应该都执行过对已修改文本的撤消操作. 通常情况下, 执行撤消操作的方式是按工具
+栏的撤消按钮, 或者是组合键, 这样, 最后一次对文本的修改就会被撤消.
+
+在这一方面, Vim 走得更远一些, 而且新增了对分支的支持.
+
+在这一节, 我们将介绍什么是撤消分支, 以及如何在日常的工作中使用它.
+\marginpar{104}
