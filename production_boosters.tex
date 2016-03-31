@@ -1232,9 +1232,9 @@ Vim 的最后一种寄存器类型是表达式寄存器, 然而, 称它为寄存
 当用户撤消了四次修改, 并添加了一个新修改时, Vim 会在撤消分支树上添加一条新分
 支, 此时的撤消分支树看起来就像:
 \begin{vimcode}
-                 edit(reverted)-edit(reverted)-edit(reverted)-edit(reverted)
-                 /
-edit-edit-edit-edit-edit(spelling correation)
+        A-B-C-D
+        /
+    E-F-G-H
 \end{vimcode}
 
 其中一条分支包含了四个已经被撤消的修改, 另一条分支则包含了最近几次的修改 (拼
@@ -1242,7 +1242,7 @@ edit-edit-edit-edit-edit(spelling correation)
 支. 如果用户在撤消某些操作后, 又作了新的修改, 撤消树就会新增一条分支. 到了最
 后, 用户将会看到一棵长满分支的撤消树, 它包含了所有的撤消与编辑操作.
 
-下面这个命令可以查看当前存着的撤消分支的概览:
+下面这个命令可以查看当前存在着的撤消分支的概览:
 \begin{vimcode}
 :undolist
 \end{vimcode}
