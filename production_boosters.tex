@@ -1265,3 +1265,52 @@ number  changes time ~
 \end{vimcmdform}
 命令中的 \textit{n} 是修改号.
 \marginpar{105}
+
+可以用下面的命令在修改列表中后退:
+\begin{vimcmdform}
+    \texttt{g-}(如果是前进的话, 则是 \texttt{g+})
+\end{vimcmdform}
+
+那么, \texttt{g-} 与 \texttt{u} 之间有什么区别? 让我们通过例子来说明.
+
+在 Vim 的编辑区中输入下面的文本:
+\begin{vimcode}
+My name is Jim
+\end{vimcode}
+把光标移动到跳到字母 \texttt{J}, 按三次 \texttt{x} 来删除名字 \texttt{Jim},
+文本变成了:
+\begin{vimcode}
+My name is Jim
+My name is im
+My name is m
+My name is 
+\end{vimcode}
+现在, 用户突然意识到正确的名字是 \texttt{Jimmy}, 于是他撤消了修改:
+\begin{vimcode}
+My name is m
+My name is im
+My name is Jim
+\end{vimcode}
+撤消之后, Vim 中已经有了一条删除名字 \texttt{Jim} 的撤消分支. 现在把名字改为
+\texttt{Jimmy}:
+\begin{vimcode}
+My name is Jimm
+My name is Jimmy
+\end{vimcode}
+但是, 用户真正的名字其实是 \texttt{Kim}, 而非 \texttt{Jimmy}. 因为 \texttt{Jim}
+已经和 \texttt{Kim} 很接近了, 所以用命令 \texttt{u} 回滚, 并把 \texttt{J} 改成
+\texttt{K}:
+\begin{vimcode}
+My name is Jimm
+My name is Jim
+My name is im
+My name is Kim
+\end{vimcode}
+把 \texttt{Jim} 回滚到 \texttt{Jimmy} 后, 会新增一条撤消分支.
+
+现在, 用命令 \texttt{g-} 在修改列表中后退:
+\begin{vimcode}
+My name is Kim
+My name is im
+\end{vimcode}
+\marginpar{106}
