@@ -1337,14 +1337,15 @@ My name is Jim
 
 简单来说, 撤消分支使得用户可以访问到文本曾经经历过的任何状态.
 
-除了在分支中一步一步地回退之外, 还可以直接跳转到某个时间点. 为了完成这个功能,
+除了在分支中一步一步地回退之外, 还可以直接跳转到某个时间点的文本状态. 为了完
+成这个功能,
 Vim 提供了两个命令, 分别用来在撤消历史中向前跳转和向后跳转, 命令的执行形式是:
 \begin{vimcmdform}
-\texttt{:earlier }\textit{N}\texttt{s}
-\texttt{:earlier }\textit{N}\texttt{m}
-\texttt{:earlier }\textit{N}\texttt{h}
-\texttt{:later }\textit{N}\texttt{s}
-\texttt{:later }\textit{N}\texttt{m}
+\texttt{:earlier }\textit{N}\texttt{s} \\
+\texttt{:earlier }\textit{N}\texttt{m} \\
+\texttt{:earlier }\textit{N}\texttt{h} \\
+\texttt{:later }\textit{N}\texttt{s} \\
+\texttt{:later }\textit{N}\texttt{m} \\
 \texttt{:later }\textit{N}\texttt{h}
 \end{vimcmdform}
 命令中的 \textit{N} 表示跳过的秒数(\texttt{s}), 分种数 (\texttt{m}), 或小时数
