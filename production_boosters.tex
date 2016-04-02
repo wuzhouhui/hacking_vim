@@ -1310,3 +1310,45 @@ My name is Kim
 My name is im
 \end{vimcode}
 \marginpar{106}
+(从这里开始, Vim 切换到一条新的分支)
+\begin{vimcode}
+My name is Jim
+My name is Jimm
+My name is Jimmy
+\end{vimcode}
+(从这里开始, Vim 切换到一条新的分支)
+\begin{vimcode}
+My name is 
+My name is m
+My name is im
+My name is Jim
+\end{vimcode}
+如果用的是命令 \texttt{u}, 则变化过程是:
+\begin{vimcode}
+My name is Kim
+My name is im
+My name is Jim
+My name is Jimm
+My name is Jimmy
+My name is Jim
+\end{vimcode}
+可以看到, 命令 \texttt{u} 只是单纯地撤消施加上文本上的修改, 并不理会分支的变化.
+而命令 \texttt{g-} 则会按照分支来进行撤消.
+
+简单来说, 撤消分支使得用户可以访问到文本曾经经历过的任何状态.
+
+除了在分支中一步一步地回退之外, 还可以直接跳转到某个时间点的文本状态. 为了完
+成这个功能,
+Vim 提供了两个命令, 分别用来在撤消历史中向前跳转和向后跳转, 命令的执行形式是:
+\begin{vimcmdform}
+\texttt{:earlier }\textit{N}\texttt{s} \\
+\texttt{:earlier }\textit{N}\texttt{m} \\
+\texttt{:earlier }\textit{N}\texttt{h} \\
+\texttt{:later }\textit{N}\texttt{s} \\
+\texttt{:later }\textit{N}\texttt{m} \\
+\texttt{:later }\textit{N}\texttt{h}
+\end{vimcmdform}
+命令中的 \textit{N} 表示跳过的秒数(\texttt{s}), 分种数 (\texttt{m}), 或小时数
+(\texttt{h}). 命令 \texttt{:undolist} 可以显示分支上最后一次修改发生的时间, 通
+过这个信息, 用户可以大致计算出需要跳过的时间长度.
+\marginpar{107}
