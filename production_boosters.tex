@@ -1352,3 +1352,40 @@ Vim 提供了两个命令, 分别用来在撤消历史中向前跳转和向后�
 (\texttt{h}). 命令 \texttt{:undolist} 可以显示分支上最后一次修改发生的时间, 通
 过这个信息, 用户可以大致计算出需要跳过的时间长度.
 \marginpar{107}
+熟悉撤消分支的使用可能会需要点时间, 可是一旦上手之后, 它会对用户的日常工作产生
+极大的帮助.
+
+\section{折叠}
+\label{sec:folding}
+
+一般来说, 编辑大型文件时 (尤其是源代码文件), 用户很难获取一份好的概览. Vim 提
+供了一个特性用来帮助用户解决这个问题 --- 折叠文本块. 在这一节, 我们将会介绍如
+利用折叠来更方便地获取文本内容的概览.
+
+折叠指的是将一个范围内的行 (比如一个函数的定义) 折叠成一行, 但不丢失文本内容.
+比如我们想折叠下面的文本:
+\begin{vimcode}
+function myFunction() {
+    var a = 1;
+    var b = 0;
+    var c = a + b;
+    return c;
+}
+\end{vimcode}
+折叠后的效果类似于:
+\begin{vimcode}
++-- 6 lines: function myFunction() { ----------------------------
+\end{vimcode}
+在这个示例中, 折叠是根据代码的语法, 用花括号来判断被折叠的范围. Vim 可以根据
+下面的信息来折叠文本:
+\begin{itemize}
+    \item 手动折叠: 由用户手动标出被折叠的范围 (见 \texttt{:help fold-manual})
+    \item 缩进折叠: 根据缩进来折叠文本 (见 \texttt{:help fold-indent})
+    \item 表达式折叠: 根据表达式来折叠文本 (见 \texttt{:help fold-expr})
+    \item 语法折叠: 根据语法来折叠文本 (见 \texttt{:help fold-syntax})
+    \item 差异折叠: 折叠未被修改的文本 (见 \texttt{:help fold-diff})
+    \item 标记折叠: 根据文本中插入的标记来折叠文本 (见
+        \texttt{:help fold-marker})
+\end{itemize}
+具体使用哪一种指示信息取决于文本的类型, 以及用户的具体操作.
+\marginpar{108}
