@@ -1392,3 +1392,46 @@ function myFunction() {
 \end{itemize}
 具体使用哪一种指示信息取决于文本的类型, 以及用户的具体操作.
 \marginpar{108}
+
+现在开始介绍如何完成折叠操作, 在这之前, 我们要做的第一件事是打开折叠选项:
+\begin{vimcode}
+:set foldenable
+\end{vimcode}
+打开后, Vim 就会注意在普通模式下输入的折叠命令. 用来打开和关闭折叠的命令有很
+多个, 主要的有:
+\begin{itemize}
+    \item \texttt{zc}: 关闭一个折叠
+    \item \texttt{zo}: 打开一个折叠
+    \item \texttt{zM}: 关闭所有的折叠
+    \item \texttt{zR}: 打开所有的折叠
+\end{itemize}
+假设我们把语法折叠作为折叠时的指示信息, 首先把光标移动到需要折叠的区域 (比如某
+个函数的内部), 切换到普通模式, 执行命令 \texttt{zc} 来关闭折叠, 现在, 用户就可
+以看到函数的定义代码被折叠成一行. 下面的图片显示了折叠与未折叠的代码:
+\begin{center}
+\includegraphics[scale=0.7]{./images/page108.png}
+\end{center}
+
+\begin{warning}
+    如果用户不想记住打开与关闭折叠的命令, 可以把打开或关闭折叠的切换命令绑定
+    到一人按键上, 比如空格: \texttt{:nnoremap <space> za}.
+\end{warning}
+
+如果用户觉得折叠后的行无法提供自己想要的信息, 可以通过修改选项
+\texttt{foldtext} 的值来改变折叠行所显示的信息. 修改的方式是让
+\texttt{foldtext} 指向另一个函数, 这个函数返回用户希望看到的信息:
+\begin{vimcode}
+:set foldtext=MyFoldFunction()
+\end{vimcode}
+函数 \texttt{MyFoldFunction()} 的实现代码是:
+\marginpar{109}
+\begin{vimcode}
+function! MyFoldFunction()
+	let line = getline(v:foldstart)
+	" cleanup unwanted things in first line
+	let sub = substitute(line, '/\*\|\*/\|^\s+', '', 'g')
+	" calculate lines in folded text
+	let lines = v:foldend - v:foldstart + 1
+	return  v:folddashes.sub.'...'.lines.' Lines...'.getline(v:foldend)
+endfunction
+\end{vimcode}
