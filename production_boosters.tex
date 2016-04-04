@@ -1504,7 +1504,7 @@ if (x != y) {
         \item \texttt{:folddoopen }\textit{cmd}: 对所有未在关闭的折叠中的行
             \footnote{不仅是处在打开的折叠中的行, 也包括不包含折叠信息的行}
             执行命令 \textit{cmd}
-        \item \texttt{:folddoclose}\textit{cmd}: 对所有处在关闭的折叠中的行
+        \item \texttt{:folddoclose }\textit{cmd}: 对所有处在关闭的折叠中的行
             执行命令 \textit{cmd}
     \end{itemize}
 \end{warning}
@@ -1514,13 +1514,13 @@ if (x != y) {
 
 当用户使用 Vim 编写一个简单的文本文件时, 可能会突然意识到文件已经写得又长又乱
 了, 这时候就很需要为文件列一个提纲. 在这一节, 我们将会介绍如何使用折叠来为文
-件提取大纲, 提取大纲对于改善文件的结构至善重要.
+件提取大纲, 提取大纲对于改善文件的结构至关重要.
 
-假设文件文件的内容是:
+假设文本文件的内容是:
 \begin{vimcode}
 Chapter 1
 Section 1 - Vim help
-heae is some text about the vim help system.
+here is some text about the vim help system.
 Section 2 - vim scripts
 this section contains info about vim scripts.
 \end{vimcode}
