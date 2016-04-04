@@ -1483,3 +1483,48 @@ if (x != y) {
 | more text
 \end{vimcode}
 \marginpar{110}
+
+正如用户所看到的那样, Vim 用 ASCII 字符画出了一棵树:
+\begin{vimcode}
+|
++-
+|
++--
+|
++-
++--
+\end{vimcode}
+下面的命令可以设置树的宽度:
+\begin{vimcmdform}
+\texttt{:set foldcolumn=}\textit{n}
+\end{vimcode}
+命令中的 \textit{n} 是一个 0 到 12 之间的数, 如果折叠的层次比较少, 推荐使用 1
+或者 2; 否则的话, 推荐使用 3 到 5.
+
+\begin{warning}
+    用户可以对打开或关闭着的所有折叠执行某个命令:
+    \begin{itemize}
+        \item \texttt{:folddoopen }\textit{cmd}: 对所有未在关闭的折叠中的行
+            \footnote{不仅是处在打开的折叠中的行, 也包括不包含折叠信息的行}
+            执行命令 \textit{cmd}
+        \item \texttt{:folddoclose}\textit{cmd}: 对所有处在关闭的折叠中的行
+            执行命令 \textit{cmd}
+    \end{itemize}
+\end{warning}
+
+\subsection{提取大纲}
+\label{subsec:simple_text_file_outlining}
+
+当用户使用 Vim 编写一个简单的文本文件时, 可能会突然意识到文件已经写得又长又乱
+了, 这时候就很需要为文件列一个提纲. 在这一节, 我们将会介绍如何使用折叠来为文
+件提取大纲, 提取大纲对于改善文件的结构至善重要.
+
+假设文件文件的内容是:
+\begin{vimcode}
+Chapter 1
+Section 1 - Vim help
+heae is some text about the vim help system.
+Section 2 - vim scripts
+this section contains info about vim scripts.
+\end{vimcode}
+\marginpar{111}
