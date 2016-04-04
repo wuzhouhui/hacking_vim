@@ -1435,3 +1435,51 @@ function! MyFoldFunction()
 	return  v:folddashes.sub.'...'.lines.' Lines...'.getline(v:foldend)
 endfunction
 \end{vimcode}
+函数使得折叠后的行变成:
+\begin{vimcode}
++--function myFunction() {...6 Lines...}-----------------------
+\end{vimcode}
+
+用户可以看到函数中使用了三个以 \texttt{v:} 开始的变量, 这些变量由 Vim 设置,
+分别包含了:
+\begin{itemize}
+    \item \texttt{v:foldstart}: 被折叠的第一行的行号
+    \item \texttt{v:foldend:}: 被折叠的最后一行的行号
+    \item \texttt{v:folddashes}: Contains a dash(\texttt{-}) for each level of
+        folding a fold\footnote{TODO}
+\end{itemize}
+
+最后一个变量指出了折叠所在的层次. 假设有这样一段代码:
+\begin{vimcode}
+if (x != y) {
+    if (y != x) {
+        print "x not y"
+    }
+}
+\end{vimcode}
+最内层 \texttt{if} 的 \texttt{v:folddashes} 将会包含 \texttt{--} (第二层), 而
+最外层 \texttt{if} 的 \texttt{v:folddashes} 则是 \texttt{-} (第一层).
+
+折叠行末尾的连字符是自动加上去的. 如果用户希望使用其他字符, 比如等号, 可以这
+样做:
+\begin{vimcode}
+:set fillchars=fold:=
+\end{vimcode}
+
+用户可能会感到奇怪为什么需要连字符? 当中的原因其实非常明显. Vim 还有一个称为
+\texttt{foldcolumn} 的折叠设置选项, 这个选项说明了应该使用文本左边的多少列
+来显示折叠信息. 选项实际上是用这些列画出一个 ASCII 折叠树, 折叠中的连字符就
+是树叶. 例如:
+\begin{vimcode}
+| some text
++- a first level fold -----------------------------
+|
+    beginning of open fold
+2   indication of fold level
+2     - do -
+- open fold beginning level 1
++-- a second level fold.
+| more text
+| more text
+\end{vimcode}
+\marginpar{110}
