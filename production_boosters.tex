@@ -1525,3 +1525,43 @@ Section 2 - vim scripts
 this section contains info about vim scripts.
 \end{vimcode}
 \marginpar{111}
+
+现在, 用户想要折叠文本, 使得只有 Section 的头部显示出来. 如果用手动折叠 (
+\texttt{:set foldmethod=manual} 则比较方便, 方法是选中 Section 内的所有行 (包
+括头部), 然后按下 \texttt{zf}, 就可以把这些行折叠起来. 另外, 用户可以认为
+\texttt{Chapter 1} 是第一层折叠, 每一个 Section 是第二层, 关闭 Section 所在的
+折叠后应该变成:
+\begin{vimcode}
+-Chapter 1
++Section 1 - Vim help   (2)
++Section 2 - Vim scripts    (4)
+\end{vimcode}
+
+\begin{warning}
+    为了达到上面的效果, 需要做如下设置:
+    \begin{vimcode}
+    :set foldcolumn=1
+    :set fillchars=fold:\  "there is a space after the \
+    :set foldtext=getline(v:foldstart).'    ('.v:foldstart.')'
+    \end{vimcode}
+\end{warning}
+
+经过这样的处理之后, 文件看起来就像是书籍的目录, 不同之处这仅仅是一个普通的文本
+文件而已. 只要新增的行是在之前的行的后面, Vim 就仍然会把新增的行当作是折叠的一
+部分.
+
+如果想要删除折叠, 只需要在可视模式下选中文本, 再按下 \texttt{zd}.
+
+% TODO: 还需要翻译得更好
+如果用户想让文本拥有不同的格式 (比如, 用 \texttt{= =} 包围 Section 的头部),
+这当然可以实现 --- 只要用户标记了自己的折叠区域, 那就不会感到有什么不同.
+
+\subsection{使用 vimdiff 比较差异}
+\label{subsec:using_vimdiff_to_track_the_changes}
+
+有时候, 用户可以拥有同一文件的多个版本 --- 这些版本之间可能相同, 也可能不同.
+在 Unix 系统中, 有一个称为 \texttt{diff} 的命令, 这个命令很早就开始被人们使用
+(最早出现于 1074 年), 但是其他系统很可能没有该命令. 这个命令的功能是显示两个
+文件的差异, Vim 也提供了一个用于比较差异的工具 --- \texttt{vimdiff}. 这一节介
+绍如何使用 Vim 来比较文件的差异.
+\marginpar{112}
