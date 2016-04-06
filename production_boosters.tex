@@ -1567,10 +1567,10 @@ this section contains info about vim scripts.
 \marginpar{112}
 
 \texttt{vimdiff} 是 Vim 内置的差异比较工具, 它使用颜色来显示文件间的差异 (被
-比较的两个文件分别处在两个纵向切割或横向切割的窗口中). 下面的图片显示的
+比较的两个文件分别处在两个纵向切割或横向切割的窗口中). 下面的图片显示了
 \texttt{vimdiff} 的工作界面:
 \begin{center}
-    \includegraphics[scale=0.7]{./images/page112.png}
+    \includegraphics[scale=0.5]{./images/page112.png}
 \end{center}
 
 有若干种方式可以用来启动 \texttt{vimdiff}. 在安装了 Vim 的系统中, 一般都有一
@@ -1591,9 +1591,9 @@ vim -d file1 file2
         打开 \textit{filename}, 所有和 \texttt{vimdiff} 相关的设置会同时应用
         到这两个窗口中.
     \item \texttt{:vert diffsplit }\textit{filename}: 垂直切割窗口, 并在其中
-        一个窗口中显示 \texttt{filename}, 所有和 \texttt{vimdiff} 相关的设置
+        一个窗口中显示 \textit{filename}, 所有和 \texttt{vimdiff} 相关的设置
         会同时应用到这两个窗口中.
-    \item \texttt{diffthis}: 使得当前窗口成为差异窗口的一部分. 当用户想要再
+    \item \texttt{:diffthis}: 使得当前窗口成为差异窗口的一部分. 当用户想要再
         次对某个文件进行差异比较时, 可能会用到该命令.
 \end{itemize}
 \marginpar{113}
