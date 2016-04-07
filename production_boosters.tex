@@ -1600,3 +1600,47 @@ vim -d file1 file2
         次对某个文件进行差异比较时, 可能会用到该命令.
 \end{itemize}
 \marginpar{113}
+
+一个常见的例子是比较当前文件, 与上一次 Vim 所保存的备份之间的差异 (备份文件的
+文件名以波浪号 \verb'~' 结尾). 假设用户正在编辑的文件是 \texttt{main.c}, 则
+可以在任意时刻保存文件, 然后执行:
+\begin{vimcode}
+:vert diffsplit main.c~
+\end{vimcode}
+执行命令后, 窗口被垂直分割成两个, 文件间的差异通过颜色标记出来 (具体使用的颜色
+取决于当前使用着的色彩主题)
+
+还有一种情况是, 对文件作出修改的并不是用户本人,  而是另一个开发人员向用户发
+了一个文件补丁, 对于这种情形, Vim 也提供了一个 \texttt{diff} 视图, 用于查看补
+丁被应用到文件后所带来的变化. 方法是打开补丁所对应的文件, 然后执行 \texttt{vert
+diffpatch }\textit{patchfile}, 或者省略 \texttt{vert}, 直接执行
+\texttt{:diffpatch }\textit{patchfile}.
+
+命令中的 \textit{patchfile} 是其他开发人员发送给用户的补丁. 执行命令后,
+Vim 会在另一个窗口中打开文件, 把补丁打到该文件上, 然后比较打补丁前, 与打补
+丁后文件的差异.
+
+\subsection{在 vimdiff 中导航}
+\label{subsec:navigation_in_vimdiff}
+
+和普通的 Vim 窗口相比, 在 \texttt{vimdiff} 窗口中导航会稍有不同.
+
+例如, 滚动其中一个窗口时, 会同时滚动另一个窗口. 实际上, 窗口之间的每一行, 其
+相对位置不变, 这是通过选项 \texttt{scrollbind} 来实现的:
+\begin{itemize}
+    \item 开启同时滚动的命令是:
+        \begin{vimcode}
+        :set scrollbind
+        \end{vimcode}
+    \item 关闭同时滚动的命令是:
+        \begin{vimcode}
+        :set noscrollbind
+        \end{vimcode}
+\end{itemize}
+
+当在 \texttt{diff} 窗口中编辑文件时, Vim 会自动根据文件内容的变化, 来相应地更
+新窗口中的颜色; 如果没有更新, 则可以执行:
+\begin{vimcode}
+:diffupdate
+\end{vimcode}
+\marginpar{114}
