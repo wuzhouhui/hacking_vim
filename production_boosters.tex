@@ -1604,7 +1604,7 @@ vim -d file1 file2
 \begin{vimcode}
 :vert diffsplit main.c~
 \end{vimcode}
-执行命令后, 窗口被垂直分割成两个, 文件间的差异通过颜色标记出来 (具体使用的颜色
+执行命令后, 窗口被垂直分割成两个, 文件间的差异通过颜色标记出来 (具体的颜色
 取决于当前使用着的色彩主题)
 
 还有一种情况是, 对文件作出修改的并不是用户本人,  而是另一个开发人员向用户发
@@ -1626,13 +1626,13 @@ Vim 会在另一个窗口中打开文件, 把补丁打到该文件上, 然后比
 相对位置不变, 这是通过选项 \texttt{scrollbind} 来实现的:
 \begin{itemize}
     \item 开启同时滚动的命令是:
-        \begin{vimcode}
-        :set scrollbind
-        \end{vimcode}
+\begin{vimcode}
+:set scrollbind
+\end{vimcode}
     \item 关闭同时滚动的命令是:
-        \begin{vimcode}
-        :set noscrollbind
-        \end{vimcode}
+\begin{vimcode}
+:set noscrollbind
+\end{vimcode}
 \end{itemize}
 
 当在 \texttt{diff} 窗口中编辑文件时, Vim 会自动根据文件内容的变化, 来相应地更
