@@ -1725,3 +1725,49 @@ Shell), 然后再在服务器上直接修改配置文件.
 网站开发人员的解决办法通常是先把文件下载来本地, 编辑好后再上传到服务器上, 下
 载与上传的工具可以是 FTP 客户端, 或 Webdav.
 \marginpar{116}
+
+如果不使用上面提到的方法, 那又应该怎么办呢? 为什么他们就不能在本地直接编辑远程
+服务器上的文件? Vim 可以在不需要额外扩展的前提下完成这件事. Vim 含有一个称为
+netrw (Net Read/Write) 的系统, 它可以用来帮助用户编辑远程服务器上的文件, 让我
+们通过例子来介绍如何使用它.
+
+假设有一个网站开发人员, 叫作 John, 他把他的主页放在远程服务器
+\texttt{remote.server.com} 上. 现在他想要编辑文件 \texttt{index.html}, 这个文
+件存放在服务器家目录下的 \texttt{public_html/}. 使用 Vim 打开此文件的命令是:
+\begin{vimcode}
+vim ftp://john@remote.server.com/public_html/index.html
+\end{vimcode}
+
+Vim 根据参数识别出它需要使用 FTP 协议连接到服务器 \texttt{remote.server.com,
+所使用的用户名是 \texttt{john}, 如果还需要输入密码, 则 Vim 就会在连接时给出
+提示信息. Vim 从服务器上下载一份文件的副本到本地, 用户所编辑的正是该副本, 所
+不同的是每当用户保存文件时, Vim 都会同时保存一份到服务器上.
+
+如果 John 已经打开了 Vim, 则可以使用下面两个命令中的一个打开远程服务器上的文
+件:
+\begin{vimcode}
+:Nread ftp://john@remote.server.com/public_html/index.html
+:Nread remote.server.com john PASSWORD public_html/index.html
+\end{vimcode}
+命令中的 \texttt{PASSWORD} 是登录时所使用的密码. 除了可以读取远程服务器上的文
+件, 还可以把本地文件写到远程服务器上, 甚至可以在一台服务器上打开文件, 并把它
+保存到另一个服务器上. 把文件保存到 FTP 服务器的命令是:
+\begin{vimcode}
+:Nwrite ftp://user@server/path/to/filename
+:Nwrite server user password path/to/filename
+\end{vimcode}
+
+\begin{warning}
+    针对不同的协议, \texttt{:Nread} 与 \texttt{:Nwrite} 所使用的参数也有所不
+    同, 可以通过 \texttt{:Nread ?} 与 \texttt{:Nwrite ?} 查看具体的规则.
+\end{warning}
+
+除了 FTP, Vim 还支持以下协议:
+\begin{itemize}
+    \item SCP
+    \item SFTP
+    \item RCP
+    \item HTTP (只读)
+    \item DAV
+\end{itemize}
+\marginpar{117}
