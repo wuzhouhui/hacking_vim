@@ -1683,3 +1683,45 @@ Vim 会在另一个窗口中打开文件, 把补丁打到该文件上, 然后比
 改, 那又应该怎么办呢? 这一节介绍如何查看硬盘上的文件, 与缓冲区中的文件之间的差
 异, 也就是自从上一次保存以来, 文件所发生的变化.
 \marginpar{115}
+用户所要做的首先是把下面的代码添加到文件 \texttt{vimrc}:
+\begin{vimcode}
+function! DiffWithFileFromDisk()
+	  let filename=expand('%')
+	  let diffname = filename.'.fileFromBuffer'
+	  exec 'saveas! '.diffname
+	  diffthis
+	  vsplit
+	  exec 'edit '.filename
+	  diffthis
+	endfunction
+\end{vimcode}
+
+函数为当前缓冲区中的文件保存一份临时副本 (包含了最新的修改), 然后对临时文件与
+硬盘上的文件进行差异比较.
+
+为了调用这个函数, 需要执行:
+\begin{vimcode}
+:call DiffWithFileFromDisk()
+\end{vimcode}
+也可以为调用命令绑定一个快捷键:
+\begin{vimcode}
+:nmap <F7> :call DiffWithFileFromDisk()<cr>
+\end{vimcode}
+上面的命令把功能键 \key{F7} 绑定到函数调用, 使用时只需要切换到普通模式, 再按
+下 \key{F7}, 就可以看到用 \texttt{diff} 模式标记的修改.
+
+现在, 用户就可以在保存文件之前, 查看所有未保存的修改, 检查是否每个修改都是正确
+的.
+
+\section{打开任意位置的文件}
+\label{sec:open_files_anywhere}
+
+系统管理员与网站开发人员经常会被同一个问题所困扰, 如果解决得不好的话, 会给人带
+来很大的麻烦, 这个问题就是他们所浏览的文件, 大部分是存放在远程服务器上.
+
+系统管理员对此问题的解决办法通常是远程登录到服务器上 (比如用 ssh (Secure
+Shell), 然后再在服务器上直接修改配置文件.
+
+网站开发人员的解决办法通常是先把文件下载来本地, 编辑好后再上传到服务器上, 下
+载与上传的工具可以是 FTP 客户端, 或 Webdav.
+\marginpar{116}
