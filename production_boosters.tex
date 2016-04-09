@@ -1662,4 +1662,24 @@ Vim 会在另一个窗口中打开文件, 把补丁打到该文件上, 然后比
 :diffput
 \end{vimcode}
 
-执行该命令时, 光标必须处在
+执行该命令时, 光标必须处在待应用的修改上. 另一方面, 如果光标是处在不含有修改
+的文件上, 那么用户可以先跳转到含有修改的文件上, 然后把修改应用到另一个文件,
+或者直接使用下面的命令:
+\begin{vimcode}
+:diffget
+\end{vimcode}
+除了这两个命令, 还可以在普通模式下使用另外两个替代命令 \texttt{do} 与
+\texttt{dp}.
+
+\begin{warning}
+    更多的内容请参考 \texttt{:help vimdiff}.
+\end{warning}
+
+\subsection{使用 diff 跟踪变化}
+\label{subsec:using_diff_to_track_changes}
+
+从前面一节我们已经学习到了如何使用 \texttt{vimdiff} 来比较同一文件的不同版本之
+间的差异, 但是, 如果用户仅仅是想知道在保存之前, 我们对当前活动缓冲区作了哪些修
+改, 那又应该怎么办呢? 这一节介绍如何查看硬盘上的文件, 与缓冲区中的文件之间的差
+异, 也就是自从上一次保存以来, 文件所发生的变化.
+\marginpar{115}
