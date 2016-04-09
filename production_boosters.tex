@@ -1766,5 +1766,45 @@ Vim 根据参数识别出它需要使用 FTP 协议连接到服务器 \texttt{re
     \item RCP
     \item HTTP (只读)
     \item DAV
-\end{itemize}
 \marginpar{117}
+    \item rsync (只读)
+    \item fetch (只读)
+\end{itemize}
+
+为了在 Vim 的命令中使用这些协议, 只需要把前面例子中的 \texttt{ftp} 替换成对应
+的协议名 (小写形式) 即可.
+
+然而, 有一点需要注意. 为了使用这些协议, Vim 依赖于外部的命令行程序. 在 Linux
+系统中, 这些程序默认都是可用的, 但是对于 Miscrosoft Windows 来说, 只有 FTP
+是可用的. 为了查看 Vim 所使用的外部程序, 以及如何修改它们, 执行:
+\begin{vimcode}
+:help netrw-externapp
+\end{vimcode}
+
+除了读取与编辑远程文件, Vim 还可以列出远程目录中的所有文件, 这做便于用户选择
+正确的文件进行编辑. 为了列出远程目录中的文件, 只需要把 \texttt{:Nread} 的参数
+由文件改为目录即可, 例如:
+\begin{vimcode}
+:Nread scp://user@server/some/directory/
+\end{vimcode}
+执行命令后, 用户可以选择任意一个文件进行编辑, 就好像它们就在本地目录.
+
+\begin{warning}
+    如果是 Linux 系统, 则用户可以把登录远程服务器所用的用户名与密码保存到本地
+    家目录的 \texttt{.netrc} 文件中, 更多的信息参考 \texttt{:help netrw-netrc}.
+\end{warning}
+
+\subsection{更快的远程文件编辑}
+\label{subsec:faster_remote_file_editing}
+
+用户既然已经知道了如何直接编辑远程服务器上的文件, 那么他就很有可能同时打开多个
+远程文件. 这时用户就会遇到一个很恼人的情况: 每当移动到另一个缓冲区时 (用命令
+\texttt{:bufferprev} 或 \texttt{:buffernext}), 都需要重新登录.
+
+默认情况下, 每次显示缓冲区的文件内容时, Vim 都会尝试重新加载文
+件. 也就是说, 如果打开的是一个远程文件, 那么 Vim 就会尝试重新登录, 以检查文件是
+否需要重新加载.
+
+但是这真的有必要吗? 如果远程文件除了用户之外, 没有其他人正在编辑, 那么在切换
+缓冲区时就不需要重新加载文件.
+\marginpar{118}
