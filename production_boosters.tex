@@ -1733,12 +1733,12 @@ netrw (Net Read/Write) 的系统, 它可以用来帮助用户编辑远程服务�
 
 假设有一个网站开发人员, 叫作 John, 他把他的主页放在远程服务器
 \texttt{remote.server.com} 上. 现在他想要编辑文件 \texttt{index.html}, 这个文
-件存放在服务器家目录下的 \texttt{public_html/}. 使用 Vim 打开此文件的命令是:
+件存放在服务器家目录下的 \verb'public_html/'. 使用 Vim 打开此文件的命令是:
 \begin{vimcode}
 vim ftp://john@remote.server.com/public_html/index.html
 \end{vimcode}
 
-Vim 根据参数识别出它需要使用 FTP 协议连接到服务器 \texttt{remote.server.com,
+Vim 根据参数识别出它需要使用 FTP 协议连接到服务器 \texttt{remote.server.com},
 所使用的用户名是 \texttt{john}, 如果还需要输入密码, 则 Vim 就会在连接时给出
 提示信息. Vim 从服务器上下载一份文件的副本到本地, 用户所编辑的正是该副本, 所
 不同的是每当用户保存文件时, Vim 都会同时保存一份到服务器上.
