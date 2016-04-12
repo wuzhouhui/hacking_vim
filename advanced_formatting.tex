@@ -23,3 +23,24 @@ Vim, 什么情况下不应该用 Vim.
 或 OpenOffice, 但是许多纯文本编辑器, 比如 Vim, 也可以把事情做得很好. 在下面的
 一节里, 我们将会介绍如何利用 Vim 强大的功能来格式化普通文本.
 \marginpar{122}
+
+\subsection{文本分段}
+\label{subsec:putting_text_into_paragraphs}
+
+这一节所介绍的知识可能是整本书中最简单的, 但是对于格式化普通文本来说, 却可能是
+最有用的. 假设用户正在编写一段文本, 并且在编写的过程中丝毫没有注意到行的变化与
+文本的格式. 最终, 用户可能会写出一行非常长的文本, 此时他才注意到应该对文本重新
+进行格式化, 摆在他面前的有两个选择:
+\begin{itemize}
+    \item 遍历文本, 并在适当的地方断行
+    \item 用某个命令对整段文本进行格式化
+\end{itemize}
+很显然, 后者是最好的选择, 并且格式化后的结果也可以和其他结果保持一致. 所使用的
+命令是:
+\begin{vimcode}
+gqap
+\end{vimcode}
+上面的命令其时是两个命令的组合:
+\begin{itemize}
+    \item \texttt{gq}: 对所有的,
+\end{itemize}
