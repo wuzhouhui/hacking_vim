@@ -23,3 +23,43 @@ Vim, 什么情况下不应该用 Vim.
 或 OpenOffice, 但是许多纯文本编辑器, 比如 Vim, 也可以把事情做得很好. 在下面的
 一节里, 我们将会介绍如何利用 Vim 强大的功能来格式化普通文本.
 \marginpar{122}
+
+\subsection{文本分段}
+\label{subsec:putting_text_into_paragraphs}
+
+这一节所介绍的知识可能是整本书中最简单的, 但是对于格式化普通文本来说, 却可能是
+最有用的. 假设用户正在编写一段文本, 并且在编写的过程中丝毫没有注意到行的变化与
+文本的格式. 最终, 用户可能会写出一行非常长的文本, 此时他才注意到应该对文本重新
+进行格式化, 摆在他面前的有两个选择:
+\begin{itemize}
+    \item 遍历文本, 并在适当的地方断行
+    \item 用某个命令对整段文本进行格式化
+\end{itemize}
+很显然, 后者是最好的选择, 并且格式化后的结果也可以和其他结果保持一致. 所使用的
+命令是:
+\begin{vimcode}
+gqap
+\end{vimcode}
+上面的命令其时是两个命令的组合:
+\begin{itemize}
+    \item \texttt{gq}: Format everything the next movement moves
+        over\footnote{TODO}
+    \item \texttt{ap}: ``A paragraph'' moves over the current
+        paragraph\footnote{TODO}
+\end{itemize}
+
+换句话说, 由 \texttt{gq} 与 \texttt{ap} 组合而成的命令告诉 Vim 去遍历当前段落
+并格式化. 由两个空白行包围起来的部分定义为一个段落, 因此, 为了开始一个新的段
+落, 只需要添加一个空行即可.
+
+Vim 所做的格式化实际上是让行作出更漂亮的断行, 使得每一行的长度都不会超过某个
+特定的大小 (Vim 自动地在适当的两个单词间作出断行).
+
+格式化后文本的宽度由选项 \texttt{textwidth} 定义, 如果用户希望每行最大的宽度不
+超过 80 个字符, 那就在 \texttt{vimrc} 中添加:
+\begin{vimcode}
+:set textwidth=80
+\end{vimcode}
+如果 \texttt{textwidth} 的值被设置为 0, 那么 Vim 就把它设置成窗口的宽度 ---
+但是永远不会多于 \texttt{textwidth} 所设置的字符个数.
+\marginpar{123}
