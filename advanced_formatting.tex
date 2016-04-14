@@ -63,3 +63,13 @@ Vim 所做的格式化实际上是让行作出更漂亮的断行, 使得每一�
 如果 \texttt{textwidth} 的值被设置为 0, 那么 Vim 就把它设置成窗口的宽度 ---
 但是永远不会多于 \texttt{textwidth} 所设置的字符个数.
 \marginpar{123}
+
+\begin{warning}
+    通过设置选项 \texttt{formatoptions} 可以控制 Vim 如何格式化段落. 更多的信
+    息可以参考 \texttt{:help 'formatoptions'} 与 \texttt{:help 'fo-table'}.
+\end{warning}
+
+\texttt{gq} 可以和任意的移动命令配合使用, 并且在格式化之后, 光标将会停留在移动
+命令结束的地方 (典型的情况是停留在当前特定区域的最后一行). 如果用户希望在格式
+化后, 光标仍旧处于格式化开始前的位置, 那就把 \texttt{gq} 改成 \texttt{gw}. 如
+果
