@@ -72,4 +72,47 @@ Vim 所做的格式化实际上是让行作出更漂亮的断行, 使得每一�
 \texttt{gq} 可以和任意的移动命令配合使用, 并且在格式化之后, 光标将会停留在移动
 命令结束的地方 (典型的情况是停留在当前特定区域的最后一行). 如果用户希望在格式
 化后, 光标仍旧处于格式化开始前的位置, 那就把 \texttt{gq} 改成 \texttt{gw}. 如
-果
+果用户的光标原来是在段落中第一行的开始, 此时执行 \texttt{gwap}, 命令结束后, 光
+标仍然会停留在段落中第一行的开始.
+
+用户可以在命令的前面加上数字, 使得它重复执行, 例如, \texttt{5gqap} 将会对当前
+与下面的四个段落进行格式化. 如果想要对文件内的所有段落进行格式化, 就执行
+\texttt{1gqG}.
+
+前面的介绍的格式化命令不仅对普通文本有效, 对其他任意类型的内容同样有效, 而且用
+户可以决定使用哪种格式化函数.
+
+用户可以为指定的文件类型设置任意的格式化函数, 方法是设置 Vim 的选项
+\texttt{formatexpr}. 例如, 如果用户想要对 C 源代码进行格式化, 只需要在
+\texttt{vimrc} 中添加:
+\begin{vimcode}
+:set formatexpr=c#Formatter()
+\end{vimcode}
+这行命令告诉 Vim, 在打开一个 C 源代码文件时, 使用函数 \texttt{Formatter()},
+这个函数定义在 Vim 为 C 文件自动加载的文件中.
+
+\begin{warning}
+    自动回载的文件可以在 \texttt{VIMHOME} 的子目录 \texttt{autoload} 中找到.
+    文件根据所服务的文件类型来命令, 以后缀 \texttt{.vim} 结束. 例如, 为 C 文
+    件自动加载的文件是 \texttt{VIMHOME/autoload/c.vim}.
+\end{warning}
+
+一个格式化函数含有三个变量, 利用这三个变量可以找到待格式化的文本.
+\begin{itemize}
+    \item \texttt{v:num}: 待格式化的第一行的行号
+    \item \texttt{v:count}: 待格式化的行的数量
+    \item \texttt{v:char}: 这个变量包含了将被插入的字符, 可以为空
+\end{itemize}
+
+格式化函数的一个简单示例是:
+\marginpar{124}
+\begin{vimcode}
+function! MyFormatter()
+   let first = v:num
+   let last = v:num + v:count
+    while(first<=last)
+       call setline(first, '> '. getline(first))
+       let first = first+1
+    endwhile
+endfunction
+\end{vimcode}
