@@ -185,3 +185,51 @@ Vim 支持三种类型的对齐 --- 左对齐, 右对齐, 居中. 在我们介�
 为了提高可读性, 一个常见的操作是为那些用作标题的字符串作标记, 这些标题可以是
 文本的章节.
 \marginpar{126}
+
+如果是字处理程序, 只需要把字体设置得更大更粗就可以了, 但是这样的字体设置对
+Vim 却是不可能实现的, 因为 Vim 字体的大小是固定的. 因此, Vim 用户必须通过其他
+的方法来标记标题.
+
+笔者个人的选择是在标题的下面添加一行, 来表示这是一个标题行.
+
+一个简单的例子是:
+\begin{vimcode}
+My Headline
+===========
+This is the text on the document. It could cantain one
+or more lines of text.
+\end{vimcode}
+不同级别的标题可以用不同类型的标记来表示:
+\begin{vimcode}
+Level1
+======
+Level2
+------
+-Level3-
+\end{vimcode}
+
+为了更方便地添加下划线, 在 Vim 中可以用宏来实现, 使用这种方法不用担心下划线添
+加得太多或太少.
+
+前面两个级别的标题宏可以实现成:
+\begin{vimcode}
+yypVr=o
+\end{vimcode}
+宏的各个部分的具体涵义是:
+\begin{itemize}
+    \item \texttt{yy}: 复制当前行
+    \item \texttt{p}: 粘贴
+    \item \texttt{V}: 选中一整行
+    \item \texttt{r}: 用后面的字符 (在这里是 \texttt{=}) 替换掉当标当前所在的
+        字符
+    \item \texttt{o}: 在光标的下面添加一个空行, 把光标移动到这行的开始, 并切
+        换到插入模式
+\end{itemize}
+
+这个宏的基本功能是获取当前行 (标题行), 并复制它. 然后把复制得到的行的所有字符
+替换成某个字符 (在这个例子中是 \texttt{-} 或 \texttt{=}), 最后, 插入一个新行,
+并切换到插入模式.
+
+对第三级别的标题来说, 我们必须采取其他办法, 不过所做的操作无非是在一行的开始
+或结束添加一个连字符, 可以用一条替换命令来完成:
+\marginpar{127}
