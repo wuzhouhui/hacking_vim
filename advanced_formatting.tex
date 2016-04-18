@@ -240,9 +240,9 @@ yypVr=o
 我们把命令拆成三部分来说明:
 \begin{itemize}
     \item \texttt{:s///}: 替换命令
-    \item \texttt{\(.*\)}: 正则表达式, 表达式把当前行的所有字符作为输入, 并把
+    \item \verb'\(.*\)': 正则表达式, 表达式把当前行的所有字符作为输入, 并把
         它们作为搜索模式
-    \item \texttt{-\\1-}: 替换模式. 替换模式告诉 Vim 在第一个被匹配的子模式前
+    \item \verb'-\1-': 替换模式. 替换模式告诉 Vim 在第一个被匹配的子模式前
         添加一个连字符, 在子模式的后面再加上一个连字符
 \end{itemize}
 
@@ -250,7 +250,7 @@ yypVr=o
 \begin{vimcode}
 :map h1 yypVr=0
 :map h2 yypVr-0
-:map h3 :s/\.(.*\)/-\1-/
+:map h3 :s/\(.*\)/-\1-/
 \end{vimcode}
 现在, 用户可以在普通模式下, 通过按 \texttt{h1}, \texttt{h2}, \texttt{h3} 来添
 适当的标题行. 如果用户不想在标题行的下面添加一个空行并切换到插入模式, 就把上
