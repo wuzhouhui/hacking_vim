@@ -234,3 +234,46 @@ yypVr=o
 对第三级别的标题来说, 我们必须采取其他办法, 不过所做的操作无非是在一行的开始
 和结束添加一个连字符, 可以用一条替换命令来完成:
 \marginpar{127}
+\begin{vimcode}
+:s/\.(.*\)/-\1-/
+\end{vimcode}
+我们把命令拆成三部分来说明:
+\begin{itemize}
+    \item \texttt{:s///}: 替换命令
+    \item \texttt{\(.*\)}: 正则表达式, 表达式把当前行的所有字符作为输入, 并把
+        它们作为搜索模式
+    \item \texttt{-\\1-}: 替换模式. 替换模式告诉 Vim 在第一个被匹配的子模式前
+        添加一个连字符, 在子模式的后面再加上一个连字符
+\end{itemize}
+
+记住, 这些宏可能会写得很复杂, 但我们可以很轻易地为它们绑定一个快捷键, 例如:
+\begin{vimcode}
+:map h1 yypVr=0
+:map h2 yypVr-0
+:map h3 :s/\.(.*\)/-\1-/
+\end{vimcode}
+现在, 用户可以在普通模式下, 通过按 \texttt{h1}, \texttt{h2}, \texttt{h3} 来添
+适当的标题行. 如果用户不想在标题行的下面添加一个空行并切换到插入模式, 就把上
+面的映射命令中的 \texttt{o} 删掉.
+
+\subsection{创建列表}
+\label{subsec:creating_lists}
+
+项目列表与编号列表是文档中的常见结构. 在这一节, 我们将会介绍在 Vim 中如何方便
+地创建这些列表.
+
+让我们首先来看一个函数, 这个函数接收某个范围内被选中的行, 然后把它们转化成项
+目列表. 在这个列子里, 一个简单的项目列表是:
+\begin{vimcode}
+* first item
+* second item
+* third item
+\end{vimcode}
+为每一行的开始添加星号的函数可以是:
+\begin{vimcode}
+function! BulletList()
+    let lineno = line(".")
+    call setline(lineno, "    * " . getline(lineno))
+endfunction
+\end{vimcode}
+\marginpar{128}
