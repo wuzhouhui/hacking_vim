@@ -277,3 +277,48 @@ function! BulletList()
 endfunction
 \end{vimcode}
 \marginpar{128}
+
+认真看一下函数的实现, 读者就会发现它所做的不过是获取当前行, 然后再用它的一份
+拷贝替换掉自身, 在前面添加一个空格, 一个星号, 然后是一个制表符.
+
+很显然, 函数只对一行有效, 然而, 如果用户选中了一个范围内的所有行, 那么 Vim 就
+会为每一个选中的行调用一次函数, 从第一行, 一直到最后一行. 如果是为每一行添加
+相同的内容, 那么这种方法就很方便.
+
+然而, 上面介绍的方法并不适合编号列表, 因为用户必须记住下一个号码从多少开始.
+
+所以, 现在来看下面的函数, 它把某个范围内选中的行转换成编号列表 --- 列表的每一
+项都占据一行:
+\begin{vimcode}
+function! NumberList() range
+  " set line numbers in front of lines
+  let beginning=line("'<")
+  let ending= line("'>")
+  let difsize = ending-beginning +1
+  let pre = ' '
+  while (beginning <= ending)
+      if match(difsize, '^9*$') == 0
+          let pre = pre . ' '
+      endif
+    call setline(ending, pre . difsize . "\t" . getline(ending))
+    let ending=ending-1
+    let difsize=difsize-1
+  endwhile
+endfunction
+\end{vimcode}
+
+这个函数稍微有点复杂, 但和它所解决问题比起来, 还是比较简单的 --- 在每一行的开
+始添加一个数字.
+
+但是, 函数所做的工作还有一点需要注意, 那就是数字是右对齐的:
+\begin{vimcode}
+    1 item1
+    2 item2
+    ...
+   10 item10
+   11 item11
+    ...
+  100 item100
+    ...
+\end{vimcode}
+\marginpar{129}
