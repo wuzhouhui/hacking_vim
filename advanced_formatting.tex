@@ -321,3 +321,39 @@ endfunction
     ...
 \end{vimcode}
 \marginpar{129}
+
+为了做到这样的对齐, 需要考虑两个问题:
+\begin{itemize}
+    \item 必须知道列表最大的编号
+    \item 必须一次处理所有的行
+\end{itemize}
+
+为了解决第一个问题, 必须查看范围内第一行与最后一行的行号, 两个行号之间的差就
+是行的个数, 于是我们就有了列表编号的最大值. 由于我们考虑了第二个问题, 所以这
+是唯一可能的解决办法, 如果不这样做, 那我们一次只能处理一行.\footnote{This is
+only possible because the second issue is also taken care of, without which
+the function would only know about the current line.}
+
+解决第二个问题的办法是在函数名的后面添加关键字 \texttt{range}, 这个关键字告诉
+Vim, 函数是对一个范围内的行作操作, 而不仅仅是一行.
+
+函数从范围内的最后一行处理到第一行, 无论何时碰到一个只含有 9 的数字 (比如 99,
+9999), 都说明编号中的字符少了一个 (例如, 从第 1000 行到第 999 行), 为了弥补缺
+少的一个字符, 函数为缩进新增一个空格. 通过这种办法, 可以一直保证数字的右对齐,
+无论范围内有多少行.
+
+\begin{warning}
+    在 \url{http://www.vimoutliner.org}, 用户可以找到利用标题格式化, 列表格式
+    化等技术来说文档列提纲的脚本. 如果用户需要在 Vim 中为文档列提纲, 最好试一
+    下这个脚本.
+\end{warning}
+
+\section{格式化代码}
+\label{sec:formatting_code}
+
+在对代码进行格式化时经常需要考虑很多因素. 每一种语言都有自己的语法规则, 还有
+些语言对格式非常依赖. 在有些情况下, 程序员需要按照公司给出的规定来格式化代码.
+
+那么, Vim 如何知道用户想把代码格式化成什么样子? 简单来说 Vim 并不需要知道. 但
+是 Vim 有办法让用户完全按照自己的需要来格式化代码.
+\marginpar{130}
