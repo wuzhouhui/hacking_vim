@@ -357,3 +357,18 @@ Vim, 函数是对一个范围内的行作操作, 而不仅仅是一行.
 那么, Vim 如何知道用户想把代码格式化成什么样子? 简单来说 Vim 并不需要知道. 但
 是 Vim 有办法让用户完全按照自己的需要来格式化代码.
 \marginpar{130}
+
+虽然具体的格式化细节不尽相同, 但是它们都遵循一些基本的规则, 也就是说, 用户只
+需要关心不同的地方即可. 在大部分情况下, 格式化规则的修改可以通过一系列的 Vim
+选项来设置, 在这些选项当中, 比较重要的有以下几个:
+\begin{itemize}
+    \item \texttt{formatoptions}: 这个选项负责特定格式的设置 (见 \texttt{:help
+        'fo'})
+    \item \texttt{comments}: 什么是注释, 以及如何对它们进行格式化 (见
+        \texttt{:help 'com'})
+    \item \texttt{(no)expandtab}: 用空格代替制表符 (见 \texttt{:help
+        'expandtab'})
+    \item \texttt{softtabstop}: 一个制表符可以用多少个空格来代替 (见
+        \texttt{:help 'sts'})
+    \item \texttt{tabstop}: 一个制表符的宽度 (见 \texttt{:help 'ts'})
+\end{itemize}
