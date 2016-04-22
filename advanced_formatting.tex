@@ -358,3 +358,47 @@ Vim, 函数是对一个范围内的行作操作, 而不仅仅是一行.
 那么, Vim 如何知道用户想把代码格式化成什么样子? 简单来说 Vim 并不需要知道. 但
 是 Vim 有办法让用户完全按照自己的需要来格式化代码.
 \marginpar{130}
+
+虽然具体的格式化细节不尽相同, 但是它们都遵循一些基本的规则, 也就是说, 用户只
+需要关心不同的地方即可. 在大部分情况下, 格式化规则的修改可以通过一系列的 Vim
+选项来设置, 在这些选项当中, 比较重要的有以下几个:
+\begin{itemize}
+    \item \texttt{formatoptions}: 这个选项负责特定格式的设置 (见 \texttt{:help
+        'fo'})
+    \item \texttt{comments}: 什么是注释, 以及如何对它们进行格式化 (见
+        \texttt{:help 'com'})
+    \item \texttt{(no)expandtab}: 用空格代替制表符 (见 \texttt{:help
+        'expandtab'})
+    \item \texttt{softtabstop}: 一个制表符可以用多少个空格来代替 (见
+        \texttt{:help 'sts'})
+    \item \texttt{tabstop}: 一个制表符的宽度 (见 \texttt{:help 'ts'})
+\end{itemize}
+
+通过这些选项, 用户几乎可以设置与缩进相关的方方面面. 但是光有这些还不足够,
+用户仍
+然需要告诉 Vim 是否需要自动缩进, 还是由用户手动完成缩进. 如果用户希望由 Vim
+来完成缩进, 可以通过 4 种方法来完成, 在下面的小节里, 我们将会介绍与代码缩进
+相关的一系列选项.
+
+\subsection{Autoindent}
+\label{subsec:autoindent}
+
+Autoindent 是缩进代码最简单的方式. 它的功能仅仅是与上一行保持相同的缩进层次.
+所以说, 如果当前行缩进了 4 个空格, 按下 \key{Enter} 后插入的空行也会缩进 4 个
+空格. 至于什么时候修改缩进的层次则完成取决于用户. 这种缩进方式适用于若干行需
+要保持相同缩进层次的语言. 打开 autoindent 的命令是 \texttt{:set autoindent}
+或 \texttt{:set ai}.
+
+\subsection{Smartindent}
+\label{subsec:smartindent}
+
+Smartindent 比 autoindent 稍微智能一些. 它仍然可以让上一行的缩进层次保持到下
+一行, 但用户无需手动修改缩进层次. Smartindent 可以识别出 C 语言的大部分结构,
+并根据它们来决定何时增加/减少缩进层次. 由于许多编程语言都或多或少地都继承了 C
+语言的语法, 所以 smartindent 也可以应用到其他语言. 打开 smartindent 可以用下
+面两个命令中的任意一个:
+\begin{itemize}
+    \item \texttt{:set smartindent}
+    \item \texttt{:set si}
+\end{itemize}
+\marginpar{131}
