@@ -400,3 +400,37 @@ Smartindent 比 autoindent 稍微智能一些. 它仍然可以让上一行的缩
     \item \texttt{:set si}
 \end{itemize}
 \marginpar{131}
+
+\subsection{cindent}
+\label{subsec:cindent}
+
+Cindent 经常被称为 clever indent(聪明的缩进) 或 configurable indent(可配置的
+缩进), 这是因为与前面介绍的两种缩进相比, 它的可配置性更强. 有三种设置选项:
+\begin{itemize}
+    \item \texttt{cinkeys}: 这个选项包含了一个列表, 列表中的各项之间用逗号分
+        开, Vim 可以根据列表中的项来改变缩进层次. 一个例子是: \texttt{:set
+            cinkeys="0{,0},0\#,:"}, 意思是说无论何时碰到一个以 \verb'{', 或
+            \verb'}', 或 \verb'#' 作为开始的行, 或者是以 \verb':' 作为结束的
+            行 (很多语言的 \texttt{switch} 结构都用到了 \verb':'), Vim 都要
+            再缩进一层. \texttt{cinkeys} 的默认值是 \texttt{"0\{, 0\}, 0), :,
+        0\#, !\^F, o, O, e"}, 更多的信息见 \texttt{:help cinkeys}.
+    \item \texttt{cinoptions}: 这个选项包含了所有的, 专门用于 cindent 的选项.
+        它是一个各项之间由逗号分开的列表, 通过这个列表可以设置大量的选项. 一
+        个例子是 \texttt{cinoptions=">2,{3,}3,"}, 意思是说在正常的缩进之上,
+        再额外添加两个空格, 另外, 在 \verb'{' 与 \verb'}' 的左边添加三个空格,
+        以便与前一行作比较. 因此, 如果目前的缩进是 4 个空格, 那么刚才所说的
+        设置会使代码变成 (代码中的点表示一个空格):
+        \begin{vimcode}
+        if (a == b)
+        ...{
+        ......print "hello";
+        ...}
+        \end{vimcode}
+        \texttt{cinoptions} 的默认值是 \texttt{">s,e0,n0,f0,\{0,\}0,\^0,
+        :s,=s,l0,b0,gs,hs,ps,ts,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j0,
+        )20,*30"}, 更多的信息见 \texttt{:help 'cinoptions'}.
+    \item \texttt{cinwords}: 这个选项包含的关键词会让 Vim 在一行增加缩进. 一
+        个例子是 \texttt{:set cinwords="if,else,do,while,for,switch"}, 这同时
+        也是它的默认值. 更多的信息见 \texttt{:help 'cinwords'}.
+\end{itemize}
+\marginpar{132}
