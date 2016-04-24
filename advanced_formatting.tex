@@ -434,3 +434,46 @@ Cindent 经常被称为 clever indent(聪明的缩进) 或 configurable indent(�
         也是它的默认值. 更多的信息见 \texttt{:help 'cinwords'}.
 \end{itemize}
 \marginpar{132}
+
+\subsection{Indentexpr}
+\label{subsec:indentexpr}
+
+Indentexpr 是最灵活的缩进选项, 但同时也是最复杂的. 使用 indentexpr 时, 它会
+对一个表达式求值, 然后计算出一行的缩进. 因此, 用户必须写出的表达式必须能被 Vim
+求值. 打开这个选项的方法是为它设置一个表达式, 比如:
+\begin{vimcode}
+:set indentexpr=MyIndenter()
+\end{vimcode}
+命令中的 \texttt{MyIndenter()} 是一个函数, 负责计算行的缩进.
+
+函数的一个简单例子是模块选项 autoindent:
+\begin{vimcode}
+function! MyIndenter()
+   " Find previous line and get it's indentation
+   let prev_lineno = s:prevnonblank( v:lnum)
+   let ind = indent( prev_lineno )
+   return ind
+endfunction
+\end{vimcode}
+
+即使是想把函数的功能增强一点, 函数的复杂度也会迅速增长. Vim 自带了多种编程语言
+的缩进表达式, 如果用户想要自己编写缩进表达式, 可以以它们为基础, 再加以修改. 用
+户可以在 \texttt{VIMHOME} 折子目录 \texttt{indent} 中找到实现代码.
+
+更多的信息见 \texttt{:help 'indentexpr'} 与 \texttt{:help 'indent-expression'}.
+
+\subsection{代码块快速格式化}
+\label{subsec:fast_code_block_formatting}
+
+缩进选项设置完毕后, 用户可能想根据新设置的选项更新一下代码的格式. 为了更新代码,
+只需要告诉 Vim 重新缩进第一行到最后一行, 具体的命令是:
+\begin{vimcode}
+1G=G
+\end{vimcode}
+如果把命令拆开来看, 各个部分的意思是:
+\begin{itemize}
+    \item \texttt{1G}: 跳到文件的第一行 (也可以使用 \texttt{gg})
+    \item \texttt{=}: 根据格式化的配置对文本加以缩进
+    \item \texttt{G}: 跳到文件的最后一行 (缩进的结束位置)
+\end{itemize}
+\marginpar{133}
