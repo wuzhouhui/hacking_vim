@@ -483,3 +483,60 @@ endfunction
     \item \texttt{G}: 跳到文件的最后一行 (缩进的结束位置)
 \end{itemize}
 \marginpar{133}
+
+如果把命令映射到按键上, 使用起来就更加方便:
+\begin{vimcode}
+:nmap <F11> 1G=G
+:imap <F11> <ESC>1G=Ga
+\end{vimcode}
+后一个命令尾巴的 \texttt{a} 是为了在格式化完成后, 重新回到插入模式, 因为在执行
+命令前就处在插入模式下. 现在, 只需按下 \key{F11}, 就可以对整个缓冲区的文本重新
+缩进.
+
+\begin{warning}
+    注意, 如果待缩进的代码含有编程错误, 比如在 C 代码中漏写了一个分号, 那么代
+    码就不会被正确地缩进. 利用这个性质可以在一定程序上检查编程错误.
+\end{warning}
+
+有时候, 用户可能仅仅是想格式化某一小块代码, 对于这种情况, 用户可以使用代码块
+自然形成的范围, 或者是在可视模式下选择一段代码, 然后再格式化.
+
+后一种方法比如简单. 先是切换到可视模式, 比如按下 \key{Shift+v}, 然后再按
+\key{=} 来重新缩进被选中的代码行.
+
+另一方面, 如果要使用代码块, 则有多种不同的方法来实现. 在选择代码块时, Vim 提供
+了很多的方法. 为了与一个缩进代码的命令作组合, 我们必须介绍这些不同类型的代码
+块, 以及选择它们的命令:
+
+\begin{itemize}
+    \item \verb'i{': 内部块 (Innerblock), 指的是 \verb'{' 与 \verb'}'
+        之间的所有内容 (
+        不包括 \verb'{' 与 \verb'}'). 还可以用 \verb'i}' 与 \texttt{iB} 来选
+        择.
+    \item \verb'a{': 一个块 (A block), 指的是 \verb'{' 与 \verb'}'
+        之间的所有内容 (包括
+        \verb'{' 与 \verb'}'). 还可以用 \verb'a}' 与 \verb'aB' 来选择.
+    \item \verb'i(': 括号内 (Inner parenthesis), 指的是 \verb'(' 与 \verb')'
+        之间的所有内容 (不包
+        括 \verb'(' 与 \verb')'), 还可以用 \verb'i)' 与 \verb'ib' 来选择.
+    \item \verb'a(': 一对括号 (A parentheses), 指的是 \verb'(' 与 \verb')'
+        之间的所有内容 (包括 \verb'(' 与 \verb')'), 还可以用 \verb'a)' 与
+        \verb'ab' 来选择.
+    \item \verb'i<': 内部 \verb'<>' 块 (Inner \verb'<>' block), 指的是
+        \verb'<' 与 \verb'>'
+        之间的所有内容 (不包括 \verb'<' 与 \verb'>'), 还可以用 \verb'i>'
+        来选择.
+    \item \verb'a<': 一个 \verb'<>' 块 (A \verb'<>' block), 指的是
+        \verb'<' 与 \verb'>'
+        之间的所有内容 (包括 \verb'<' 与 \verb'>'), 还可以用 \verb'a>'
+        来选择.
+    \item \verb'i[': 内部 \verb'[]' 块 (Inner \verb'[]' block), 指的是
+        \verb'[' 与 \verb']'
+        之间的所有内容 (不包括 \verb'[' 与 \verb']'), 还可以用 \verb'i]'
+        来选择.
+    \item \verb'a[': 一个 \verb'[]' 块 (A \verb'[]' block), 指的是
+        \verb'[' 与 \verb']'
+        之间的所有内容 (包括 \verb'[' 与 \verb']'), 还可以用 \verb'a]'
+        来选择.
+\end{itemize}
+\marginpar{134}
