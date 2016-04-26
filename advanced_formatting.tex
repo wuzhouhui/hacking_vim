@@ -582,3 +582,41 @@ if( a == b )
 
 上面介绍的这些, 就是缩进代码所要掌握的全部内容.
 \marginpar{135}
+
+\subsection{自动格式化粘贴的代码}
+\label{subsec:auto_format_pasted_code}
+
+经常有程序员告诉我们, 他们会经常复用已有的代码, 这意味着他们经常需要复制与粘
+贴代码.
+
+许多用户在把代码粘贴到 Vim 窗口中时, 都会碰到过 ``阶梯效应'' --- 当插入代码时,
+Vim 会尝试对代码进行缩进, 造成的结果是越往后, 行的缩进层次越深, 类似于阶梯:
+\begin{vimcode}
+code line 1
+    code line 2
+        code line 3
+            code line 4
+               ...
+\end{vimcode}
+解决这个问题的办法通常是把 Vim 设置成 粘贴 (paste) 模式, 用到的命令是:
+\begin{vimcode}
+:set paste
+\end{vimcode}
+代码粘贴完毕后, 用下面的命令把 Vim 设置回正常的插入模式:
+\begin{vimcode}
+:set nopaste
+\end{vimcode}
+
+那么, 除此之外, 是否还有其他的方法呢? Vim 是否可以根据文件中已有的其他代码来
+自动格式化被粘贴的代码? 其实很简单.
+\begin{vimcode}
+p=`]
+\end{vimcode}
+上面的命令只是把普通的粘贴命令 (\texttt{p}) 和另一命令组合, 后者会自动缩进前
+面插入的行 (\texttt{=`]}). 这个命令基于下面的事实: 当用户使用命令 \texttt{p}
+来粘贴文本时, 光标将会停留在被粘贴文本的第一个字符上, 组合上命令 \texttt{`]}
+之后, 光标就会移动到最近一次插入的文本行的最后一个字符上, 并且可以从被粘贴文
+本的第一行移动到最后一行.
+
+所以, 用户所要做的就是把这个命令绑定到一个快捷键上, 并用该快捷键来粘贴文本.
+\marginpar{136}
