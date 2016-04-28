@@ -659,3 +659,52 @@ Indent. 甚至可以在选项中加上命令行选项.
 Indent 有着非常丰富的命令行选项, 另外还可以通过它的配置文件来修改 Indent 的
 行为.
 \marginpar{137}
+
+\begin{warning}
+    可以从以下网址下载到最新版的 Indent:
+    \url{http://www.gnu.org/software/indent/}.
+\end{warning}
+
+\subsection{Berkeley Par}
+\label{subsec:berkeley_par}
+
+90 年代早期, Adam M. Costello 开始开发一个简单的命令行工具, 这个工具的唯一功
+能是按照用户的要求, 重新格式化文本中的段落. 工具的名字是 Par, 一两年后, 该工
+具拥有了非常丰富的功能, 几乎可以重新格式化任意类型的段落.
+
+正因为如此, Par 成了 Vim 的理想工具. 现在让我们来看一些使用例子.
+
+假如, 用户想重新格式化段落, 使得每一行最大长度不超过 78 个字符, 那就在 Vim 中
+执行:
+\begin{vimcode}
+:set formatprg=par\ -w78
+\end{vimcode}
+
+选项 \texttt{formatprg} 告诉 Vim, 当使用命令 \texttt{gq} 时, 应该调用哪个外部
+工具来格式化文本. 值得注意的是, 程序和它的参数之间的空格用一个反斜杆转义, 这
+做就可以让 Vim 把程序与它的参数看作一个整体.
+
+\begin{warning}
+    注意, 如果 \texttt{formatexpr} 为空, 则只会使用 \texttt{formatprg}, 否则
+    的话, 就使用 \texttt{formatexpr}.
+\end{warning}
+
+在前面我们曾经提到过, Vim 无法对文本进行两端对齐, 幸运的是, Par 可以帮助 Vim
+完成这件工作. 只需要在上面的命令行参数中加上 \texttt{j} (意思是 justify),
+就可完成两端对齐:
+\begin{vimcode}
+:set formatprg=par\ -w78j
+\end{vimcode}
+
+Par 不仅可以用在普通文本中, 对于代码的某些部分也可以使用, 比如注释.
+
+假设用户拥有下面一段注释:
+\begin{vimcode}
+/********************************************************************/
+/* This function helps you modify a string and remove all */
+/* unnecessary characters . */
+/* Don't use this on widechar strings or strings shorter than 10 */
+/* characters */
+/********************************************************************/
+\end{vimcode}
+\marginpar{138}
