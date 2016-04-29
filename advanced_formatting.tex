@@ -708,3 +708,47 @@ Par 不仅可以用在普通文本中, 对于代码的某些部分也可以使�
 /********************************************************************/
 \end{vimcode}
 \marginpar{138}
+用户可以选中这些注释, 然后执行:
+\begin{vimcode}
+!par 60r
+\end{vimcode}
+(Vim 会在 \texttt{!} 的前面自动加上 \texttt{'<,'>})
+
+执行后, 注释变成:
+\begin{vimcode}
+/**********************************************************/
+/* This function helps you modify a string and remove all */
+/* unnecessary characters . Don't use this on widechar    */
+/* strings or strings shorter than 10 characters          */
+/**********************************************************/
+\end{vimcode}
+
+只需要一个简单的命令, 用户就可以把丑陋的, 未格式化过的注释变成精心排列的文本.
+
+Par 的手册页包含了许多例子.
+
+% TODO
+% You could easily map different Par commands to different keys in Vim and this
+% way have formatting keys for all text, comments, lists, and so on.
+
+\subsection{Tidy}
+\label{subsec:tidy}
+
+如果用户从事网页开发, 或者 XML 文件编辑, 那么程序 tidy 就会成为你的好帮手. 这
+个程序可以清理代码, 使之符合 W3C 规范. 符合 W3C 规范指的是代码的构造必须遵守
+由 W3C 规定的 HTML 守则.
+
+作为一个网页开发人员, 笔者有时候会浏览别人写的 HTML 或 XML 文件, 打开后只看
+到了一团乱麻. 后来, 笔者会在打开之前, 先用 tidy 处理一下所有的 \texttt{.xml},
+\texttt{.html} 或 \texttt{.html} 文件. 这个工作可以借助 Vim 的自动命令来完成,
+自动命令可以添加在文件 \texttt{vimrc} 中.
+
+对于 XML 文件, 自动命令的具体代码是:
+\begin{vimcode}
+au FileType xml exe ":silent 1,$!tidy --input-xml true --indent yes -q"
+\end{vimcode}
+对于 HTML 文件, 自动命令是:
+\begin{vimcode}
+au FileType html exe ":silent 1,$!tidy --indent yes -q"
+\end{vimcode}
+\marginpar{139}
