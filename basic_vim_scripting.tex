@@ -27,3 +27,38 @@ Vim 的一个最强大之处是允许高级用户通过编写脚本来增强 Vim
 Vim 脚本, 但是语法高亮脚本定义的是颜色, 而不是功能. 在下面的一节里, 我们将会介
 绍如何创建一个语法高亮方案.
 \marginpar{142}
+
+\subsection{第一个语法高亮文件}
+\label{subsec:your_first_syntax_color_file}
+
+简单来说, 语法高亮的关键是识别出文本中的特定单词与结构, 然后再给它们设置上对
+应的颜色. 然而, 大部分情况下要稍微复杂一点, 因为语法高亮还需要识别上下文语境.
+假设我们现在要语法高亮下面的代码:
+\begin{vimcode}
+/* if x equals y then return the value */
+if (x == y)
+  {
+    return x;
+  }
+\end{vimcode}
+
+如果我们仅仅是根据单词与符号来匹配, 那也可以得到一个相当不错的结果. 下面是具体
+的配置命令 (每个选项的意义已经在第 \ref{chap:personalizing_vim} 章中进行了介
+绍):
+\begin{vimcode}
+:syntax keyword myVars x y
+:syntax match mySymbols "[{}();=]"
+:syntax keyword myKeywords if return
+:highlight myVars ctermfg=red guifg=red
+:highlight mySymbols ctermfg=blue guifg=blue
+:highlight myKeywords ctermfg=green guifg=green
+\end{vimcode}
+
+\begin{center}
+    \includegraphics[scale=0.5]{./images/page142.png}
+\end{center}
+
+从上图中可以看到, 代码部分的高亮还不错, 可是注释语句却不令人满意. 这是因为我们
+只是对单个单词进行匹配, 所以注释中的相同单词也会被匹配. 这种配置方法很难分辨出
+代码与注释.
+\marginpar{143}
