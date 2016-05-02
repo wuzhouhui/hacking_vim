@@ -62,3 +62,39 @@ if (x == y)
 只是对单个单词进行匹配, 所以注释中的相同单词也会被匹配. 这种配置方法很难分辨出
 代码与注释.
 \marginpar{143}
+
+那么, 我们可以从这个简单的例子里学习哪些东西呢? 那就是, 与高亮比起来, 更重要的
+是要找到期望中的单词, 然后再给它们设置对应的颜色. 现在让我们增加一些上下文的信
+息, 我们要把 \verb'/*' 与 \verb'*/' 之间的部分标记成注释, 然后再高亮其余的部
+分. 代码部分被标记上颜色之后, 就不需要再上色了, 因此规则的顺序很重要. 具体的
+配置代码是:
+\begin{vimcode}
+:syntax match myComments "/\*.*\*/"
+:syntax keyword myVars x y
+:syntax match mySymbols "[{}();=]"
+:syntax keyword myKeywords if return
+:highlight myVars ctermfg=red guifg=red
+:highlight mySymbols ctermfg=blue guifg=blue
+:highlight myKeywords ctermfg=green guifg=green
+:highlight myComments ctermfg=yellow guifg=yellow
+\end{vimcode}
+最终的效果是:
+\begin{center}
+\includegraphics[scale=0.5]{./images/page143.png}
+\end{center}
+
+现在, 这段代码的高亮已经相当得体. 当然, 这只是一个小例子, 而且只用到了 Vim 语
+法高亮的一小部分功能, 接下来, 我们将会介绍更多的内容.
+
+\section{区域高亮}
+\label{sec:syntax_regions}
+
+在前面的例子中, 我们用的是选项 \texttt{match} 来选择注释语句. 在某些情况下,
+我们很难创建一个适当的匹配语句, 这时候, 我们就需要用到其他一些更方便的做法.
+
+在 Vim 中, 你可以选中一整个代码区, 然后再高亮它们, 为了选择一个代码区, 只需要
+提供区域的开始与结束. 对于前面的例子, 如果使用区域高亮的话, 具体的命令是:
+\begin{vimcode}
+:syntax region myComments start=/\/\*/ end=/\*\//
+\end{vimcode}
+\marginpar{144}
