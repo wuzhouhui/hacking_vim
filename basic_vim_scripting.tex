@@ -98,3 +98,44 @@ if (x == y)
 :syntax region myComments start=/\/\*/ end=/\*\//
 \end{vimcode}
 \marginpar{144}
+有了这个命令, 很轻易就能匹配下面的任意一个注释块:
+\begin{vimcode}
+/* single line comment */
+/*******************************
+ *  multi line comments
+ *******************************/
+/* multi line comment
+ */
+\end{vimcode}
+
+除了设置区域开始与结束, 选项 \texttt{region} 还可以做更多的事. 它还可以根据其
+他语法规则来高亮区域内的某些代码. 我常做的一个操作是为函数注释设置几个关键词,
+比如 \texttt{FIXME}, \texttt{OBSOLETE}, \texttt{TODO}, 等等, 这样, 我就可以把
+代码写成:
+\begin{vimcode}
+/*  function: splitString()
+ *  args    : string
+ *  OBSOLETE
+ */
+function splitString(string) {
+...
+\end{vimcode}
+剩下的工作, 就是创建一个关键词组:
+\begin{vimcode}
+:syntax keyword myKeywords OBSOLETE FIXME TODO
+\end{vimcode}
+现在, 我们需要修改命令 \texttt{region} 的设置, 以允许区域内包含其他语法元素,
+修改后的命令是:
+\begin{vimcode}
+:syntax region myComments start=/\/\*/ end=\/\*\// contains=myKeywords
+\end{vimcode}
+
+如果需要在区域内包含多于一个的语法组, 只需要把它们写成列表的形式 (列表元素之间
+用逗号分开), 再写到 \texttt{contains} 的后面.
+
+\begin{warning}
+    只有当开始与结束都在同一行时, 你才能告诉 Vim 这个区域是正确的, 方法是在
+    命令 \texttt{syntax} 中添加一行选项. 如果没有这个选项, Vim 会在遇到开始时
+    就开始高亮代码, 遇到结束时 (或者是文件的末尾) 停止.
+\end{warning}
+\marginpar{145}
