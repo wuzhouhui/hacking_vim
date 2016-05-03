@@ -139,3 +139,52 @@ function splitString(string) {
     就开始高亮代码, 遇到结束时 (或者是文件的末尾) 停止.
 \end{warning}
 \marginpar{145}
+
+在某些情况下, 用户可以希望在一个区域中嵌套另一个区域, 对于这种情况, 用户必须
+把这项需要显式地告诉 Vim, 方法是在区域命令的末尾加上选项 \texttt{contained}:
+\begin{vimcode}
+:syntax region myComments start=/\/\*/ end\/\*\// contains=myKeywords
+contained
+\end{vimcode}
+
+在某些情况下, 一个代码块可以出现在代码中的任意一个位置, 当然, 用户不想针对每
+一个代码块各写一个语法组, 这时候, 只需要把 \texttt{contains} 改成 \texttt{ALL}.
+
+除了 \texttt{ALL}, 其他的关键词还包括:
+\begin{itemize}
+    \item \texttt{ALLBUT} 如果它是列表的第一项, 那么列表中的其余项目在区域中
+        都不会被高亮显示
+    \item \texttt{CONTAINED} 如果该项在列表中, 那么带有选项 \texttt{contained}
+        的语法组就会在区域中被高亮显示
+    \item \texttt{TOP} 如果该项在列表中, 那么除了带有选项 \texttt{contained}
+        的语法组, 其他所有的语法都会被包含进来
+\end{itemize}
+
+有了上面的帮助, 用户就可以轻易地选择大范围的语法组, 而不用一个一个地把它们写下
+来. 一个例子是选择除了 \texttt{myComments} 之外的所有语法组, 具体的命令是:
+\begin{vimcode}
+:syntax region myCodeblock start=/{/ end=/}/ contains=ALLBUT,myComments
+\end{vimcode}
+
+\begin{tips}
+    如果用户知道某些语法组经常一起使用, 可以把它们放在一个簇 (cluster) 中:
+    \texttt{:syntax cluster myCluster
+    contains=myKeywords,mySymbols,myConditions}. 引用一个簇时可以在名字前加
+    \verb'@': \texttt{:syntax region myComments start=/\/\*/ end=/\*\//
+        contains=@myCluster}.
+\end{tips}
+
+现在, 用户只需要把所有的配置命令都写到一个文件中, 再把这个文件放到
+\texttt{VIMHOME} 的 \texttt{syntax} 子目录中. 文件的后缀名是 \texttt{.vim},
+前缀名是文件所对应的编程语言源代码文件的后缀名, 比如 C 语言源代码文件的后缀名
+是 \texttt{.c}, 那么它的语法文件就是 \texttt{c.vim}.
+
+在前面的例子中, 所有语法级的名字都以 \texttt{my} 开始, 这是因为它所对应的编程
+语言是 \texttt{my} (当然, 只是假设性的). 如果是 C 语言, 那么比较好的做法是
+语法组的名字以 \texttt{c} 开始, 比如 \texttt{cKeywords}, \texttt{cConditions},
+\texttt{cSymbols}, 等等).
+
+继续前面的例子, 我们刚才说到 \texttt{my} 语法文件所对应的编程语言源代码文件
+的后缀名是 \texttt{.my}, 为了简便起见, 我希望 Vim 把我的文件识别成文件类型
+\texttt{my}.
+\marginpar{146}
