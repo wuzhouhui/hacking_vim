@@ -188,3 +188,26 @@ contained
 的后缀名是 \texttt{.my}, 为了简便起见, 我希望 Vim 把我的文件识别成文件类型
 \texttt{my}.
 \marginpar{146}
+
+如果 Vim 无法识别用户正在编辑的文件, 那么就需要注册它们. 方法是在
+\texttt{VIMHOME} 目录下的 \texttt{filetype.vim} 中添加几行. 如果该文件不存在,
+可以手工创建. 对我的编程语言来说, 需要添加以下几行:
+\begin{vimcode}
+augroup filetypedetect
+autocmd BufNewFile,BufRead *.my setfiletype my
+augroup END
+\end{vimcode}
+上面的代码告诉 Vim 把两行 \texttt{augroup} 之间的所有内容都添加给自动命令组
+\texttt{filetypedetect}. 这个命令组用于确定文件所拥有的文件类型.
+
+在我们的例子中, 命令的功能是无论何时打开一个后缀为 \texttt{.my} 的文件, 就把
+它的文件类型设置成 \texttt{my}. 如果用户还想区别其他文件类型, 还可以在两行
+\texttt{augroup} 之间添加其他 \texttt{autocmd}.
+
+注意, 如果 Vim 检查到我们正在编辑的文件的文件类型是 \texttt{my}, 它就会自动
+查找匹配的语法文件, 它会在目录 \texttt{VIMHOME/syntax/} 内查找以文件类型名开始
+的语法文件, 在这里就是 \texttt{my.vim}.
+
+% TODO
+% This is all you need to get started on creating your own syntax files that
+% Vim can automatically load whenever you open one of your files.
