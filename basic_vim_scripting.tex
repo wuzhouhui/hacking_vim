@@ -188,3 +188,45 @@ contained
 的后缀名是 \texttt{.my}, 为了简便起见, 我希望 Vim 把我的文件识别成具有文件类型
 \texttt{my}.
 \marginpar{146}
+
+如果 Vim 无法识别用户正在编辑的文件, 那么就需要注册它们. 方法是在
+\texttt{VIMHOME} 目录下的 \texttt{filetype.vim} 中添加几行. 如果该文件不存在,
+可以手工创建. 对我的编程语言来说, 需要添加以下几行:
+\begin{vimcode}
+augroup filetypedetect
+autocmd BufNewFile,BufRead *.my setfiletype my
+augroup END
+\end{vimcode}
+上面的代码告诉 Vim 把两行 \texttt{augroup} 之间的所有内容都添加给自动命令组
+\texttt{filetypedetect}. 这个命令组用于确定文件所拥有的文件类型.
+
+在我们的例子中, 命令的功能是无论何时打开一个后缀为 \texttt{.my} 的文件, 就把
+它的文件类型设置成 \texttt{my}. 如果用户还想区别其他文件类型, 还可以在两行
+\texttt{augroup} 之间添加其他 \texttt{autocmd}.
+
+注意, 如果 Vim 检查到我们正在编辑的文件的类型是 \texttt{my}, 它就会自动
+查找匹配的语法文件, 它会在目录 \texttt{VIMHOME/syntax/} 内查找以文件类型名开始
+的语法文件, 在这里就是 \texttt{my.vim}.
+
+% TODO
+% This is all you need to get started on creating your own syntax files that
+% Vim can automatically load whenever you open one of your files.
+
+\begin{warning}
+    学习编写语法文件的最佳方法是阅读别人写的语法文件. 安装 Vim 后, 就已经安装
+    了大量的语法文件, 涵盖了几乎所有常见的文件类型, 用户可以以它们为基础, 从
+    而写出自己的语法文件.
+\end{warning}
+
+另一方面, 如果用户想要在已存在的语法文件中添加额外的识别, 有两种方法可以做到.
+其中一种是找到那个文件, 然后添加自己的内容, 另外一种更好的办法是使用 Vim 的后
+处理功能, 该功能可以覆盖 Vim 已经加载的脚本或语法文件. 第二种办法可以做到无论系统
+上的脚本怎么更新, 都不用改动自己的部分, 因为它们已经和脚本隔离开了.
+
+使用后处理器的秘诀是脚本文件的存放位置. 在用户的 \texttt{VIMHOME} 目录下, 有一
+个子目录 \texttt{after} (如果不存在, 则手工创建). 无论 Vim 在何时查找脚本, 语
+法文件, 或配色方案, 它都会在 \texttt{after} 子目录内查找同名的文件. 比如说, 如
+果 Vim 找到了 \texttt{VIMHOME/syntax/c.vim}, 它就会接着查找
+\texttt{VIMHOME/after/syntax/c.vim}, 看看是否有需要覆盖的地方. 这种情况同样
+适用于从下面这些目录找到的脚本:
+\marginpar{147}
