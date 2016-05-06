@@ -230,3 +230,42 @@ augroup END
 \texttt{VIMHOME/after/syntax/c.vim}, 看看是否有需要覆盖的地方. 这种情况同样
 适用于从下面这些目录找到的脚本:
 \marginpar{147}
+\begin{itemize}
+    \item \texttt{plugin}
+    \item \texttt{ftplugin}
+    \item \texttt{indent}
+    \item \texttt{autoload}
+    \item \texttt{syntax}
+    \item \texttt{colors}
+\end{itemize}
+只要用户需要某个文件, 就可以把上面的任意一个目录放到 \texttt{after} 目录下,
+如果 Vim 找到了文件, 就会使用它.
+
+\subsection{配色方案与语法高亮}
+\label{subsec:color_scheme_and_syntax_coloring}
+
+在前面的例子中, 我们通过命令 \texttt{:syntax} 添加了用户自己的高亮色彩组. 这
+使得用户对配色具有了完全的控制权, 但同时也限制了颜色的种类. 因此, 在其他地方
+可能就不能使用这些颜色\footnote{Hence, it might not follow the colors defined
+by the color scheme you use in the rest of Vim}.
+
+一个更好的办法是使用 Vim 已经定义好了的色彩组, 这就把色彩定义与语法高亮分成了
+两个部分. 通过这种方法, 无论在何时修改了配色方案, 语法高亮都会自动地更新.
+
+下面的命令可以列出所有已经定义了的颜色:
+\begin{vimcode}
+:highlight
+\end{vimcode}
+
+\begin{warning}
+    或者, 你还可以看一下配色方案文件, 这些文件存放在 \texttt{VIMHOME} 的
+    \texttt{color} 目录下.
+\end{warning}
+
+\section{使用脚本}
+\label{sec:using_scripts}
+
+每个人都会有一些特定的编辑器需求, 其中有些需求比较简单, 比如按键绑定, 而有一些
+则比较复杂, 当然, Vim 不可能满足每个人的需要, 所以它提供了脚本供程序员扩展
+Vim.
+\marginpar{148}
