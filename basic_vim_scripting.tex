@@ -314,15 +314,15 @@ Vim.
 如果脚本被打包成压缩文件, 其安装方法就很难说清楚. 典型的安装方法是把压缩文件
 复制到 \texttt{VIMHOME}, 然后再解压. 解压后, 压缩包中的文件会自动存放到对应的
 目录内. 通常在压缩文件中都有一个 \texttt{README} 或 \texttt{INSTALL} 文件, 它
-详细介绍了脚本的安装方法.
+们详细介绍了脚本的安装方法.
 
 \begin{warning}
     如果脚本是在 \url{http://www.vim.org} 上找到的, 那就同时也能找到脚本的安
     装方法.
 \end{warning}
 
-最后一种格式需要通过 Vimball 安装, Vimball 是为 7 及以上版本的 Vim 而开发的.
-Vim 接收若干个文件, 然后把它们组合在一个单一的 Vim 脚本归档文件, 文件的后缀名
+最后一种格式需要通过 Vimball 来安装, Vimball 是为 7 及以上版本的 Vim 而开发的.
+Vim 接收若干个文件, 然后把它们组合成一个单一的 Vim 脚本归档文件, 文件的后缀名
 是 \texttt{.vba}, 意思是 Vimball.
 
 在开始使用 Vimball 之前, 得先安装 Vimball 脚本, 这个脚本用于读取与安装 Vimball
@@ -342,7 +342,7 @@ Vim 接收若干个文件, 然后把它们组合在一个单一的 Vim 脚本归
 :source %
 \end{vimcode}
 命令会把脚本安装到从选项 \texttt{runtimepath} 中找到的第一个目录内. 如果想修改
-安装目录, 就把上面的命令换成:
+安装目录, 就把命令换成:
 \begin{vimcode}
 :UseVimball PATH
 \end{vimcode}
