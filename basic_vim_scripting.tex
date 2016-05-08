@@ -308,3 +308,42 @@ Vim.
 \texttt{VIMHOME/plugin} 目录下, 如果是和某种文件类型相关的脚本, 就复制到
 \texttt{VIMHOME/ftplugin}.
 \marginpar{149}
+如果用户使用的是多用户操作系统, 只需要把它们安装在 Vim 安装目录 (而非
+\texttt{VIMHOME}) 下面的同名子目录中, 就可以同时为所有的用户提供服务.
+
+如果脚本被打包成压缩文件, 其安装方法就很难说清楚. 典型的安装方法是把压缩文件
+复制到 \texttt{VIMHOME}, 然后再解压. 解压后, 压缩包中的文件会自动存放到对应的
+目录内. 通常在压缩文件中都有一个 \texttt{README} 或 \texttt{INSTALL} 文件, 它
+详细介绍了脚本的安装方法.
+
+\begin{warning}
+    如果脚本是在 \url{http://www.vim.org} 上找到的, 那就同时也能找到脚本的安
+    装方法.
+\end{warning}
+
+最后一种格式需要通过 Vimball 安装, Vimball 是为 7 及以上版本的 Vim 而开发的.
+Vim 接收若干个文件, 然后把它们组合在一个单一的 Vim 脚本归档文件, 文件的后缀名
+是 \texttt{.vba}, 意思是 Vimball.
+
+在开始使用 Vimball 之前, 得先安装 Vimball 脚本, 这个脚本用于读取与安装 Vimball
+文件. 和其他脚本一样, 用户可以到 Vim 官网下载到该脚本.
+
+\begin{warning}
+    在 \url{http://www.vim.org/scripts/script.php?script_id=1502} 上可以下载
+    到最新版的 Vimball.
+\end{warning}
+
+安装完 Vimball 脚本后, 就可以用它来安装其他 Vim 脚本.
+
+假设用户现在有一个名为 \texttt{myscript.vba} 的 Vimball 文件, 为了安装它, 先
+在 Vim 中打开该文件, 打开文件后, Vim 就会告诉用户如何安装
+\texttt{myscript.vba}. 安装的方法通常是执行下面的命令:
+\begin{vimcode}
+:source %
+\end{vimcode}
+命令会把脚本安装到从选项 \texttt{runtimepath} 中找到的第一个目录内. 如果想修改
+安装目录, 就把上面的命令换成:
+\begin{vimcode}
+:UseVimball PATH
+\end{vimcode}
+\marginpar{150}
