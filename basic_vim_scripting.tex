@@ -347,3 +347,44 @@ Vim 接收若干个文件, 然后把它们组合成一个单一的 Vim 脚本归
 :UseVimball PATH
 \end{vimcode}
 \marginpar{150}
+你需要把 \texttt{PATH} 替换成脚本的安装路径. 需要注意的是, 有些脚本只能安装在
+特定的目录下, 否则的话, 脚本就不能正常工作.
+
+有时候, 用户可能想在安装之前查看一下 Vimball 中包含的文件. Vim 提供了一个这样
+命令, 使用方法是在打开 Vimball 之后, 执行:
+\begin{vimcode}
+:VimballList
+\end{vimcode}
+
+查看后, 如果没什么问题, 就可以用 \texttt{:source} 或 \texttt{:UseVimball}
+安装.
+
+\subsection{卸载脚本}
+\label{subsec:uninstalling_scripts}
+
+通常来说, 不存在用于卸载脚本的自动化方法, 用户必须手动地把文件删除掉. 不过
+Vimball 含有删除机制.
+
+如果用户记得安装时所用的 Vimball 文件名, 就可以通过它来卸载脚本. 卸载 Vimball
+的命令是:
+\begin{vimcode}
+:RmVimball VIMBALLNAME
+\end{vimcode}
+把 \texttt{VIMBALLNAME} 替换成安装脚本时所用的 Vimball 文件名. 如果脚本不是
+安装有默认路径下 (通过 \texttt{:UseVimball} 命令), 就在命令的末尾加上安装路径:
+\begin{vimcode}
+:RmVimball VIMBALLNAME PATH
+\end{vimcode}
+
+为了把 Vimball 与将要删除的文件关联起来, 脚本会在 \texttt{VIMHOME} 下创建一个
+名为 \texttt{.VimballRecord} 的文件. 注意, 如果你把这个文件删除了, 就不能卸载
+之前所有的, 通过 Vimball 安装的脚本 (当然, 还可以通过手工删除来卸载).
+
+\section{脚本开发}
+\label{sec:script_development}
+
+在使用 Vim 的过程中难免会遇到这样的情况: 自己想要的功能, Vim 却不提供. 所以现
+在正好就是学习 Vim 脚本开发的好时机.
+
+不过, 在开始前得先考虑几个问题.
+\marginpar{151}
