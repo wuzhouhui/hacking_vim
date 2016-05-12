@@ -423,3 +423,49 @@ Vimball 含有删除机制.
 如果用户是一名程序员, 那就会对 Vim 的脚本语言感到很熟悉, 因为它的结构与其他
 编程语言是类似的.
 \marginpar{152}
+
+\subsubsection{类型}
+\label{subsubsec:types}
+
+简单来说, Vim 只有两种类型的数据 --- 字符串与数值. 之所以是简单来说, 是因为
+这两种类型还包含了其他的子类型. 一个数值可以有三种表示方法:
+\begin{itemize}
+    \item 十进制: 1, 2, 3, 100 等
+    \item 十六进制: 0x01, 0x02, 0x03, 0xa0, 0x64 等
+    \item 八进制: 01, 02, 03, 012, 0144 等
+\end{itemize}
+
+在表示十六进制与八进制数时, 需要分别在数的前面加外 \texttt{0x} 与 \texttt{0}.
+Vim 可以方便地对数字进行运算, 即使数字间的进制不太相同, 比如, 可以计算下面的
+表达式:
+\begin{vimcode}
+:echo 10 + 0x0A + 012
+\end{vimcode}
+运算结果是 \texttt{30}.
+
+Vim 中的字符串用一对单引号或双引号括起来, 比如:
+\begin{vimcode}
+:echo "this is a string"
+:echo 'this is a string'
+\end{vimcode}
+
+如果想在字符串中表示用于括住字符串的字符 (单引号或双引号), 就用反斜杆转义:
+\begin{vimcode}
+:echo "this is a string with a \" double quotes"
+:echo 'the double quote " does not need escaping here'
+\end{vimcode}
+
+使用单引号还是双引号取决于具体的场景.
+
+在单引号括住的字符串中, 字符串将会按照字面显示, 也被称为字面字符串. 这就意味着
+在单引号括住的字符串中不能使用特殊的转义字符.
+
+比如, 下面的字符串可以按照预想中的方式 (分成两行显示) 输出:
+\begin{vimcode}
+:echo "string with\n two lines"
+\end{vimcode}
+但这个就不可以:
+\begin{vimcode}
+:echo 'string with\n two lines'
+\end{vimcode}
+\marginpar{153}
