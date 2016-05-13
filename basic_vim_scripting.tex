@@ -469,3 +469,25 @@ Vim 中的字符串用一对单引号或双引号括起来, 比如:
 :echo 'string with\n two lines'
 \end{vimcode}
 \marginpar{153}
+
+除了换行符 \verb'\n', 其他的转义字符序列还包括:
+\begin{tabular}{ll}
+   \hline \\
+   \verb'\n'    & 换行符 \\
+   \verb'\r'    & 回车符 \\
+   \verb'\t'    & 制表符 \\
+   \verb'\123'  & 该八进制数所表示的字符 \\
+   \verb'\x123' & 该十六进制数所表示的字符 \\
+   \verb'\u'    & 最多 4 个十六进制数所表示的字符 \\
+   \verb'\f'    & 换页 \\
+   \verb'\e'    & 转码 \\
+   \verb'\b'    & 退格 \\
+   \hline
+\end{tabular}
+
+除了这些转义字符序列, 还可以插入其他 Vim 可识别的按键缩写, 比如 \texttt{<CR>},
+与 \texttt{<ESC>}, 但是得在前面加上反斜杆 --- \verb'\<CR>', 甚至还可以插入其他
+快捷键缩写, 比如 \texttt{<C-W>}, 但同样得加反斜杆.
+
+\subsubsection{变量}
+\label{subsubsec:variables}
