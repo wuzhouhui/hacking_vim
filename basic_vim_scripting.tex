@@ -491,3 +491,24 @@ Vim 中的字符串用一对单引号或双引号括起来, 比如:
 
 \subsubsection{变量}
 \label{subsubsec:variables}
+
+Vim 有 5 种类型的变量 (虽然定义的方式是相同的), 使用方法也大不相同. 这 5 种类
+型是:
+\begin{itemize}
+    \item 字符串: \texttt{"this is a string"} 就是一个简单的字符串
+    \item 数值: 比如 \texttt{123} 或 \texttt{0x123}
+    \item 线性表: 含有多个条目的有序序列 (或有序数组)
+    \item 字典: 一个无序的关联数组, 保存有\ 键-值\ 对
+    \item 函数引用: 指向一个函数的引用
+\end{itemize}
+
+变量的名字可以包含字母, 数字与下划线, 但不能以数字开始.
+
+\begin{warning}
+    尽量使用有意义的名字, 始终记住可能会有其他人阅读你的代码. 为了避免自己的
+    变量名与别人的变量名混淆, 可以让自己的变量名以某个特殊的名字开始, 比如
+    自己姓名的首字母缩写: \texttt{KSmyvariable}. 如果有多个程序员在开发同一
+    套脚本, 那还可以用脚本文件名的缩写, 比如 Vim 排序脚本中的变量名可以是
+    \texttt{VSmyvariable} 或 \texttt{VSSmyvariable}.
+\end{warning}
+\marginpar{154}
