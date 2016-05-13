@@ -471,6 +471,8 @@ Vim 中的字符串用一对单引号或双引号括起来, 比如:
 \marginpar{153}
 
 除了换行符 \verb'\n', 其他的转义字符序列还包括:
+
+\begin{center}
 \begin{tabular}{ll}
    \hline \\
    \verb'\n'    & 换行符 \\
@@ -484,15 +486,16 @@ Vim 中的字符串用一对单引号或双引号括起来, 比如:
    \verb'\b'    & 退格 \\
    \hline
 \end{tabular}
+\end{center}
 
 除了这些转义字符序列, 还可以插入其他 Vim 可识别的按键缩写, 比如 \texttt{<CR>},
-与 \texttt{<ESC>}, 但是得在前面加上反斜杆 --- \verb'\<CR>', 甚至还可以插入其他
+与 \texttt{<ESC>}, 但是得在前面加上反斜杆: \verb'\<CR>', 甚至还可以插入其他
 快捷键缩写, 比如 \texttt{<C-W>}, 但同样得加反斜杆.
 
 \subsubsection{变量}
 \label{subsubsec:variables}
 
-Vim 有 5 种类型的变量 (虽然定义的方式是相同的), 使用方法也大不相同. 这 5 种类
+Vim 有 5 种类型的变量, 使用方法大不相同 (虽然定义的方式是相同的). 这 5 种类
 型是:
 \begin{itemize}
     \item 字符串: \texttt{"this is a string"} 就是一个简单的字符串
