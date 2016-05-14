@@ -515,3 +515,55 @@ Vim 有 5 种类型的变量, 使用方法大不相同 (虽然定义的方式是
     \texttt{VSmyvariable} 或 \texttt{VSSmyvariable}.
 \end{warning}
 \marginpar{154}
+
+所有类型的变量都是通过命令 \texttt{:let} 定义:
+\begin{vimcode}
+:let myvar = VALUE
+\end{vimcode}
+命令中的 \texttt{VALUE} 取决于变量的具体类型. 对于字符串与数字, 定义的方式与
+前面讲过的相同, 比如:
+\begin{vimcode}
+:let mystringvar = "a string"
+:let mynumbervar = 123
+\end{vimcode}
+处理字符串与数值类型的变量时, 根据具体的使用方式, 这两种类型可以互相转换, 这
+意味着即使执行了:
+\begin{vimcode}
+:let mystringvar="123"
+\end{vimcode}
+也可以使用:
+\begin{vimcode}
+:let mynumbervar=mystringvar-23
+\end{vimcode}
+在算术表达式中, \texttt{mystringvar} 会自动转换成数值类型.
+\begin{warning}
+    可以通过加 0, 从而把一个字符串强制转换成数值, 比如 \texttt{:let
+    mynumber=mystringvar+0}. 为了把一个数值强制转换成字符串, 可以使用函数
+    \texttt{string()}: \texttt{:let mystring=string(mynumber)}.
+\end{warning}
+
+这种自动类型转换对线性表与字典不适用, 因为它们包含的值可能一点也不相同. 下面
+的表格汇总了类型转换的各种情况:
+\begin{center}
+    \begin{tabular}{ll}
+        \hline \\
+        输入类型 & 结果类型 \\
+        \hline \\
+        \texttt{"hello" . "world"}  & \texttt{"hello world"} (字符串) \\
+        \texttt{"number" .123}  & \texttt{"number 123"}(字符串) \\
+        \texttt{"123" + 10} & \texttt{133} (数字) \\
+        \texttt{"123" - 10 . "hits"} & \texttt{"113 hits"} (字符串) \\
+        \texttt{"123" - 10 + "hits"} & \texttt{113} (数值) \\
+        \hline
+    \end{tabular}
+\end{center}
+
+定义线性表的方式是将表内的各个值用逗号分开, 外面再包围一对中括号:
+\begin{vimcode}
+:let mylistvar1 = [1,2,"three",0x04,myfivevar]
+\end{vimcode}
+线性表的元素还可以是一个线性表:
+\begin{vimcode}
+    :let mylistvar2 = [[1,2,3],["four","five","six"]]
+\end{vimcode}
+\marginpar{155}
