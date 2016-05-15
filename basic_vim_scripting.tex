@@ -567,3 +567,45 @@ Vim 有 5 种类型的变量, 使用方法大不相同 (虽然定义的方式是
     :let mylistvar2 = [[1,2,3],["four","five","six"]]
 \end{vimcode}
 \marginpar{155}
+
+可以看到, 上面定义的线性表包含了字符串, 数值, 和线性表. 因此线性表可以作为存
+放不同类型变量的容器.
+
+稍后, 我们将会介绍如何使用线性表中的变量, 以及如何与其他线性表一起工作.
+
+创建一个字典变量的命令是:
+\begin{vimcode}
+:let mydictvar1 = {1: "one", 2: "two", 3: "three"}
+\end{vimcode}
+命令创建了包含三个项目的字典变量, 项目的键是数值, 值是字符串.
+
+不管把键写成数值, 还是字符串, Vim 都会把它们转换成字符串, 所以上面的命令会把
+键值对定义成 \texttt{1:one}.
+
+字典中还可以包含其他字典, 比如:
+\begin{vimcode}
+:let mydictvar2 = {1: "one", 2: "two", "tens":{0: "ten", 1: "eleven"}}
+\end{vimcode}
+可以看到, 键不需要遵守特别的顺序, 也不一定非得是数值类型 (比如例子中的
+\texttt{"tens"}).
+
+稍后, 我们将会介绍如何访问字典中的值, 以及字典与线性表之间如何互相转换.
+
+最后一种变量类型是函数引用, 这种类型的变量包含了指向某个函数的引用, 和其他类
+型的变量相比, 其不同点是它是可执行的. 定义函数引用的命令是:
+\begin{vimcode}
+:let Myfuncrefvar = function("Myfunction")
+\end{vimcode}
+命令把变量 \texttt{Myfuncrefvar} 绑定到函数 \texttt{Myfunction}. 需要注意的是,
+变量名以大写字母开始, 这是因为所有的用户自定义函数的函数名都以大写字母开始,
+因此作为函数执行的变量也要遵命这个规定.
+
+在使用函数引用类型的变量时, 只需要在函数名的后面加上一对括号:
+\begin{vimcode}
+:echo Myfuncrefvar()
+\end{vimcode}
+除此之外, 还可以用:
+\begin{vimcode}
+:call Myfuncrefvar()
+\end{vimcode}
+\marginpar{156}
