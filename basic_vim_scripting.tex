@@ -606,3 +606,47 @@ Vim 有 5 种类型的变量 (虽然定义的方式是相同的), 使用方法�
 :call Myfuncrefvar()
 \end{vimcode}
 \marginpar{156}
+
+如果函数所绑定的函数需要输入参数, 那就把参数放到括号中, 就像
+\texttt{Myfuncrefvar(arg1, arg2,..., argN)}.
+
+变量可以拥有不同的作用域, 这意味着某些变量只能在函数内访问, 而有些变量可以在
+任意一个地方被访问到.
+
+脚本开发人员需要把变量的作用域告诉给 Vim, 方法是在变量名的前面加上作用域指示
+符.
+
+如果在定义变量时没有定义作用域, 那就是全局的, 如果变量是在函数内定义的, 那么
+作用域仅限于函数内部. 总共有以下 8 种作用域:
+\begin{itemize}
+    \item \texttt{v}: Vim 预定义的全局作用域
+    \item \texttt{g}: 全局作用域
+    \item \texttt{b}: 缓冲区作用域 --- 只在定义变量的缓冲内有效
+    \item \texttt{t}: 标签页作用域 --- 只在定义变量的标签页内有效
+    \item \texttt{w}: 窗口作用域 --- 只在当前窗口内有效
+    \item \texttt{l}: 函数作用域 --- 只在定义它的函数内部有效
+    \item \texttt{s}: 来源文件作用域 --- 只在通过命令 \texttt{:source} 加载的
+        文件内有效
+    \item \texttt{a}: 参数作用域 --- 专门用于函数的参数
+\end{itemize}
+
+\begin{warning}
+    % TODO
+    Did you know that comments in Vim scripts are created by having a quote as
+    the first non-space character on the line: \texttt{" this is a comment}?
+\end{warning}
+
+下面的程序用到了几个不同的作用域:
+\begin{vimcode}
+let g:sum=0
+function SumNumber(num1,num2)
+    let l:sum = a:num1+a:num2
+    "check if previous sum was lower than this
+    if g:sum < l:sum
+        let g:sum=l:sum
+    endif
+    return l:sum
+endfunction
+" test code, this will print 7 (value of l:sum)
+\end{vimcode}
+\marginpar{157}
