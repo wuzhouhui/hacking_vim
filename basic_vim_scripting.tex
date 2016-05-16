@@ -651,5 +651,52 @@ function SumNumber(num1,num2)
     return l:sum
 endfunction
 " test code, this will print 7 (value of l:sum)
+echo SumNumbers(3,4)
+" this should also print 7 (value of g:sum)
+echo g:sum
 \end{vimcode}
 \marginpar{157}
+
+虽然局部变量与全局变量的名字可以相同, 但是如果你已经知道某个全局变量的名字,
+最好就不要再使用同名的局部变量.
+
+\begin{warning}
+    尽量使用具体的作用域. 这种方法可以避免全局变量被一些你无法控制的变量所
+    污染.
+\end{warning}
+
+\subsubsection{条件}
+\label{subsubsec:conditions}
+
+开发 Vim 脚本时, 有时候在执行代码之前需要检查某个条件是否满足. 大多数现代
+编程语言使用条件语句进行条件检查. Vim 同样也有这种语句, 它的格式是:
+\begin{vimcode}
+if condition
+    code-to-execute-if-condition-is-met
+endif
+\end{vimcode}
+如果 \texttt{condition} 的值为真, \texttt{if} 和 \texttt{endif} 之间的语句就
+会执行, 否则就不执行.
+
+那么, 在这个 \texttt{if} 结构中我们可以使用哪些条件? 主要有两种 --- 使用逻辑
+运算符的语句, 与使用字符串运算符的语句. 现在来看一下这两种运算符如何使用. 其
+总的形式都是:
+\begin{vimcode}
+value1 OPERATOR value2
+\end{vimcode}
+命令中的 \texttt{OPERATOR} 是用于比较 \texttt{value1} 与 \texttt{value2} 的运
+算符. 比如:
+\begin{vimcode}
+value1 >= value2
+\end{vimcode}
+如果 \texttt{value1} 大于或等于 \texttt{value2} 则表达式为真. 这只是逻辑运算符
+中的一种, 其他的逻辑运算符还有:
+\begin{itemize}
+    \item \texttt{val1 == val2}: 如果 \texttt{val1} 等于 \texttt{val2}, 则表达
+        式为真
+    \item \texttt{val1 != val2}: 如果 \texttt{val1} 不等于 \texttt{val2}, 则
+        表达式为真
+    \item \texttt{val1 > val2}: 如果 \texttt{val1} 大于 \texttt{val2}, 则
+        表达式为真
+\end{itemize}
+\marginpar{158}
