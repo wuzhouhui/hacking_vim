@@ -708,16 +708,16 @@ value1 >= value2
 \marginpar{158}
 
 这些运算符既可以用于数值类型, 也可以用于字符串类型, 因为 Vim 可以自动进行转
-换. 如果是对字符串进行比较, 在比较时会逐字比较各个字母的 ASCII 码值. 例如
+换. 如果是对字符串进行比较, 在比较时会逐个比较各个字母的 ASCII 码值. 例如
 \texttt{"bbb" > "aaa"} 为真, 而 \texttt{"abc" > "abd"} 为假 (这是因为
 \texttt{a} 的 ASCII 值比 \texttt{d} 小).
 
 如果是对字符串进行处理, 还有更多的运算符可供选择. 如果用户想查看某个字符串是
 含有特定的子字符串或字符, 则可以使用部分匹配运算符, 使用方式是:
 \begin{itemize}
-    \item \texttt{str1 =~ str2}: 如果 \texttt{str1} 包含 \texttt{str2}, 或
+    \item \verb'str1 =~ str2': 如果 \texttt{str1} 包含 \texttt{str2}, 或
         \texttt{str1} 与 \texttt{str2} 相同, 则为真
-    \item \texttt{str1 !~ str2}: 如果 \texttt{str1} 不包含 \texttt{str2}, 并且
+    \item \verb'str1 !~ str2': 如果 \texttt{str1} 不包含 \texttt{str2}, 并且
         \texttt{str1} 与 \texttt{str2} 不相同, 则为真
 \end{itemize}
 
