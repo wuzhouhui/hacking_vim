@@ -743,3 +743,48 @@ else
 endif
 \end{vimcode}
 \marginpar{159}
+
+另一种情况是需要检查多个条件, 而且只有其中一个条件会满足, 代码的形式是:
+\begin{vimcode}
+if condition1
+    code-to-execute-if-condition1-is-true
+else
+    if condition2
+        code-to-execute-if-condition2-is-true
+    endif
+endif
+\end{vimcode}
+
+可以看到, \texttt{condition1} 与 \texttt{condition2} 中只有一个的值可以为真,
+并且两个都可以为假. 但是这样的代码是成簇的, 额外的 \texttt{endif} 如果放的位
+置不对, 会导致错误的 \texttt{if} 结构.
+
+一个更好的方式是使用 \texttt{if-elseif-else} 结构:
+\begin{vimcode}
+if condition1
+    code-to-execute-if-condition1-is-true
+elseif condition2
+    code-to-execute-if-condition2-is-true
+endif
+\end{vimcode}
+
+这段代码所做的工作与前一个的相同, 但是它的可读性更高. \texttt{elseif} 出现的
+次数可以多于一次, 这就意味着可以在同一个结构中判断多个条件, 而不用担心会出现
+什么问题.
+
+稍后, 我们将会介绍如何在循环结构中使用条件判断.
+
+\subsubsection{使用线性表与字典}
+\label{subsubsec:working_with_lists_and_dictionaries}
+
+在之前的内容中, 我们已经介绍了如何创建线性表与字典, 现在讨论如何访问这两个结
+绝中的数据.
+
+如果用户已经有了一个线性表变量, 并且想要访问其中的某个变量, 访问的方法是在线
+性变量的名字后面加上一对方括号, 并在括号内填上所要访问的值在线性表中的索引.
+索引是表项在线性表中的存放位置, 从 \texttt{0} 开始. 假设我们想要访问下面线性
+表中的元素 \texttt{"three"}:
+\begin{vimcode}
+:let mylistvar1 = [1,2,"three",0x04,myfivevar]
+\end{vimcode}
+\marginpar{160}
