@@ -785,3 +785,48 @@ endif
 :let mylistvar1 = [1,2,"three",0x04,myfivevar]
 \end{vimcode}
 \marginpar{160}
+\texttt{"three"} 的索引是 2, 所以我们可以这样访问它:
+\begin{vimcode}
+:echo mylistvar[2]
+\end{vimcode}
+如果线性表中还有线性表, 比如 \texttt{mylistvar2}:
+\begin{vimcode}
+    :let mylistvar2 = [[1,2,3],["four","five","six"]]
+\end{vimcode}
+如果想要访问 \texttt{"four"} 所在的元素, 我们需要访问里面那个线性表的索引 0,
+与外面那个线性表的索引 1:
+\begin{vimcode}
+:echo mylistvar2[1][0]
+\end{vimcode}
+
+在线性表中还可以使用负的索引值. 如果索引值是负的, 那个这个索引就是相对于表的
+末尾, 而不是开头. 所以, 访问 \texttt{"four"} 的另一种形式是:
+\begin{vimcode}
+:echo mylistvar2[-1][-3]
+\end{vimcode}
+因为 -0 与 0 是相同的, 所以最后一项的索引是 -1.
+
+\begin{warning}
+    如果试图访问一个不存在的元素, Vim 就会返回一个错误. 为了避免返回错误信息,
+    可以用 \texttt{get()} 来获取元素: \texttt{:echo get(mylistvar1, 2)}, 其中
+    \texttt{2} 是试图访问的元素的索引.
+\end{warning}
+
+如果想要往一个已存在的线性表中添加一个新元素, 有很多种方法都可以做到. 最简单的
+方式是用函数 \texttt{add()}, 它的一个使用示例是:
+\begin{vimcode}
+:let mylistvar3 = [1,2,3,4]
+:call add(mylistvar3, 5)
+:echo mylistvar3
+\end{vimcode}
+上面的命令在 \texttt{mylistvar3} 添加一个新元素 \texttt{5}, 然后打印整个线性
+表. 添加元素的另一种方法是使用 Vim 的拼接功能. 运算符 \texttt{+} 可以用于拼接
+两个线性表, 它的一个使用示例是:
+\begin{vimcode}
+:let mylistvar4 = [1,2,3,4]
+:let mylistvar4 = mylistvar4 + [5,6,7,8]
+:echo mylistvar4
+\end{vimcode}
+上面的命令先是创建一个具有 4 个元素的线性表, 然后再拼接上一个新的线性表, 再把
+拼接后的线性表赋给自己. 最终, 线性表中将含有 8 个元素.
+\marginpar{161}
