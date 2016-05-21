@@ -833,3 +833,46 @@ endif
 上面的命令先是创建一个具有 4 个元素的线性表, 然后再拼接上一个新的线性表, 再把
 拼接后的线性表赋给自己. 最终, 线性表中将含有 8 个元素.
 \marginpar{161}
+
+\begin{warning}
+    在拼接两个线性表时, 还有一个更方便的运算符: \texttt{+=}. 这个运算符可以把
+    右手边的线性表拼接到左手边的线性表上, 比如: \texttt{:let mylistvar4 +=
+    [5,6,7,8,]}
+\end{warning}
+
+如果待拼接的线性表只含有一个元素, 那么它的效果与添加一个新元素是相同的.
+
+除了运算符 \texttt{+}, 还可以用函数 \texttt{extend()} 来完成拼接. 它的一个使
+用例子是:
+\begin{vimcode}
+:let mylistvar5 = [1,2,3,4]
+:call extend(mylistvar5, [5,6,7,8])
+:echo mylistvar5
+\end{vimcode}
+注意, \texttt{add()} 与 \texttt{extend()} 之间有很大的不同. 在上面的例子中如果
+把 \texttt{extend()} 换成 \texttt{add()}, 那么最终的结果是把一个线性表添加到
+另一个线性表中, 相当于:
+\begin{vimcode}
+:let mylistvar5 = [1,2,3,4,[5,6,7,8]]
+\end{vimcode}
+这个线性表只有 5 个元素, 面且最后一个元素是一个含有 4 个元素的线性表.
+
+移除元素的方法与添加元素的方法类似, 只不过要把 \texttt{add()} 换成
+\texttt{remove()}, 比如:
+\begin{vimcode}
+:call remove(mylistvar5, 3)
+\end{vimcode}
+这个命令从 \texttt{mylistvar5} 中移除索引为 \texttt{3} 的元素.
+
+现在开始介绍如何访问与修改字典变量. 在前面我们已经介绍过创建一个字典变量的命令
+类似于:
+\begin{vimcode}
+:let mydictvar1 = {1: "one", 2: "two", 3: "three"}
+\end{vimcode}
+
+访问字典变量的方式与线性表非常类似. 假如我们想访问 \texttt{"two"}, 那就得在字
+典变量的后面加个 \texttt{[]}, 并在括号内填上它的键值, 就像:
+\begin{vimcode}
+:echo mydictvar1[2]
+\end{vimcode}
+\marginpar{162}
