@@ -876,3 +876,50 @@ endif
 :echo mydictvar1[2]
 \end{vimcode}
 \marginpar{162}
+
+看起来和访问线性表差不多, 但是如果把键值改成字符串, 那就不一样了:
+\begin{vimcode}
+:let mydictvar4 = {'banana': 'yellow', 'apple': 'green'}
+\end{vimcode}
+现在, 我们想要访问苹果的颜色:
+\begin{vimcode}
+:echo mydictvar4['apple']
+\end{vimcode}
+上面的命令会在屏幕打印出 \texttt{'green'}. 如果键值仅由 ASCII 字母, 数字, 与
+下划线组成, 则还可以用:
+\begin{vimcode}
+:echo mydictvar4.apple
+\end{vimcode}
+键值的第一个字符必须是 ASCII 字母.
+
+线性表中的元素是有序的, 并且含有索引, 相比之下, 字典是无序的, \mbox{键}-值
+对中的键用于获取对应的值.
+
+修改字典中的某个值的命令是:
+\begin{vimcode}
+:let mydictvar4['apple'] = 'red'
+\end{vimcode}
+往字典变量中添加新元素的命令和上面的相同, 唯一需要注意的地方是所使用的键必须是
+变量中未出现过的.
+
+用户可以在字典变量上附加一个函数, 使用该函数可以对字典变量中的元素进行一些操
+作, 接下来我们将通过一个例子来说明.
+
+比如说, 我们想要达到这样一个功能: 接收一个数值, 把数值中每一个数位上的数字转
+换成对应的英文拼写形式. 假设完成这个转换过程的函数是 \texttt{convert}, 而它
+所附加的字典变量是:
+\begin{vimcode}
+:let mynumbers = {0:'zero',1:'one',2:'two',3:'three',4:'four',
+                5:'five',6:'six',7:'seven',8:'eight',9:'nine'}
+\end{vimcode}
+函数是:
+\begin{vimcode}
+function mynumbers.convert(numb) dict
+    return join(map(split(a:numb,'\zs'),'get(self, v:val,"unknown")'))
+endfunction
+\end{vimcode}
+上面的函数代码中有两个地方需要注意.
+
+第一个需要注意的地方是函数的定义方式与普通函数的定义方式相同, 除了函数名需要
+包含字典变量的名字, 并且在函数参数的后面需要加上关键字 \texttt{dict}.
+\marginpar{163}
