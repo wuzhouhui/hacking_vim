@@ -923,3 +923,50 @@ endfunction
 第一个需要注意的地方是函数的定义方式与普通函数的定义方式相同, 除了函数名需要
 包含字典变量的名字, 并且在函数参数的后面需要加上关键字 \texttt{dict}.
 \marginpar{163}
+这个关键词告诉 Vim 把该函数当成一个字典函数, 并对一个特殊的变量作操作 ---
+\texttt{self}, 在这个例子中, 变量 \texttt{self} 指向函数所关联的字典变量.
+这意味着我们可以通过 \texttt{self[1]} 来获取值 \texttt{"one"}, 以此类推. 函数
+的实现由四个子函数组成:
+\begin{itemize}
+    \item \texttt{split}: 把存放在变量 \texttt{a:numb} 中的参数切分到一个匿名
+        线性表中, 例如:
+    \begin{vimcode}
+    :let a = split("one two")
+    :echo a;    " this prints "one"
+    \end{vimcode}
+\item \texttt{map}: 把一个给定的命令映射到线性表 (通过调用 \texttt{split}
+    得到的线性表) 中的每一个元素上, 例如:
+    \begin{vimcode}
+    :let mylist = ["one", "two", "three"]
+    :call map(mylist, "<" . v:val . ">")
+    :echo mylist[0] " this prints <one>
+    \end{vimcode}
+\item \texttt{get}: 从 \texttt{self} 中取一个键值是 \texttt{v:val} (从
+    \texttt{map} 中获取的值) 的元素, 例如:
+    \begin{vimcode}
+    :let mylist2 = ["one", "two", "three"]
+    :echo get(mylist2, 2, "none") " prints three
+    :echo get(mylist2, 3, "none") " prints "none"
+    \end{vimcode}
+\item \texttt{join}: 连接所有的, 由 \texttt{map}-\texttt{get} 返回的元素,
+    例如:
+    \begin{vimcode}
+    :let mylist3 = ["one", "two", "three"]
+    :let mystring = join(mylist3, "+")
+    :echo mystring " prints one+two+three
+    \end{vimcode}
+\end{itemize}
+更多的信息请参考 \texttt{:help split()}, \texttt{:help join()},
+\texttt{:help map()}, \texttt{:help get()}.
+
+说得更明白一点, 函数 \texttt{mynumbers.convert} 的功能是接收一个范围内的数字
+(\texttt{a:numb}), 然后把它切分成单独的数字, 再把每个数字当成一个键去索引字典
+(\texttt{mynumbers}, 或 \texttt{self}) 中对应的值, 把所有返回的值连接起来,
+值与值之间用一个空格分开, 最后再返回这个字符串.
+
+现在, 用户可以把自己的字典变量当成一个转换器, 把数值转换成对应的英文形式, 使
+用方式是:
+\begin{vimcode}
+:echo mynumbers.convert(12345)
+\end{vimcode}
+\marginpar{164}
