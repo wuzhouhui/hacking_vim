@@ -930,31 +930,31 @@ endfunction
 \begin{itemize}
     \item \texttt{split}: 把存放在变量 \texttt{a:numb} 中的参数切分到一个匿名
         线性表中, 例如:
-    \begin{vimcode}
-    :let a = split("one two")
-    :echo a;    " this prints "one"
-    \end{vimcode}
+\begin{vimcode}
+:let a = split("one two")
+:echo a;    " this prints "one"
+\end{vimcode}
 \item \texttt{map}: 把一个给定的命令映射到线性表 (通过调用 \texttt{split}
     得到的线性表) 中的每一个元素上, 例如:
-    \begin{vimcode}
-    :let mylist = ["one", "two", "three"]
-    :call map(mylist, "<" . v:val . ">")
-    :echo mylist[0] " this prints <one>
-    \end{vimcode}
+\begin{vimcode}
+:let mylist = ["one", "two", "three"]
+:call map(mylist, "<" . v:val . ">")
+:echo mylist[0] " this prints <one>
+\end{vimcode}
 \item \texttt{get}: 从 \texttt{self} 中取一个键值是 \texttt{v:val} (从
     \texttt{map} 中获取的值) 的元素, 例如:
-    \begin{vimcode}
-    :let mylist2 = ["one", "two", "three"]
-    :echo get(mylist2, 2, "none") " prints three
-    :echo get(mylist2, 3, "none") " prints "none"
-    \end{vimcode}
+\begin{vimcode}
+:let mylist2 = ["one", "two", "three"]
+:echo get(mylist2, 2, "none") " prints three
+:echo get(mylist2, 3, "none") " prints "none"
+\end{vimcode}
 \item \texttt{join}: 连接所有的, 由 \texttt{map}-\texttt{get} 返回的元素,
     例如:
-    \begin{vimcode}
-    :let mylist3 = ["one", "two", "three"]
-    :let mystring = join(mylist3, "+")
-    :echo mystring " prints one+two+three
-    \end{vimcode}
+\begin{vimcode}
+:let mylist3 = ["one", "two", "three"]
+:let mystring = join(mylist3, "+")
+:echo mystring " prints one+two+three
+\end{vimcode}
 \end{itemize}
 更多的信息请参考 \texttt{:help split()}, \texttt{:help join()},
 \texttt{:help map()}, \texttt{:help get()}.
