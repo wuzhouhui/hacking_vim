@@ -967,3 +967,45 @@ endfunction
 :echo mynumbers.convert(12345)
 \end{vimcode}
 \marginpar{164}
+
+上面的命令形式非常简单, 现在来看一个具体的使用例子:
+\begin{vimcode}
+let mylist = ['a','b','c','d','e','f','g','h','i','j','k']
+for itemvar in mylist
+    echo itemvar
+endfor
+\end{vimcode}
+命令执行时, 会陆续打印从 \texttt{a} 到 \texttt{k} 的所有字母. 用 \texttt{for}
+循环遍历线性表的代码都遵循上面的形式.
+
+如果想要循环打印字典变量中的元素, 则需要多做一点工作, 这是因为字典变量的元素
+与一个键关联, 而不是索引. 但是有一个函数可以帮助我们从字典变量中提取键, 然后
+就可以像处理线性表那样, 遍历所有的键, 这个函数的名称是 \texttt{keys()}. 先
+来看一下使用示例:
+\begin{vimcode}
+let mydict = {a:"apple", b:"banana", c:"citrus" }
+for keyvar in keys(mydict)
+    echo mydict[keyvar]
+endfor
+\end{vimcode}
+在上面的例子中, 我们从字典变量 \texttt{mydict} 中获取到一个包含了所有键的线
+性表, 然后遍历表中的每一个元素, 将元素的值放到变量 \texttt{keyvar} 中, 然后
+再用 \texttt{keyvar} 从字典变量中获取对应的值.
+
+因为字典变量中的各个元素是无序的, 所以上面的命令可能会打印出 \texttt{banana
+citrus apple}. 有个函数可以对键进行排序, 从面得到有序的值, 这个函数是
+\texttt{sort}:
+\begin{vimcode}
+let mydict = {a:"apple", b:"banana", c:"citrus" }
+for keyvar in sort(keys(mydict))
+    echo mydict[keyvar]
+endfor
+\end{vimcode}
+使用 \texttt{sort} 的前提是键是可排序的, 这对上面的例子来说并不成问题:
+\texttt{a} 排在 \texttt{b} 之前, 而 \texttt{b} 排序在 \texttt{c} 之前.
+
+\begin{warning}
+    \texttt{sort} 还可以第二个参数, 这个参数是一个函数名, 这就使得用户可以
+    提供自己的排序函数. 更多的信息与示例请参考 \texttt{:help sort()}.
+\end{warning}
+\marginpar{166}
