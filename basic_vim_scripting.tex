@@ -970,7 +970,51 @@ endfunction
 :echo mynumbers.convert(12345)
 \end{vimcode}
 \marginpar{164}
+上面的命令将会打出 \texttt{"one two three four five"}, 正好就是 \texttt{12345}
+的英文表示形式.  % TODO: This is a functionality that opens up a lot of new
+% possibilities.
 
+\subsubsection{循环}
+\label{subsubsec:loops}
+
+在处理线性表或字典类型的变量时, 经常需要遍历变量中的所有元素, 对于这种情况,
+程序员通常会使用循环结构, Vim 同样也提供了这种结构.
+
+Vim 提供了两种形式的循环:
+\begin{itemize}
+	\item \texttt{for} 循环
+	\item \texttt{while} 循环
+\end{itemize}
+接下来, 我们将会介绍如何使用这两个循环.
+
+\paragraph{\texttt{for} 循环}
+\label{para:for_loops}
+
+\texttt{for} 循环可以有多种构造方式, 其中最简单的一种是:
+\begin{vimcode}
+for var in ranges
+	do-something
+endfor
+\end{vimcode}
+在上面的形式中, 循环依次遍历每一个元素, 每次迭代都会更新变量 \texttt{myvar} 的
+值, 一个例子是:
+\begin{vimcode}
+for myvar in range(1,10)
+	echo myvar
+endfor
+\end{vimcode}
+上面的命令使用了函数 \texttt{range()} 来生成从 1 到 10 的整数, 循环从 1 开始
+遍历所有的数. 循环的每次迭代都会把变量 \texttt{myvar} 的值更新成当前从范围中
+所取得的值. 循环结束后, 将会打印出 1 到 10 这十个数字.
+
+虽然上面的命令并没有用到线性表, 但是很容易就可以把函数替换成线性表, 换成线性
+表后的形式是:
+\begin{vimcode}
+for var in list
+	do-something
+endfor
+\end{vimcode}
+\marginpar{165}
 上面的命令形式非常简单, 现在来看一个具体的使用例子:
 \begin{vimcode}
 let mylist = ['a','b','c','d','e','f','g','h','i','j','k']
