@@ -785,7 +785,188 @@ endif
 :let mylistvar1 = [1,2,"three",0x04,myfivevar]
 \end{vimcode}
 \marginpar{160}
+\texttt{"three"} 的索引是 2, 所以我们可以这样访问它:
+\begin{vimcode}
+:echo mylistvar[2]
+\end{vimcode}
+如果线性表中还有线性表, 比如 \texttt{mylistvar2}:
+\begin{vimcode}
+    :let mylistvar2 = [[1,2,3],["four","five","six"]]
+\end{vimcode}
+如果想要访问 \texttt{"four"} 所在的元素, 我们需要访问里面那个线性表的索引 0,
+与外面那个线性表的索引 1:
+\begin{vimcode}
+:echo mylistvar2[1][0]
+\end{vimcode}
 
+在线性表中还可以使用负的索引值. 如果索引值是负的, 那个这个索引就是相对于表的
+末尾, 而不是开头. 所以, 访问 \texttt{"four"} 的另一种形式是:
+\begin{vimcode}
+:echo mylistvar2[-1][-3]
+\end{vimcode}
+因为 -0 与 0 是相同的, 所以最后一项的索引是 -1.
+
+\begin{warning}
+    如果试图访问一个不存在的元素, Vim 就会返回一个错误. 为了避免返回错误信息,
+    可以用 \texttt{get()} 来获取元素: \texttt{:echo get(mylistvar1, 2)}, 其中
+    \texttt{2} 是试图访问的元素的索引.
+\end{warning}
+
+如果想要往一个已存在的线性表中添加一个新元素, 有很多种方法都可以做到. 最简单的
+方式是用函数 \texttt{add()}, 它的一个使用示例是:
+\begin{vimcode}
+:let mylistvar3 = [1,2,3,4]
+:call add(mylistvar3, 5)
+:echo mylistvar3
+\end{vimcode}
+上面的命令在 \texttt{mylistvar3} 添加一个新元素 \texttt{5}, 然后打印整个线性
+表. 添加元素的另一种方法是使用 Vim 的拼接功能. 运算符 \texttt{+} 可以用于拼接
+两个线性表, 它的一个使用示例是:
+\begin{vimcode}
+:let mylistvar4 = [1,2,3,4]
+:let mylistvar4 = mylistvar4 + [5,6,7,8]
+:echo mylistvar4
+\end{vimcode}
+上面的命令先是创建一个具有 4 个元素的线性表, 然后再拼接上一个新的线性表, 再把
+拼接后的线性表赋给自己. 最终, 线性表中将含有 8 个元素.
+\marginpar{161}
+
+\begin{warning}
+    在拼接两个线性表时, 还有一个更方便的运算符: \texttt{+=}. 这个运算符可以把
+    右手边的线性表拼接到左手边的线性表上, 比如: \texttt{:let mylistvar4 +=
+    [5,6,7,8,]}
+\end{warning}
+
+如果待拼接的线性表只含有一个元素, 那么它的效果与添加一个新元素是相同的.
+
+除了运算符 \texttt{+}, 还可以用函数 \texttt{extend()} 来完成拼接. 它的一个使
+用例子是:
+\begin{vimcode}
+:let mylistvar5 = [1,2,3,4]
+:call extend(mylistvar5, [5,6,7,8])
+:echo mylistvar5
+\end{vimcode}
+注意, \texttt{add()} 与 \texttt{extend()} 之间有很大的不同. 在上面的例子中如果
+把 \texttt{extend()} 换成 \texttt{add()}, 那么最终的结果是把一个线性表添加到
+另一个线性表中, 相当于:
+\begin{vimcode}
+:let mylistvar5 = [1,2,3,4,[5,6,7,8]]
+\end{vimcode}
+这个线性表只有 5 个元素, 面且最后一个元素是一个含有 4 个元素的线性表.
+
+移除元素的方法与添加元素的方法类似, 只不过要把 \texttt{add()} 换成
+\texttt{remove()}, 比如:
+\begin{vimcode}
+:call remove(mylistvar5, 3)
+\end{vimcode}
+这个命令从 \texttt{mylistvar5} 中移除索引为 \texttt{3} 的元素.
+
+现在开始介绍如何访问与修改字典变量. 在前面我们已经介绍过创建一个字典变量的命令
+类似于:
+\begin{vimcode}
+:let mydictvar1 = {1: "one", 2: "two", 3: "three"}
+\end{vimcode}
+
+访问字典变量的方式与线性表非常类似. 假如我们想访问 \texttt{"two"}, 那就得在字
+典变量的后面加个 \texttt{[]}, 并在括号内填上它的键值, 就像:
+\begin{vimcode}
+:echo mydictvar1[2]
+\end{vimcode}
+\marginpar{162}
+
+看起来和访问线性表差不多, 但是如果把键值改成字符串, 那就不一样了:
+\begin{vimcode}
+:let mydictvar4 = {'banana': 'yellow', 'apple': 'green'}
+\end{vimcode}
+现在, 我们想要访问苹果的颜色:
+\begin{vimcode}
+:echo mydictvar4['apple']
+\end{vimcode}
+上面的命令会在屏幕打印出 \texttt{'green'}. 如果键值仅由 ASCII 字母, 数字, 与
+下划线组成, 则还可以用:
+\begin{vimcode}
+:echo mydictvar4.apple
+\end{vimcode}
+键值的第一个字符必须是 ASCII 字母.
+
+线性表中的元素是有序的, 并且含有索引, 相比之下, 字典是无序的, \mbox{键}-值
+对中的键用于获取对应的值.
+
+修改字典中的某个值的命令是:
+\begin{vimcode}
+:let mydictvar4['apple'] = 'red'
+\end{vimcode}
+往字典变量中添加新元素的命令和上面的相同, 唯一需要注意的地方是所使用的键必须是
+变量中未出现过的.
+
+用户可以在字典变量上附加一个函数, 使用该函数可以对字典变量中的元素进行一些操
+作, 接下来我们将通过一个例子来说明.
+
+比如说, 我们想要达到这样一个功能: 接收一个数值, 把数值中每一个数位上的数字转
+换成对应的英文拼写形式. 假设完成这个转换过程的函数是 \texttt{convert}, 而它
+所附加的字典变量是:
+\begin{vimcode}
+:let mynumbers = {0:'zero',1:'one',2:'two',3:'three',4:'four',
+                5:'five',6:'six',7:'seven',8:'eight',9:'nine'}
+\end{vimcode}
+函数是:
+\begin{vimcode}
+function mynumbers.convert(numb) dict
+    return join(map(split(a:numb,'\zs'),'get(self, v:val,"unknown")'))
+endfunction
+\end{vimcode}
+上面的函数代码中有两个地方需要注意.
+
+第一个需要注意的地方是函数的定义方式与普通函数的定义方式相同, 除了函数名需要
+包含字典变量的名字, 并且在函数参数的后面需要加上关键字 \texttt{dict}.
+\marginpar{163}
+这个关键词告诉 Vim 把该函数当成一个字典函数, 并对一个特殊的变量作操作 ---
+\texttt{self}, 在这个例子中, 变量 \texttt{self} 指向函数所关联的字典变量.
+这意味着我们可以通过 \texttt{self[1]} 来获取值 \texttt{"one"}, 以此类推. 函数
+的实现由四个子函数组成:
+\begin{itemize}
+    \item \texttt{split}: 把存放在变量 \texttt{a:numb} 中的参数切分到一个匿名
+        线性表中, 例如:
+    \begin{vimcode}
+    :let a = split("one two")
+    :echo a;    " this prints "one"
+    \end{vimcode}
+\item \texttt{map}: 把一个给定的命令映射到线性表 (通过调用 \texttt{split}
+    得到的线性表) 中的每一个元素上, 例如:
+    \begin{vimcode}
+    :let mylist = ["one", "two", "three"]
+    :call map(mylist, "<" . v:val . ">")
+    :echo mylist[0] " this prints <one>
+    \end{vimcode}
+\item \texttt{get}: 从 \texttt{self} 中取一个键值是 \texttt{v:val} (从
+    \texttt{map} 中获取的值) 的元素, 例如:
+    \begin{vimcode}
+    :let mylist2 = ["one", "two", "three"]
+    :echo get(mylist2, 2, "none") " prints three
+    :echo get(mylist2, 3, "none") " prints "none"
+    \end{vimcode}
+\item \texttt{join}: 连接所有的, 由 \texttt{map}-\texttt{get} 返回的元素,
+    例如:
+    \begin{vimcode}
+    :let mylist3 = ["one", "two", "three"]
+    :let mystring = join(mylist3, "+")
+    :echo mystring " prints one+two+three
+    \end{vimcode}
+\end{itemize}
+更多的信息请参考 \texttt{:help split()}, \texttt{:help join()},
+\texttt{:help map()}, \texttt{:help get()}.
+
+说得更明白一点, 函数 \texttt{mynumbers.convert} 的功能是接收一个范围内的数字
+(\texttt{a:numb}), 然后把它切分成单独的数字, 再把每个数字当成一个键去索引字典
+(\texttt{mynumbers}, 或 \texttt{self}) 中对应的值, 把所有返回的值连接起来,
+值与值之间用一个空格分开, 最后再返回这个字符串.
+
+现在, 用户可以把自己的字典变量当成一个转换器, 把数值转换成对应的英文形式, 使
+用方式是:
+\begin{vimcode}
+:echo mynumbers.convert(12345)
+\end{vimcode}
+\marginpar{164}
 上面的命令将会打出 \texttt{"one two three four five"}, 正好就是 \texttt{12345}
 的英文表示形式.  % TODO: This is a functionality that opens up a lot of new
 % possibilities.
@@ -831,3 +1012,44 @@ for var in list
 endfor
 \end{vimcode}
 \marginpar{165}
+上面的命令形式非常简单, 现在来看一个具体的使用例子:
+\begin{vimcode}
+let mylist = ['a','b','c','d','e','f','g','h','i','j','k']
+for itemvar in mylist
+    echo itemvar
+endfor
+\end{vimcode}
+命令执行时, 会陆续打印从 \texttt{a} 到 \texttt{k} 的所有字母. 用 \texttt{for}
+循环遍历线性表的代码都遵循上面的形式.
+
+如果想要循环打印字典变量中的元素, 则需要多做一点工作, 这是因为字典变量的元素
+与一个键关联, 而不是索引. 但是有一个函数可以帮助我们从字典变量中提取键, 然后
+就可以像处理线性表那样, 遍历所有的键, 这个函数的名称是 \texttt{keys()}. 先
+来看一下使用示例:
+\begin{vimcode}
+let mydict = {a:"apple", b:"banana", c:"citrus" }
+for keyvar in keys(mydict)
+    echo mydict[keyvar]
+endfor
+\end{vimcode}
+在上面的例子中, 我们从字典变量 \texttt{mydict} 中获取到一个包含了所有键的线
+性表, 然后遍历表中的每一个元素, 将元素的值放到变量 \texttt{keyvar} 中, 然后
+再用 \texttt{keyvar} 从字典变量中获取对应的值.
+
+因为字典变量中的各个元素是无序的, 所以上面的命令可能会打印出 \texttt{banana
+citrus apple}. 有个函数可以对键进行排序, 从面得到有序的值, 这个函数是
+\texttt{sort}:
+\begin{vimcode}
+let mydict = {a:"apple", b:"banana", c:"citrus" }
+for keyvar in sort(keys(mydict))
+    echo mydict[keyvar]
+endfor
+\end{vimcode}
+使用 \texttt{sort} 的前提是键是可排序的, 这对上面的例子来说并不成问题:
+\texttt{a} 排在 \texttt{b} 之前, 而 \texttt{b} 排序在 \texttt{c} 之前.
+
+\begin{warning}
+    \texttt{sort} 还可以第二个参数, 这个参数是一个函数名, 这就使得用户可以
+    提供自己的排序函数. 更多的信息与示例请参考 \texttt{:help sort()}.
+\end{warning}
+\marginpar{166}
