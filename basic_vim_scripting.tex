@@ -1056,3 +1056,51 @@ endfor
     提供自己的排序函数. 更多的信息与示例请参考 \texttt{:help sort()}.
 \end{warning}
 \marginpar{166}
+
+\paragraph{\texttt{while} 循环}
+\label{para:while_loops}
+
+接下来讨论的是 \texttt{while} 循环. 正如它的名字所表现得那样, 当条件为真时
+执行循环. \texttt{while} 循环的基本结构是:
+\begin{vimcode}
+while condition
+    execute-this-code
+endwhile
+\end{vimcode}
+只要条件为真, 就会循环执行 \texttt{while} 与 \texttt{endwhile} 之间的代码.
+现在来看一个具体的例子:
+\begin{vimcode}
+let x=0
+while x <= 5
+    echo "x is now "x
+    let x+=1
+endwhile
+\end{vimcode}
+上面的代码定义了一个变量 \texttt{x}, 其初始值为 \texttt{0}, 然后开始执行循环,
+直到 \texttt{x} 大于 \texttt{5} 为止. 在每次迭代时, 代码都会打印 \texttt{x}
+的值, 然后再递增 \texttt{x}, 代码执行的结果是:
+\begin{vimcode}
+x is now 0
+x is now 1
+x is now 2
+x is now 3
+x is now 4
+x is now 5
+\end{vimcode}
+
+使用 \texttt{while} 循环时, 通过一些特别的语句, 可以用到一些额外的特性.
+
+第一个语句是 \texttt{break}, 它可以马上停止循环, 并将流程跳转到
+\texttt{endwhile} 之后. 一个例子是:
+\begin{vimcode}
+let x = 0
+let y = 1000
+while x <= 1000
+    let y -= 10
+    if y <= x
+        break
+    endif
+    let x += 1
+endwhile
+\end{vimcode}
+\marginpar{167}
