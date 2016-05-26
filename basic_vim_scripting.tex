@@ -1101,3 +1101,42 @@ while x <= 1000
 endwhile
 \end{vimcode}
 \marginpar{167}
+上面的代码创建了两个变量: \texttt{x} 与 \texttt{y}, 分别赋值为 \texttt{0}
+与 \texttt{1000}. 然后开始 \texttt{while} 循环, \texttt{y} 在每次迭代时都递减
+\texttt{10}, \texttt{x} 递增 \texttt{1}. 如果发现 \texttt{y} 小于等于
+\texttt{x}, 就通过 \texttt{break} 语句马上跳出循环.
+
+除了 \texttt{break}, 在 \texttt{while} 循环中还可以用 \texttt{continue}.
+
+执行这个语句会跳过本次循环的余下语句, 然后马上开始下一次迭代.
+
+一个例子是:
+\begin{vimcode}
+let x = 0
+while x <= 5
+    let x += 1
+    if x ==  2
+        continue
+    endif
+    echo "x is now " x
+endwhile
+\end{vimcode}
+上面的代码把 \texttt{x} 从 \texttt{1} 递增到 \texttt{5}. 我们希望除了当
+\texttt{x} 等于 \texttt{2} 时, 代码把 \texttt{x} 的每一个值打印出来. 所以当
+我们发现 \texttt{x} 等于 \texttt{2}, 就通过 \texttt{continue} 语句马上结束
+掉当前循环, 开始下一次循环.
+
+代码的输出是:
+\begin{vimcode}
+x is now 1
+x is now 3
+x is now 4
+x is now 5
+\end{vimcode}
+关于循环, 需要知道的就这么多了.
+
+\begin{warning}
+    \texttt{break} 与 \texttt{continue} 还可以在 \texttt{for} 循环中使用, 其
+    使用方法与在 \texttt{while} 循环中的一样.
+\end{warning}
+\marginpar{168}
