@@ -1174,3 +1174,17 @@ endfunction
 量, 或者把它当作一个作为参数, 传递给函数, 或者在函数名的前面加上 \texttt{g:},
 把它的作用域定义成全局的.
 \marginpar{169}
+\begin{warning}
+    如果把一个变量作为参数输送给函数, 在传递参数时, 只是把参数的值传递给函数,
+    如果参数在函数内部被修改了, 并不会影响到函数外部的实际参数.
+\end{warning}
+
+函数参数的作用域是 \texttt{a:}.
+
+这里展示一个简单的函数, 它需要两个参数, 然后打印它们的和:
+\begin{vimcode}
+function PrintSum(num1, num2)
+    let sum = a:num1 + a:num2
+    echo "the sum is ".sum
+endfunction
+\end{vimcode}
