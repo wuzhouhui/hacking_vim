@@ -1188,3 +1188,26 @@ function PrintSum(num1, num2)
     echo "the sum is ".sum
 endfunction
 \end{vimcode}
+上面的代码展示了如何使用参数, 不过用户可能还想在函数内部更新作为全局变量的和,
+就像下面这样:
+\begin{vimcode}
+let sum = 0
+function PrintSum(num1, num2)
+    let sum = a:num1 + a:num2
+    echo "the sum is ".sum
+    let g:sum = sum
+endfunction
+\end{vimcode}
+这样的话, 即使是在函数调用结束后, 仍然可以访问变量 \texttt{sum}. 假设用户执行
+了下面的代码:
+\begin{vimcode}
+let sum = 1
+call PrintSum(4,5)
+echo sum
+\end{vimcode}
+上面的代码最终会打印出 \texttt{9}, 因为 \texttt{PrintSum} 会修改全局变量
+\texttt{sum}.
+
+然而, 在函数内部直接修改全局变量并不是一个好的编程风格, Vim 提供了另一种修改
+全局变量的方法 --- \texttt{return} 语句.
+\marginpar{170}
