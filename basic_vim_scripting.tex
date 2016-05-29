@@ -1234,11 +1234,11 @@ echo sum
 是因为函数在执行完 \texttt{return} 语句后就会马止结束. 这也就是说每次只能返回
 一个值.
 
-\begin{vimcode}
+\begin{warning}
     函数内可以有多个 \texttt{return} 语句, 但函数在遇到第一个 \texttt{return}
     语句时就会返回. 有些人认为在一个函数内出现多个返回点是一种不好的编程风格,
     除非你没有其他办法可以选择.
-\end{vimcode}
+\end{warning}
 
 \paragraph{可变参数列表}
 \label{para:variable_argument_list}
