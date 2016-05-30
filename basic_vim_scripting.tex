@@ -1257,3 +1257,49 @@ function PrintSum(num1, num2,...)
 endfunction
 \end{vimcode}
 \marginpar{171}
+上面这个新的函数引进了一些新的变量.
+
+\texttt{argnum} 是一个计数器, 我们用它来遍历 \texttt{num1} 与 \texttt{num2}
+之后的所有参数.
+
+函数参数的个数存放在一个特殊的变量中 --- \texttt{a:0}, 所以我们用它来判断应该
+在什么时候停止循环.
+
+为了访问到每一个变量, 我们把 \texttt{argnum} 当作索引, 用于访问可先参数列表,
+访问的方式是使用变量 \verb'a:{argnum}'. 用户可以把 \verb'a:{}' 看作是由可先
+参数组成的线性表, 而 \texttt{argnum} 是线性表的索引.
+
+对于参数列表中的每一个额外的参数, 我们都把它加到变量 \texttt{sum} 中, 当函数
+执行结束时, 打印 \texttt{sum} 的值, 并把它返回.
+
+于是, 我们可以这样调用函数:
+\begin{vimcode}
+let sum = 0
+let sum = PrintSum(4,5,6)
+echo sum
+let sum = PrintSum(4,5,6,5,4,3,2,1)
+echo sum
+let sum = PrintSum(1234,5432,3333)
+echo sum
+\end{vimcode}
+上面代码的执行结果是:
+\begin{vimcode}
+15
+30
+9999
+\end{vimcode}
+
+用户可能希望把所有的参数当作一个线性表来访问, Vim 提供了这个功能, 这个特殊的
+变量是 \texttt{a:000}, 它的类型是线性表. 通过这个变量, 我们可以把函数
+\texttt{PrintSum} 改写成:
+\begin{vimcode}
+function PrintSum(num1, num2,...)
+    let sum = a:num1 + a:num2
+    for arg in a:000
+        let sum += arg
+    endfor
+    echo "the sum is " sum
+    return sum
+endfunction
+\end{vimcode}
+\marginpar{172}
