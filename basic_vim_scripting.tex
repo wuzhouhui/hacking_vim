@@ -1303,3 +1303,23 @@ function PrintSum(num1, num2,...)
 endfunction
 \end{vimcode}
 \marginpar{172}
+这次, 我们是通过 \texttt{for} 循环, 把可选参数一个接一下地传递给 \texttt{arg},
+然后再把变量 \texttt{arg} 中的值累加到 \texttt{sum} 上.
+
+如果用户不再想保留某个函数, 可以用下面的命令把它删除:
+\begin{vimcode}
+:delfunction function-name
+\end{vimcode}
+其中, \texttt{function-name} 是用户想要删除的函数的名字.
+
+\begin{warning}
+    如果想看某个函数的具体实现, 可以用命令 \texttt{:function}. 例如, 对于前面
+    的例子, 可以输入 \texttt{:function PrintSum}. 如果在 \texttt{:function} 之
+    后没有跟上参数, 命令就会列出全部可用的函数.
+\end{warning}
+
+除了自己定义的函数, Vim 还提供了许多预定义的函数, 它们可以用来完成各种不同的
+任务. 可以用下面的命令获取各个函数的有关信息:
+\begin{vimcode}
+:help 'function-list'
+\end{vimcode}
