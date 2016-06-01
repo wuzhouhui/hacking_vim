@@ -1306,7 +1306,7 @@ function PrintSum(num1, num2,...)
 endfunction
 \end{vimcode}
 \marginpar{172}
-这次, 我们是通过 \texttt{for} 循环, 把可选参数一个接一下地传递给 \texttt{arg},
+这次, 我们是通过 \texttt{for} 循环, 把可选参数一个接一个地传递给 \texttt{arg},
 然后再把变量 \texttt{arg} 中的值累加到 \texttt{sum} 上.
 
 如果用户不再想保留某个函数, 可以用下面的命令把它删除:
@@ -1334,8 +1334,8 @@ endfunction
 的 Vim 脚本类型 --- 语法高亮方案. 我们学习到了如何为编程语言 (或其他语法内容)
 创建一个语法高亮文件, 从而得到更好的高亮效果.
 
-之后, 我们讨论如何在实际上使用脚本文件, 介绍了几种 Vim 可用的脚本类型, 以及在
-哪些可以获取到它们. 在这一节结束时, 我们介绍了脚本的安装方法与卸载方法.
+之后, 我们讨论如何使用脚本文件, 介绍了几种 Vim 可用的脚本类型, 以及在
+哪里可以获取到它们. 在这一节结束时, 我们介绍了脚本的安装方法与卸载方法.
 % We ended this session by looking at not only how to install Vim scripts,
 % but also how to uninstall them again afterwards --- a functionality, it turns
 % out you can only easily use after installing a script in Vim.
@@ -1343,12 +1343,12 @@ endfunction
 既然我们已经知道了如何安装以及如何使用脚本, 是时候介绍如何开发 Vim 脚本.
 
 我们首先介绍了 Vim 脚本的基本变量类型, Vim 脚本变量几乎是无类型的 (只有两种基本
-类型). 然而, 我们仍然可以利用这些类型存放各种各样的变量.
+类型). 然而, 我们仍然可以利用这些类型存放各种各样的数据.
 
 在介绍完 Vim 脚本语言的基本结构之后, 我们开始介绍如何创建函数.
 \marginpar{173}
 我们学习到, 通过一个关键词, Vim 就会知道应该如何调用函数. 这就允许我们将函数
-绑定某种特定的变量上, 比如字典变量. 于是, 我们就能定义一些可以直接对字典变量
+绑定到某种特定的变量上, 比如字典变量. 于是, 我们就能定义一些可以直接对字典变量
 进行操作的函数.
 
 在学习完这一章之后, 在下一章, 我们将会介绍如何运用本章所学的知识, 写出一个
