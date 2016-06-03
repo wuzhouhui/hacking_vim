@@ -28,3 +28,26 @@
 
 在下面的几节里, 我们将会逐个介绍一个格式良好的脚本的各个要素.
 \marginpar{176}
+
+\subsection{脚本头部}
+\label{subsec:script_header}
+
+一个脚本文件在开头最好配上一个头部信息, 用来写明该脚本的用途. 头部应该包含下
+面这些信息:
+\begin{itemize}
+    \item 脚本的维护人员
+    \item 最后一次更新的版本
+    \item 发布许可证 (最重要的信息)
+\end{itemize}
+一个示例是:
+\begin{vimcode}
+    " myscript.vim  : Example script to show how a script is structured.
+    " Version       : 1.0.5
+    " Maintainer    : Kim Schulz<kim@schulz.dk>
+    " Last modified : 01/01/2007
+    " License       : This script is released under the Vim License.
+\end{vimcode}
+注意头部信息都是以 \texttt{"} 开始的, 也就是说它们都是一些注释.
+
+头部还可以包含其他信息, 比如脚本可能依赖于其他脚本, 或者是该脚本对 Vim 版本
+的要求.
