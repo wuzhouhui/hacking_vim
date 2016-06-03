@@ -51,3 +51,27 @@
 
 头部还可以包含其他信息, 比如脚本可能依赖于其他脚本, 或者是该脚本对 Vim 版本
 的要求.
+
+\subsection{脚本加载检查}
+\label{subsec:script_loaded_check}
+
+一种良好的编程习惯是检查脚本是否已被加载, 如果是, 则在继续其他操作之前, 先执
+行卸载操作.
+% It is always a good practice to check if the script has already been loaded
+% once, and if it has, then unload functions before moving on.
+这是因为脚本不仅会安装在系统的全局目录中, 还会安装在用户的
+\texttt{VIMHOME} 目录下.
+
+检查脚本是否已加载的函数可以这样实现:
+\begin{vimcode}
+if exists("loaded_myscript")
+    finish "stop loading the script
+endif
+let loaded_myscript = 1
+\end{vimcode}
+如果脚本未被加载, \texttt{if} 条件判断为假, 因此函数设置变量
+\texttt{loaded\_myscript}.
+
+当下一次加载脚本时, \texttt{if} 条件判断为真, 因为此时变量
+\texttt{loaded\_myscript} 已经存在, 然后函数停止加载脚本.
+\marginpar{177}
