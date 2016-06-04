@@ -163,3 +163,16 @@ endif
         不会与全局作用域中的其他函数产生冲突.
 \end{itemize}
 \marginpar{179}
+把这些元素都组织在一起之后, 我们就创建一个脚本, 用来检查是否存在某个映射, 已经
+绑定到唯一的函数标识 \texttt{<Plug>MyscriptMyfunctionA} 上. 如果这样的映射不存
+在, 就把 \texttt{<Leader>a} 映射到标识符上 --- 除非 \texttt{<Leader>a} 已经被
+其他人占用了, 此时 Vim 就会报错.
+
+用户可能好奇 Vim 是如何从 \texttt{<Plug>MyscriptMyfunctionA} 得到
+\texttt{MyfunctionA()} 的. 为此, 我们还需要建立其他一些映射:
+\begin{vimcode}
+noremap <unique> <script> <Plug>MyscriptMyfunctionA <SID>MyfunctionA
+noremap <SID>MyfunctionA :call <SID>MyfunctionA()<CR>
+\end{vimcode}
+第一个命令把 \texttt{<Plug>MyscriptMyfunctionA} 映射到 \texttt{<SID>MyfunctionA}
+上. 我们在代码中用到了 \texttt{<SID>}, 这是因为
