@@ -153,10 +153,10 @@ if !hasmapto('<Plug>MyscriptMyfunctionA')
     map <unique> <Leader>a <Plug>MyscriptMyfunctionA
 endif
 \end{vimcode}
-在上面的代码中包含了一些我们已经没有介绍过的东西:
+在上面的代码中包含了一些我们以前没有介绍过的东西:
 \begin{itemize}
     \item \texttt{hasmapto()}: 用于检查某个函数映射是否存在的函数
-    \item \texttt{<unique>}: 如果相同的映射存在, 则报错.
+    \item \texttt{<unique>}: 如果存在相同的映射存在, 则报错.
     \item \texttt{<Leader>}: 由用户决定使用哪个映射前导字符. \texttt{<Leader>}
         将会被全局变量 \texttt{mapleader} 的值所替换.
     \item \texttt{<Plug>}: 为一个函数建立一个唯一的全局标识符, 这样的话, 它就
