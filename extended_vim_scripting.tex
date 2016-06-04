@@ -75,3 +75,50 @@ let loaded_myscript = 1
 当下一次加载脚本时, \texttt{if} 条件判断为真, 因为此时变量
 \texttt{loaded\_myscript} 已经存在, 然后函数停止加载脚本.
 \marginpar{177}
+
+在某些情况下, 停止加载脚本可能并不是最好的做法, 因为用户可以修改了
+\texttt{VIMHOME} 目录中的脚本版本. 所以, 这时候应该先卸载脚本, 然后再重新加载
+脚本. 完成这项功能的函数可以这样实现:
+\begin{vimcode}
+if exists("loaded_myscript")
+    delfunction MyglobalfunctionB
+    delfunction MyglobalFunctionC
+endif
+let loaded_myscript = 1
+\end{vimcode}
+
+脚本开发人员无法知道 Vim/vi 当前是否处于兼容模式下 (如果是 vi 的话, 则比较有可
+能), 所以比较好的做法是在脚本中保存编辑器的兼容模式. 这样做就可以确保脚本可以
+正常地使用 Vim 特定的功能. 把下面的代码加到加载检查语句的后面:
+\begin{vimcode}
+:let s:global cpo = &cpo "store current compatible-mode
+                         " in local variable
+:set cpo&vim             " go into nocompatible-mode
+\end{vimcode}
+最后在脚本的末尾恢复原来的兼容模式:
+\begin{vimcode}
+:let &cpo = s:global_cpo
+\end{vimcode}
+
+\subsection{脚本配置}
+\label{subsec:script_configuration}
+
+用户在阅读别人开发的脚本时, 总是从头开始看起, 所以我们最好把所有的配置选项都
+放在脚本的开始. 配置选项可以是外部程序的路径, 脚本依赖的特定文件的名字, 文件
+类型等.
+
+用户可能会在他的 \texttt{vimrc} 文件中改变 Vim 的配置, 所以开发人员需要确保
+脚本不会覆盖掉他原来的配置. 方法是事先检查配置是否已被设置过, 只有在没有设置
+过的情况下才设置它.
+
+脚本中的设置语句可以这样写:
+\begin{vimcode}
+" variable myscript_path
+if !exists("myscript_path")
+    let s:vimhomepath = split(&runtimepath, ',')
+    let s:myscript_path = s:vimhomepath[0]."/plugin/myscript.vim"
+else
+    let s:myscript_path = myscript_path
+    unlet myscript_path
+\end{vimcode}
+\marginpar{178}
