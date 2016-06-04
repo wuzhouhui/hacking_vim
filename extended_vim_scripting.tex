@@ -122,3 +122,44 @@ else
     unlet myscript_path
 \end{vimcode}
 \marginpar{178}
+\begin{vimcode}
+endif
+
+" variable myscript_indent
+if !exists("myscript_indent")
+    let s:myscript_indent = 4
+else
+    let s:myscript_indent = myscript_indent
+    unlet myscript_indent
+endif
+\end{vimcode}
+上面的例子设置了两个配置变量 --- \texttt{myscript\_path} 与
+\texttt{myscript\_indent}. 我们查找变量是否已存在, 如果不存在, 则在脚本的作用
+域内设置变量的默认值 (比如, \texttt{s:myscript\_path}).
+
+如果用户已经设置了变量, 那么变量的值就赋给脚本作用域内的同名变量.
+
+最终, 用户定义的变量用 \texttt{unlet} 移除, 这样的话, 它就不对全局作用域产生
+影响 --- 配置只需要在脚本内起作用即可.
+
+\subsection{按键映射}
+\label{subsec:key_mappings}
+
+如果需要的话, 还可以添加按键映射, 这些映射可以是函数调用, 变量设置等. 和配置
+变量一样, 在设置某个映射之前, 需要检查一下该映射是否已经建立好了, 检查的语句
+可以这样写:
+\begin{vimcode}
+if !hasmapto('<Plug>MyscriptMyfunctionA')
+    map <unique> <Leader>a <Plug>MyscriptMyfunctionA
+endif
+\end{vimcode}
+在上面的代码中包含了一些我们已经没有介绍过的东西:
+\begin{itemize}
+    \item \texttt{hasmapto()}: 用于检查某个函数映射是否存在的函数
+    \item \texttt{<unique>}: 如果相同的映射存在, 则报错.
+    \item \texttt{<Leader>}: 由用户决定使用哪个映射前导字符. \texttt{<Leader>}
+        将会被全局变量 \texttt{mapleader} 的值所替换.
+    \item \texttt{<Plug>}: 为一个函数建立一个唯一的全局标识符, 这样的话, 它就
+        不会与全局作用域中的其他函数产生冲突.
+\end{itemize}
+\marginpar{179}
