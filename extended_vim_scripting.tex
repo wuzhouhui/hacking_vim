@@ -204,3 +204,93 @@ noremap <SID>MyfunctionA :call <SID>MyfunctionA()<CR>
 \end{vimcode}
 \end{warning}
 \marginpar{180}
+
+\subsection{函数}
+\label{subsec:functions}
+
+函数几乎可以算作脚本开发过程中最重要的部分. 我们已经看到了如何创建一个函数,
+而且已经注意到, 用作用域标记 \texttt{s:} 把函数的作用域限定在脚本内, 通常要比
+全局范围内可见要好一点. 函数的一个例子是:
+\begin{vimcode}
+" this is our local function with a mapping
+function s:MyfunctionA()
+    echo "this is the script-scope function MyfunctionA speaking"
+endfunction
+
+" this is a global function which can be called by anyone
+function MyglobalfunctionB()
+    echo "Hello from the global-scope function myglobalfunctionB"
+endfunction
+
+" this is another global function which can be called by anyone
+function MyglobalfunctionC()
+    echo "Hello from MyglobalfuncionC() now calling locally:"
+    call <SID>MyfunctionA()
+endfunction
+\end{vimcode}
+第一个函数是私有函数, 只有在脚本内可见, 另外两个函数的作用域是全局的. 需要注意
+的是, 因为全局函数知道当前脚本的 \texttt{<SID>}, 所以它们可以调用本地函数.
+
+\subsection{一个完整的脚本}
+\label{subsec:putting_it_all_together}
+
+如果读者已经看过前面几节, 那么现在读者手上就已经具备了构成一个完整的脚本的全部
+要素.
+
+现在, 让我们把所有的要素都集中在一起, 看一下一个完整的脚本是什么样子的:
+\begin{vimcode}
+" myscript.vim  - Example script to show how a script is structured.
+" Version       : 1.0.5
+" Maintainer    : Kim Schulz<kim@schulz.dk>
+" Last modified : 01/01/2007
+" License       : This script is released under the Vim License.
+
+" check if script is already loaded
+if exists("loaded_myscript")
+	finish "stop loading the script
+endif
+let loaded_myscript=1
+\end{vimcode}
+\marginpar{181}
+\begin{vimcode}
+
+	let s:global_cpo = &cpo  "store compatible-mode in local variable
+	set cpo&vim              " go into nocompatible-mode
+" ######## CONFIGURATION ########
+" variable myscript_path
+if !exists("myscript_path")
+	let s:vimhomepath = split(&runtimepath,',')
+	let s:myscript_path = s:vimhomepath[0]."/plugin/myscript.vim"
+else
+	let s:myscript_path = myscript_path
+	unlet myscript_path
+endif
+
+" variable myscript_indent
+if !exists("myscript_indent")
+	let s:myscript_indent = 4
+else
+	let s:myscript_indent = myscript_indent
+	unlet myscript_indent
+endif
+
+	" ######## FUNCTIONS #########
+	" this is our local function with a mapping
+function s:MyfunctionA()
+	echo "This is the script-scope function MyfunctionA speaking"
+endfunction
+
+" this is a global function which can be called by anyone
+function MyglobalfunctionB()
+	echo "Hello from the global-scope function myglobalfunctionB"
+endfunction
+" this is another global function which can be called by anyone
+function MyglobalfunctionC()
+	echo "Hello from MyglobalfuncionC() now calling locally:"
+	call <SID>MyfunctionA()
+endfunction
+
+" return to the users own compatible-mode setting
+:let &cpo = s:global_cpo
+\end{vimcode}
+\marginpar{182}
