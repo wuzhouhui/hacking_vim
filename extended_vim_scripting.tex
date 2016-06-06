@@ -294,3 +294,23 @@ endfunction
 :let &cpo = s:global_cpo
 \end{vimcode}
 \marginpar{182}
+现在, 你手上就已经有了一个完整的脚本, 我们的第一个 Vim 脚本插件.  虽然它的功
+能不是很丰富, 但是它已经展现了一个 Vim 脚本的完整结构. Vim 还有其他几种类型的
+脚本, 比如文件类型插件, 编译器插件, 和库函数脚本, 关于如何编写这些脚本, 可以
+参考:
+\begin{vimcode}
+:help 'write-filetype-plugin'
+:help 'write-compiler-plugin'
+:help 'write-library-script'
+\end{vimcode}
+
+\begin{warning}
+	在 Vim 官网 \url{http://www.vim.org} 上可以找到大量的脚本, 读者可以从中获
+	取灵感. 其中一些脚本属于库函数, 它们可以加快脚本的开发过程.
+\end{warning}
+
+\section{脚本开发技术}
+\label{sec:scripting_tips}
+
+在这一节, 我们将会介绍一些脚本开发过程中的小技巧. 有些技巧非常简单, 例如可以
+直接插入到脚本的一小段代码, 还有一些则非常值得一学.
