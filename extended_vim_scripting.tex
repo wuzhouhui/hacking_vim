@@ -314,3 +314,24 @@ endfunction
 
 在这一节, 我们将会介绍一些脚本开发过程中的小技巧. 有些技巧非常简单, 例如可以
 直接插入到脚本的一小段代码, 还有一些则非常值得一学.
+
+\subsection{Gvim 或 Vim}
+\label{subsec:gvim_vim}
+
+有些脚本在 Gvim 中使用时会有一些额外的特性. 包括添加菜单, 工具栏, 或者是其他
+一些只能在 Gvim 使用的功能. 那么, 开发人员应该如何知道用户现在是工作在 Vim
+还是 Gvim 下呢? 其实 Vim 已经提前准备好了这些信息, 开发人员所要做的仅仅是检查
+特性 \texttt{gui_running} 是否已经开启. 为了完成这个操作, 需要使用一个函数
+\texttt{has()}, 如果指定的特性是支持的, 则返回 \texttt{1}, 否则的话, 为
+\texttt{0}.
+
+一个例子是:
+\begin{vimcode}
+if has("gui_running")
+	"execute gui-only commands here.
+endif
+\end{vimcode}
+这就是用来检查用户使用的是 Gvim 还是 Vim 的所有代码. 需要注意的是, 仅仅检查
+特性 \texttt{gui} 是否开启是不完整的, 因为如果 Vim 在编译时开启了 GUI 选项,
+\texttt{has("gui")} 就会返回 \texttt{1} --- 即使当前并没有使用到图形界面.
+\marginpar{183}
