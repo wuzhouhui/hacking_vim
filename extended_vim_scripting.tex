@@ -335,3 +335,42 @@ endif
 特性 \texttt{gui} 是否开启是不完整的, 因为如果 Vim 在编译时开启了 GUI 选项,
 \texttt{has("gui")} 就会返回 \texttt{1} --- 即使当前并没有使用到图形界面.
 \marginpar{183}
+
+\begin{warning}
+	执行 \texttt{:help 'feature-list'}, 可以查看 \texttt{has()} 支持的其他
+	特性.
+\end{warning}
+
+\subsection{操作系统类型}
+\label{subsec:which_operating_system}
+
+如果脚本将要在多种不同的操作系统中运行, 比如 Microsoft Windows, Linux, 你将
+会发现需要处理许多问题.
+
+需要处理的问题包括程序的存放位置, 程序是否可用, 以及文件的访问权限.
+
+有时候, 操作系统还会影响脚本的结构, 因为脚本可能会调用外部工具, 或访问依赖
+于操作系统的功能.
+
+Vim 允许脚本开发人员检查操作系统的类型, 这样的话, 脚本就可以根据操作系统的类型
+作出相应的动作, 比如停止运行, 或进行特定的设置. 示例代码如下:
+\begin{vimcode}
+if has("win16") || has("win32") || has("win64") || has("win95")
+	" do windows things here
+elseif has("unix")
+	" do linux/unix things here
+endif
+\end{vimcode}
+上面的示例只展示了如何检查 Windows 与 Linux/Unix. 除了这些, 还可以检查其他类型
+的操作系统, Vim 支持的操作系统类型可以用下面的命令找到:
+\begin{vimcode}
+:help 'feature-list'
+\end{vimcode}
+
+\subsection{Vim 的版本}
+\label{subsec:which_version_of_vim}
+
+在最近这二十年, Vim 的快速发展添加了许多新功能, 有时候, 开发人员会在脚本中使用
+最新的函数, 因为它们使用起来最方便. 但是如果用户的 Vim 版本比较老, 没有提供
+相应的函数, 那又该怎么办呢?
+\marginpar{184}
