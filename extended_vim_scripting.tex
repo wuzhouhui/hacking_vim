@@ -449,3 +449,43 @@ endfunction
 \end{vimcode}
 一行的长度仍然受到限制, 但上限值并非原来的 79 个字符, 而是 Vim 窗口的宽度.
 \marginpar{186}
+
+\section{调试 Vim 脚本}
+\label{sec:debugging_vim_scripts}
+
+有时候, 脚本并不会按照开发人员期望中的那样工作, 在这种情况下, 开发人员就得
+知道如何调试 Vim 脚本.
+
+在这一节, 我们将会介绍几种寻找错误的方法.
+
+\begin{warning}
+    结构良好的脚本拥有更少的错误, 也更容易调试.
+\end{warning}
+
+Vim 提供了一种用于调试的特殊模式, 根据目标的不同, 启动该模式的方法也有所不同.
+
+如果 Vim 抛出了一些错误 (在 Vim 窗口的底部打印它们), 但是开发人员并不确定发生
+错误的地方, 也不知道为什么会发生这些错误, 这时候可以以调试方式直接启动 Vim.
+方式是带上参数 \texttt{-D}:
+\begin{vimcode}
+vim -D somefile.txt
+\end{vimcode}
+当 Vim 开始读取第一个 \texttt{vimrc} 文件 (大部分情况下是安装路径中的全局
+\texttt{vimrc} 文件) 时启动调试模式.
+
+另一种需要进入调试模式的情况是开发人员已经知道某个函数存在错误, 因此他只想
+调试这个函数. 对于这种情况可以以普通方式启动 Vim (必要的话, 还要加载包含待
+调试函数的脚本), 然后执行:
+\begin{vimcode}
+:debug call Myfunction()
+\end{vimcode}
+\texttt{:debug} 后面的所有东西都是待调试的内容. 在上面的代码中只是调试函数
+\texttt{Myfunction()} 的调用, 除此之外, 还可以写成:
+\begin{vimcode}
+:debug read somefile.txt
+:debug nmap ,a :call Myfunction() <CR>
+:debug help :debug
+\end{vimcode}
+
+接下来我们来看一下在调试模式下, 我们可以执行哪些操作.
+\marginpar{187}
