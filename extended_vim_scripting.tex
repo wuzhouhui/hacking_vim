@@ -489,3 +489,41 @@ vim -D somefile.txt
 
 接下来我们来看一下在调试模式下, 我们可以执行哪些操作.
 \marginpar{187}
+
+当执行到第一行需要调试的代码时, Vim 就停止加载, 显示一些类似于下面的信息:
+\begin{vimcode}
+Entering Debug mode. Type "cont" to continue
+cmd: call MyFunction()
+>
+\end{vimcode}
+进入到 Vim 脚本调试器后, 可以对 Vim 发出一些指令, 告诉它接下来如何操作.
+\begin{warning}
+    如果用户对调试技术不是很熟悉, 最好在开始调试脚本之前先把这一节看完.
+\end{warning}
+
+在调试器内可以使用下面的命令 (括号里面的是缩写形式):
+\begin{itemize}
+    \item \texttt{cont} (\texttt{c}): 按照正常方式继续执行脚本/命令, 直到下
+        一个断点
+    \item \texttt{quit} (\texttt{q}): 马上退出调试过程
+    \item \texttt{interrupt} (\texttt{i}): 停止当前过程, 就像 \texttt{quit}
+        那样, 但是回到调试模式中
+    \item \texttt{step} (\texttt{s}): 执行下一行代码, 执行完毕后回到调试模式.
+        如果下一行是函数调用或执行另一个文件中的命令, 则单步跟踪函数调用/命令
+        执行
+    \item \texttt{next} (\texttt{n}): 执行下一行代码, 执行完毕后回到调试模式,
+        如果下一行是函数调用, 则会在函数返回后再回到调试模式
+    \item \texttt{finish} (\texttt{f}): 继续执行, 即使遇到断点也不停止, 执行
+        结束后回到调试模式.
+\end{itemize}
+
+通过这些命令, 开发人员就可以知道脚本/函数如何执行. 如果想要重复运行上一次运行
+的命令, 只需要按下回车键.
+
+如果需要的话, 可以在任意时刻执行另一个 \texttt{Ex} 命令 (参考 \texttt{:help
+'ex-command-index'}\footnote{应该是个笔误 --- 译者注}), 但是需要注意的是, 在
+调试器内无法直接访问变量, 除非它们是全局的.
+
+有时候, 开发人员想要查看的地方在很多行代码的后面, 而他不想一步一步地执行代码,
+那样需要花很长的时间, 也非常繁琐.
+\marginpar{188}
