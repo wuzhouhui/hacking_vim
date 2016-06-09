@@ -412,3 +412,40 @@ endif
 打上了编号为 123 的补丁. 如果补丁号大于或等于 124, 那就表示补丁 123 已经应用
 在了 Vim 上.
 \marginpar{185}
+
+\subsection{打印很长的行}
+\label{subsec:printing_longer_lines}
+
+Vim 最初是用在比较老式的文本终端上, 这些终端每一行的长度都不会超过某个限定值,
+如今大多数的终端已经不再限制一行的长度, 但是这个限制在 Vim 中仍然时有出现.
+
+如果使用 \texttt{echo} 语句往屏幕打印比较长的行时, 这个限制就会对打印行为产生
+影响. 即使运行 Vim 的终端宽度大于 80 个字符, Vim 仍然会在打印完 80 个字符后
+提醒用户按下回车键, 然后接着打印后面的字符. 有一个办法可以解决这个问题, 使得
+在回显字符时, 能够用上全部的终端宽度. Vim 窗口列数减 1 后就是窗口的宽度,
+比如, 如果 Vim 窗口的列数是 120 个字符, 那么窗口的宽度就是 119 个字符.
+
+下面的函数用于打印长度为屏幕宽度的一行:
+\begin{vimcode}
+" WideMsg() prints [long] message up to (&columns-1) length
+function! WideMsg(msg)
+    let x=&ruler | let y=&showcmd
+    set noruler noshowcmd
+    redraw
+    echo a:msg
+    let &ruler=x | let &showcmd=y
+endfunction
+\end{vimcode}
+
+\begin{warning}
+    这个函数最早出现在 Yakov Lerner 所开发的 Vim 脚本中, 该脚本可以在
+    \url{http://www.vim.org} 上找到.
+\end{warning}
+
+现在, 如果你需要在脚本中回显一行比较长的行, 可以使用函数 \texttt{WideMsg()},
+使用的方式是:
+\begin{vimcode}
+:call WideMsg("This should be a very long line of text")
+\end{vimcode}
+一行的长度仍然受到限制, 但上限值并非原来的 79 个字符, 而是 Vim 窗口的宽度.
+\marginpar{186}
