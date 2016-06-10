@@ -527,3 +527,48 @@ cmd: call MyFunction()
 有时候, 开发人员想要查看的地方在很多行代码的后面, 而他不想一步一步地执行代码,
 那样需要花很长的时间, 也非常繁琐.
 \marginpar{188}
+
+对于这种情况, 开发人员可以在需要停止的地方插入一个断点, 然后在开始时执行
+\texttt{cont}. 插入断点的命令有以下三种, 具体使用哪一种取决于开发人员的实际
+需求:
+\begin{vimcode}
+:breakadd func linenum functionname
+:breakadd file linenum filename
+:breakadd here
+\end{vimcode}
+
+第一个命令把断点插入在特定的函数入口. 函数名 \texttt{functionname} 可以是模式,
+比如 \texttt{Myfunction*}, 此时断点会插入在所有的, 其函数名以
+\texttt{MyFunction} 开始的函数的入口.
+
+有时候, 出现问题的地方并不是某个特定的函数, 而是文件中某一行的附近. 在这种情况
+下应该使用第二条命令, 它在文件的某一行插入断点.
+
+如果开发人员已经跟踪到某个位置, 并且希望当下次执行时在这里停住, 这时候就可以用
+最后一个命令. 该命令在当前文件的当前行插入一个断点, 当然是在调试器内.
+
+可以在任意时刻, 用下面的命令得到全部的断点:
+\begin{vimcode}
+:breaklist
+\end{vimcode}
+
+当断点不再需要时就可以把它删除, 和添加断点一样, 有若干种删除断点的方法.
+
+最简单的一种是用命令 \texttt{:breaklist} 找到断点的编号, 然后用下命令删除它:
+\begin{vimcode}
+:breakdel number
+\end{vimcode}
+
+其他删除办法与添加断点的方法相同, 只不过要把 \texttt{breakadd} 改成
+\texttt{breakdel}:
+\begin{vimcode}
+:breakdel func linenum functionname
+:breakdel file linenum file
+:breakdel here
+\end{vimcode}
+
+如果想要一次性删除全部的断点, 执行:
+\begin{vimcode}
+:breakdel *
+\end{vimcode}
+\marginpar{189}
