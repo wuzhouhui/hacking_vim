@@ -615,3 +615,48 @@ VIMHOME/doc/myscript.txt
 提醒开发人员时刻更新文档. 关于如何创建 Vim 文档, 我们将在下一节进行更深入地
 讨论.
 \marginpar{190}
+
+\subsection{制作 Vimball}
+\label{subsec:making_vimball}
+
+另一种发布方式是制作 Vimball 文件. 在前面我们已经介绍过如何用 Vimball 来安装
+脚本, 现在来看一下如何制作 Vimball 文件.
+
+制作 Vimball 的命令是:
+\begin{vimcode}
+:[range]MkVimball filename.vba
+\end{vimcode}
+看起来很简单, 不是吗? 不过在调用这个命令之前, 有一些准备工作需要完成.
+
+第一件事是打开一个新的空白缓冲区, 用命令:
+\begin{vimcode}
+:enew
+\end{vimcode}
+然后, 写上所有相关的文件路径 (相对于 \texttt{VIMHOME} 目录), 每行一个. 例如,
+对于上面提到过的 ZIP 文件来说, 它包含的文件包括:
+\begin{vimcode}
+plugin/myscript.vim
+doc/myscript.txt
+syntax/mylang.vim
+\end{vimcode}
+填写完成后, 就可以开始执行 \texttt{:[range]MkVimball filename.vba}, 注意, 要
+把命令中的 \texttt{[range]} 替换成文件列表的起始与结束行号. 如果不想输入起始
+与结束行号, 则可以这样做: 把光标移动到文件的第一行, 切换到普通模式, 按下
+\key{Shift+v}, 然后向下移动光标, 选中所有的行, 最后执行:
+\begin{vimcode}
+:MkVimball myscript.vba
+\end{vimcode}
+Vim 自动地把选中的行的起始与结束行号添加到命令的前面. 命令中的文件
+\texttt{myscript.vba} 可以是任意的名字, 如果文件已经存在, Vim 就会发出警告,
+但不会覆盖文件.
+
+如果开发人员确实想要覆盖掉原来的文件, 就在 \texttt{MkVimball} 后面加上
+\texttt{!}. 命令执行结束后, 你就有了一个名为 \texttt{myscript.vba} 的 Vimball
+文件, 别人可以用它来安装你的脚本.
+
+\begin{warning}
+    在安装 Vimball 文件之前, 先要确保 Vim 已经安装了 Vimball 脚本. Vimball 脚
+    本的最新版可以到 \url{http://www.vim.org/scripts/script.php?script_id=1502}
+    上下载.
+\end{warning}
+\marginpar{191}
