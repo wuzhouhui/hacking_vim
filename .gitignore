@@ -7,3 +7,5 @@
 *~
 *.zip
 *.vim
+*.fls
+*.fdb_latexmk
