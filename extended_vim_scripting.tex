@@ -572,3 +572,46 @@ cmd: call MyFunction()
 :breakdel *
 \end{vimcode}
 \marginpar{189}
+
+\begin{warning}
+    当在命令行启动 Vim 的调试模式时, 此时就可以插入一个断点, 方法是使用
+    \texttt{-c} 参数:
+\begin{vimcode}
+vim -D -c 'breakadd file 15 */.vimrc' somefile.txt
+\end{vimcode}
+\end{warning}
+
+\section{发布 Vim 脚本}
+\label{sec:distributing_vim_scripts}
+
+脚本开发完成后, 就可以发布它们了 (当然, 也可以不这样做). Vim 在线社区已经成为
+实际上的脚本发布与搜索集散地, 因此, 我推荐读者也在这里发布自己开发的脚本. 但
+是在发布之前, 还需要准备一些东西.
+
+首先, 开发人员需要判断自己的脚本是否需要打包成一个压缩文件, 比如 ZIP 文件, 又
+或者说是否就以单个的 \texttt{.vim} 文件进行发布. 选择第一个做法的理由是脚本
+包含了多个文件 (这些文件可能包含主要的脚本文件, 文件类型插件, 语法文件, 以及
+文档等等).
+
+如何创建 ZIP 文件不在本书的讨论范围之内, 这里只介绍我是如何把待压缩的文件准备
+好的:
+\begin{itemize}
+    \item 创建出的 ZIP 文件需要包含脚本文件所在的目录, 这里的目录指的是相对
+        于 \texttt{VIMHOME} 的目录, 比如, 假设你有:
+\begin{vimcode}
+VIMHOME/plugin/myscript.vim
+VIMHOME/syntax/mylang.vim
+VIMHOME/doc/myscript.txt
+\end{vimcode}
+那么, ZIP 文件就应该包含这三个目录: \texttt{plugin}, \texttt{syntax}, 与
+\texttt{doc}. 这种做法使得安装更加方便: 只要把 ZIP 文件解压到 \texttt{VIMHOME}
+目录下即可.
+
+    \item 总是为脚本配上一个帮助文件. 帮助文件应该安装到 \texttt{VIMHOME/doc/},
+        帮助文件至少应该描述这个脚本是什么, 有哪些设置, 以及如何使用它.
+\end{itemize}
+
+即使脚本只由单个文件组成, 也最好把它和帮助文件一起打包成一个 ZIP 文件. 这可以
+提醒开发人员时刻更新文档. 关于如何创建 Vim 文档, 我们将在下一节进行更深入地
+讨论.
+\marginpar{190}
