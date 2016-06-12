@@ -685,3 +685,21 @@ Vim 有一个非常完善的帮助系统, 几乎涵盖了使用 Vim 的方方面
 *myscript.txt* Documentation for example script myscript.vim
 \end{vimcode}
 写完这一行后, 就可以开始写文档的真正内容.
+
+比较典型的做法是以一长串的介绍开始, 详细介绍本文档的主题内容. 这些内容可以
+包括作者的名字与联系方式. 然后, 如果文档比较长的话, 最好添加一个目录 (我们给
+的例子就包含了一个目录). 对于 \texttt{myscript.vim} 来说, 它的文档开头可以这
+样写:
+\begin{vimcode}
+*myscript.txt* Documentation for example script myscript.vim
+
+Script  : myscript.vim - Example script for vim developers
+Author  : Kim Schulz
+Email   : <kim@schulz.dk>
+Changed : 01/01/2007
+=============================================================
+                                            *myscript-intro*
+
+1. Overview-
+\end{vimcode}
+\marginpar{192}
