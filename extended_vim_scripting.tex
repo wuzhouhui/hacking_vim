@@ -659,3 +659,29 @@ Vim 自动地把选中的行的起始与结束行号添加到命令的前面. �
     上下载.
 \end{warning}
 \marginpar{191}
+
+\section{注意文档}
+\label{sec:remember_the_documentation}
+
+Vim 有一个非常完善的帮助系统, 几乎涵盖了使用 Vim 的方方面面. 用户在安装完你
+开发的脚本后, 如果想要搜索相关的帮助信息, 此时会发生什么? 如果你没有在脚本
+的安装包中添加文档, 那么用户就无法在 Vim 的帮助系统中找到相关的信息. 所以,
+请在发布脚本时, 加上相应的文档.
+
+现在来看一下如何创建具有链接, 标记等信息的 Vim 文档.
+
+一个 Vim 文档文件就是一个普通的文本文件, 只不过带有一些特殊的标记. 当创建一
+个新的文档文件时, 开头第一行是最重要的, 让我看来看一个例子:
+\begin{vimcode}
+*docname.txt* sigle line of description
+\end{vimcode}
+每一个文档文件的第一行的第一个字符必须是 \texttt{*}.
+
+\texttt{docname.txt} 是当前正在编辑的文件名. 当 Vim 帮助系统需要链接到本地
+附加文件 (参考 \texttt{:help local-additions}) 时就会用到这个信息. 第二个
+\texttt{*} 后面的内容是关于本文档的简短描述. 对于前面我们开发的脚本来说, 可
+以把文档的第一行写成:
+\begin{vimcode}
+*myscript.txt* Documentation for example script myscript.vim
+\end{vimcode}
+写完这一行后, 就可以开始写文档的真正内容.
