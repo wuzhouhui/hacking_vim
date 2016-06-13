@@ -726,3 +726,29 @@ The following is covered in this document:
 \begin{vimcode}
 :help 'myscript-intro'
 \end{vimcode}
+
+下一个标记是 \texttt{Overview} 后面的 \verb'~', 这个标记可以使 \texttt{Overview}
+带上不同的颜色.
+
+然后是目录中某些关键词两边的 \verb'|'. 这个标记创建了一个指向特定章节的链接,
+章节的名称用 \texttt{*...*} 标记. 由多个等号组成的一行指出了章节的边界, 但它
+们并不是真正的标记, 没有特殊的功能.
+
+文档中接下来的各小节用同样的格式编写, 但是, 如果它们包含了一小段 Vim 代码,
+那就需要另一个标记来指明, 比如包含函数的章节就有可能含有 Vim 代码, 先来看一个
+具体的例子:
+\begin{vimcode}
+=============================================================
+										*myscript-functions*
+3. Functions~
+Besides the functions available via mappings (as described
+in |myscript-mappings|) there are some extra global func-
+tions available.
+
+MyglobalfunctionB()~
+This function is one of the global functions in this script.
+An example of usage could be: >
+		:call MyglobalfunctionB()
+	<
+\end{vimcode}
+\marginpar{193}
