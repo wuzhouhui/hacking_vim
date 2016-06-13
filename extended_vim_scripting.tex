@@ -703,3 +703,26 @@ Changed : 01/01/2007
 1. Overview-
 \end{vimcode}
 \marginpar{192}
+\begin{vimcode}
+This document gives a short introduction to the example
+script myscript.vim.
+This script is made as an example for vim users on how to
+structure a simple vim plugin script such that it is easy
+to read and figure out.
+The following is covered in this document:
+
+    1. Overview					|myscript-intro|
+	2. Mappings					|myscript-mappings|
+	3. Functions				|myscript-functions|
+	4. Todo						|myscript-todo|
+=============================================================
+\end{vimcode}
+在这个例子中, 我们用到了 Vim 文档中大部分会用到的格式化标记. 现在让我们一个
+个地介绍它们.
+
+第一个标记是 \texttt{*...*}, 它把关键词标记成 Vim 帮助系统可以跳转到的位置.
+在这里我们把它写成了 \texttt{*myscript-intro*}, 这样的话, 我们就可以用下面
+的命令跳转到该文档:
+\begin{vimcode}
+:help 'myscript-intro'
+\end{vimcode}
