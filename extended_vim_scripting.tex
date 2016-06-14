@@ -660,3 +660,131 @@ Vim 自动地把选中的行的起始与结束行号添加到命令的前面. �
     上下载.
 \end{warning}
 \marginpar{191}
+
+\section{注意文档}
+\label{sec:remember_the_documentation}
+
+Vim 有一个非常完善的帮助系统, 几乎涵盖了使用 Vim 的方方面面. 用户在安装完你
+开发的脚本后, 如果想要搜索相关的帮助信息, 此时会发生什么? 如果你没有在脚本
+的安装包中添加文档, 那么用户就无法在 Vim 的帮助系统中找到相关的信息. 所以,
+请在发布脚本时, 加上相应的文档.
+
+现在来看一下如何创建具有链接, 标记等信息的 Vim 文档.
+
+一个 Vim 文档文件就是一个普通的文本文件, 只不过带有一些特殊的标记. 当创建一
+个新的文档文件时, 开头第一行是最重要的, 让我看来看一个例子:
+\begin{vimcode}
+*docname.txt* sigle line of description
+\end{vimcode}
+每一个文档文件的第一行的第一个字符必须是 \texttt{*}.
+
+\texttt{docname.txt} 是当前正在编辑的文件名. 当 Vim 帮助系统需要链接到本地
+附加文件 (参考 \texttt{:help local-additions}) 时就会用到这个信息. 第二个
+\texttt{*} 后面的内容是关于本文档的简短描述. 对于前面我们开发的脚本来说, 可
+以把文档的第一行写成:
+\begin{vimcode}
+*myscript.txt* Documentation for example script myscript.vim
+\end{vimcode}
+写完这一行后, 就可以开始写文档的真正内容.
+
+比较典型的做法是以一长串的介绍开始, 详细介绍本文档的主题内容. 这些内容可以
+包括作者的名字与联系方式. 然后, 如果文档比较长的话, 最好添加一个目录 (我们给
+的例子就包含了一个目录). 对于 \texttt{myscript.vim} 来说, 它的文档开头可以这
+样写:
+\begin{vimcode}
+*myscript.txt* Documentation for example script myscript.vim
+
+Script  : myscript.vim - Example script for vim developers
+Author  : Kim Schulz
+Email   : <kim@schulz.dk>
+Changed : 01/01/2007
+=============================================================
+                                            *myscript-intro*
+
+1. Overview-
+\end{vimcode}
+\marginpar{192}
+\begin{vimcode}
+This document gives a short introduction to the example
+script myscript.vim.
+This script is made as an example for vim users on how to
+structure a simple vim plugin script such that it is easy
+to read and figure out.
+The following is covered in this document:
+
+    1. Overview					|myscript-intro|
+	2. Mappings					|myscript-mappings|
+	3. Functions				|myscript-functions|
+	4. Todo						|myscript-todo|
+=============================================================
+\end{vimcode}
+在这个例子中, 我们用到了 Vim 文档中大部分会用到的格式化标记. 现在让我们一个
+个地介绍它们.
+
+第一个标记是 \texttt{*...*}, 它把关键词标记成 Vim 帮助系统可以跳转到的位置.
+在这里我们把它写成了 \texttt{*myscript-intro*}, 这样的话, 我们就可以用下面
+的命令跳转到该文档:
+\begin{vimcode}
+:help 'myscript-intro'
+\end{vimcode}
+
+下一个标记是 \texttt{Overview} 后面的 \verb'~', 这个标记可以使 \texttt{Overview}
+带上不同的颜色.
+
+然后是目录中某些关键词两边的 \verb'|'. 这个标记创建了一个指向特定章节的链接,
+章节的名称用 \texttt{*...*} 标记. 由多个等号组成的一行指出了章节的边界, 但它
+们并不是真正的标记, 没有特殊的功能.
+
+文档中接下来的各小节用同样的格式编写, 但是, 如果它们包含了一小段 Vim 代码,
+那就需要另一个标记来指明, 比如包含函数的章节就有可能含有 Vim 代码, 先来看一个
+具体的例子:
+\begin{vimcode}
+=============================================================
+										*myscript-functions*
+3. Functions~
+Besides the functions available via mappings (as described
+in |myscript-mappings|) there are some extra global func-
+tions available.
+
+MyglobalfunctionB()~
+This function is one of the global functions in this script.
+An example of usage could be: >
+		:call MyglobalfunctionB()
+	<
+\end{vimcode}
+\marginpar{193}
+\begin{vimcode}
+		Vim returns:
+		 Hello from the global-scope function myglobalfunctionB~
+
+	MyglobalfunctionC()~
+	This function is a global function that also calls one of
+	the internal functions ("s:MyfunctionA()") in the script.
+	An example of usage could be: >
+		:call MyglobalfunctionC()
+	<
+		Vim returns
+		Hello from MyglobalfunctionC() now calling locally:~
+		This is the script-scope function MyfunctionA speaking~
+=============================================================
+\end{vimcode}
+需要注意的标记是代码周围的 \texttt{>...<}, 它用来标记代码, 另外, 我们还用
+\verb'~' 标记了函数的返回信息.
+% This is used to mark the code, while we use the ~ colored lines to mark
+% the return from Vim.
+
+为了创建一份良好的文档, 读者所需要知道的就是这些了.
+
+当用户想要安装文档时, 首先得把文档放到 \texttt{VIMHOME/doc/} 目录下, 然后
+在 Vim 中执行:
+\begin{vimcode}
+:helptags docdir
+\end{vimcode}
+命令中的 \texttt{docdir} 是相对于 \texttt{VIMHOME/doc/} 的路径. 如果文档中
+的某个关键词已经被其他人使用过了, Vim 就会发出警告, 此时开发人员应该修改关键
+词, 然后重新发布文档.
+
+\begin{vimcode}
+	想让自己的文档以多种语言发布? 请参考 \texttt{:help 'help-translated'}.
+\end{vimcode}
+\marginpar{194}
