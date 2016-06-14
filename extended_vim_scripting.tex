@@ -753,3 +753,38 @@ An example of usage could be: >
 	<
 \end{vimcode}
 \marginpar{193}
+\begin{vimcode}
+		Vim returns:
+		 Hello from the global-scope function myglobalfunctionB~
+
+	MyglobalfunctionC()~
+	This function is a global function that also calls one of
+	the internal functions ("s:MyfunctionA()") in the script.
+	An example of usage could be: >
+		:call MyglobalfunctionC()
+	<
+		Vim returns
+		Hello from MyglobalfunctionC() now calling locally:~
+		This is the script-scope function MyfunctionA speaking~
+=============================================================
+\end{vimcode}
+需要注意的标记是代码周围的 \texttt{>...<}, 它用来标记代码, 另外, 我们还用
+\verb'~' 标记了函数的返回信息.
+% This is used to mark the code, while we use the ~ colored lines to mark
+% the return from Vim.
+
+为了创建一份良好的文档, 读者所需要知道的就是这些了.
+
+当用户想要安装文档时, 首先得把文档放到 \texttt{VIMHOME/doc/} 目录下, 然后
+在 Vim 中执行:
+\begin{vimcode}
+:helptags docdir
+\end{vimcode}
+命令中的 \texttt{docdir} 是相对于 \texttt{VIMHOME/doc/} 的路径. 如果文档中
+的某个关键词已经被其他人使用过了, Vim 就会发出警告, 此时开发人员应该修改关键
+词, 然后重新发布文档.
+
+\begin{vimcode}
+	想让自己的文档以多种语言发布? 请参考 \texttt{:help 'help-translated'}.
+\end{vimcode}
+\marginpar{194}
