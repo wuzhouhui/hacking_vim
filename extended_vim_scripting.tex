@@ -788,3 +788,41 @@ An example of usage could be: >
 	想让自己的文档以多种语言发布? 请参考 \texttt{:help 'help-translated'}.
 \end{vimcode}
 \marginpar{194}
+
+\section{使用外部解释器}
+\label{sec:using_external_interpreters}
+
+虽然开发人员几乎可以用 Vim 脚本完成任意的工作, 不过有时候借用其他语言可能会
+更适合. Vim 开发人员很早以前就已经注意到这点, 因此他们在 Vim 中加入了对其他
+脚本语言的支持. 在这些脚本语言中, 读者要重点关注以下三种:
+\begin{itemize}
+	\item Perl
+	\item Python
+	\item Ruby
+\end{itemize}
+在接下来的小节里, 我们将会简单介绍如何在 Vim 脚本中使用这三种语言.
+
+Vim 默认上不支持这三种语言, 为了解决这个问题, 读者既可以选择自己重新编译
+Vim (在编译前开启相应的编译选项), 或者安装一个已经支持它们的 Vim 版本.
+
+为了查看系统中的 Vim 是否支持这三种脚本语言, 在 Shell 中执行:
+\begin{vimcode}
+vim --version
+\end{vimcode}
+注意命令的输出是否包括以下内容:
+\begin{vimcode}
++perl
++python
++ruby
+\end{vimcode}
+名字左边的 \texttt{+} 表示 Vim 支持该语言, 如果是 \texttt{-}, 比如
+\texttt{-perl}, 则表示该版本 Vim 不支持 Perl.
+
+除了在命令行查看, 还可以在启动 Vim 后, 用函数 \texttt{has()} 来检查:
+\begin{vimcode}
+:echo has("perl");
+:echo has("python");
+:echo has("ruby");
+\end{vimcode}
+如果支持, 则命令返回 \texttt{1}.
+\marginpar{195}
