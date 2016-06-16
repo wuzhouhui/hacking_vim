@@ -793,7 +793,7 @@ An example of usage could be: >
 \label{sec:using_external_interpreters}
 
 虽然开发人员几乎可以用 Vim 脚本完成任意的工作, 不过有时候借用其他语言可能会
-更适合. Vim 开发人员很早以前就已经注意到这点, 因此他们在 Vim 中加入了对其他
+更好一点. Vim 开发人员很早以前就已经注意到这点, 因此他们在 Vim 中加入了对其他
 脚本语言的支持. 在这些脚本语言中, 读者要重点关注以下三种:
 \begin{itemize}
 	\item Perl
@@ -820,9 +820,9 @@ vim --version
 
 除了在命令行查看, 还可以在启动 Vim 后, 用函数 \texttt{has()} 来检查:
 \begin{vimcode}
-:echo has("perl");
-:echo has("python");
-:echo has("ruby");
+:echo has("perl")
+:echo has("python")
+:echo has("ruby")
 \end{vimcode}
 如果支持, 则命令返回 \texttt{1}.
 \marginpar{195}
