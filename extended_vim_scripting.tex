@@ -826,3 +826,49 @@ vim --version
 \end{vimcode}
 如果支持, 则命令返回 \texttt{1}.
 \marginpar{195}
+
+\subsection{Perl}
+\label{subsec:vim_script}
+
+Perl 是一门非常流行的脚本语言, 在文本处理方面非常强大, 在 Vim 中同样有用.
+
+在 Vim 使用 Perl 的最简单方式是:
+\begin{vimcode}
+:perl command
+\end{vimcode}
+这表示执行 Perl 命令 \texttt{command}. 注意, 在 Perl 命令中设置的值在整个
+Vim 会话期间都一直有效.
+
+用户经常会一次执行多个 Perl 命令, 这时候可以用下面这种形式的执行方式:
+\begin{vimcmdform}
+\texttt{:perl << }\textit{endpattern}
+\phantom{    }\texttt{perl code here}
+\textit{endpattern}
+\end{vimcmdform}
+上面的命令会执行第一个 \textit{endpattern} 与最后一个 \textit{endpattern}
+之间的所有 Perl 代码.
+
+\begin{warning}
+	对于 Perl, Python, 或 Ruby, 用户可以用任意的字符串作为 \textit{endpattern},
+	但是在最后一行只能出现该字符串, 而且它还必须出现在一行的开始. 如果省略了
+	第一个 \textit{endpattern}, 则 Vim 默认把句点当作 \textit{endpattern}.
+\end{warning}
+
+往 Vim 的编辑窗口中打印一行的代码可以这样写:
+\begin{vimcode}
+:perl << EOF
+	VIM::Msg("this is a text");
+EOF
+\end{vimcode}
+现在, \texttt{EOF} 是 \textit{endpattern}, 在 Perl 代码中, 我们用函数
+\texttt{VIM::Msg()} 向 Vim 打印一条消息. 除了这个函数, 还有许多函数可以用来
+沟通 Vim 与 Perl, 比较常见的有:
+\begin{itemize}
+	\item \texttt{VIM::buffers()}: 返回所有打开的缓冲区列表.
+	\item \texttt{VIM::SetOption("}\textit{option}\texttt{")}: 在 Perl 中设置
+		Vim 的 \textit{option} 选项.
+	\item \texttt{\$curbuf->Name()}: 返回当前缓冲区的名字.
+	\item \texttt{\$curbuf->Set(100, "fooo")}: 把当前缓冲区的第 100 行文本设
+		置成 \texttt{fooo}.
+\end{itemize}
+\marginpar{196}
