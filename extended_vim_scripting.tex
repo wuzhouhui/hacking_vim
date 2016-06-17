@@ -913,3 +913,53 @@ endfunction
 和 Perl 一样, Python 也有一些接口, 用来同 Vim 交互. 在 Vim 中使用 Python
 主要有以下三种方式:
 \marginpar{197}
+\begin{enumerate}
+	\item 如果只是想在 Vim 中执行一条 Python 语句, 可以用 \texttt{:python}\
+		\textit{statement}, 例如:
+	\begin{vimcode}
+	:python print "hello Vim developer"
+	\end{vimcode}
+
+	\item 如果想要一次执行大量的 Python 代码, 可以用:
+	\begin{vimcmdform}
+	\texttt{:python << }\textit{endpattern} \\
+	\texttt{python statements here} \\
+	\textit{endpattern}
+	\end{vimcmdform}
+	它们执行 \texttt{endpattern} 之间的所有 Python 代码.
+
+	\item 最后一种方法是在 Vim 中执行一个 Python 脚本, 比如:
+	\begin{vimcode}
+	:pyfile file.py
+	\end{vimcode}
+	可以把 \texttt{file.py} 替换成任意一个你想要执行的 Python 脚本.
+\end{enumerate}
+
+有时候, Python 脚本可能需要从命令行获取一些参数, 如果使用的是 \texttt{:pyfile},
+就做不到这点.
+
+不过, 可以通过设置 \texttt{sys.argv} 来解决这个问题, 一个使用示例是:
+\begin{vimcode}
+:python import sys
+:python sys.argv = ["argument1", "argument2"]
+:pyfile myscript.py
+\end{vimcode}
+
+为了更方便地与 Vim 交互, Python 包含了一个称为 \texttt{vim} 的模块, 这个模块
+可以让 Python 脚本访问 Vim 的许多额外功能, 一个使用示例是:
+\begin{vimcode}
+import vim
+window = vim.current.window
+window.height = 200
+window.width = 10
+window.cursor = (1,1)
+\end{vimcode}
+下面的命令可以用来获取所有的可用函数列表:
+\begin{vimcode}
+:help 'python-vim'
+\end{vimcode}
+
+\begin{warning}
+	如果要在 Vim 脚本中使用 Python 代码, 最好把它们封装在 Vim 的函数中.
+\end{warning}
+\marginpar{198}
