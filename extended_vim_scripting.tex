@@ -884,7 +884,7 @@ Perl.
 
 始终把 Perl 代码封装在 Vim 函数中是个不错的主意. 这种方法很容易实现, 而且对
 于经验不主的用户来说, 脚本看起来与其他 Vim 脚本没什么区别. 把 Perl 代码封
-装在 Vim 脚本的例子可以这样写:
+装在 Vim 函数中的例子可以这样写:
 \begin{vimcode}
 function MoveCursor(row,col)
 	if has("perl")
@@ -903,7 +903,7 @@ endfunction
 
 如果当前的 Vim 版本不支持 Perl, 函数就会打印一条关于这个事件的消息. 注意,
 即使其他代码是缩进过了, 但我们仍然把 \texttt{EOF} 写在一行中最靠左的位置上.
-为了能让 Vim 准确识别出 \textit{endpattern}, 我们必须严格遵守.
+为了能让 Vim 准确识别出 \textit{endpattern}, 我们必须严格遵守这条规则.
 
 \subsection{Python}
 \label{subsec:vim_scripting_in_python}
@@ -927,12 +927,12 @@ endfunction
 	\texttt{python statements here} \\
 	\textit{endpattern}
 	\end{vimcmdform}
-	它们执行 \texttt{endpattern} 之间的所有 Python 代码.
+	它们执行 \textit{endpattern} 之间的所有 Python 代码.
 
 	\item 最后一种方法是在 Vim 中执行一个 Python 脚本, 比如:
-	\begin{vimcode}
-	:pyfile file.py
-	\end{vimcode}
+\begin{vimcode}
+:pyfile file.py
+\end{vimcode}
 	可以把 \texttt{file.py} 替换成任意一个你想要执行的 Python 脚本.
 \end{enumerate}
 
