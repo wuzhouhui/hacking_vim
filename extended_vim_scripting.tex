@@ -1,5 +1,5 @@
 % vim: ts=4 sts=4 sw=4 tw=80
-\chapter{高级 Vim 脚本编程}
+\chapter{Vim 脚本进阶}
 \label{chap:extended_vim_scripting}
 \marginpar{175}
 
@@ -701,6 +701,266 @@ Changed : 01/01/2007
 =============================================================
                                             *myscript-intro*
 
-1. Overview-
+1. Overview~
 \end{vimcode}
 \marginpar{192}
+\begin{vimcode}
+This document gives a short introduction to the example
+script myscript.vim.
+This script is made as an example for vim users on how to
+structure a simple vim plugin script such that it is easy
+to read and figure out.
+The following is covered in this document:
+
+    1. Overview					|myscript-intro|
+	2. Mappings					|myscript-mappings|
+	3. Functions				|myscript-functions|
+	4. Todo						|myscript-todo|
+=============================================================
+\end{vimcode}
+在这个例子中, 我们用到了 Vim 文档中大部分会用到的格式化标记. 现在让我们一个
+个地介绍它们.
+
+第一个标记是 \texttt{*...*}, 它把关键词标记成 Vim 帮助系统可以跳转到的位置.
+在这里我们把它写成了 \texttt{*myscript-intro*}, 这样的话, 我们就可以用下面
+的命令跳转到该文档:
+\begin{vimcode}
+:help 'myscript-intro'
+\end{vimcode}
+
+下一个标记是 \texttt{Overview} 后面的 \verb'~', 这个标记可以使 \texttt{Overview}
+带上不同的颜色.
+
+然后是目录中某些关键词两边的 \verb'|'. 这个标记创建了一个指向特定章节的链接,
+章节的名称用 \texttt{*...*} 标记. 由多个等号组成的一行指出了章节的边界, 但它
+们并不是真正的标记, 没有特殊的功能.
+
+文档中接下来的各小节用同样的格式编写, 但是, 如果它们包含了一小段 Vim 代码,
+那就需要另一个标记来指明, 比如包含函数的章节就有可能含有 Vim 代码, 先来看一个
+具体的例子:
+\begin{vimcode}
+=============================================================
+										*myscript-functions*
+3. Functions~
+Besides the functions available via mappings (as described
+in |myscript-mappings|) there are some extra global func-
+tions available.
+
+MyglobalfunctionB()~
+This function is one of the global functions in this script.
+An example of usage could be: >
+		:call MyglobalfunctionB()
+	<
+\end{vimcode}
+\marginpar{193}
+\begin{vimcode}
+		Vim returns:
+		 Hello from the global-scope function myglobalfunctionB~
+
+	MyglobalfunctionC()~
+	This function is a global function that also calls one of
+	the internal functions ("s:MyfunctionA()") in the script.
+	An example of usage could be: >
+		:call MyglobalfunctionC()
+	<
+		Vim returns
+		Hello from MyglobalfunctionC() now calling locally:~
+		This is the script-scope function MyfunctionA speaking~
+=============================================================
+\end{vimcode}
+需要注意的标记是代码周围的 \texttt{>...<}, 它用来标记代码, 另外, 我们还用
+\verb'~' 标记了函数的返回信息.
+% This is used to mark the code, while we use the ~ colored lines to mark
+% the return from Vim.
+
+为了创建一份良好的文档, 读者所需要知道的就是这些了.
+
+当用户想要安装文档时, 首先得把文档放到 \texttt{VIMHOME/doc/} 目录下, 然后
+在 Vim 中执行:
+\begin{vimcode}
+:helptags docdir
+\end{vimcode}
+命令中的 \texttt{docdir} 是相对于 \texttt{VIMHOME/doc/} 的路径. 如果文档中
+的某个关键词已经被其他人使用过了, Vim 就会发出警告, 此时开发人员应该修改关键
+词, 然后重新发布文档.
+
+\begin{warning}
+	想让自己的文档以多种语言发布? 请参考 \texttt{:help 'help-translated'}.
+\end{warning}
+\marginpar{194}
+
+\section{使用外部解释器}
+\label{sec:using_external_interpreters}
+
+虽然开发人员几乎可以用 Vim 脚本完成任意的工作, 不过有时候借用其他语言可能会
+更好一点. Vim 开发人员很早以前就已经注意到这点, 因此他们在 Vim 中加入了对其他
+脚本语言的支持. 在这些脚本语言中, 读者要重点关注以下三种:
+\begin{itemize}
+	\item Perl
+	\item Python
+	\item Ruby
+\end{itemize}
+在接下来的小节里, 我们将会简单介绍如何在 Vim 脚本中使用这三种语言.
+
+Vim 默认上不支持这三种语言, 为了解决这个问题, 读者既可以选择自己重新编译
+Vim (在编译前开启相应的编译选项), 或者安装一个已经支持它们的 Vim 版本.
+
+为了查看系统中的 Vim 是否支持这三种脚本语言, 在 Shell 中执行:
+\begin{vimcode}
+vim --version
+\end{vimcode}
+注意命令的输出是否包括以下内容:
+\begin{vimcode}
++perl
++python
++ruby
+\end{vimcode}
+名字左边的 \texttt{+} 表示 Vim 支持该语言, 如果是 \texttt{-}, 比如
+\texttt{-perl}, 则表示该版本 Vim 不支持 Perl.
+
+除了在命令行查看, 还可以在启动 Vim 后, 用函数 \texttt{has()} 来检查:
+\begin{vimcode}
+:echo has("perl")
+:echo has("python")
+:echo has("ruby")
+\end{vimcode}
+如果支持, 则命令返回 \texttt{1}.
+\marginpar{195}
+
+\subsection{Perl}
+\label{subsec:vim_scripting_in_perl}
+
+Perl 是一门非常流行的脚本语言, 在文本处理方面非常强大, 在 Vim 中同样有用.
+
+在 Vim 使用 Perl 的最简单方式是:
+\begin{vimcode}
+:perl command
+\end{vimcode}
+这表示执行 Perl 命令 \texttt{command}. 注意, 在 Perl 命令中设置的值在整个
+Vim 会话期间都一直有效.
+
+用户经常会一次执行多个 Perl 命令, 这时候可以用下面这种形式的执行方式:
+\begin{vimcmdform}
+\texttt{:perl << }\textit{endpattern} \\
+\texttt{perl code here} \\
+\textit{endpattern}
+\end{vimcmdform}
+上面的命令会执行第一个 \textit{endpattern} 与最后一个 \textit{endpattern}
+之间的所有 Perl 代码.
+
+\begin{warning}
+	对于 Perl, Python, 或 Ruby, 用户可以用任意的字符串作为 \textit{endpattern},
+	但是在最后一行只能出现该字符串, 而且它还必须出现在一行的开始. 如果省略了
+	第一个 \textit{endpattern}, 则 Vim 默认把句点当作 \textit{endpattern}.
+\end{warning}
+
+往 Vim 的编辑窗口中打印一行的代码可以这样写:
+\begin{vimcode}
+:perl << EOF
+	VIM::Msg("this is a text");
+EOF
+\end{vimcode}
+现在, \texttt{EOF} 是 \textit{endpattern}, 在 Perl 代码中, 我们用函数
+\texttt{VIM::Msg()} 向 Vim 打印一条消息. 除了这个函数, 还有许多函数可以用来
+沟通 Vim 与 Perl, 比较常见的有:
+\begin{itemize}
+	\item \texttt{VIM::buffers()}: 返回所有打开的缓冲区列表.
+	\item \texttt{VIM::SetOption("}\textit{option}\texttt{")}: 在 Perl 中设置
+		Vim 的 \textit{option} 选项.
+	\item \texttt{\$curbuf->Name()}: 返回当前缓冲区的名字.
+	\item \texttt{\$curbuf->Set(100, "fooo")}: 把当前缓冲区的第 100 行文本设
+		置成 \texttt{fooo}.
+	\item \texttt{\$curwin->SetCursor(15,8)}: 把光标的位置移动到当前窗口的
+		第 15 行, 第 8 列
+\end{itemize}
+\marginpar{196}
+可以用下面的命令获取可以在 Perl 中执行的所有 Vim 特定函数:
+\begin{vimcode}
+:help perl-pverview
+\end{vimcode}
+
+如果开发人员决定在脚本在加上 Perl 代码, 要记得检查用户的 Vim 版本是否支持
+Perl.
+
+始终把 Perl 代码封装在 Vim 函数中是个不错的主意. 这种方法很容易实现, 而且对
+于经验不主的用户来说, 脚本看起来与其他 Vim 脚本没什么区别. 把 Perl 代码封
+装在 Vim 函数中的例子可以这样写:
+\begin{vimcode}
+function MoveCursor(row,col)
+	if has("perl")
+		perl << EOF
+		($oldrow,$oldcol) = $curwin->Cursor();
+		VIM::Msg("Old position was: ($oldrow,$oldcol)");
+		$curwin->Cursor(row,col);
+EOF
+	else
+		echo "perl not available. canceling function call"
+	endif
+endfunction
+\end{vimcode}
+上面的函数首先获取当前窗口的光标位置, 并打印它们, 然后把光标移动到由参数指定
+的位置上.
+
+如果当前的 Vim 版本不支持 Perl, 函数就会打印一条关于这个事件的消息. 注意,
+即使其他代码是缩进过了, 但我们仍然把 \texttt{EOF} 写在一行中最靠左的位置上.
+为了能让 Vim 准确识别出 \textit{endpattern}, 我们必须严格遵守这条规则.
+
+\subsection{Python}
+\label{subsec:vim_scripting_in_python}
+
+在最近的这几年中, Python 已经成为众多程序员最喜欢的脚本语言之一. 这主要是因为
+它的易用性, 以及对缩进的严格规定 (缩进提高了代码的可读性).
+
+和 Perl 一样, Python 也有一些接口, 用来同 Vim 交互. 在 Vim 中使用 Python
+主要有以下三种方式:
+\marginpar{197}
+\begin{enumerate}
+	\item 如果只是想在 Vim 中执行一条 Python 语句, 可以用 \texttt{:python}\
+		\textit{statement}, 例如:
+	\begin{vimcode}
+	:python print "hello Vim developer"
+	\end{vimcode}
+
+	\item 如果想要一次执行大量的 Python 代码, 可以用:
+	\begin{vimcmdform}
+	\texttt{:python << }\textit{endpattern} \\
+	\texttt{python statements here} \\
+	\textit{endpattern}
+	\end{vimcmdform}
+	它们执行 \textit{endpattern} 之间的所有 Python 代码.
+
+	\item 最后一种方法是在 Vim 中执行一个 Python 脚本, 比如:
+\begin{vimcode}
+:pyfile file.py
+\end{vimcode}
+	可以把 \texttt{file.py} 替换成任意一个你想要执行的 Python 脚本.
+\end{enumerate}
+
+有时候, Python 脚本可能需要从命令行获取一些参数, 如果使用的是 \texttt{:pyfile},
+就做不到这点.
+
+不过, 可以通过设置 \texttt{sys.argv} 来解决这个问题, 一个使用示例是:
+\begin{vimcode}
+:python import sys
+:python sys.argv = ["argument1", "argument2"]
+:pyfile myscript.py
+\end{vimcode}
+
+为了更方便地与 Vim 交互, Python 包含了一个称为 \texttt{vim} 的模块, 这个模块
+可以让 Python 脚本访问 Vim 的许多额外功能, 一个使用示例是:
+\begin{vimcode}
+import vim
+window = vim.current.window
+window.height = 200
+window.width = 10
+window.cursor = (1,1)
+\end{vimcode}
+下面的命令可以用来获取所有的可用函数列表:
+\begin{vimcode}
+:help 'python-vim'
+\end{vimcode}
+
+\begin{warning}
+	如果要在 Vim 脚本中使用 Python 代码, 最好把它们封装在 Vim 的函数中.
+\end{warning}
+\marginpar{198}
