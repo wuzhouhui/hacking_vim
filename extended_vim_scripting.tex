@@ -870,5 +870,97 @@ EOF
 	\item \texttt{\$curbuf->Name()}: 返回当前缓冲区的名字.
 	\item \texttt{\$curbuf->Set(100, "fooo")}: 把当前缓冲区的第 100 行文本设
 		置成 \texttt{fooo}.
+	\item \texttt{\$curwin->SetCursor(15,8)}: 把光标的位置移动到当前窗口的
+		第 15 行, 第 8 列
 \end{itemize}
 \marginpar{196}
+可以用下面的命令获取可以在 Perl 中执行的所有 Vim 特定函数:
+\begin{vimcode}
+:help perl-pverview
+\end{vimcode}
+
+如果开发人员决定在脚本在加上 Perl 代码, 要记得检查用户的 Vim 版本是否支持
+Perl.
+
+始终把 Perl 代码封装在 Vim 函数中是个不错的主意. 这种方法很容易实现, 而且对
+于经验不主的用户来说, 脚本看起来与其他 Vim 脚本没什么区别. 把 Perl 代码封
+装在 Vim 脚本的例子可以这样写:
+\begin{vimcode}
+function MoveCursor(row,col)
+	if has("perl")
+		perl << EOF
+		($oldrow,$oldcol) = $curwin->Cursor();
+		VIM::Msg("Old position was: ($oldrow,$oldcol)");
+		$curwin->Cursor(row,col);
+EOF
+	else
+		echo "perl not available. canceling function call"
+	endif
+endfunction
+\end{vimcode}
+上面的函数首先获取当前窗口的光标位置, 并打印它们, 然后把光标移动到由参数指定
+的位置上.
+
+如果当前的 Vim 版本不支持 Perl, 函数就会打印一条关于这个事件的消息. 注意,
+即使其他代码是缩进过了, 但我们仍然把 \texttt{EOF} 写在一行中最靠左的位置上.
+为了能让 Vim 准确识别出 \textit{endpattern}, 我们必须严格遵守.
+
+\subsection{Python}
+\label{subsec:vim_scripting_in_python}
+
+在最近的这几年中, Python 已经成为众多程序员最喜欢的脚本语言之一. 这主要是因为
+它的易用性, 以及对缩进的严格规定 (缩进提高了代码的可读性).
+
+和 Perl 一样, Python 也有一些接口, 用来同 Vim 交互. 在 Vim 中使用 Python
+主要有以下三种方式:
+\marginpar{197}
+\begin{enumerate}
+	\item 如果只是想在 Vim 中执行一条 Python 语句, 可以用 \texttt{:python}\
+		\textit{statement}, 例如:
+	\begin{vimcode}
+	:python print "hello Vim developer"
+	\end{vimcode}
+
+	\item 如果想要一次执行大量的 Python 代码, 可以用:
+	\begin{vimcmdform}
+	\texttt{:python << }\textit{endpattern} \\
+	\texttt{python statements here} \\
+	\textit{endpattern}
+	\end{vimcmdform}
+	它们执行 \texttt{endpattern} 之间的所有 Python 代码.
+
+	\item 最后一种方法是在 Vim 中执行一个 Python 脚本, 比如:
+	\begin{vimcode}
+	:pyfile file.py
+	\end{vimcode}
+	可以把 \texttt{file.py} 替换成任意一个你想要执行的 Python 脚本.
+\end{enumerate}
+
+有时候, Python 脚本可能需要从命令行获取一些参数, 如果使用的是 \texttt{:pyfile},
+就做不到这点.
+
+不过, 可以通过设置 \texttt{sys.argv} 来解决这个问题, 一个使用示例是:
+\begin{vimcode}
+:python import sys
+:python sys.argv = ["argument1", "argument2"]
+:pyfile myscript.py
+\end{vimcode}
+
+为了更方便地与 Vim 交互, Python 包含了一个称为 \texttt{vim} 的模块, 这个模块
+可以让 Python 脚本访问 Vim 的许多额外功能, 一个使用示例是:
+\begin{vimcode}
+import vim
+window = vim.current.window
+window.height = 200
+window.width = 10
+window.cursor = (1,1)
+\end{vimcode}
+下面的命令可以用来获取所有的可用函数列表:
+\begin{vimcode}
+:help 'python-vim'
+\end{vimcode}
+
+\begin{warning}
+	如果要在 Vim 脚本中使用 Python 代码, 最好把它们封装在 Vim 的函数中.
+\end{warning}
+\marginpar{198}
