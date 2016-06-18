@@ -963,3 +963,51 @@ window.cursor = (1,1)
 	如果要在 Vim 脚本中使用 Python 代码, 最好把它们封装在 Vim 函数内.
 \end{warning}
 \marginpar{198}
+
+\subsection{Ruby}
+\label{subsec:vim_scripting_in_ruby}
+
+在西方国家, Ruby 直到最近才成为一门流行的编程语言, 但是早在这之前, Ruby 就
+在亚洲流行开了, 而且, 自从它成为 Web 开发的脚本语言之后, 越来越多的程序员
+开始喜欢上它. Ruby 最大的优点是它是一门真正的面向对象编程语言, 因此 Ruby 是
+模块化.
+
+Vim 对 Ruby 的支持非常完美, 因此用户可以在 Vim 中运行 Ruby 代码, 执行的方式
+有很多种, 其中最简单的一种是 \texttt{:ruby}\ \textit{command}.
+
+把 \textit{command} 替换成任意一个单行的 Ruby 命令, 比如:
+\begin{vimcode}
+:ruby print "Hello from Ruby"
+\end{vimcode}
+
+如果用户想要同时执行多行 Ruby 代码, 可以这样写:
+\begin{vimcmdform}
+\texttt{:ruby << }\textit{endpattern} \\
+\textit{python commands here} \\
+\textit{endpattern}
+\end{vimcmdform}
+上面的命令会执行两行 \textit{endpattern} 之间所有的 Ruby 代码. 如果在 Ruby
+代码中设置了某个变量, 或创建了某个对象, 那么在整个 Vim 会话期间, 它们都是可
+用的.
+
+一个使用示例是:
+\begin{vimcode}
+:ruby << EOF
+    window = VIM::Window.current
+    window.height = 250
+    window.width = 35
+    window.cursor = (10,10)
+EOF
+\end{vimcode}
+
+如果你想要执行的 Ruby 代码存放在某个文件中, 可以用下面的命令执行文件中的代码:
+\begin{vimcode}
+:rubyfile file.rb
+\end{vimcode}
+上面的命令还可以写成:
+\begin{vimcode}
+:ruby load 'file.rb'
+\end{vimcode}
+在 \texttt{file.rb} 中创建的所有对象与变量在整个 Vim 会话期间都是可用的,
+除非显式删除了它们.
+\marginpar{199}
