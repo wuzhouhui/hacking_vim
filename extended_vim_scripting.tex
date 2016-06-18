@@ -1011,3 +1011,46 @@ EOF
 在 \texttt{file.rb} 中创建的所有对象与变量在整个 Vim 会话期间都是可用的,
 除非显式删除了它们.
 \marginpar{199}
+
+为了与 Vim 交互, Ruby 提供了一个专门用于 Vim 的模块, 叫做 \texttt{VIM}, 这个
+模块包含了许多访问与设置 Vim 的方法, 其中包括:
+\begin{itemize}
+    \item \texttt{VIM::Set\_option('}\textit{option}\texttt{')}: 设置 Vim
+        的 \textit{option} 选项
+    \item \texttt{VIM::Message("message")}: 在 Vim 中打印一条消息
+    \item \texttt{\$curwin.height}: 当前窗口的高度
+    \item \texttt{\$curbuf.width}: 当前缓冲区的宽度
+    \item \texttt{VIM::Buffer.current.append(10, "line")}: 在当前缓冲区的第
+        10 行新增一行文本
+    \item \texttt{VIM::Buffer.current.length}: 返回当前缓冲区的行数
+\end{itemize}
+
+用下面的命令获取所有的可用方法与对象:
+\begin{vimcode}
+:help 'ruby-vim'
+\end{vimcode}
+
+\begin{warning}
+    在使用 Ruby 代码之间, 要记得始终检查用户的 Vim 版本是否支持 Ruby.
+\end{warning}
+
+\section{小结}
+\label{sec:basic_vim_scripting_summary}
+
+这一章主要是为那些想开发 Vim 脚本的人写的.
+
+在介绍了 Vim 脚本的各个组成要素后, 现在要把它们都组装到一个完整的 Vim 脚本
+中, 我们采用了自顶向下的方法, 并且逐行地介绍了脚本中的每一行.
+
+一个很重要的一点是, 脚本开发人员无法预知用户是如何配置它们的 Vim 的, 因此,
+脚本需要检查某个设置是否可用, 而且不能破坏用户已经的设置.
+
+我们学习了如何在脚本作用域内使用变量与函数, 这样就避免了污染全局作用域.
+通过限定作用域, 可以确保用户只能访问到和他们相关的功能.
+% FIXME
+% Again this was to help the user such that only the relevant functionality
+% is available to him or her.
+
+在查看了几个 Vim 脚本的结构之后, 我们介绍了如何检查一些先决条件, 比如操作系统
+与 Vim 版本, 以便在继续执行之前, 判断某些需求是否满足.
+\marginpar{200}
