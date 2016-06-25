@@ -1,5 +1,5 @@
 % vim: ts=4 sts=4 sw=4 et tw=80
-\chapter{效率推进器}
+\chapter{助推器}
 \label{chap:production_boosters}
 
 \marginpar{73}
@@ -168,12 +168,12 @@ iabbrev for( for(!cursor!;<+++>;<+++>){<cr><+++><cr>}<Esc>
 \end{vimcode}
 (上面的命令都在同一行上)
 
-现在, 无论何时输入 \texttt{for(}, Vim 都会自动插入一段 \texttt{for} 循环, 然后 
+现在, 无论何时输入 \texttt{for(}, Vim 都会自动插入一段 \texttt{for} 循环, 然后
 把光标移动到占位符 \texttt{!cursor!} (当光标移过来时, 占位符上原来的内容会自动
 被移除). 接下来, 你就可以方便地填写 \texttt{for} 循环的参数, 并用 \key{Ctrl+j}
 跳转到下一个参数的位置.
 
-也许你已经知道, 许多编程语言都有相同的主要结构 (比如 \texttt{for} 循环), 但是 
+也许你已经知道, 许多编程语言都有相同的主要结构 (比如 \texttt{for} 循环), 但是
 它们之间的差异导致了无法使用同一个模式模版. 让我们回过头来看一下手上已有的东西,
 看看是否可以让它们识别文件类型.
 
@@ -227,7 +227,7 @@ endfunction
 snipMate 可以让用户在不需要了解 Vim 脚本的前提下, 为自己的文件格式定义高级的
 snippet.
 
-假设用户想为 \texttt{for} 循环创建一个 snippet (在前面的一节里我们用的是 
+假设用户想为 \texttt{for} 循环创建一个 snippet (在前面的一节里我们用的是
 \texttt{iabbrev}),  那就这样做:
 \begin{vimcode}
 snippet for
@@ -264,7 +264,7 @@ snippet 被插入之后, 它把光标放在了第 1 个 \texttt{i} 的位置, �
 
 snipMate 系统通过查找由 \texttt{\$\{NUMBER:INITIAL\_VALUE\}} 创建的特殊标记来进行
 工作. 标记中的 \texttt{NUMBER} 指出了当你按下 \key{Tab} 时, 将要跳转到的序列.
-如果 \texttt{NUMBER} 是 1, 那么光标会首先处在这个位置上, 如果 \texttt{NUMBER} 
+如果 \texttt{NUMBER} 是 1, 那么光标会首先处在这个位置上, 如果 \texttt{NUMBER}
 是 3, 那么它就是按下两次 \key{Tab} 后光标所在的位置, 以此类推.
 \texttt{INITIAL\_VALUE} 是在你修改 snippet 之前, 首先插入到 snippet 中的文本.
 比如 \texttt{\$\{1:i\}} 把 \texttt{i} 作为文本插入到 snippet 中, 并首先把光标
@@ -280,7 +280,7 @@ snipMate 系统通过查找由 \texttt{\$\{NUMBER:INITIAL\_VALUE\}} 创建的特
 
 用户还可以在 snipMate 中找到更多的惊喜. 你将会发现, snipMate 已经为许多常见
 的文件格式准备好了 snippet 脚本, 包括 \texttt{.c}, \texttt{.php},
-\texttt{.perl}, \texttt{.java}, \texttt{.html}, \texttt{.tex}, 甚至还包括 Vim 
+\texttt{.perl}, \texttt{.java}, \texttt{.html}, \texttt{.tex}, 甚至还包括 Vim
 脚本.
 \marginpar{80}
 
@@ -305,7 +305,7 @@ Tag list 就像是程序员的字典. Tag list 实际上是一个包含了所有
     \item Ptags: 用于 Perl 文件
 \end{itemize}
 
-因为 Exuberant Ctags (简称 Ctags) 使用得最为广泛, 支持的语言也是最多的, 因此 
+因为 Exuberant Ctags (简称 Ctags) 使用得最为广泛, 支持的语言也是最多的, 因此
 在下面的例子里我们用它来生成 tag list.
 
 我们以一个小项目来进行讲解, 这个项目包含了 3 个 C 文件:
@@ -334,8 +334,8 @@ ctags *.c *.h
 \end{vimcode}
 现在, Vim 已经知道了 \texttt{tags} 文件的存在, 接下来, 你就可以在 Vim  使用它.
 
-在 \texttt{main.c}, 我们调用了 \texttt{myfunctions.c} 中定义的函数. 假设我们 
-知道有一个函数叫作 \texttt{calcValue}, 但却不知道该函数接收什么样的参数, 比较 
+在 \texttt{main.c}, 我们调用了 \texttt{myfunctions.c} 中定义的函数. 假设我们
+知道有一个函数叫作 \texttt{calcValue}, 但却不知道该函数接收什么样的参数, 比较
 好的做法是看一下函数是如何定义的, 这时候就可以使用 \texttt{tags} 文件提供的功
 能. 假设用户已经在源代码文件中写下了:
 \begin{vimcode}
@@ -357,7 +357,7 @@ myvalue = calcValue(
     如果用的是 Gvim, 还可以通过鼠标来跳转到关键词的定义: 按住 \key{Ctrl} 键
     的同时, 按下鼠标左键.
 \end{warning}
-用户可以把在 tag 间的跳转当成栈操作. 当跳转到一个关键词时, 相当于把关键词的 tag 
+用户可以把在 tag 间的跳转当成栈操作. 当跳转到一个关键词时, 相当于把关键词的 tag
 压栈, 从 tag 返回时, 相当于把栈顶的 tag 弹出栈.
 \marginpar{82}
 使用下面这个命令查看当前的栈状态:
@@ -365,16 +365,16 @@ myvalue = calcValue(
 :tags
 \end{vimcode}
 \begin{center}
-    \includegraphics[scale=0.7]{./images/page82.png}
+    \includegraphics[scale=0.5]{./images/page82.png}
 \end{center}
-上图中带有以 \texttt{>} 开始的行是当前所在的 tag. 除了组合键 \key{Ctrl+]}
+上图中以 \texttt{>} 开始的行是当前所在的 tag. 除了组合键 \key{Ctrl+]}
 与 \key{Ctrl+t}, 还可以用下面这两个命令完成同样的功能:
 \begin{itemize}
     \item \texttt{:tag}: 跳转到这个 tag
     \item \texttt{:pop}: 回到上一个 tag
 \end{itemize}
 
-如果匹配的 tag 比较多, 如果能把这些 tag 以列表的形式罗列出来可能会比较方便.
+如果匹配的 tag 比较多, 要是能把这些 tag 以列表的形式罗列出来可能会比较方便.
 为了得到这个列表, 可以用下面两个命令中的任意一个:
 \begin{itemize}
     \item \texttt{:tselect}
@@ -400,7 +400,6 @@ myvalue = calcValue(
 在大多数的非英文键盘布局中, 按键 \texttt{]} 无法直接使用, 必须通过其他的组合
 键 --- 比如 \key{Ctrl+Alt+G+r+9} --- 来完成 \key{Ctrl+]} 的功能. 在这种情况下,
 把命令映射到直接可用的按键上会更方便一点, 对此, 笔者使用了下面的映射:
-\footnote{原文中, 第二行是 \texttt{:nmap <buffer> <S-F7> <C-T>}}
 \begin{vimcode}
 :nmap <buffer> <F7> <C-]>
 :nmap <buffer> <C-F7> <C-T>
@@ -422,12 +421,12 @@ Taglist 不仅可以用来查找函数与变量的定义, 还可以用来查找�
         \url{http://www.vim.org/scripts/script.php?script_id=1581}.
     \item \texttt{taglist.vim}: 由 Yegappan Lakshmanan 开发的插件, 在程序员中
         非常流行. 它是一个完整的源代码浏览工具, 在一个分割的窗口中显示函数,
-        关键词, 变量, 定义的概览. 插入的下载地址是
+        关键词, 变量, 定义的概览. 插件的下载地址是
         \url{http://www.vim.org/scripts/script.php?script_id=273}.
     \item \texttt{ctags.vim}: 由 Gary Johnson 与 Alexey Marinichev 开发.
         脚本可以在状态条或窗口标题栏中显示光标所在位置的函数的名字. 脚本使用
         Exuberant Ctags 为当前打开的文件自动生成 tag 文件. 脚本的下载地址是
-        \url{http://www.vim/org/scripts/script.php?script_id=610}.
+        \url{http://www.vim.org/scripts/script.php?script_id=610}.
     \item \texttt{autoproto.vim}: Jochen Baier 专门为 C 程序员开发的脚本. 当
         程序员输入函数名与第一个左括号后, 脚本在预览窗口中显示该函数的原型.
         脚本的下载地址是
@@ -454,7 +453,7 @@ Taglist 不仅可以用来查找函数与变量的定义, 还可以用来查找�
 在接下来的小节里, 我们将会讨论使用自动补全的三种方法:
 \begin{itemize}
     \item 已知单词的自动补全
-    \item 使用字典的自动补全
+    \item 基于字典文件的补全
     \item 识别上下文的自动补全
 \end{itemize}
 除此之外, 我们还会介绍一些使用技巧, 通过按键绑定来更方便地使用自动补全.
@@ -470,14 +469,14 @@ Taglist 不仅可以用来查找函数与变量的定义, 还可以用来查找�
 
 示例:
 
-假设用户想要在 Vim 中输入 ``I have beautiful flowers in my flower graden''.
+假设用户想要在 Vim 中输入 ``I have beautiful flowers in my flower garden''.
 
 在刚开始时, 文件中没有任何其他的内容, 因此用户不得不一个字母一个字母地写下
 文本的开始部分, 直到 ``I have beautiful flowers in my f''.
 
 用户接下来会输入单词 ``flower'', 但是, 由于我们在前面已经输入了 ``flowers'',
 当输入 ``f'' 后, 按下 \key{Ctrl+n}, Vim 就会把 ``f'' 自动扩展为 ``flowers'',
-我们只要把多余的 ``s'' 删掉即可. 和输入整单词相比, 这要快很多.
+我们只要把多余的 ``s'' 删掉即可. 和输入整个单词相比, 这要快很多.
 
 随着文本的增多, 你会发现越来越多的单词可以自动补全.
 
@@ -496,7 +495,7 @@ Taglist 不仅可以用来查找函数与变量的定义, 还可以用来查找�
 :set dictionary+=/path/to/dictionary/file/with/words
 \end{vimcode}
 现在, Vim 已经事先知晓了大量的单词, 用户可以利用这些单词进行自动补全. 不过,
-有一些地方会不一样. 因为补全时被搜索的单词并非在任意一个打开的缓冲区中, 而是 
+有一些地方会不一样. 因为补全时被搜索的单词并非在某个打开的缓冲区中, 而是
 在选项 \texttt{dictionary} 所配置的字典文件中, 所以需要用另一个快捷键:
 \key{Ctrl+x+k}.
 \marginpar{86}
@@ -513,7 +512,7 @@ Taglist 不仅可以用来查找函数与变量的定义, 还可以用来查找�
     \item \key{Ctrl+l}: 补全一整行文本
     \item \key{Ctrl+n}: 从当前缓冲区中补全单词
     \item \key{Ctrl+k}: 从字典中补全单词
-    \item \key{Ctrl+t}: 从同义词典中补全单词 (见 \texttt{:help 'thesaurus'}
+    \item \key{Ctrl+t}: 从同义词典中补全单词 (见 \texttt{:help 'thesaurus'})
     \item \key{Ctrl+i}: 从当前文件与被包含的文件中补全单词
     \item \key{S}: 拼写建议 (仅 Vim 7.0 以上的版本支持)
 \end{itemize}
@@ -530,7 +529,7 @@ Vim 7.0 引入了一种全新的补全技术 --- omnicompletion. 它使得用户
 补全功能应该如何工作. 实际上, 用户需要自己来编写补全函数 (除非已经有人把函数
 写好了).
 \marginpar{87}
-和前一节是介绍的一样, 激活补全的方法是先输入几个字母, 按下 \key{Ctrl+x} 进入到
+和前一节介绍的一样, 激活补全的方法是先输入几个字母, 按下 \key{Ctrl+x} 进入到
 补全模式, 再紧接着按下 \key{Ctrl+o} 使用 omnicompletion.
 
 为了添加用户自定义的补全函数, 执行:
@@ -541,7 +540,7 @@ Vim 7.0 引入了一种全新的补全技术 --- omnicompletion. 它使得用户
 上面的命令只在当前活动缓冲区内才有效, 如果希望每个缓冲区都可以使用该补全函数,
 那么就要对每个缓冲区执行这个设置命令.
 \begin{warning}
-    \key{omnifunc} 的设置通常在文件类型插件内完成, 这样的话, 补全函数就可以绑
+    \texttt{omnifunc} 的设置通常在文件类型插件内完成, 这样的话, 补全函数就可以绑
     定到特定的文件类型上.
 \end{warning}
 
@@ -576,8 +575,8 @@ function! CompleteEmails(findstart, base)
 \end{vimcode}
 \marginpar{88}
 \begin{vimcode}
-		      " show names in list, but insert email address 
-		      call add(res, {'word': contactinfo[1], 
+		      " show names in list, but insert email address
+		      call add(res, {'word': contactinfo[1],
                      \ 'abbr': contactinfo[0].' <'.contactinfo[1].'>',
                  \ 'icase': 1} )
 	      endif
@@ -592,8 +591,8 @@ function! CompleteEmails(findstart, base)
 表示这是第一次调用, 函数应该搜索用户当前所写的单词的开始.
 
 然后, Vim 再次调用函数, 这次调用把 \texttt{findstart} 设置为 0, 把 \texttt{base}
-设置成已经自动补全的单词. 这一次, 函数会打开通讯录文件, 以行为单词, 把文件读到
-一个列表中. 对列表排序, 然后遍历列表.
+设置成开始补全的单词. 这一次, 函数会打开通讯录文件, 以行为单位, 把文件读到
+一个列表中, 对列表排序, 然后遍历列表.
 
 每一行的内容按照 \texttt{|} 分割, 如果某个单词, 是以用于补全的单词的字母作为开
 始, 那就把这个单词添加到结果列表中, 这个结果列表最后会作为函数的返回值返回.
@@ -603,7 +602,7 @@ function! CompleteEmails(findstart, base)
 \begin{itemize}
     \item Word: 应该插入的真正的单词
     \item Abbr: 在弹出列表中使用的单词, 而非直接使用 word
-    \item Icase: 如果其值非零, 则匹配是匹配大小写的
+    \item Icase: 如果其值非零, 则匹配是区分大小写的
 \end{itemize}
 
 其他的关键词及其意义可以在 Vim 的帮助系统中找到:
@@ -615,11 +614,11 @@ function! CompleteEmails(findstart, base)
 \begin{vimcode}
 "Kim Schulz <kim@schulz.dk>"
 \end{vimcode}
-无论何时写下一些字母,比如 \texttt{ki}, 然后按下 \key{Ctrl+x Ctrl+o}, Vim 就会 
+无论何时写下一些字母,比如 \texttt{ki}, 然后按下 \key{Ctrl+x Ctrl+o}, Vim 就会
 以列表的形式, 弹出所有的, 以 \texttt{ki} 开始的名字.
 \marginpar{89}
 \begin{center}
-    \includegraphics[scale=0.6]{./images/page89.png}
+    \includegraphics[scale=0.55]{./images/page89.png}
 \end{center}
 按 \key{Ctrl+o} 可以循环遍历列表中的条目. 另外, 还可以用 \key{Ctrl+n} 向前遍历,
 用 \key{Ctrl+p} 向后遍历.
@@ -628,7 +627,7 @@ function! CompleteEmails(findstart, base)
 \label{subsec:all_in_one_completion}
 
 用户可能不想记住这么多的补全快捷键, 为什么就不能为所有的补全类型只使用一个快捷
-键. Vim 可以帮助你实现这个愿望, 让我们来看一下具体要怎么做.
+键呢? Vim 可以帮助你实现这个愿望, 让我们来看一下具体要怎么做.
 
 大部分支持补全的编辑器通常把这个功能映射到 \key{Tab} 键.
 
@@ -638,8 +637,8 @@ function! CompleteEmails(findstart, base)
 :help ins-completion
 \end{vimcode}
 这个函数可以让用户使用 \key{Tab} 键来补全单词, 而非 \key{Ctrl+n}. 函数可以自动
-区分是应该插入一个制表符, 还是应该做补全操作. 如果用户是在一行的开始, 或者是 
-某个空白符的后面按下 \key{Tab} 键, 那就是插入一个制表符. 在其他的情况下, 函数 
+区分是应该插入一个制表符, 还是应该做补全操作. 如果用户是在一行的开始, 或者是
+某个空白符的后面按下 \key{Tab} 键, 那就是插入一个制表符. 在其他的情况下, 函数
 会试图完成已知单词的补全.
 
 我们借用帮助系统中的 \texttt{CleverTab} 函数, 并对它加以扩展, 使得它可以从下
@@ -676,7 +675,7 @@ endfunction
 inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 \end{vimcode}
 
-把函数的代码与按键绑定添加到 \texttt{vimrc} 中, 然后你就可以用 \key{Tab} 键来 
+把函数的代码与按键绑定添加到 \texttt{vimrc} 中, 然后你就可以用 \key{Tab} 键来
 完成各种类型的补全.
 
 按下 \key{Tab} 键进行补全时, 函数检查此时是否是要插入一个制表符. 如果不是, 那
@@ -695,10 +694,8 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 让我们先来看一下将会用到的命令:
 \begin{itemize}
     \item \texttt{qa}: 从现在开始录制, 并记录到寄存器 \texttt{a}. 可以使用任意
-        的寄存器, 用寄存器 \texttt{a} 只是为方便起见.\footnote{原文是 Any
-            register can be used, but \texttt{q} is often used for simplicity.
-        应该是笔误}
-    \item \texttt{q}: 如果是正在录制时按下, 则停止录制
+        的寄存器, 用寄存器 \texttt{a} 只是为方便起见.
+    \item \texttt{q}: 如果是在正在录制时按下, 则停止录制
     \item \texttt{@a}: 执行记录在寄存器 \texttt{a} 中的宏 (可以把 \texttt{a}
         替换成其他的寄存器)
     \item \texttt{@@}: 执行上一次所执行的宏命令
@@ -716,8 +713,8 @@ commandN
 q
 10@q
 \end{vimcode}
-读者可能会好奇这有什么用, 因为在重复执行一串命令罢了. 这种问题最好通过例子来说
-明.
+读者可能会好奇这有什么用, 因为这只是在重复执行一串命令罢了. 这种问题最好通过
+例子来说明.
 
 想像一下你有一大串的信息需要处理, Unix 系统的日志文件就属于这种类型. 日志文件
 的内容类似于:
@@ -741,7 +738,7 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
 <tr><td>Oct 8 21:23:34</td><td>laptopia</td><td>kernel:</td><td>ACPI...</td><tr>
 \end{vimcode}
 
-用户可以选择一行一行地编辑文件, 直到最后一行. 但也可以这样做, 先编辑一行, 并把 
+用户可以选择一行一行地编辑文件, 直到最后一行. 但也可以这样做, 先编辑一行, 并把
 编辑命令录制下来, 然后再把录制下来的命令应用到剩下的每一行. 最开始的编辑命令可
 以是下面这些 (假设光标原来是在第一行的开始):
 \begin{center}
@@ -768,13 +765,13 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
 
 \begin{warning}
     \texttt{[ESC]} 指的是按下转码键: \key{Esc}, \texttt{[CR]} 指的是按下回车键:
-    \key{Esc}.
+    \key{Enter}.
 \end{warning}
 
 现在我们已经准备好了完整的宏, 光标的位置也已就位, 这意味着我们现在可以重复地
 执行宏, 并且在每次执行完宏后, 光标都会处在就绪的位置下.
 
-用户可以用 \texttt{@a} 来回放存放在寄存器 \texttt{a} 中的宏, 除此之外, 用户还 
+用户可以用 \texttt{@a} 来回放存放在寄存器 \texttt{a} 中的宏, 除此之外, 用户还
 需要做的就是添加 HTML 的头部与尾部信息, 这很简单.
 \marginpar{93}
 这只是宏应用的一个简单示例, 如果读者认真回忆一下, 可能会想到更多的, 可以用宏
@@ -820,7 +817,7 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
 \texttt{:mkview}\ \textit{file}
 \end{vimcmdform}
 \marginpar{94}
-命令中的 \textit{file} 用户指定的, 用于保存会话或视图的文件名. 如果没有指定该
+命令中的 \textit{file} 是用户指定的, 用于保存会话或视图的文件名. 如果没有指定该
 参数, 则默认保存到当前工作目录的 \texttt{Session.vim} 文件中.
 
 \begin{warning}
@@ -828,8 +825,8 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
     尾紧跟上一个感叹号 \texttt{!}.
 \end{warning}
 
-使用视图, 你可以同时拥有多个不同的视图. 如果每个视图都保存到当前工作目录下, 那
-么不用多长时间, 工作目录就会被视图文件填满. 为了避免这个问题, 可以用下面的命令 
+使用视图时, 你可以同时拥有多个不同的视图. 如果每个视图都保存到当前工作目录下, 那
+么不用多长时间, 工作目录就会被视图文件填满. 为了避免这个问题, 可以用下面的命令
 告诉 Vim, 应该把视图文件放到哪个目录下:
 \begin{vimcode}
 :set viewdir=$HOME/.vim/views
@@ -851,7 +848,7 @@ vim -S Session.vim
 :source Session.vim
 \end{vimcode}
 
-对于视图, 则加载方式是:
+对于视图, 加载方式是:
 \begin{vimcode}
 :loadview View.vim
 \end{vimcode}
@@ -859,18 +856,18 @@ vim -S Session.vim
 加载一个会话会改变编辑器的整体布局, 而加载一个视图则只会改变当前活动窗口的布局.
 \marginpar{95}
 \begin{warning}
-    用户如果希望 Vim 把所有的设置信息, 比如光标的位置与折叠信息, 那么就需要在
+    用户如果希望 Vim 记住所有的设置信息, 比如光标的位置与折叠信息, 那么就需要在
     \texttt{vimrc} 中添加如下内容:
     \begin{vimcode}
     set viewdir=$VIMHOME/views/
     autocmd BufWinLeave * mkview
     autocmd BufWinEnter * silent loadview
     \end{vimcode}
-    无论何时在同一个窗口打开另一个缓冲区, 之前的缓冲区的视图都会被自动保存下来,
-    并且当再次打开缓冲区时, 会自动还原保存的视图.
+    无论何时在同一个窗口中打开另一个缓冲区, 之前的缓冲区的视图都会被自动保存下来,
+    并且当再次打开之前的缓冲区时, 会自动还原保存的视图.
 \end{warning}
 
-会话的一个常用技巧是定义一个命令, 功能是在退出 Vim 时自动保存会话, 而在打开 Vim
+会话的一个常用技巧是定义一个命令, 命令的功能是在退出 Vim 时自动保存会话, 而在打开 Vim
 时自动还原保存的会话. 使用这个方法就可以让用户在不丢失设置, 已打开文件列表等
 信息的前提下, 自由地启动与退出 Vim. 为了完成这个功能, 可以在 \texttt{vimrc} 中
 添加如下命令:
@@ -887,7 +884,7 @@ function! LoadSession()
    endif
 endfunction
 \end{vimcode}
-关闭 Vim 后, 会话保存到 \texttt{\$HOME/.vim/sessions/session.vim}
+关闭 Vim 后, 会话保存到 \texttt{\$HOME/.vim/sessions/session.vim}.
 
 根据打开 Vim 方式的不同, 或者是打开由命令行参数指定的文件, 或者是打开最后一次
 会话. 比如说:
@@ -909,37 +906,37 @@ endfunction
 \label{subsec:satify_you_own_session_needs}
 
 用户可能并不需要会话文件中存放的所有信息, 有时, 用户可能仅仅是想要保存打开过
-的文件的信息, 而在其他时候, 可能是所有的会话信息. 幸运的是, Vim 提供了用于设置
-会话保存信息的方法.
+的文件的信息, 而在其他时候, 可能是所有的会话信息. 幸运的是, Vim 提供了设置
+保存会话信息的方法.
 
 所使用的设置命令是 \texttt{sessionoptions}, 使用方法是:
 \begin{vimcmdform}
-\texttt{:set sessionoptions=}\ \textit{options}
+\texttt{:set sessionoptions=}\textit{options}
 \end{vimcmdform}
 \textit{options} 是一个由逗号分隔的列表, 列表中可以出现下列选项:
 \begin{center}
-    \begin{tabular}{ll}
+    \begin{tabular}{lp{35em}}
         \hline
-        \texttt{blank}  & 保存空白窗口 \\
-        \texttt{buffers} & 保存所有缓冲区的信息, 包括隐藏的与未加载的缓冲区 \\
-        \texttt{curdir} & 保存关于当前工作目录的信息 \\
-        \texttt{folds} & 保存缓冲区内容中的折叠信息 \\
+        \textbf{\texttt{blank}}  & 保存空白窗口 \\
+        \textbf{\texttt{buffers}} & 保存所有缓冲区的信息, 包括隐藏的与未加载的缓冲区 \\
+        \textbf{\texttt{curdir}} & 保存当前工作目录的相关信息 \\
+        \textbf{\texttt{folds}} & 保存缓冲区内容中的折叠信息 \\
         \texttt{globals} & 保存全局变量的相关信息, 这里的全局变量指的是以大写
         字母开始, 且类型为字符串或数值的变量 \\
-        \texttt{help} & 保存帮助窗口 \\
+        \textbf{\texttt{help}} & 保存帮助窗口 \\
         \texttt{localoptions} & 保存用户在单个窗口中创建的局部变量与局部映射的
         相关信息 \\
-        \texttt{options} & 保存所有的选项信息, 包含全局的与局部的 \\
+        \textbf{\texttt{options}} & 保存所有的选项信息, 包含全局的与局部的 \\
         \texttt{resize} & 保存 UI 窗口的尺寸信息 (行数与列数) \\
         \texttt{sesdir} & 如果设置了该选项, 当前目录就会是会话文件的存放目录
-        (如果同时设置了 \texttt{curdir}, 则不可用) \\
-        \texttt{slash} & 把所有路径中的斜杆换成反斜杆 (这样做就可以让 Unix 兼容
-        Windows 的路径) \\
-        \texttt{tagpages} & 保存所有的标签页信息, 如果没有设置该选项, 则只会保
+        (如果同时设置了 \texttt{curdir}, 则该选项不可用) \\
+        \texttt{slash} & 把所有文件路径中的反斜杆换成斜杆 (这样做就可以让 Unix
+        兼容 Windows 的文件路径) \\
+        \textbf{\texttt{tabpages}} & 保存所有的标签页信息, 如果没有设置该选项, 则只会保
         存当前处于活跃状态的标签页 \\
         \texttt{unix} & 使用 Unix 格式的行结束符, 而非 Windows 格式 \\
         \texttt{winpos} & 保存 UI 窗口的屏幕位置信息 \\
-        \texttt{winsize} & 保存所有打开窗口的尺寸 \\
+        \textbf{\texttt{winsize}} & 保存所有打开窗口的尺寸 \\
         \hline
     \end{tabular}
 \end{center}
@@ -966,13 +963,13 @@ endfunction
 \label{subsec:sessions_as_a_project_manager}
 
 有时候, 用户可能想要把会话文件作为某种原始的项目文件来使用, 这些项目文件包含了
-项目的相关信息. 因此, 当用户正在处理某个项目, 并且打开了大量的文件与窗口, 只需 
+项目的相关信息. 因此, 如果用户正在处理某个项目, 并且打开了大量的文件与窗口, 只需
 执行:
 \begin{vimcode}
 :mksession!
 \end{vimcode}
 该命令会把当前会话保存到当前工作目录的 \texttt{Session.vim} 文件中. 如果用户希望
-Vim 在打开某个项目文件时, 自动加载会话文件, 可以把下面这行命令添加到
+在启动 Vim 时, 自动加载会话文件 (如果存在的话) , 可以把下面这行命令添加到
 \texttt{vimrc}:
 \begin{vimcode}
 silent source! Session.vim
@@ -988,7 +985,7 @@ silent source! Session.vim
 可以在不同的项目之间切换. 如果用户不再需要某个项目, 还可以通过菜单来删除该项目
 的会话文件.
 \begin{center}
-    \includegraphics[scale=0.8]{./images/page98.png}
+    \includegraphics[scale=0.6]{./images/page98.png}
 \end{center}
 
 关于该脚本的更多信息, 以及下载地址, 见:
@@ -1003,16 +1000,16 @@ silent source! Session.vim
 
 用户可能都有过这种体验: 刚刚才删除完一段文本, 可是过了一会儿发现, 其他地方还需
 要那段文本; 或者是已经复制/剪切了一段文本, 但是过了一会儿之后, 之前复制/剪切的文
-本就不见了, 因为剪切板只能存放一段文本, 后面的文本会把前面的文本给覆盖掉. ---
-Vim 不会让这种事情发生.
+本就不见了, 因为剪贴板只能存放一段文本, 后面的文本会把前面的文本给覆盖掉 ---
+Vim 是不会让这种事情发生的.
 
 当用户修改文本, 并且需要跟踪被删除/复制的文本, 又或者是跟踪通常情况下对文本作
-出的修改时, 可以使用 Vim 提供了两个工具:
+出的修改时, 可以使用 Vim 提供的两个工具:
 \begin{itemize}
-    \item 寄存器: 寄存器是一种带有多个缓冲区的高级剪切板, 可以用来存放被剪切,
+    \item 寄存器: 寄存器是一种带有多个缓冲区的高级剪贴板, 可以用来存放被剪切,
         删除或复制的文本.
 \marginpar{99}
-    \item 撤消分支: 撤消分支是 Vim 版本控制的一种简单形式. 利用撤消分支, 用户 
+    \item 撤消分支: 撤消分支是 Vim 版本控制的一种简单形式. 利用撤消分支, 用户
         可以把文件回滚到某个特定的时刻, 或者是回滚一定的次数. 如果用户对某些
         撤消操作感到后悔, 还可以回过头来找到包含这些修改的撤消分支.
 \end{itemize}
@@ -1034,7 +1031,7 @@ Vim 不会让这种事情发生.
 稍后解释.
 
 为了把某段文本复制到寄存器中, 可以用命令 \texttt{y} 来完成, 不过这次有所不同,
-在复制之前, 我们要先告诉 Vim 被复制文本的存放位置:
+在复制之前, 我们先告诉 Vim 被复制文本的存放位置:
 \begin{vimcmdform}
 \texttt{"xy} (用 \texttt{"xyy} 可以复制一整行)
 \end{vimcmdform}
@@ -1048,7 +1045,7 @@ Vim 不会让这种事情发生.
 \end{vimcode}
 
 现在, 用户已经在寄存器 \texttt{"x} 中存放了一段文本, 并且想要把这段文本粘贴到
-正式文本中, 可以用命令 \texttt{P} (粘贴在光标位置之前) 或 \texttt{p} (粘贴在 
+正式文本中, 可以用命令 \texttt{P} (粘贴在光标位置之前) 或 \texttt{p} (粘贴在
 光标位置之后), 但在粘贴之前, 我们要先指定寄存器:
 \begin{vimcmdform}
 \texttt{"xP} 或 \texttt{"xp}
@@ -1073,15 +1070,14 @@ Vim 不会让这种事情发生.
 指定了一个特定的寄存器, 匿名寄存器也可以正常工作. 比如说, 命令 \texttt{"xdd}
 会把被删除的文本同时存入寄存器 \texttt{x} 与匿名寄存器.
 
-如何用命令 \texttt{p} 或 \texttt{P} 粘贴文本时没有指定寄存器, 那么 Vim 就从匿
+如果用命令 \texttt{p} 或 \texttt{P} 粘贴文本时没有指定寄存器, 那么 Vim 就从匿名
 寄存器获取被粘贴的文本.
 
 \subsubsection{行内删除寄存器}
 \label{subsubsec:the_small_delete_register}
 
 如果用户删除的文本小于一行, 那么 Vim 就把删除的文本存入一个特殊的寄存器 --- 行
-内删除寄存器 (small delete register, \texttt{"-}), 前提是用户没有指定其他的寄存
-器.
+内删除寄存器 \texttt{"-}, 前提是用户没有指定其他的寄存器.
 
 \subsubsection{带编号的寄存器}
 \label{subsubsec:the_numberred_registers}
@@ -1101,7 +1097,7 @@ Vim 不会让这种事情发生.
 
 和寄存器 \texttt{"0} 有所不同的是, 寄存器 \texttt{"1} 的内容并不会因为新内容的
 加入而被删除, 相反, 原有的内容会移到寄存器 \texttt{"2}. 如果寄存器 \texttt{"2}
-原来是满的, 那么寄存器 \texttt{"2} 的内容会先移到寄存器 \texttt{"3}, 以此类推,
+原来是非空的, 那么寄存器 \texttt{"2} 的内容会先移到寄存器 \texttt{"3}, 以此类推,
 直到寄存器 \texttt{"9}. 寄存器 \texttt{"9} 的原有内容会由于新内容的加入而被覆
 盖掉. 通过这种方式, 寄存器 \texttt{"1} 到寄存器 \texttt{"9} 就可以记住删除/修
 改的历史内容, 即使用户删除了新的文本, 也可以通过这 9 个寄存器访问到早先被删除
@@ -1139,17 +1135,17 @@ Vim 不会让这种事情发生.
     \item \texttt{"\#}: 该寄存器包含了当前活动缓冲区上一次打开的文件, 也被称为
         备选文件.
     \item \texttt{".}: 该寄存器总是包含了最近一次插入的文本. 因此, 用户可以通
-        过执行 \texttt{".P} 来重复粘贴最近一次插入的文本.
+        过执行 \texttt{".p} 来重复粘贴最近一次插入的文本.
 \marginpar{102}
     \item \texttt{":}: 该寄存器包含了用户上一次在命令行执行的命令. 如果用户重
-        复一条历史命令, 那么寄存器的内容就不会被覆盖. 为了使被执行的命令存入
+    复执行一条历史命令, 那么寄存器的内容就不会被覆盖. 为了使被执行的命令存入
         该寄存器, 用户至少需要输入命令中的一个字符.
 \end{itemize}
 
 \subsubsection{选择与投递寄存器}
 \label{subsubsec:the_selection_and_drop_registers}
 
-这种寄存器类型包含了三个寄存器: \texttt{"*}, \texttt{"+} 与 \texttt{"~}. 这 3
+这种寄存器类型包含了三个寄存器: \texttt{"*}, \texttt{"+} 与 \texttt{"\~}. 这 3
 个寄存器用于存放与检索用户在 Gvim 中选择的文本. 寄存器 \texttt{"*} 实际上访问
 的是窗口系统的剪贴板. 如果使用的操作系统是 Miscrosoft Windows, 那么用户在使用
 寄存器 \texttt{"*} 与 寄存器 \texttt{"+} 并不会感到有什么不同. 然而, 如果是
@@ -1162,9 +1158,9 @@ These registers can be accessed from any GUI application, and are part of the
 normal copy-paste procedure you know from your daily work.
 \footnote{TODO}
 
-最后一个寄存器 \texttt{"~} 称为投递寄存器, 它包含了最近一次投递到 Vim 的文本.
+最后一个寄存器 \texttt{"\~} 称为投递寄存器, 它包含了最近一次投递到 Vim 的文本.
 所以说, 如果用户在另一个程序中选择了一段文本, 并把它拖动到 Vim 的窗口中, 那么
-寄存器 \texttt{"~} 就包含了这段文本.
+寄存器 \texttt{"\~} 就包含了这段文本.
 
 \subsubsection{黑洞寄存器}
 \label{subsubsec:the_black_hole_register}
@@ -1183,7 +1179,7 @@ normal copy-paste procedure you know from your daily work.
 引号, 表明这是一个寄存器. 如果打开了选项 \texttt{hlsearch}, Vim 就会根据寄存
 器中的内容来高亮文本. 用户可以利用这个特点, 修改寄存器的内容, 从而高亮显示
 其他文本. 在不执行搜索的前提下修改寄存器内容的方法是:
-\footnote{原文是 \texttt{:let "/ = }\textit{PATTERN}, 应该有误. --- 译者注}
+\footnote{原文是 \texttt{:let "/ = }\textit{pattern}, 应该是笔误. --- 译者注}
 \marginpar{103}
 \begin{vimcmdform}
     \texttt{:let @/="}\textit{pattern}\texttt{"}
@@ -1197,8 +1193,8 @@ Vim 的最后一种寄存器类型是表达式寄存器, 然而, 称它为寄存
 像其他通常的寄存器那样存放文本, 用户甚至不能写该寄存器. 取而代之的是, 它允许用
 户访问命令行, 对表达式求值并返回运算结果, 就好像它一开始就存放在寄存器中似的.
 
-访问表达式寄存器的方式是输入它的名字 \texttt{"=}. 输入完等于号后, 光标自动跳转
-到命令行窗口, 如果命令行窗口的第一个字符是等于号, 则说明用户现在工作在表达式寄
+访问表达式寄存器的方式是输入它的名字 \texttt{"=}. 输入完等号后, 光标自动跳转
+到命令行窗口, 如果命令行窗口的第一个字符是等号, 则说明用户现在工作在表达式寄
 存器. 现在用户可以输入待求值的表达式, 并以回车键结束, 之后, 可以用命令
 \texttt{p} 或 \texttt{:put} 把运算结果粘贴到正文中. 如果不想对已输入的表达式
 进行求值, 则按 \key{Esc} 结束. 如果用户在按回车键之前没有输入表达式, Vim 就会
@@ -1221,7 +1217,7 @@ Vim 的最后一种寄存器类型是表达式寄存器, 然而, 称它为寄存
 
 在这一方面, Vim 走得更远一些, 而且新增了对分支的支持.
 
-在这一节, 我们将介绍什么是撤消分支, 以及如何在日常的工作中使用它.
+在这一节, 我们将介绍什么是撤消分支, 以及如何在日常工作中使用它.
 \marginpar{104}
 
 我们先来介绍一下什么是撤消分支. 假设现在有一个文件, 而用户已经在它上面作了很多
@@ -1236,9 +1232,9 @@ Vim 的最后一种寄存器类型是表达式寄存器, 然而, 称它为寄存
 当用户撤消了四次修改, 并添加了一个新修改时, Vim 会在撤消分支树上添加一条新分
 支, 此时的撤消分支树看起来就像:
 \begin{vimcode}
-                 edit(reverted)-edit(reverted)-edit(reverted)-edit(reverted)
-                 /
-edit-edit-edit-edit-edit(spelling correation)
+        A-B-C-D
+        /
+    E-F-G-H
 \end{vimcode}
 
 其中一条分支包含了四个已经被撤消的修改, 另一条分支则包含了最近几次的修改 (拼
@@ -1246,7 +1242,7 @@ edit-edit-edit-edit-edit(spelling correation)
 支. 如果用户在撤消某些操作后, 又作了新的修改, 撤消树就会新增一条分支. 到了最
 后, 用户将会看到一棵长满分支的撤消树, 它包含了所有的撤消与编辑操作.
 
-下面这个命令可以查看当前存着的撤消分支的概览:
+下面这个命令可以查看当前存在着的撤消分支的概览:
 \begin{vimcode}
 :undolist
 \end{vimcode}
@@ -1341,14 +1337,15 @@ My name is Jim
 
 简单来说, 撤消分支使得用户可以访问到文本曾经经历过的任何状态.
 
-除了在分支中一步一步地回退之外, 还可以直接跳转到某个时间点. 为了完成这个功能,
+除了在分支中一步一步地回退之外, 还可以直接跳转到某个时间点的文本状态. 为了完
+成这个功能,
 Vim 提供了两个命令, 分别用来在撤消历史中向前跳转和向后跳转, 命令的执行形式是:
 \begin{vimcmdform}
-\texttt{:earlier }\textit{N}\texttt{s}
-\texttt{:earlier }\textit{N}\texttt{m}
-\texttt{:earlier }\textit{N}\texttt{h}
-\texttt{:later }\textit{N}\texttt{s}
-\texttt{:later }\textit{N}\texttt{m}
+\texttt{:earlier }\textit{N}\texttt{s} \\
+\texttt{:earlier }\textit{N}\texttt{m} \\
+\texttt{:earlier }\textit{N}\texttt{h} \\
+\texttt{:later }\textit{N}\texttt{s} \\
+\texttt{:later }\textit{N}\texttt{m} \\
 \texttt{:later }\textit{N}\texttt{h}
 \end{vimcmdform}
 命令中的 \textit{N} 表示跳过的秒数(\texttt{s}), 分种数 (\texttt{m}), 或小时数
@@ -1377,10 +1374,10 @@ function myFunction() {
 \end{vimcode}
 折叠后的效果类似于:
 \begin{vimcode}
-+-- 6 lines: function myFunction() { ----------------------------
++-- 6 lines: function myFunction() {
 \end{vimcode}
-在这个示例中, 折叠是根据代码的语法, 用花括号来判断被折叠的范围. 除了语法, Vim
-还可以根据下面的信息来折叠文本:
+在这个示例中, 折叠是根据代码的语法, 用花括号来判断被折叠的范围. Vim 可以根据
+下面的信息来折叠文本:
 \begin{itemize}
     \item 手动折叠: 由用户手动标出被折叠的范围 (见 \texttt{:help fold-manual})
     \item 缩进折叠: 根据缩进来折叠文本 (见 \texttt{:help fold-indent})
@@ -1397,7 +1394,7 @@ function myFunction() {
 \begin{vimcode}
 :set foldenable
 \end{vimcode}
-打开后, Vim 就会注意在普通模式下输入的折叠命令. 用来打开和关闭折叠的命令有很
+打开后, Vim 就会注意到在普通模式下输入的折叠命令. 用来打开和关闭折叠的命令有很
 多个, 主要的有:
 \begin{itemize}
     \item \texttt{zc}: 关闭一个折叠
@@ -1409,12 +1406,12 @@ function myFunction() {
 个函数的内部), 切换到普通模式, 执行命令 \texttt{zc} 来关闭折叠, 现在, 用户就可
 以看到函数的定义代码被折叠成一行. 下面的图片显示了折叠与未折叠的代码:
 \begin{center}
-\includegraphics[scale=0.7]{./images/page108.png}
+\includegraphics[scale=0.55]{./images/page108.png}
 \end{center}
 
 \begin{warning}
     如果用户不想记住打开与关闭折叠的命令, 可以把打开或关闭折叠的切换命令绑定
-    到一人按键上, 比如空格: \texttt{:nnoremap <space> za}.
+    到一个按键上, 比如空格: \texttt{:nnoremap <space> za}
 \end{warning}
 
 如果用户觉得折叠后的行无法提供自己想要的信息, 可以通过修改选项
@@ -1437,7 +1434,7 @@ endfunction
 \end{vimcode}
 函数使得折叠后的行变成:
 \begin{vimcode}
-+--function myFunction() {...6 Lines...}-----------------------
++--function myFunction() {...6 Lines...}
 \end{vimcode}
 
 用户可以看到函数中使用了三个以 \texttt{v:} 开始的变量, 这些变量由 Vim 设置,
@@ -1472,7 +1469,7 @@ if (x != y) {
 是树叶. 例如:
 \begin{vimcode}
 | some text
-+- a first level fold -----------------------------
++- a first level fold
 |
     beginning of open fold
 2   indication of fold level
@@ -1507,7 +1504,7 @@ if (x != y) {
         \item \texttt{:folddoopen }\textit{cmd}: 对所有未在关闭的折叠中的行
             \footnote{不仅是处在打开的折叠中的行, 也包括不包含折叠信息的行}
             执行命令 \textit{cmd}
-        \item \texttt{:folddoclose}\textit{cmd}: 对所有处在关闭的折叠中的行
+        \item \texttt{:folddoclose }\textit{cmd}: 对所有处在关闭的折叠中的行
             执行命令 \textit{cmd}
     \end{itemize}
 \end{warning}
@@ -1517,13 +1514,13 @@ if (x != y) {
 
 当用户使用 Vim 编写一个简单的文本文件时, 可能会突然意识到文件已经写得又长又乱
 了, 这时候就很需要为文件列一个提纲. 在这一节, 我们将会介绍如何使用折叠来为文
-件提取大纲, 提取大纲对于改善文件的结构至善重要.
+件提取大纲, 提取大纲对于改善文件的结构至关重要.
 
-假设文件文件的内容是:
+假设文本文件的内容是:
 \begin{vimcode}
 Chapter 1
 Section 1 - Vim help
-heae is some text about the vim help system.
+here is some text about the vim help system.
 Section 2 - vim scripts
 this section contains info about vim scripts.
 \end{vimcode}
@@ -1549,7 +1546,7 @@ this section contains info about vim scripts.
     \end{vimcode}
 \end{warning}
 
-经过这样的处理之后, 文件看起来就像是书籍的目录, 不同之处这仅仅是一个普通的文本
+经过这样的处理之后, 文件看起来就像是书籍的目录, 不同之处是这仅仅是一个普通的文本
 文件而已. 只要新增的行是在之前的行的后面, Vim 就仍然会把新增的行当作是折叠的一
 部分.
 
@@ -1562,18 +1559,18 @@ this section contains info about vim scripts.
 \subsection{使用 vimdiff 比较差异}
 \label{subsec:using_vimdiff_to_track_the_changes}
 
-有时候, 用户可以拥有同一文件的多个版本 --- 这些版本之间可能相同, 也可能不同.
+有时候, 用户可能拥有同一文件的多个版本 --- 这些版本之间可能相同, 也可能不同.
 在 Unix 系统中, 有一个称为 \texttt{diff} 的命令, 这个命令很早就开始被人们使用
-(最早出现于 1074 年), 但是其他系统很可能没有该命令. 这个命令的功能是显示两个
+(最早出现于 1974 年), 但是其他系统很可能没有该命令. 这个命令的功能是显示两个
 文件的差异, Vim 也提供了一个用于比较差异的工具 --- \texttt{vimdiff}. 这一节介
 绍如何使用 Vim 来比较文件的差异.
 \marginpar{112}
 
 \texttt{vimdiff} 是 Vim 内置的差异比较工具, 它使用颜色来显示文件间的差异 (被
-比较的两个文件分别处在两个纵向切割或横向切割的窗口中). 下面的图片显示的
+比较的两个文件分别处在两个纵向切割或横向切割的窗口中). 下面的图片显示了
 \texttt{vimdiff} 的工作界面:
 \begin{center}
-    \includegraphics[scale=0.7]{./images/page112.png}
+    \includegraphics[scale=0.5]{./images/page112.png}
 \end{center}
 
 有若干种方式可以用来启动 \texttt{vimdiff}. 在安装了 Vim 的系统中, 一般都有一
@@ -1594,9 +1591,9 @@ vim -d file1 file2
         打开 \textit{filename}, 所有和 \texttt{vimdiff} 相关的设置会同时应用
         到这两个窗口中.
     \item \texttt{:vert diffsplit }\textit{filename}: 垂直切割窗口, 并在其中
-        一个窗口中显示 \texttt{filename}, 所有和 \texttt{vimdiff} 相关的设置
+        一个窗口中显示 \textit{filename}, 所有和 \texttt{vimdiff} 相关的设置
         会同时应用到这两个窗口中.
-    \item \texttt{diffthis}: 使得当前窗口成为差异窗口的一部分. 当用户想要再
+    \item \texttt{:diffthis}: 使得当前窗口成为差异窗口的一部分. 当用户想要再
         次对某个文件进行差异比较时, 可能会用到该命令.
 \end{itemize}
 \marginpar{113}
@@ -1607,7 +1604,7 @@ vim -d file1 file2
 \begin{vimcode}
 :vert diffsplit main.c~
 \end{vimcode}
-执行命令后, 窗口被垂直分割成两个, 文件间的差异通过颜色标记出来 (具体使用的颜色
+执行命令后, 窗口被垂直分割成两个, 文件间的差异通过颜色标记出来 (具体的颜色
 取决于当前使用着的色彩主题)
 
 还有一种情况是, 对文件作出修改的并不是用户本人,  而是另一个开发人员向用户发
@@ -1629,13 +1626,13 @@ Vim 会在另一个窗口中打开文件, 把补丁打到该文件上, 然后比
 相对位置不变, 这是通过选项 \texttt{scrollbind} 来实现的:
 \begin{itemize}
     \item 开启同时滚动的命令是:
-        \begin{vimcode}
-        :set scrollbind
-        \end{vimcode}
+\begin{vimcode}
+:set scrollbind
+\end{vimcode}
     \item 关闭同时滚动的命令是:
-        \begin{vimcode}
-        :set noscrollbind
-        \end{vimcode}
+\begin{vimcode}
+:set noscrollbind
+\end{vimcode}
 \end{itemize}
 
 当在 \texttt{diff} 窗口中编辑文件时, Vim 会自动根据文件内容的变化, 来相应地更
@@ -1680,7 +1677,7 @@ Vim 会在另一个窗口中打开文件, 把补丁打到该文件上, 然后比
 
 从前面一节我们已经学习到了如何使用 \texttt{vimdiff} 来比较同一文件的不同版本之
 间的差异, 但是, 如果用户仅仅是想知道在保存之前, 我们对当前活动缓冲区作了哪些修
-改, 那又应该怎么办呢? 这一节介绍如何查看硬盘上的文件, 与缓冲区中的文件之间的差
+改, 那又应该怎么办呢? 这一节介绍如何查看硬盘上的文件与缓冲区中的文件之间的差
 异, 也就是自从上一次保存以来, 文件所发生的变化.
 \marginpar{115}
 用户所要做的首先是把下面的代码添加到文件 \texttt{vimrc}:
@@ -1722,8 +1719,8 @@ function! DiffWithFileFromDisk()
 系统管理员对此问题的解决办法通常是远程登录到服务器上 (比如用 ssh (Secure
 Shell), 然后再在服务器上直接修改配置文件.
 
-网站开发人员的解决办法通常是先把文件下载来本地, 编辑好后再上传到服务器上, 下
-载与上传的工具可以是 FTP 客户端, 或 Webdav.
+网站开发人员的解决办法通常是先把文件下载到本地, 编辑好后再上传到服务器上, 下
+载与上传的工具可以用 FTP 客户端, 或 Webdav.
 \marginpar{116}
 
 如果不使用上面提到的方法, 那又应该怎么办呢? 为什么他们就不能在本地直接编辑远程
@@ -1790,7 +1787,7 @@ Vim 根据参数识别出它需要使用 FTP 协议连接到服务器 \texttt{re
 \begin{vimcode}
 :Nread scp://user@server/some/directory/
 \end{vimcode}
-执行命令后, 用户可以选择任意一个文件进行编辑, 就好像它们就在本地目录目录.
+执行命令后, 用户可以选择任意一个文件进行编辑, 就好像它们就在本地目录.
 
 \begin{warning}
     如果是 Linux 系统, 则用户可以把登录远程服务器所用的用户名与密码保存到本地
@@ -1804,8 +1801,8 @@ Vim 根据参数识别出它需要使用 FTP 协议连接到服务器 \texttt{re
 远程文件. 这时用户就会遇到一个很恼人的情况: 每当移动到另一个缓冲区时 (用命令
 \texttt{:bufferprev} 或 \texttt{:buffernext}), 都需要重新登录.
 
-默认情况下, 每次显示缓冲区的文件内容时, Vim 都会尝试重新从远程服务器上加载文
-件. 也就是说, 如果打开是一个远程文件, 那么 Vim 就会尝试重新登录, 以检查文件是
+默认情况下, 每次显示缓冲区的文件内容时, Vim 都会尝试重新加载文
+件. 也就是说, 如果打开的是一个远程文件, 那么 Vim 就会尝试重新登录, 以检查文件是
 否需要重新加载.
 
 但是这真的有必要吗? 如果远程文件除了用户之外, 没有其他人正在编辑, 那么在切换
@@ -1825,11 +1822,11 @@ set bufhidden=hide
 \section{小结}
 \label{sec:production_boosters_summary}
 
-在这一章, 我们介绍了如何在日常工作中更高效的使用 Vim. 介绍了很多方法, 也提出
+在这一章, 我们介绍了如何在日常工作中更高效地使用 Vim. 介绍了很多方法, 也提出
 了一些优化措施.
 
 首先是介绍了如何利用模版来降低文本输入的工作量. 最开始是使用缩写来插入模版,
-然后, 是根据不同的文本类型来制作并插入对应的版本文本. 最后, 讨论如何使用
+然后, 是根据不同的文件类型来制作并插入对应的模版文本. 最后, 讨论如何使用
 snipMate 脚本来为任意的文件格式制作高级 snippet.
 
 接着是自动补全. 我们介绍了各种不同的补全方法, 还说明了如何把众多补全方法都绑
@@ -1844,7 +1841,7 @@ snipMate 脚本来为任意的文件格式制作高级 snippet.
 通过寄存器, 用户可以使用多达 9 个不同的寄存器/剪贴板.
 
 通过折叠文本, 用户能够得到更好的文件概览, 因为无关紧要的部分都被隐藏在了折叠
-中. 还可以利用折叠制作文件的提纲.
+中. 还可以利用折叠来制作文件的提纲.
 \marginpar{119}
 
 文件被修改过了, 但是具体改了哪些地方呢? 我们介绍了如何使用 Vim 内置的

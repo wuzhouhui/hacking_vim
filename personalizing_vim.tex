@@ -85,7 +85,7 @@ Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件
 :echo $MYVIMRC
 \end{vimcode}
 
-\file{vimrc} 文件包含 \texttt{ex} (vi 预处理器) 命令, 每行一个, 在 Vim 
+\file{vimrc} 文件包含 \texttt{ex} (vi 预处理器) 命令, 每行一个, 在 Vim
 启动过程中, 会自动从该文件中读取配置命令. 在剩下的内容里, 我们把 Vim 的
 配置文件都称为 \file{vimrc}, 而不考虑它的具体存放路径.
 
@@ -99,7 +99,7 @@ source /path/to/external/file
 \ref{chap:vim_configuration_alternatives})
 
 \file{gvimrc} 是专门给 Gvim 使用的配置文件. 它类似于前面介绍过的
-\file{vimrc}, 个人的 \file{gvimrc} 存放目录与 \file{vimrc} 相同, 全局的 
+\file{vimrc}, 个人的 \file{gvimrc} 存放目录与 \file{vimrc} 相同, 全局的
 同样如此. 比如:
 \begin{itemize}
     \item Linux: \texttt{/home/kim/.gvimrc} 与
@@ -110,7 +110,7 @@ source /path/to/external/file
         vim\textbackslash gvimrc}
 \end{itemize}
 \begin{warning}
-特定于 GUI 的配置项只有 Gvim 才能使用, 在剩下的内容里, 我们把 Gvim 的配置 
+特定于 GUI 的配置项只有 Gvim 才能使用, 在剩下的内容里, 我们把 Gvim 的配置
 文件都统一称为 \file{gvimrc}.
 \end{warning}
 
@@ -132,7 +132,7 @@ source /path/to/external/file
 \begin{vimcode}
 :set guifont=Courier\ 14
 \end{vimcode}
-可以把 \texttt{Courier} 替换成你喜欢的任意一种字体的名字, 字体大小 14 
+可以把 \texttt{Courier} 替换成你喜欢的任意一种字体的名字, 字体大小 14
 也能够按照你的需求更改 (字体大小的单位是点 --- pt).
 
 在 Windows 中修改字体用:
@@ -158,7 +158,7 @@ source /path/to/external/file
     如果执行 \texttt{:set guifont=*} 就可以打开一个字体选择窗口.
 \end{warning}
 
-用户可以根据不同的文件类型 (源代码文件, 普通文本文件, 日志文件等) 
+用户可以根据不同的文件类型 (源代码文件, 普通文本文件, 日志文件等)
 设置不同的字体. 例如, 假设用户希望如果打开的是一个普通文本文件
 (\texttt{.txt}),
 就把字体设置为 Arial, 大小 12. 完成这个操作只需要在 \file{vimrc} 中添加:
@@ -186,7 +186,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 \begin{vimcode}
 :colorscheme mycolors
 \end{vimcode}
-在这个命令中, \texttt{mycolors} 是系统中已安装的某个配色方案的名字. 如果你 
+在这个命令中, \texttt{mycolors} 是系统中已安装的某个配色方案的名字. 如果你
 不太清楚系统中已经安装了哪些配色方案, 请在输完
 \begin{vimcode}
 :colorscheme
@@ -292,7 +292,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 \begin{vimcode}
 :match ErrorMsg /\%>73v.\+/
 \end{vimcode}
-执行该命令后, 一行内的第 73 个字符之后的那些字符都会被标记成错误. 匹配命令 
+执行该命令后, 一行内的第 73 个字符之后的那些字符都会被标记成错误. 匹配命令
 中含有一个正则表达式, 这个表达式可以拆成:
 \begin{center}
 \begin{tabular}{ll}
@@ -414,7 +414,7 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
 \end{itemize}
 下面的命令可以让你的 Vim 状态行包含上面提到的所有信息:
 \begin{vimcode}
-:set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ 
+:set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\
  [HEX=\%02.2B]\ [POS=%04l,%04v]\ [%p%%]\ [LEN=%L]
 \end{vimcode}
 我在每一种信息的左右两边都加上了中括号, 这样做就更容易区分彼此. 加中括号只是为
@@ -445,7 +445,7 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
 如果用户是在控制台中使用 Vim, 就会逐渐习惯没有菜单与工具条的窗口. 但是如果用
 的是 Gvim, 你就会发现窗口界面提供了菜单与工具条.
 
-许多人认为应该把额外的空间分配给更重要的文本使用, 而不是菜单与工具条. 如果你 
+许多人认为应该把额外的空间分配给更重要的文本使用, 而不是菜单与工具条. 如果你
 也是这么认为的, 那么你可能希望在使用 Gvim 时, 移除菜单与工具条. 然而, 某
 些脚本在菜单中增加许多有用的功能, 而这些功能也只能通过菜单来使用. 解决办法是
 根据实际需要, 随时切换菜单与工具条.
@@ -512,8 +512,8 @@ but for tabs.}
 这个命令的工作方式类似于命令 \texttt{map}, 后者把命令映射到一个组合键, 而前
 者是把命令映射到一个菜单项.
 
-命令带有两个参数. 第 1 个参数是菜单项在菜单中的实际路径, 第 2 个参数是菜单项 
-被点击时所执行的命令. 举个例子, 假设用户想要在菜单项 \newterm{Tabs} 中, 添加 
+命令带有两个参数. 第 1 个参数是菜单项在菜单中的实际路径, 第 2 个参数是菜单项
+被点击时所执行的命令. 举个例子, 假设用户想要在菜单项 \newterm{Tabs} 中, 添加
 一个新菜单项 \newterm{Next}, 只需要执行:
 \begin{vimcode}
 :menu Tabs.Next <ESC>:tabnext<cr>
@@ -524,11 +524,11 @@ but for tabs.}
 :tabnext
 \end{vimcode}
 命令前面的 \texttt{<ESC>} 为的是让 Vim 切换到普通模式,
-后面的 \texttt{<cr>} 是真正执行命令的地方. 如果漏掉了 \texttt{<ESC>}, 那么 
+后面的 \texttt{<cr>} 是真正执行命令的地方. 如果漏掉了 \texttt{<ESC>}, 那么
 命令就无法正常地工作. 另外一种办法是根据当前的模式, 在命令前添加特定
 的菜单项, 为此, Vim 提供了几个 \texttt{:menu} 的替代命令:
 \begin{itemize}
-    \item \texttt{:nmenu} 用于 \newterm{普通}(\newterm{Normal}) 模式 
+    \item \texttt{:nmenu} 用于 \newterm{普通}(\newterm{Normal}) 模式
     \item \texttt{:imenu} 用于 \newterm{插入}(\newterm{Insert}) 模式, 前置
         \verb'^O'
     \item \texttt{:vmenu} 用于 \newterm{可视}(\newterm{Visual}) 模式, 前置
@@ -579,7 +579,7 @@ but for tabs.}
 \texttt{N} 的前面) 来执行 \newterm{Next}. 如果有其他的菜单项使用了相同的
 快捷键字母, 只需要一直按 \key{Alt} 就可以遍历所有的菜单项.
 \begin{warning}
-    如果用户希望下拉菜单的各项之间用一条横线分开, 可以使用 \texttt{SEP} 
+    如果用户希望下拉菜单的各项之间用一条横线分开, 可以使用 \texttt{SEP}
     (针对菜单项) 或 ``\texttt{:}'' (针对命令):
 \begin{vimcode}
 :amenu Tabs.-SEP-:
@@ -632,7 +632,7 @@ but for tabs.}
 
 \begin{warning}
 默认情况下, 新增的菜单或按钮图标处在已有的菜单或图标的右边, 可以通过优
-先级来改变默认行为. 更多的信息请参考 \texttt{help menu-priority} 与 
+先级来改变默认行为. 更多的信息请参考 \texttt{help menu-priority} 与
 \texttt{:help sub-menu-priority}.
 \end{warning}
 
@@ -646,7 +646,7 @@ Vim 中, 它是组织打开文件的一种方式. 每一个标签都可以包含
 \texttt{:windo} 和 \texttt{:ball}) 将仅限于当前标签的窗口或缓冲区.
 
 一般情况下, 所有的标签页以一种标签列表的形式呈现在窗口的上方 (就在编辑区
-之上). 每一个标签页都有一个标签, 默认是处于当前活动缓冲区的文件名. 如果 
+之上). 每一个标签页都有一个标签, 默认是处于当前活动缓冲区的文件名. 如果
 一个标签页中同时打开了多个窗口, 那么标签也会显示窗口的数量.
 \begin{center}
 \includegraphics[scale=0.48]{./images/page33.png}
@@ -692,7 +692,7 @@ function ShortTabLine()
    else
      let ret .= '%#TabLine#'
     endif
-  
+
     " find the buffername for the tablabel
        let buflist = tabpagebuflist(i+1)
        let winnr = tabpagewinnr(i+1)
@@ -771,7 +771,7 @@ function ShortTabLabel()
 
 工具提示的优点是当用户没有激活它们时,
 % TODO hold your cursor over some area, for example, a tab
-就不会看到这些提示信息. 使用这种方法就可以做到在不填满整个编辑器的情况下, 
+就不会看到这些提示信息. 使用这种方法就可以做到在不填满整个编辑器的情况下,
 仍然可以获取到信息.
 
 为了给一个标签页设置工具提示, 需要使用下面的命令:
@@ -787,7 +787,7 @@ function ShortTabLabel()
 :set guitabtooltip='my tooltip'
 \end{vimcode}
 现在, 工具提示中就可以显示一条静态消息, 但我们需要更多的信息. 我们已经把
-文件的路径部分从标签中移走, 但是有时候仍然需要这个信息. 有了工具提示, 我们 
+文件的路径部分从标签中移走, 但是有时候仍然需要这个信息. 有了工具提示, 我们
 就可以把路径信息显示在工具提示中:
 \begin{vimcode}
 :set guitabtooltip=%!bufname($)
@@ -805,7 +805,7 @@ function! InfoGuiTooltip()
     let bufferlist=''
    "get name of active buffers in windows
     for i in tabpagebuflist()
-        let bufferlist .= '['.fnamemodify(bufname(i),':t').'] ' 
+        let bufferlist .= '['.fnamemodify(bufname(i),':t').'] '
     endfor
     return bufname($).' windows: '.wincount.' ' .bufferlist ' '
 endfunction
@@ -833,8 +833,8 @@ endfunction
 有时候, 用户正在编辑的文件可能带有多种颜色的语法高亮, 这些颜色会干扰用户
 追踪光标的位置, 如果可以标记出光标当前所在的行, 那就方便多了.
 
-已经有很多人写过 Vim 脚本来解决这个问题, 但是绝大部分都没什么用 (主要 
-是因为太慢了, 当文本过长时, 滚动速度就难以接受). 直到 Vim 版本 7, 这个 
+已经有很多人写过 Vim 脚本来解决这个问题, 但是绝大部分都没什么用 (主要
+是因为太慢了, 当文本过长时, 滚动速度就难以接受). 直到 Vim 版本 7, 这个
 问题才得以解决, 而且, 它还提供了两种可能的办法来追踪光标的位置.
 \marginpar{38}
 第一种办法是命令 \texttt{cursorline}, 它可以标记当前光标所在的行, 比如把
@@ -873,7 +873,7 @@ endfunction
 \end{center}
 \marginpar{39}
 \begin{warning}
-虽然 \texttt{cursorline} 与 \texttt{cursorcolumn} 是在 Vim 本地实现的, 但是 
+虽然 \texttt{cursorline} 与 \texttt{cursorcolumn} 是在 Vim 本地实现的, 但是
 仍然会影响文件的滚动速度.
 \end{warning}
 
@@ -884,8 +884,8 @@ endfunction
 需要执行 \texttt{:}\textit{XXX} (\textit{XXX} 表示行号), 用户就可以马上到达
 第 \textit{XXX} 行.
 
-另一种办法是在普通模式 (按下 \key{Esc} 就可以切换到普通模式) 下, 执行 
-\textit{XXX}\texttt{gg} 或 \textit{XXX}\texttt{G} (同样, \textit{XXX} 表示 
+另一种办法是在普通模式 (按下 \key{Esc} 就可以切换到普通模式) 下, 执行
+\textit{XXX}\texttt{gg} 或 \textit{XXX}\texttt{G} (同样, \textit{XXX} 表示
 行号). 但是, 如果能随时随地地看到行号可能会更加方便, 这时候就可以执行命令:
 \begin{vimcode}
 :set number
@@ -903,7 +903,7 @@ endfunction
 把 \textit{XXX} 替换成你想要的列宽度.
 
 \begin{warning}
-    用户可能希望通过加大列宽度的值, 使得代码与行号之间的间距更大一些, 
+    用户可能希望通过加大列宽度的值, 使得代码与行号之间的间距更大一些,
     但是这个配置无法通过 \texttt{numberwidth} 实现, 因为行号是右对齐的.
 \end{warning}
 \marginpar{40}
@@ -937,7 +937,7 @@ endfunction
 \begin{vimcode}
 :set spell
 \end{vimcode}
-命令使用默认的语言 (英语) 打开拼写检查, 如果想要使用其他语言, 只需要把 
+命令使用默认的语言 (英语) 打开拼写检查, 如果想要使用其他语言, 只需要把
 \texttt{spelllang} 设置成该语言的代号即可. 比如:
 \begin{vimcode}
 :set spelllang=de
@@ -979,7 +979,7 @@ Vim 将会按照顺序, 轮流根据每一种语言检查单词的拼写是否�
 
 Vim 与 Gvim 对错误单词的标记方法稍有不同.
 
-在普通的 Vim 中, 拼写错误的单词使用色彩组 \texttt{SpellBad} 标记 (默认情况下 
+在普通的 Vim 中, 拼写错误的单词使用色彩组 \texttt{SpellBad} 标记 (默认情况下
 是红底白字).
 \marginpar{42}
 
@@ -1080,7 +1080,7 @@ set ballooneval
 \label{subsubsec:example_2}
 
 现在来看一个更高级的例子, 这个例子把 balloons 应用到编辑区的特定区域上.
-在这个例子中, 我们将会开发一个函数, 这个函数可以同时显示两种 balloons 
+在这个例子中, 我们将会开发一个函数, 这个函数可以同时显示两种 balloons
 信息:
 \begin{itemize}
     \item 拼写错误的单词: 这个 balloons 信息给出候选单词.
@@ -1106,7 +1106,7 @@ set ballooneval
 \texttt{spellsuggest()}, 那它就不会返回候选单词, 于是, 我们现在就可以检查
 某个单词是否有拼写错误.
 
-检查某个单词是否在一个折叠块中更简单. 以鼠标所在的行号作为输入参数, 
+检查某个单词是否在一个折叠块中更简单. 以鼠标所在的行号作为输入参数,
 调用函数 \texttt{foldclosed()} (回忆变量 \texttt{v:beval\_lnum}), 它会
 返回鼠标所在的折叠块的第一行的行号, 如果不是折叠块, 就返回 \texttt{-1}.
 换句话说, 如果 \texttt{foldclosed(v:beval\_lnum} 返回除了 \texttt{-1}
@@ -1118,15 +1118,15 @@ function! FoldSpellBalloon()
   let foldStart = foldclosed(v:beval_lnum )
   let foldEnd   = foldclosedend(v:beval_lnum)
   let lines = []
-  " Detect if we are in a fold 
+  " Detect if we are in a fold
   if foldStart < 0
     " Detect if we are on a misspelled word
     let lines = spellsuggest( spellbadword(v:beval_text)[ 0 ], 5, 0 )
   else
     " we are in a fold
     let numLines = foldEnd - foldStart + 1
-    " if we have too many lines in fold, show only the first 14 
-    " and the last 14 lines 
+    " if we have too many lines in fold, show only the first 14
+    " and the last 14 lines
     if ( numLines > 31 )
       let lines = getline( foldStart, foldStart + 14 )
       let lines += [ '-- Snipped ' . ( numLines - 30 ) . ' lines --' ]
@@ -1201,7 +1201,7 @@ Vim 的设计哲学是: 如果用户曾经为某件事物写过一次, 那就不
 Vim 非常聪明, 它可以判断用户是在输入一个缩写词, 还是仅仅在输入另一个单词
 的某个部分, 所以它只会在我输入缩写词并按了空格键之后, 才把缩写扩展为完整
 的字符串. 如果在输完缩写词之后, 紧跟着的是一个普通的字母, 那么 Vim 就会知
-道用户并不是在输入某个缩写词, 自然也就不会发生扩展. 有关缩写词 \texttt{abc} 
+道用户并不是在输入某个缩写词, 自然也就不会发生扩展. 有关缩写词 \texttt{abc}
 的例子如下:
 \begin{center}
 \begin{tabular}{ll}
@@ -1216,7 +1216,7 @@ Vim 非常聪明, 它可以判断用户是在输入一个缩写词, 还是仅仅
 \end{center}
 \marginpar{48}
 
-为了避免每次都执行一次缩写命令, 用户可以把它们放在 \texttt{VIMHOME} 的某个 
+为了避免每次都执行一次缩写命令, 用户可以把它们放在 \texttt{VIMHOME} 的某个
 文件中, 假设文件名就叫 \texttt{abbreviations.vim}, 然后在文件 \texttt{vimrc}
 使用命令 \texttt{source} 来使能该文件 (需确保该文件是可读的):
 \begin{vimcode}
@@ -1351,7 +1351,7 @@ endfunction
 \marginpar{51}
 
 之后, \key{Ctrl+S} 就被映射成几个按键的组合. 首先, 按下 \texttt{<esc>}
-(\key{Escape} 键), 使 Vim 从插入模式进入到普通模式. 然后, 使用 
+(\key{Escape} 键), 使 Vim 从插入模式进入到普通模式. 然后, 使用
 \texttt{:w<cr>} 完成实际的文件保存操作. 最后, 用 \texttt{a} 再回到插入模式,
 并将光标移到行的末尾.
 
@@ -1377,20 +1377,20 @@ endfunction
 \end{vimcode}
 
 用户可能会遇到这样一种情况: 组合键的第一个按键已经绑定到了 Vim 的某个功能
-上. 举个例子, 按键 \verb'$', 它的功能是把光标移到一行的末尾. 用户可能希望 
-为 \verb'$1' 新绑定一个功能, 为 \verb'$2' 绑定另一个功能, 如此等等. 具体的 
+上. 举个例子, 按键 \verb'$', 它的功能是把光标移到一行的末尾. 用户可能希望
+为 \verb'$1' 新绑定一个功能, 为 \verb'$2' 绑定另一个功能, 如此等等. 具体的
 形式是:
 \begin{vimcode}
 :map $1 :MyFunction1()<cr>
 :map $2 :MyFunction2()<cr>
 \end{vimcode}
 
-现在, 如果用户按下了 \key{\$}, Vim 就会等待一秒, 等待另一个按键被按下, 
+现在, 如果用户按下了 \key{\$}, Vim 就会等待一秒, 等待另一个按键被按下,
 如果在这一秒之内没有按键按下, Vim 就会执行原来的功能: 把光标移到一行的末尾.
 相反, 如果在 1 秒之内用户按下了 \key{1}, Vim 就会执行函数
 \texttt{MyFunction1()}.
 
-有了按键映射功能, 用户就有了一个强大的工具来根据自己的需要, 对 Vim 进行 
+有了按键映射功能, 用户就有了一个强大的工具来根据自己的需要, 对 Vim 进行
 修改.
 
 \begin{tips}

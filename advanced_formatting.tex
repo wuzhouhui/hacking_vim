@@ -1,5 +1,5 @@
 % vim: ts=4 sts=4 sw=4 tw=80
-\chapter{高级格式化}
+\chapter{格式化进阶}
 \label{chap:advanced_formatting}
 \marginpar{121}
 
@@ -61,7 +61,9 @@ Vim 所做的格式化实际上是让行作出更漂亮的断行, 使得每一�
 :set textwidth=80
 \end{vimcode}
 如果 \texttt{textwidth} 的值被设置为 0, 那么 Vim 就把它设置成窗口的宽度 ---
-但是永远不会多于 \texttt{textwidth} 所设置的字符个数.
+但是永远不会多于 \texttt{textwidth} 所设置的字符个数.\footnote{If the option is
+    set to 0, the Vim sets it to the width of the window --- but never more than
+    the number of characters defined in the the \texttt{textwidth} setting.}
 \marginpar{123}
 
 \begin{warning}
@@ -116,7 +118,7 @@ function! MyFormatter()
     endwhile
 endfunction
 \end{vimcode}
-这个格式化文本接收所有的行, 在每一行的开始添加 \texttt{>}, 就是 E-mail 中的引
+这个格式化文本接收所有的行, 在每一行的开始添加 \texttt{>}, 就像 E-mail 中的引
 用.
 
 上面展示的格式化函数非常简单, 如果需要更高级一点的, 那么函数的复杂度就会快速
@@ -137,7 +139,7 @@ Vim 支持三种类型的对齐 --- 左对齐, 右对齐, 居中. 在我们介�
 对于常见的文本编辑器来说, 它们不含有隐藏信息, 也就是说, 用户所能看到的, 就是
 用户所能拥有的 --- 没有页面宽度, 没有对齐, 什么都没有.
 
-另一方面, 在字处理程序中, 文档中隐藏了相当丰富的信息, 这些信息告诉编辑器如何
+另一方面, 在字处理程序中, 文档隐藏了相当丰富的信息, 这些信息告诉编辑器如何
 根据用户的需要, 对文本进行格式化.
 
 因为上面所说的情况对 Vim 并不适用, 所以用户得向 Vim 提供一些信息, 来帮助 Vim
@@ -159,7 +161,7 @@ Vim 支持三种类型的对齐 --- 左对齐, 右对齐, 居中. 在我们介�
 如果选项 \texttt{textwidth} 的值为 0, 用户又没有在命令中设置 \texttt{WIDTH},
 那么 Vim 就默认使用 80 个字符的宽度. 在字处理程序中, 用户很容易就可以看出文本
 是否是居中的, Vim 对文本进行居中时, 只是在前面加上适当数量的空格, 这样
-做意味着无论是在什么时候修改的文本, 用户都要重新对文本进行居中.
+做意味着无论是在什么时候修改了文本, 用户都要重新对文本进行居中.
 
 下面的命令用于左对齐:
 \begin{vimcode}
@@ -220,8 +222,7 @@ yypVr=o
     \item \texttt{yy}: 复制当前行
     \item \texttt{p}: 粘贴
     \item \texttt{V}: 选中一整行
-    \item \texttt{r}: 用后面的字符 (在这里是 \texttt{=}) 替换掉当标当前所在的
-        字符
+    \item \texttt{r}: 用后面的字符 (在这里是 \texttt{=}) 替换掉选中的字符
     \item \texttt{o}: 在光标的下面添加一个空行, 把光标移动到这行的开始, 并切
         换到插入模式
 \end{itemize}
@@ -231,7 +232,7 @@ yypVr=o
 并切换到插入模式.
 
 对第三级别的标题来说, 我们必须采取其他办法, 不过所做的操作无非是在一行的开始
-或结束添加一个连字符, 可以用一条替换命令来完成:
+和结束添加一个连字符, 可以用一条替换命令来完成:
 \marginpar{127}
 \begin{vimcode}
 :s/\.(.*\)/-\1-/
@@ -239,9 +240,9 @@ yypVr=o
 我们把命令拆成三部分来说明:
 \begin{itemize}
     \item \texttt{:s///}: 替换命令
-    \item \texttt{\(.*\)}: 正则表达式, 表达式把当前行的所有字符作为输入, 并把
+    \item \verb'\(.*\)': 正则表达式, 表达式把当前行的所有字符作为输入, 并把
         它们作为搜索模式
-    \item \texttt{-\\1-}: 替换模式. 替换模式告诉 Vim 在第一个被匹配的子模式前
+    \item \verb'-\1-': 替换模式. 替换模式告诉 Vim 在第一个被匹配的子模式前
         添加一个连字符, 在子模式的后面再加上一个连字符
 \end{itemize}
 
@@ -249,7 +250,7 @@ yypVr=o
 \begin{vimcode}
 :map h1 yypVr=0
 :map h2 yypVr-0
-:map h3 :s/\.(.*\)/-\1-/
+:map h3 :s/\(.*\)/-\1-/
 \end{vimcode}
 现在, 用户可以在普通模式下, 通过按 \texttt{h1}, \texttt{h2}, \texttt{h3} 来添
 适当的标题行. 如果用户不想在标题行的下面添加一个空行并切换到插入模式, 就把上
@@ -306,10 +307,10 @@ function! NumberList() range
 endfunction
 \end{vimcode}
 
-这个函数稍微有点复杂, 但和它所解决问题比起来, 还是比较简单的 --- 在每一行的开
-始添加一个数字.
+这个函数稍微有点复杂, 但和它所解决的问题比起来, 还是比较简单的 --- 在每一行
+的开始添加一个数字.
 
-但是, 函数所做的工作还有一点需要注意, 那就是数字是右对齐的:
+除此之外, 函数还做了一个额外的工作 --- 数字右对齐:
 \begin{vimcode}
     1 item1
     2 item2
@@ -344,7 +345,7 @@ Vim, 函数是对一个范围内的行作操作, 而不仅仅是一行.
 
 \begin{warning}
     在 \url{http://www.vimoutliner.org}, 用户可以找到利用标题格式化, 列表格式
-    化等技术来说文档列提纲的脚本. 如果用户需要在 Vim 中为文档列提纲, 最好试一
+    化等技术来为文档列提纲的脚本. 如果用户需要在 Vim 中为文档列提纲, 最好试一
     下这个脚本.
 \end{warning}
 
@@ -373,7 +374,8 @@ Vim, 函数是对一个范围内的行作操作, 而不仅仅是一行.
     \item \texttt{tabstop}: 一个制表符的宽度 (见 \texttt{:help 'ts'})
 \end{itemize}
 
-通过这些选项, 用户几乎可以设置与缩进相关的方方面面. 但是这些还不足够, 用户仍
+通过这些选项, 用户几乎可以设置与缩进相关的方方面面. 但是光有这些还不足够,
+用户仍
 然需要告诉 Vim 是否需要自动缩进, 还是由用户手动完成缩进. 如果用户希望由 Vim
 来完成缩进, 可以通过 4 种方法来完成, 在下面的小节里, 我们将会介绍与代码缩进
 相关的一系列选项.
@@ -409,27 +411,31 @@ Cindent 经常被称为 clever indent(聪明的缩进) 或 configurable indent(�
 \begin{itemize}
     \item \texttt{cinkeys}: 这个选项包含了一个列表, 列表中的各项之间用逗号分
         开, Vim 可以根据列表中的项来改变缩进层次. 一个例子是: \texttt{:set
-            cinkeys="0{,0},0\#,:"}, 意思是说无论何时碰到一个以 \verb'{', 或
+            cinkeys="0\{,0\},0\#,:"}, 意思是说无论何时碰到一个以 \verb'{', 或
             \verb'}', 或 \verb'#' 作为开始的行, 或者是以 \verb':' 作为结束的
             行 (很多语言的 \texttt{switch} 结构都用到了 \verb':'), Vim 都要
             再缩进一层. \texttt{cinkeys} 的默认值是 \texttt{"0\{, 0\}, 0), :,
-        0\#, !\^F, o, O, e"}, 更多的信息见 \texttt{:help cinkeys}.
+        0\#, !\textasciicircum F, o, O, e"}, 更多的信息见 
+        texttt{:help cinkeys}.
     \item \texttt{cinoptions}: 这个选项包含了所有的, 专门用于 cindent 的选项.
         它是一个各项之间由逗号分开的列表, 通过这个列表可以设置大量的选项. 一
-        个例子是 \texttt{cinoptions=">2,{3,}3,"}, 意思是说在正常的缩进之上,
+        个例子是 \texttt{cinoptions=">2,\{3,\}3"}, 意思是说在正常的缩进之上,
         再额外添加两个空格, 另外, 在 \verb'{' 与 \verb'}' 的左边添加三个空格,
         以便与前一行作比较. 因此, 如果目前的缩进是 4 个空格, 那么刚才所说的
         设置会使代码变成 (代码中的点表示一个空格):
         \begin{vimcode}
-        if (a == b)
-        ...{
-        ......print "hello";
-        ...}
+    if (a == b)
+    ...{
+    ......print "hello";
+    ...}
         \end{vimcode}
-        \texttt{cinoptions} 的默认值是 \texttt{">s,e0,n0,f0,\{0,\}0,\^0,
-        :s,=s,l0,b0,gs,hs,ps,ts,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j0,
+        % FIXME
+        \texttt{cinoptions} 的默认值是 \texttt{">s,e0,n0,f0,\{0,\}0,%
+        \textasciicircum 0,%
+        :s,=s,l0,b0,gs,hs,ps,ts,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j0,%
         )20,*30"}, 更多的信息见 \texttt{:help 'cinoptions'}.
-    \item \texttt{cinwords}: 这个选项包含的关键词会让 Vim 在一行增加缩进. 一
+    \item \texttt{cinwords}: 这个选项包含的关键词会让 Vim 在下一行增加缩进. 一
+        % FIXME
         个例子是 \texttt{:set cinwords="if,else,do,while,for,switch"}, 这同时
         也是它的默认值. 更多的信息见 \texttt{:help 'cinwords'}.
 \end{itemize}
@@ -439,14 +445,14 @@ Cindent 经常被称为 clever indent(聪明的缩进) 或 configurable indent(�
 \label{subsec:indentexpr}
 
 Indentexpr 是最灵活的缩进选项, 但同时也是最复杂的. 使用 indentexpr 时, 它会
-对一个表达式求值, 然后计算出一行的缩进. 因此, 用户必须写出的表达式必须能被 Vim
+对一个表达式求值, 然后计算出一行的缩进. 因此, 用户写出的表达式必须能被 Vim
 求值. 打开这个选项的方法是为它设置一个表达式, 比如:
 \begin{vimcode}
 :set indentexpr=MyIndenter()
 \end{vimcode}
 命令中的 \texttt{MyIndenter()} 是一个函数, 负责计算行的缩进.
 
-函数的一个简单例子是模块选项 autoindent:
+函数的一个简单例子是模仿选项 autoindent 的功能:
 \begin{vimcode}
 function! MyIndenter()
    " Find previous line and get it's indentation
@@ -458,7 +464,7 @@ endfunction
 
 即使是想把函数的功能增强一点, 函数的复杂度也会迅速增长. Vim 自带了多种编程语言
 的缩进表达式, 如果用户想要自己编写缩进表达式, 可以以它们为基础, 再加以修改. 用
-户可以在 \texttt{VIMHOME} 折子目录 \texttt{indent} 中找到实现代码.
+户可以在 \texttt{VIMHOME} 的子目录 \texttt{indent} 中找到实现代码.
 
 更多的信息见 \texttt{:help 'indentexpr'} 与 \texttt{:help 'indent-expression'}.
 
@@ -495,7 +501,7 @@ endfunction
 有时候, 用户可能仅仅是想格式化某一小块代码, 对于这种情况, 用户可以使用代码块
 自然形成的范围, 或者是在可视模式下选择一段代码, 然后再格式化.
 
-后一种方法比如简单. 先是切换到可视模式, 比如按下 \key{Shift+v}, 然后再按
+后一种方法比较简单. 先是切换到可视模式, 比如按下 \key{Shift+v}, 然后再按
 \key{=} 来重新缩进被选中的代码行.
 
 另一方面, 如果要使用代码块, 则有多种不同的方法来实现. 在选择代码块时, Vim 提供
@@ -503,7 +509,7 @@ endfunction
 块, 以及选择它们的命令:
 
 \begin{itemize}
-    \item \verb'i{': 内部块 (Innerblock), 指的是 \verb'{' 与 \verb'}'
+    \item \verb'i{': 内部块 (Inner block), 指的是 \verb'{' 与 \verb'}'
         之间的所有内容 (
         不包括 \verb'{' 与 \verb'}'). 还可以用 \verb'i}' 与 \texttt{iB} 来选
         择.
@@ -601,7 +607,7 @@ code line 1
 :set nopaste
 \end{vimcode}
 
-那么, 除此之外, 是否还有其他的方法呢? Vim 是否可以根据文件中已经的其他代码来
+那么, 除此之外, 是否还有其他的方法呢? Vim 是否可以根据文件中已有的其他代码来
 自动格式化被粘贴的代码? 其实很简单.
 \begin{vimcode}
 p=`]
@@ -609,8 +615,8 @@ p=`]
 上面的命令只是把普通的粘贴命令 (\texttt{p}) 和另一命令组合, 后者会自动缩进前
 面插入的行 (\texttt{=`]}). 这个命令基于下面的事实: 当用户使用命令 \texttt{p}
 来粘贴文本时, 光标将会停留在被粘贴文本的第一个字符上, 组合上命令 \texttt{`]}
-之后, 光标就会移动到最近一次插入的文本行最后一个字符, 并且可以从被粘贴文本的
-第一行移动到最后一行.
+之后, 光标就会移动到最近一次插入的文本行的最后一个字符上, 并且可以从被粘贴文
+本的第一行移动到最后一行.
 
 所以, 用户所要做的就是把这个命令绑定到一个快捷键上, 并用该快捷键来粘贴文本.
 \marginpar{136}
@@ -684,7 +690,7 @@ Indent 有着非常丰富的命令行选项, 另外还可以通过它的配置�
 \end{warning}
 
 在前面我们曾经提到过, Vim 无法对文本进行两端对齐, 幸运的是, Par 可以帮助 Vim
-完成这件工作. 只需要在上面的命令行参数中加上 \texttt{j} (意思是 ``justify''),
+完成这件工作. 只需要在上面的命令行参数中加上 \texttt{j} (意思是 justify),
 就可完成两端对齐:
 \begin{vimcode}
 :set formatprg=par\ -w78j
@@ -706,7 +712,7 @@ Par 不仅可以用在普通文本中, 对于代码的某些部分也可以使�
 \begin{vimcode}
 !par 60r
 \end{vimcode}
-(Vim 会在 \texttt{!} 自动加上 \texttt{'<,'>})
+(Vim 会在 \texttt{!} 的前面自动加上 \texttt{'<,'>})
 
 执行后, 注释变成:
 \begin{vimcode}
@@ -729,7 +735,7 @@ Par 的手册页包含了许多例子.
 \label{subsec:tidy}
 
 如果用户从事网页开发, 或者 XML 文件编辑, 那么程序 tidy 就会成为你的好帮手. 这
-个程序可以清理代码, 使之符合 W3C 规范. 符号 W3C 规范指的是代码的构造必须遵守
+个程序可以清理代码, 使之符合 W3C 规范. 符合 W3C 规范指的是代码的构造必须遵守
 由 W3C 规定的 HTML 守则.
 
 作为一个网页开发人员, 笔者有时候会浏览别人写的 HTML 或 XML 文件, 打开后只看
@@ -765,14 +771,14 @@ au FileType html exe ":silent 1,$!tidy --indent yes -q"
 在这一章, 我们介绍了如何更好地格式化普通文本与代码.
 
 首先, 我们介绍了如何通过一对简单的 Vim 命令, 把文本格式化成更易阅读的形式.
-我们还介绍了文本的对齐, 还解释了纯文本编辑器在对齐方面的困难. 接下来, 我们创
+我们还介绍了文本的对齐, 还解释了纯文本编辑器在对齐方面的困难. 接下来, 我们创建
 了一个函数, 该函数用于标记标题行, 以及生成无编号与编号列表. 我们还看到了 Vim
 非常的灵活, 比如用户可以告诉 Vim 是否需要对选中的文本中的每一行执行操作, 又或
-者是是否让用户来处理, 并待处理的行一次都反馈给用户的函数.
+者是是否让用户来处理, 并将待处理的行一次都反馈给用户的函数.
 
-接下来, 我们介绍在 Vim 中如何格式化代码, 尤其是缩进. 我们认识因为每个人都有
+接下来, 我们介绍了在 Vim 中如何格式化代码, 尤其是缩进. 因为每个人都有
 着自己独特的编码风格, 所以很难有一个通用的功能来完成代码的格式化. Vim 提供了
-一个灵活的接口, 使用用户可以按照自己的需要来设置. 我们还介绍了一些用来迅速格
+一个灵活的接口, 使得用户可以按照自己的需要来设置. 我们还介绍了一些用来迅速格
 式化代码的技巧, 甚至还包括如何格式化从其他地方粘贴到 Vim 中的代码.
 
 最后, 我们介绍了如何利用外部工具来使得 Vim 更加完美. 外部工具可以帮助用户格式

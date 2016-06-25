@@ -17,12 +17,12 @@ Vim 的一个最强大之处是允许高级用户通过编写脚本来增强 Vim
 \end{itemize}
 
 学习完这一章之后, 对于如何使用 Vim 脚本, 读者应该会有一个基本的概念, 而且有能
-力写出一个简单脚本, 从而为 Vim 添加新的功能.
+力写出一个简单的脚本, 从而为 Vim 添加新的功能.
 
 \section{语法高亮方案}
 \label{sec:syntax_color_schemes}
 
-在许多程序员看来, 根据语法来高亮代码是 Vim 最重要特性之一. 语法高亮不仅使代码
+在许多程序员看来, 根据语法来高亮代码是 Vim 最重要的特性之一. 语法高亮不仅使代码
 看起来更清晰, 还可以帮助用户发现编码错误. Vim 语法高亮系统所使用的脚本非常像
 Vim 脚本, 但是语法高亮脚本定义的是颜色, 而不是功能. 在下面的一节里, 我们将会介
 绍如何创建一个语法高亮方案.
@@ -80,7 +80,7 @@ if (x == y)
 \end{vimcode}
 最终的效果是:
 \begin{center}
-\includegraphics[scale=0.6]{./images/page143.png}
+\includegraphics[scale=0.5]{./images/page143.png}
 \end{center}
 
 现在, 这段代码的高亮已经相当得体. 当然, 这只是一个小例子, 而且只用到了 Vim 语
@@ -130,7 +130,7 @@ function splitString(string) {
 :syntax region myComments start=/\/\*/ end=\/\*\// contains=myKeywords
 \end{vimcode}
 
-如果需要在区域内包含多于一个语法组, 只需要把它们写成列表的形式 (列表元素之间
+如果需要在区域内包含多于一个的语法组, 只需要把它们写成列表的形式 (列表元素之间
 用逗号分开), 再写到 \texttt{contains} 的后面.
 
 \begin{warning}
@@ -140,10 +140,10 @@ function splitString(string) {
 \end{warning}
 \marginpar{145}
 
-在某些情况下, 用户可以希望在一个区域中嵌套另一个区域, 对于这种情况, 用户必须
-把这项需要显式地告诉 Vim, 方法是在区域命令的末尾加上选项 \texttt{contained}:
+在某些情况下, 用户可能希望在一个区域中嵌套另一个区域, 对于这种情况, 用户必须
+把这项需求显式地告诉 Vim, 方法是在区域命令的末尾加上选项 \texttt{contained}:
 \begin{vimcode}
-:syntax region myComments start=/\/\*/ end\/\*\// contains=myKeywords
+:syntax region myComments start=/\/\*/ end=\/\*\// contains=myKeywords
 contained
 \end{vimcode}
 
@@ -152,12 +152,12 @@ contained
 
 除了 \texttt{ALL}, 其他的关键词还包括:
 \begin{itemize}
-    \item \texttt{ALLBUT} 如果它是列表的第一项, 那么列表中的其余项目在区域中
+    \item \texttt{ALLBUT}: 如果它是列表的第一项, 那么列表中的其余项目在区域中
         都不会被高亮显示
-    \item \texttt{CONTAINED} 如果该项在列表中, 那么带有选项 \texttt{contained}
+    \item \texttt{CONTAINED}: 如果该项在列表中, 那么带有选项 \texttt{contained}
         的语法组就会在区域中被高亮显示
-    \item \texttt{TOP} 如果该项在列表中, 那么除了带有选项 \texttt{contained}
-        的语法组, 其他所有的语法都会被包含进来
+    \item \texttt{TOP}: 如果该项在列表中, 那么除了带有选项 \texttt{contained}
+        的语法组, 其他所有的语法组都会被包含进来
 \end{itemize}
 
 有了上面的帮助, 用户就可以轻易地选择大范围的语法组, 而不用一个一个地把它们写下
@@ -170,22 +170,22 @@ contained
     如果用户知道某些语法组经常一起使用, 可以把它们放在一个簇 (cluster) 中:
     \texttt{:syntax cluster myCluster
     contains=myKeywords,mySymbols,myConditions}. 引用一个簇时可以在名字前加
-    \verb'@': \texttt{:syntax region myComments start=/\/\*/ end=/\*\//
-        contains=@myCluster}.
+    \verb'@': \texttt{:syntax region myComments start=}\verb'/\/\*/ end=/\*\//'
+        \texttt{contains=@myCluster}.
 \end{tips}
 
 现在, 用户只需要把所有的配置命令都写到一个文件中, 再把这个文件放到
-\texttt{VIMHOME} 的 \texttt{syntax} 子目录中. 文件的后缀名是 \texttt{.vim},
+\texttt{VIMHOME} 的 \texttt{syntax} 子目录内. 文件的后缀名是 \texttt{.vim},
 前缀名是文件所对应的编程语言源代码文件的后缀名, 比如 C 语言源代码文件的后缀名
 是 \texttt{.c}, 那么它的语法文件就是 \texttt{c.vim}.
 
-在前面的例子中, 所有语法级的名字都以 \texttt{my} 开始, 这是因为它所对应的编程
+在前面的例子中, 所有语法组的名字都以 \texttt{my} 开始, 这是因为它所对应的编程
 语言是 \texttt{my} (当然, 只是假设性的). 如果是 C 语言, 那么比较好的做法是
 语法组的名字以 \texttt{c} 开始, 比如 \texttt{cKeywords}, \texttt{cConditions},
 \texttt{cSymbols}, 等等).
 
 继续前面的例子, 我们刚才说到 \texttt{my} 语法文件所对应的编程语言源代码文件
-的后缀名是 \texttt{.my}, 为了简便起见, 我希望 Vim 把我的文件识别成文件类型
+的后缀名是 \texttt{.my}, 为了简便起见, 我希望 Vim 把我的文件识别成具有文件类型
 \texttt{my}.
 \marginpar{146}
 
@@ -204,7 +204,7 @@ augroup END
 它的文件类型设置成 \texttt{my}. 如果用户还想区别其他文件类型, 还可以在两行
 \texttt{augroup} 之间添加其他 \texttt{autocmd}.
 
-注意, 如果 Vim 检查到我们正在编辑的文件的文件类型是 \texttt{my}, 它就会自动
+注意, 如果 Vim 检查到我们正在编辑的文件的类型是 \texttt{my}, 它就会自动
 查找匹配的语法文件, 它会在目录 \texttt{VIMHOME/syntax/} 内查找以文件类型名开始
 的语法文件, 在这里就是 \texttt{my.vim}.
 
@@ -215,17 +215,17 @@ augroup END
 \begin{warning}
     学习编写语法文件的最佳方法是阅读别人写的语法文件. 安装 Vim 后, 就已经安装
     了大量的语法文件, 涵盖了几乎所有常见的文件类型, 用户可以以它们为基础, 从
-    面写出自己的语法文件.
+    而写出自己的语法文件.
 \end{warning}
 
 另一方面, 如果用户想要在已存在的语法文件中添加额外的识别, 有两种方法可以做到.
 其中一种是找到那个文件, 然后添加自己的内容, 另外一种更好的办法是使用 Vim 的后
-处理功能, 该功能可以覆盖 Vim 已经加载的脚本或语法. 第二种办法可以做到无论系统
+处理功能, 该功能可以覆盖 Vim 已经加载的脚本或语法文件. 第二种办法可以做到无论系统
 上的脚本怎么更新, 都不用改动自己的部分, 因为它们已经和脚本隔离开了.
 
 使用后处理器的秘诀是脚本文件的存放位置. 在用户的 \texttt{VIMHOME} 目录下, 有一
 个子目录 \texttt{after} (如果不存在, 则手工创建). 无论 Vim 在何时查找脚本, 语
-法文件, 或配色方案, 它都会在 \texttt{after} 子目录内查找相同的文件. 比如说, 如
+法文件, 或配色方案, 它都会在 \texttt{after} 子目录内查找同名的文件. 比如说, 如
 果 Vim 找到了 \texttt{VIMHOME/syntax/c.vim}, 它就会接着查找
 \texttt{VIMHOME/after/syntax/c.vim}, 看看是否有需要覆盖的地方. 这种情况同样
 适用于从下面这些目录找到的脚本:
@@ -259,7 +259,7 @@ by the color scheme you use in the rest of Vim}.
 
 \begin{warning}
     或者, 你还可以看一下配色方案文件, 这些文件存放在 \texttt{VIMHOME} 的
-    \texttt{color} 目录下.
+    \texttt{colors} 目录下.
 \end{warning}
 
 \section{使用脚本}
@@ -279,10 +279,10 @@ Vim.
 \label{subsec:script_types}
 
 在 Vim 官网可以找到大量的脚本, 它们的功能各异, 有的很简单 (比如插入日期), 有的
-则比较复杂 (比如 IDE 编程环境), 但是实际上, Vim 只能识别某几种定义了的脚本类型
+则比较复杂 (比如 IDE 编程环境), 但是实际上, Vim 只能识别某几种预定义的脚本类型
 组.
 
-如果我们认真查看一下脚本类型, 就会发现它们可以分为两组, 第一组是全局插入组, 该
+如果我们认真查看一下脚本类型, 就会发现它们可以分为两组, 第一组是全局插件组, 该
 组包含的脚本会在 Vim 启动时, 或者是在用户执行某些特定的函数调用时补始化. 这种
 脚本的典型例子包括为 Gvim 添加菜单, 为已经定义了的函数添加功能, 又或者是根据用
 户的需要修改某些特性.
@@ -314,15 +314,15 @@ Vim.
 如果脚本被打包成压缩文件, 其安装方法就很难说清楚. 典型的安装方法是把压缩文件
 复制到 \texttt{VIMHOME}, 然后再解压. 解压后, 压缩包中的文件会自动存放到对应的
 目录内. 通常在压缩文件中都有一个 \texttt{README} 或 \texttt{INSTALL} 文件, 它
-详细介绍了脚本的安装方法.
+们详细介绍了脚本的安装方法.
 
 \begin{warning}
     如果脚本是在 \url{http://www.vim.org} 上找到的, 那就同时也能找到脚本的安
     装方法.
 \end{warning}
 
-最后一种格式需要通过 Vimball 安装, Vimball 是为 7 及以上版本的 Vim 而开发的.
-Vim 接收若干个文件, 然后把它们组合在一个单一的 Vim 脚本归档文件, 文件的后缀名
+最后一种格式需要通过 Vimball 来安装, Vimball 是为 7 及以上版本的 Vim 而开发的.
+Vim 接收若干个文件, 然后把它们组合成一个单一的 Vim 脚本归档文件, 文件的后缀名
 是 \texttt{.vba}, 意思是 Vimball.
 
 在开始使用 Vimball 之前, 得先安装 Vimball 脚本, 这个脚本用于读取与安装 Vimball
@@ -342,7 +342,7 @@ Vim 接收若干个文件, 然后把它们组合在一个单一的 Vim 脚本归
 :source %
 \end{vimcode}
 命令会把脚本安装到从选项 \texttt{runtimepath} 中找到的第一个目录内. 如果想修改
-安装目录, 就把上面的命令换成:
+安装目录, 就把命令换成:
 \begin{vimcode}
 :UseVimball PATH
 \end{vimcode}
@@ -351,7 +351,7 @@ Vim 接收若干个文件, 然后把它们组合在一个单一的 Vim 脚本归
 特定的目录下, 否则的话, 脚本就不能正常工作.
 
 有时候, 用户可能想在安装之前查看一下 Vimball 中包含的文件. Vim 提供了一个这样
-命令, 使用方法是在打开 Vimball 之后, 执行:
+的命令, 使用方法是在打开 Vimball 之后, 执行:
 \begin{vimcode}
 :VimballList
 \end{vimcode}
@@ -363,7 +363,7 @@ Vim 接收若干个文件, 然后把它们组合在一个单一的 Vim 脚本归
 \label{subsec:uninstalling_scripts}
 
 通常来说, 不存在用于卸载脚本的自动化方法, 用户必须手动地把文件删除掉. 不过
-Vimball 含有删除机制.
+Vimball 含有卸载机制.
 
 如果用户记得安装时所用的 Vimball 文件名, 就可以通过它来卸载脚本. 卸载 Vimball
 的命令是:
@@ -417,7 +417,7 @@ Vimball 含有删除机制.
 \subsection{脚本开发基础}
 \label{subsec:script_writing_basics}
 
-在接下来的几节, 我们将会介绍一些基本的类型与结构, 知道这些, 是开发出好脚本的
+在接下来的几节, 我们将会介绍一些基本的类型与结构, 知道这些是开发出好脚本的
 前提.
 
 如果用户是一名程序员, 那就会对 Vim 的脚本语言感到很熟悉, 因为它的结构与其他
@@ -471,6 +471,8 @@ Vim 中的字符串用一对单引号或双引号括起来, 比如:
 \marginpar{153}
 
 除了换行符 \verb'\n', 其他的转义字符序列还包括:
+
+\begin{center}
 \begin{tabular}{ll}
    \hline \\
    \verb'\n'    & 换行符 \\
@@ -484,15 +486,16 @@ Vim 中的字符串用一对单引号或双引号括起来, 比如:
    \verb'\b'    & 退格 \\
    \hline
 \end{tabular}
+\end{center}
 
 除了这些转义字符序列, 还可以插入其他 Vim 可识别的按键缩写, 比如 \texttt{<CR>},
-与 \texttt{<ESC>}, 但是得在前面加上反斜杆 --- \verb'\<CR>', 甚至还可以插入其他
+与 \texttt{<ESC>}, 但是得在前面加上反斜杆: \verb'\<CR>', 甚至还可以插入其他
 快捷键缩写, 比如 \texttt{<C-W>}, 但同样得加反斜杆.
 
 \subsubsection{变量}
 \label{subsubsec:variables}
 
-Vim 有 5 种类型的变量 (虽然定义的方式是相同的), 使用方法也大不相同. 这 5 种类
+Vim 有 5 种类型的变量, 使用方法大不相同 (虽然定义的方式是相同的). 这 5 种类
 型是:
 \begin{itemize}
     \item 字符串: \texttt{"this is a string"} 就是一个简单的字符串
@@ -665,7 +668,7 @@ echo g:sum
 \subsubsection{条件}
 \label{subsubsec:conditions}
 
-开发 Vim 脚本时, 有时候在执行代码之间需要检查某个条件是否满足. 大多数现代
+开发 Vim 脚本时, 有时候在执行代码之前需要检查某个条件是否满足. 大多数现代
 编程语言使用条件语句进行条件检查. Vim 同样也有这种语句, 它的格式是:
 \begin{vimcode}
 if condition
@@ -690,31 +693,31 @@ value1 >= value2
 中的一种, 其他的逻辑运算符还有:
 \begin{itemize}
     \item \texttt{val1 == val2}: 如果 \texttt{val1} 等于 \texttt{val2}, 则表达
-        为真
+        式为真
     \item \texttt{val1 != val2}: 如果 \texttt{val1} 不等于 \texttt{val2}, 则
-        表达为真
+        表达式为真
     \item \texttt{val1 > val2}: 如果 \texttt{val1} 大于 \texttt{val2}, 则
-        表达为真
+        表达式为真
     \item \texttt{val1 < val2}: 如果 \texttt{val1} 小于 \texttt{val2}, 则
-        表达为真
+        表达式为真
     \item \texttt{val1 >= val2}: 如果 \texttt{val1} 大于或等于 \texttt{val2},
-        则表达为真
+        则表达式为真
     \item \texttt{val1 <= val2}: 如果 \texttt{val1} 小于或等于 \texttt{val2},
-        则表达为真
+        则表达式为真
 \end{itemize}
 \marginpar{158}
 
 这些运算符既可以用于数值类型, 也可以用于字符串类型, 因为 Vim 可以自动进行转
-换. 如果是对字符串进行比较, 在比较时会逐字比较各个字母的 ASCII 码值. 例如
+换. 如果是对字符串进行比较, 在比较时会逐个比较各个字母的 ASCII 码值. 例如
 \texttt{"bbb" > "aaa"} 为真, 而 \texttt{"abc" > "abd"} 为假 (这是因为
 \texttt{a} 的 ASCII 值比 \texttt{d} 小).
 
 如果是对字符串进行处理, 还有更多的运算符可供选择. 如果用户想查看某个字符串是
 含有特定的子字符串或字符, 则可以使用部分匹配运算符, 使用方式是:
 \begin{itemize}
-    \item \texttt{str1 =~ str2}: 如果 \texttt{str1} 包含 \texttt{str2}, 或
+    \item \verb'str1 =~ str2': 如果 \texttt{str1} 包含 \texttt{str2}, 或
         \texttt{str1} 与 \texttt{str2} 相同, 则为真
-    \item \texttt{str1 !~ str2}: 如果 \texttt{str1} 不包含 \texttt{str2}, 并且
+    \item \verb'str1 !~ str2': 如果 \texttt{str1} 不包含 \texttt{str2}, 并且
         \texttt{str1} 与 \texttt{str2} 不相同, 则为真
 \end{itemize}
 
@@ -777,8 +780,8 @@ endif
 在之前的内容中, 我们已经介绍了如何创建线性表与字典, 现在讨论如何访问这两个结
 绝中的数据.
 
-如果用户已经有了一个线性表变量, 并且想要访问其中的某个变量, 访问的方法是在线
-性变量的名字后面加上一对方括号, 并在括号内填上所要访问的值在线性表中的索引.
+如果用户已经有了一个线性表变量, 并且想要访问表中的某个变量, 访问的方法是在线
+性表变量的名字后面加上一对方括号, 并在括号内填上所要访问的值在线性表中的索引.
 索引是表项在线性表中的存放位置, 从 \texttt{0} 开始. 假设我们想要访问下面线性
 表中的元素 \texttt{"three"}:
 \begin{vimcode}
@@ -791,7 +794,7 @@ endif
 \end{vimcode}
 如果线性表中还有线性表, 比如 \texttt{mylistvar2}:
 \begin{vimcode}
-    :let mylistvar2 = [[1,2,3],["four","five","six"]]
+:let mylistvar2 = [[1,2,3],["four","five","six"]]
 \end{vimcode}
 如果想要访问 \texttt{"four"} 所在的元素, 我们需要访问里面那个线性表的索引 0,
 与外面那个线性表的索引 1:
@@ -804,7 +807,7 @@ endif
 \begin{vimcode}
 :echo mylistvar2[-1][-3]
 \end{vimcode}
-因为 -0 与 0 是相同的, 所以最后一项的索引是 -1.
+因为 $-0$ 与 $0$ 是相同的, 所以最后一项的索引是 $-1$.
 
 \begin{warning}
     如果试图访问一个不存在的元素, Vim 就会返回一个错误. 为了避免返回错误信息,
@@ -820,7 +823,7 @@ endif
 :echo mylistvar3
 \end{vimcode}
 上面的命令在 \texttt{mylistvar3} 添加一个新元素 \texttt{5}, 然后打印整个线性
-表. 添加元素的另一种方法是使用 Vim 的拼接功能. 运算符 \texttt{+} 可以用于拼接
+表. 添加元素的另一种方法是使用 Vim 的拼接功能. 运算符 \texttt{+} 可以用来拼接
 两个线性表, 它的一个使用示例是:
 \begin{vimcode}
 :let mylistvar4 = [1,2,3,4]
@@ -927,31 +930,31 @@ endfunction
 \begin{itemize}
     \item \texttt{split}: 把存放在变量 \texttt{a:numb} 中的参数切分到一个匿名
         线性表中, 例如:
-    \begin{vimcode}
-    :let a = split("one two")
-    :echo a;    " this prints "one"
-    \end{vimcode}
+\begin{vimcode}
+:let a = split("one two")
+:echo a;    " this prints "one"
+\end{vimcode}
 \item \texttt{map}: 把一个给定的命令映射到线性表 (通过调用 \texttt{split}
     得到的线性表) 中的每一个元素上, 例如:
-    \begin{vimcode}
-    :let mylist = ["one", "two", "three"]
-    :call map(mylist, "<" . v:val . ">")
-    :echo mylist[0] " this prints <one>
-    \end{vimcode}
+\begin{vimcode}
+:let mylist = ["one", "two", "three"]
+:call map(mylist, "<" . v:val . ">")
+:echo mylist[0] " this prints <one>
+\end{vimcode}
 \item \texttt{get}: 从 \texttt{self} 中取一个键值是 \texttt{v:val} (从
     \texttt{map} 中获取的值) 的元素, 例如:
-    \begin{vimcode}
-    :let mylist2 = ["one", "two", "three"]
-    :echo get(mylist2, 2, "none") " prints three
-    :echo get(mylist2, 3, "none") " prints "none"
-    \end{vimcode}
+\begin{vimcode}
+:let mylist2 = ["one", "two", "three"]
+:echo get(mylist2, 2, "none") " prints three
+:echo get(mylist2, 3, "none") " prints "none"
+\end{vimcode}
 \item \texttt{join}: 连接所有的, 由 \texttt{map}-\texttt{get} 返回的元素,
     例如:
-    \begin{vimcode}
-    :let mylist3 = ["one", "two", "three"]
-    :let mystring = join(mylist3, "+")
-    :echo mystring " prints one+two+three
-    \end{vimcode}
+\begin{vimcode}
+:let mylist3 = ["one", "two", "three"]
+:let mystring = join(mylist3, "+")
+:echo mystring " prints one+two+three
+\end{vimcode}
 \end{itemize}
 更多的信息请参考 \texttt{:help split()}, \texttt{:help join()},
 \texttt{:help map()}, \texttt{:help get()}.
@@ -1170,8 +1173,8 @@ endfunction
 在大部分情况下都不需要这两个关键字, 因此可以不管它们.
 
 在函数内部, 是该函数被调用时所要执行的代码. 函数内部所有变量的作用域都是局部
-的, 当函数执行结束后就不能再被访问. 如果用户希望在函数内部仍然可以访问某个变
-量, 或者把它当作一个作为参数, 传递给函数, 或者在函数名的前面加上 \texttt{g:},
+的, 当函数执行结束后就不能再被访问. 如果用户希望在函数内部仍然可以访问某个外部
+变量, 或者把它当作一个参数传递给函数, 或者在函数名的前面加上 \texttt{g:},
 把它的作用域定义成全局的.
 \marginpar{169}
 \begin{warning}
@@ -1231,11 +1234,11 @@ echo sum
 是因为函数在执行完 \texttt{return} 语句后就会马止结束. 这也就是说每次只能返回
 一个值.
 
-\begin{vimcode}
+\begin{warning}
     函数内可以有多个 \texttt{return} 语句, 但函数在遇到第一个 \texttt{return}
     语句时就会返回. 有些人认为在一个函数内出现多个返回点是一种不好的编程风格,
     除非你没有其他办法可以选择.
-\end{vimcode}
+\end{warning}
 
 \paragraph{可变参数列表}
 \label{para:variable_argument_list}
@@ -1265,8 +1268,8 @@ endfunction
 函数参数的个数存放在一个特殊的变量中 --- \texttt{a:0}, 所以我们用它来判断应该
 在什么时候停止循环.
 
-为了访问到每一个变量, 我们把 \texttt{argnum} 当作索引, 用于访问可先参数列表,
-访问的方式是使用变量 \verb'a:{argnum}'. 用户可以把 \verb'a:{}' 看作是由可先
+为了访问到每一个变量, 我们把 \texttt{argnum} 当作索引, 用于访问可选参数列表,
+访问的方式是使用变量 \verb'a:{argnum}'. 用户可以把 \verb'a:{}' 看作是由可选
 参数组成的线性表, 而 \texttt{argnum} 是线性表的索引.
 
 对于参数列表中的每一个额外的参数, 我们都把它加到变量 \texttt{sum} 中, 当函数
@@ -1303,7 +1306,7 @@ function PrintSum(num1, num2,...)
 endfunction
 \end{vimcode}
 \marginpar{172}
-这次, 我们是通过 \texttt{for} 循环, 把可选参数一个接一下地传递给 \texttt{arg},
+这次, 我们是通过 \texttt{for} 循环, 把可选参数一个接一个地传递给 \texttt{arg},
 然后再把变量 \texttt{arg} 中的值累加到 \texttt{sum} 上.
 
 如果用户不再想保留某个函数, 可以用下面的命令把它删除:
@@ -1331,8 +1334,8 @@ endfunction
 的 Vim 脚本类型 --- 语法高亮方案. 我们学习到了如何为编程语言 (或其他语法内容)
 创建一个语法高亮文件, 从而得到更好的高亮效果.
 
-之后, 我们讨论如何在实际上使用脚本文件, 介绍了几种 Vim 可用的脚本类型, 以及在
-哪些可以获取到它们. 在这一节结束时, 我们介绍了脚本的安装方法与卸载方法.
+之后, 我们讨论如何使用脚本文件, 介绍了几种 Vim 可用的脚本类型, 以及在
+哪里可以获取到它们. 在这一节结束时, 我们介绍了脚本的安装方法与卸载方法.
 % We ended this session by looking at not only how to install Vim scripts,
 % but also how to uninstall them again afterwards --- a functionality, it turns
 % out you can only easily use after installing a script in Vim.
@@ -1340,12 +1343,12 @@ endfunction
 既然我们已经知道了如何安装以及如何使用脚本, 是时候介绍如何开发 Vim 脚本.
 
 我们首先介绍了 Vim 脚本的基本变量类型, Vim 脚本变量几乎是无类型的 (只有两种基本
-类型). 然而, 我们仍然可以利用这些类型存放各种各样的变量.
+类型). 然而, 我们仍然可以利用这些类型存放各种各样的数据.
 
 在介绍完 Vim 脚本语言的基本结构之后, 我们开始介绍如何创建函数.
 \marginpar{173}
 我们学习到, 通过一个关键词, Vim 就会知道应该如何调用函数. 这就允许我们将函数
-绑定某种特定的变量上, 比如字典变量. 于是, 我们就能定义一些可以直接对字典变量
+绑定到某种特定的变量上, 比如字典变量. 于是, 我们就能定义一些可以直接对字典变量
 进行操作的函数.
 
 在学习完这一章之后, 在下一章, 我们将会介绍如何运用本章所学的知识, 写出一个

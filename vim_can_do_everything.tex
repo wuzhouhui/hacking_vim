@@ -16,7 +16,7 @@
 虽然 Vim 只是一个文本编辑器, 但仍然有很多人开发了大量的脚本, 来让 Vim 完成
 其他一些非编辑任务, 其中包括可以直接在 Vim 中玩的小游戏. 这些小游戏不是那些
 类似于 ``20 个小问题'' 那样的文本类游戏, 而是带有图形界面的. 这些图形界面
-并不完美, 因此它们是用 ASCII 码字符组成的界面, 但对于游戏来说已经足够了.
+并不完美, 因此它们是用 ASCII 字符组成的界面, 但对于游戏来说已经足够了.
 \marginpar{202}
 
 \subsection{生命游戏}
@@ -38,8 +38,8 @@ The Game of Life) 通常被人称为无玩家游戏, 因为这个游戏并不需
 
 1996 年, 一个自称为大胡子艾丽 (Eli the Bearded) 的人开发了一个 Vim 脚本, 该
 脚本实现了生命游戏. 脚本的运行速度并不是非常快, 仅仅是为了阐明游戏的原理.
-对于大多数人来说, 这个游戏非常的枯燥, 但是对于生命游戏迷来说, 这个实现非常
-的游戏.
+对于大多数人来说, 这个游戏非常的枯燥, 但是对于生命游戏迷来说, 这是个非常有趣
+的实现.
 
 可以到下面这个网址下载生命游戏的 Vim 脚本:
 \url{http://www.vanhemert.co.uk/vim/vimacros/life1.vim}.
@@ -58,14 +58,15 @@ The Game of Life) 通常被人称为无玩家游戏, 因为这个游戏并不需
 \marginpar{203}
 
 \begin{center}
-    \includegraphics[scale=0.7]{./images/page203-1.png}
+    \includegraphics[scale=0.6]{./images/page203-1.png}
 \end{center}
 
-脚本的下载地址是 \url{http://www.vim.org/scripts/script.php?script_id=91}.
+脚本的下载地址是 \url{http://www.vim.org/scripts/script.php?script_id=916}.
 
 \subsection{魔方}
 \label{subsec:rubik_s_cube}
 
+% FIXME: 字母 o 本来有个双引号重音
 1974 年, 匈牙利雕刻家兼建筑学教授 Erno Rubik 发明了一个由 27 个小方块组成的
 魔方. 魔方的每一面分别涂上了一种不同的颜色. 如果试图旋转魔方, 那么魔方的颜色
 就会变乱, 游戏的目标就是把一个弄乱了的魔方还原成最初的样子.
@@ -74,16 +75,12 @@ The Game of Life) 通常被人称为无玩家游戏, 因为这个游戏并不需
 个魔方游戏. Vim 版的魔方同样会让玩家花费几个小时的时间, 把魔方复原.
 
 \begin{center}
-    \includegraphics[scale=0.7]{./images/page203-2.png}
+    \includegraphics[scale=0.6]{./images/page203-2.png}
 \end{center}
 
 2004 年, Charles E. Campbel 重新用 Vim 脚本实现了这个游戏, 用户可以在一个空白
 缓冲区中布置一个雷区. 游戏拥有多级难度, 即使用户可以轻易地通过较容易的关卡,
 但是当难度上升时, 游戏会让玩家感到非常得头疼.
-
-脚本的下载地址是
-\url{http://vim.sourceforge.net/scripts/script.php?script_id=551}, 在这个地址
-里还可以看到游戏的安装与使用方法.
 
 \marginpar{204}
 游戏的使用方法与脚本的下载地址是
@@ -93,7 +90,7 @@ The Game of Life) 通常被人称为无玩家游戏, 因为这个游戏并不需
 \label{subsec:tic_tac_toe}
 应该有很多小孩玩过井字棋 (Tic-Tac-Toe) 这个游戏.
 
-1996 年, Kevin Earls 一系列宏命令在 Vim 中实现了这个游戏, 游戏双方分别是人类
+1996 年, Kevin Earls 用一系列宏命令在 Vim 中实现了这个游戏, 游戏双方分别是人类
 玩家和 Vim.
 
 \begin{center}

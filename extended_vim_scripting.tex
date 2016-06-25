@@ -1,5 +1,5 @@
 % vim: ts=4 sts=4 sw=4 tw=80
-\chapter{高级 Vim 脚本编程}
+\chapter{Vim 脚本进阶}
 \label{chap:extended_vim_scripting}
 \marginpar{175}
 
@@ -23,7 +23,7 @@
 前面我们已经介绍了 Vim 脚本的各个要素, 现在我们需要知道如何把它们组织在一起,
 从而形成一个完成的脚本.
 
-在大部分情况下, Vim 脚本仅由单个文件组成, 因此这一间的示例也仅限于单个文件. 我
+在大部分情况下, Vim 脚本仅由单个文件组成, 因此这一章的示例也仅限于单个文件. 我
 们还打算让其他人能够获取到脚本, 因此需要保证代码的可读性.
 
 在下面的几节里, 我们将会逐个介绍一个格式良好的脚本的各个要素.
@@ -41,11 +41,11 @@
 \end{itemize}
 一个示例是:
 \begin{vimcode}
-    " myscript.vim  : Example script to show how a script is structured.
-    " Version       : 1.0.5
-    " Maintainer    : Kim Schulz<kim@schulz.dk>
-    " Last modified : 01/01/2007
-    " License       : This script is released under the Vim License.
+" myscript.vim  : Example script to show how a script is structured.
+" Version       : 1.0.5
+" Maintainer    : Kim Schulz<kim@schulz.dk>
+" Last modified : 01/01/2007
+" License       : This script is released under the Vim License.
 \end{vimcode}
 注意头部信息都是以 \texttt{"} 开始的, 也就是说它们都是一些注释.
 
@@ -76,7 +76,7 @@ let loaded_myscript = 1
 \texttt{loaded\_myscript} 已经存在, 然后函数停止加载脚本.
 \marginpar{177}
 
-在某些情况下, 停止加载脚本可能并不是最好的做法, 因为用户可以修改了
+在某些情况下, 停止加载脚本可能并不是最好的做法, 因为用户可能修改了
 \texttt{VIMHOME} 目录中的脚本版本. 所以, 这时候应该先卸载脚本, 然后再重新加载
 脚本. 完成这项功能的函数可以这样实现:
 \begin{vimcode}
@@ -153,10 +153,10 @@ if !hasmapto('<Plug>MyscriptMyfunctionA')
     map <unique> <Leader>a <Plug>MyscriptMyfunctionA
 endif
 \end{vimcode}
-在上面的代码中包含了一些我们已经没有介绍过的东西:
+在上面的代码中包含了一些我们以前没有介绍过的东西:
 \begin{itemize}
     \item \texttt{hasmapto()}: 用于检查某个函数映射是否存在的函数
-    \item \texttt{<unique>}: 如果相同的映射存在, 则报错.
+    \item \texttt{<unique>}: 如果存在相同的映射存在, 则报错.
     \item \texttt{<Leader>}: 由用户决定使用哪个映射前导字符. \texttt{<Leader>}
         将会被全局变量 \texttt{mapleader} 的值所替换.
     \item \texttt{<Plug>}: 为一个函数建立一个唯一的全局标识符, 这样的话, 它就
@@ -294,8 +294,8 @@ endfunction
 :let &cpo = s:global_cpo
 \end{vimcode}
 \marginpar{182}
-现在, 你手上就已经有了一个完整的脚本, 我们的第一个 Vim 脚本插件.  虽然它的功
-能不是很丰富, 但是它已经展现了一个 Vim 脚本的完整结构. Vim 还有其他几种类型的
+现在, 你手上就已经有了一个完整的脚本, 这是我们的第一个 Vim 脚本插件.  虽然它的功
+能还不是很丰富, 但是它已经展现了一个 Vim 脚本的完整结构. Vim 还有其他几种类型的
 脚本, 比如文件类型插件, 编译器插件, 和库函数脚本, 关于如何编写这些脚本, 可以
 参考:
 \begin{vimcode}
@@ -371,7 +371,7 @@ endif
 \label{subsec:which_version_of_vim}
 
 在最近这二十年, Vim 的快速发展添加了许多新功能, 有时候, 开发人员会在脚本中使用
-最新的函数, 因为它们使用起来最方便. 但是如何用户的 Vim 版本比较老, 没有提供
+最新的函数, 因为它们使用起来最方便. 但是如果用户的 Vim 版本比较老, 没有提供
 相应的函数, 那又该怎么办呢?
 \marginpar{184}
 面对这个问题有三种做法:
@@ -386,7 +386,7 @@ endif
 如果脚本无法处理旧版 Vim, 那么第二个选择是可接受的. 可是, 如果对于旧版有备选
 方案可供选择, 那就最好用上.
 
-现在还讨论如何检查 Vim 的版本.
+现在讨论如何检查 Vim 的版本.
 
 在检查 Vim 的版本之前, 我们得先看一下版本号的结构.
 
@@ -396,7 +396,7 @@ endif
     \item 次版本号 (比如 Vim 7.2 中的 2)
     \item 补丁号 (比如 Vim 7.2.103 中的 103)
 \end{itemize}
-前两个数字是真正的版本号, 当某个补丁或小的特性被应用到 Vim 的某个个版本上时,
+前两个数字是真正的版本号, 当某个补丁或小的特性被应用到 Vim 的某个版本上时,
 只有补丁号会发生变化. 只有当修改足够多时, 次版本号才会发生变化, 只有当 Vim
 的主要部分发生变化时, 主版本号才会发生变化.
 
@@ -612,7 +612,8 @@ VIMHOME/doc/myscript.txt
 \end{itemize}
 
 即使脚本只由单个文件组成, 也最好把它和帮助文件一起打包成一个 ZIP 文件. 这可以
-提醒开发人员时刻更新文档. 在下一节, 我们将会更多地讨论到如何创建 Vim 文档.
+提醒开发人员时刻更新文档. 关于如何创建 Vim 文档, 我们将在下一节进行更深入地
+讨论.
 \marginpar{190}
 
 \subsection{制作 Vimball}
@@ -632,7 +633,7 @@ VIMHOME/doc/myscript.txt
 :enew
 \end{vimcode}
 然后, 写上所有相关的文件路径 (相对于 \texttt{VIMHOME} 目录), 每行一个. 例如,
-对于上面提到过的 ZIP 文件来说, 它包含的文件包括:
+对于上面提到过的 ZIP 文件来说, 它包含的文件有:
 \begin{vimcode}
 plugin/myscript.vim
 doc/myscript.txt
@@ -671,9 +672,9 @@ Vim 有一个非常完善的帮助系统, 几乎涵盖了使用 Vim 的方方面
 现在来看一下如何创建具有链接, 标记等信息的 Vim 文档.
 
 一个 Vim 文档文件就是一个普通的文本文件, 只不过带有一些特殊的标记. 当创建一
-个新的文档文件时, 开头第一行是最重要的, 让我看来看一个例子:
+个新的文档文件时, 开头第一行是最重要的, 让我们来看一个例子:
 \begin{vimcode}
-*docname.txt* sigle line of description
+*docname.txt* single line of description
 \end{vimcode}
 每一个文档文件的第一行的第一个字符必须是 \texttt{*}.
 
@@ -684,7 +685,7 @@ Vim 有一个非常完善的帮助系统, 几乎涵盖了使用 Vim 的方方面
 \begin{vimcode}
 *myscript.txt* Documentation for example script myscript.vim
 \end{vimcode}
-写完这一行后, 就可以开始写文档的真正内容.
+写完这一行后, 就可以开始编写文档的实际内容.
 
 比较典型的做法是以一长串的介绍开始, 详细介绍本文档的主题内容. 这些内容可以
 包括作者的名字与联系方式. 然后, 如果文档比较长的话, 最好添加一个目录 (我们给
@@ -700,7 +701,7 @@ Changed : 01/01/2007
 =============================================================
                                             *myscript-intro*
 
-1. Overview-
+1. Overview~
 \end{vimcode}
 \marginpar{192}
 \begin{vimcode}
@@ -783,16 +784,16 @@ An example of usage could be: >
 的某个关键词已经被其他人使用过了, Vim 就会发出警告, 此时开发人员应该修改关键
 词, 然后重新发布文档.
 
-\begin{vimcode}
+\begin{warning}
 	想让自己的文档以多种语言发布? 请参考 \texttt{:help 'help-translated'}.
-\end{vimcode}
+\end{warning}
 \marginpar{194}
 
 \section{使用外部解释器}
 \label{sec:using_external_interpreters}
 
 虽然开发人员几乎可以用 Vim 脚本完成任意的工作, 不过有时候借用其他语言可能会
-更适合. Vim 开发人员很早以前就已经注意到这点, 因此他们在 Vim 中加入了对其他
+更好一点. Vim 开发人员很早以前就已经注意到这点, 因此他们在 Vim 中加入了对其他
 脚本语言的支持. 在这些脚本语言中, 读者要重点关注以下三种:
 \begin{itemize}
 	\item Perl
@@ -819,9 +820,9 @@ vim --version
 
 除了在命令行查看, 还可以在启动 Vim 后, 用函数 \texttt{has()} 来检查:
 \begin{vimcode}
-:echo has("perl");
-:echo has("python");
-:echo has("ruby");
+:echo has("perl")
+:echo has("python")
+:echo has("ruby")
 \end{vimcode}
 如果支持, 则命令返回 \texttt{1}.
 \marginpar{195}
@@ -840,8 +841,8 @@ Vim 会话期间都一直有效.
 
 用户经常会一次执行多个 Perl 命令, 这时候可以用下面这种形式的执行方式:
 \begin{vimcmdform}
-\texttt{:perl << }\textit{endpattern}
-\phantom{    }\texttt{perl code here}
+\texttt{:perl << }\textit{endpattern} \\
+\textit{perl code here} \\
 \textit{endpattern}
 \end{vimcmdform}
 上面的命令会执行第一个 \textit{endpattern} 与最后一个 \textit{endpattern}
@@ -883,7 +884,7 @@ Perl.
 
 始终把 Perl 代码封装在 Vim 函数中是个不错的主意. 这种方法很容易实现, 而且对
 于经验不主的用户来说, 脚本看起来与其他 Vim 脚本没什么区别. 把 Perl 代码封
-装在 Vim 脚本的例子可以这样写:
+装在 Vim 函数中的例子可以这样写:
 \begin{vimcode}
 function MoveCursor(row,col)
 	if has("perl")
@@ -902,7 +903,7 @@ endfunction
 
 如果当前的 Vim 版本不支持 Perl, 函数就会打印一条关于这个事件的消息. 注意,
 即使其他代码是缩进过了, 但我们仍然把 \texttt{EOF} 写在一行中最靠左的位置上.
-为了能让 Vim 准确识别出 \textit{endpattern}, 我们必须严格遵守.
+为了能让 Vim 准确识别出 \textit{endpattern}, 我们必须严格遵守这条规则.
 
 \subsection{Python}
 \label{subsec:vim_scripting_in_python}
@@ -923,15 +924,15 @@ endfunction
 	\item 如果想要一次执行大量的 Python 代码, 可以用:
 	\begin{vimcmdform}
 	\texttt{:python << }\textit{endpattern} \\
-	\texttt{python statements here} \\
+	\textit{python statements here} \\
 	\textit{endpattern}
 	\end{vimcmdform}
-	它们执行 \texttt{endpattern} 之间的所有 Python 代码.
+	它们执行 \textit{endpattern} 之间的所有 Python 代码.
 
 	\item 最后一种方法是在 Vim 中执行一个 Python 脚本, 比如:
-	\begin{vimcode}
-	:pyfile file.py
-	\end{vimcode}
+\begin{vimcode}
+:pyfile file.py
+\end{vimcode}
 	可以把 \texttt{file.py} 替换成任意一个你想要执行的 Python 脚本.
 \end{enumerate}
 
@@ -970,9 +971,9 @@ window.cursor = (1,1)
 在西方国家, Ruby 直到最近才成为一门流行的编程语言, 但是早在这之前, Ruby 就
 在亚洲流行开了, 而且, 自从它成为 Web 开发的脚本语言之后, 越来越多的程序员
 开始喜欢上它. Ruby 最大的优点是它是一门真正的面向对象编程语言, 因此 Ruby 是
-模块化.
+模块化的.
 
-Vim 对 Ruby 的支持非常完美, 因此用户可以在 Vim 中运行 Ruby 代码, 执行的方式
+Vim 对 Ruby 的支持非常完善, 因此用户可以在 Vim 中运行 Ruby 代码, 执行的方式
 有很多种, 其中最简单的一种是 \texttt{:ruby}\ \textit{command}.
 
 把 \textit{command} 替换成任意一个单行的 Ruby 命令, 比如:
@@ -1035,7 +1036,7 @@ EOF
 \end{warning}
 
 \section{小结}
-\label{sec:basic_vim_scripting_summary}
+\label{sec:extended_vim_scripting_summary}
 
 这一章主要是为那些想开发 Vim 脚本的人写的.
 
@@ -1043,7 +1044,7 @@ EOF
 中, 我们采用了自顶向下的方法, 并且逐行地介绍了脚本中的每一行.
 
 一个很重要的一点是, 脚本开发人员无法预知用户是如何配置它们的 Vim 的, 因此,
-脚本需要检查某个设置是否可用, 而且不能破坏用户已经的设置.
+脚本需要检查某个设置是否可用, 而且不能破坏用户已有的设置.
 
 我们学习了如何在脚本作用域内使用变量与函数, 这样就避免了污染全局作用域.
 通过限定作用域, 可以确保用户只能访问到和他们相关的功能.
@@ -1052,7 +1053,7 @@ EOF
 % is available to him or her.
 
 在查看了几个 Vim 脚本的结构之后, 我们介绍了如何检查一些先决条件, 比如操作系统
-与 Vim 版本, 以便在继续执行之前, 判断某些需求是否满足.
+与 Vim 版本, 以便在继续执行之前, 判断某些条件是否满足.
 \marginpar{200}
 
 学习了如何创建 Vim 脚本之后, 我们介绍了如何调试 Vim 脚本. 这一节介绍了 Vim 的
@@ -1061,7 +1062,7 @@ EOF
 脚本编写完成并且没有错误后, 接下来就可以发布脚本了. 这一节介绍了如何发布脚本,
 这样的话, 其他人就可以安装并使用你的脚本.
 
-文档是已发布脚本的非常重要的一部分, 这一节介绍了如何使用 Vim 标记来编写文档.
+文档是已发布脚本非常重要的一部分, 这一节介绍了如何使用 Vim 标记来编写文档.
 通过使用这些标记, Vim 的帮助系统就可以检索到我们自己编写的文档, 而且在文档
 中跳转也很方便.
 
@@ -1075,11 +1076,11 @@ EOF
 我们逐一介绍了如何在 Vim 中执行这三种脚本语言, 对于 Python 与 Ruby, Vim 还
 可以直接执行整个 Pyton 或 Ruby 脚本文件.
 
-我们还介绍了这三种语言都提供了用于和 Vim 交互的模块, 这些模块可以访问 Vim 的
+我们还看到这三种语言都提供了用于和 Vim 交互的模块, 这些模块可以访问 Vim 的
 许多信息, 因此开发人员可以直接在这些语言脚本中控制 Vim.
 
 看到这里, 读者就有能力自己编写 Vim 脚本, 调试它们并发布. 在附录里, 我们将会
-看到某些 Vim 用户开发的脚本几乎可以让 Vim 完成任意的事情.
+看到某些 Vim 用户开发的脚本几乎可以让 Vim 无所不能.
 % Puting page number in next chapter.
 % \marginpar{201}
 % end of chapter 7
