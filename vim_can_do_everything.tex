@@ -164,3 +164,41 @@ Linux 游戏 XSokoban. Mike Sharpe 尽量保持了用户接口的简单, 但游�
 
 首先来看一下集成开发环境应该提供哪些功能.
 \marginpar{207}
+
+一个典型的集成开发环境, 比如 Microsoft Windows Visual Studio\textregistered,
+包括了下面这些组件:
+\begin{itemize}
+    \item 支持自动缩进, 语法高亮, 自动补全的编辑器
+    \item 集成的编译器, 如果编译出错, 可以直接跳转到出错的地方
+    \item 集成的调试器
+    \item 文件浏览器
+    \item 项目浏览器
+    \item 标签浏览器, 通过它可以快速查看变量, 函数, 方法, 类
+    \item 支持在文件间, 或定义间快速跳转
+    \item 可能还集成了版本控制系统
+\end{itemize}
+那么, Vim 是否支持上面所说的全部特性呢? 现在我们逐条分析各个特性, 看一下 Vim
+如何才能支持它们.
+
+第一条是显而易见的, Vim 本身就是一个功能丰富的编辑器.
+
+第二条是编译器的集成. Vim 通常用于编程工作, 因此它本身就支持编译器集成. 对
+常见的编程语言来说, 和编译器集成相关的设置在 Vim 中本来就是设置好了的. 如果
+不是, 可以用下面的方法查看如何设置它们:
+\begin{vimcode}
+:help compiler
+\end{vimcode}
+编译器集成通常会用到另一个功能: quickfix 列表. 当出现编译错误时, 程序员可以通
+过这个列表跳转到出错的代码, 在各个错误之间前进或后退, 修正错误, 然后重新编译.
+
+关于 quickfix 列表的更多信息, 可以查看:
+\begin{vimcode}
+:help quickfix
+\end{vimcode}
+
+下一条是集成的调试器. 和前一条不同的是, 对调试器的支持并不是 Vim 的标准特性.
+但是有几个脚本可以帮助 Vim 集成调试器. 如果是 Linux, 可以用 VimDebug, 这个脚
+本可以让 Vim 集成 gdb (C/C++ 调试器), jdb (Java 调试器), pdb (Python 调试器),
+以及 Perl 调试器. 脚本的下载地址是
+\url{http://www.vim.org/scripts/script.php?script_id=663}.
+\marginpar{208}
