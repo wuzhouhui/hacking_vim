@@ -297,3 +297,19 @@ IRC 客户端版本众多, 2004 年, 日本人 Madoka Machitani 在 Vim 中实�
 聊天. 在该客户端中还可以使用 Vim 命令, 比如 \texttt{I}, \texttt{/},
 \texttt{?} 等.
 \marginpar{212}
+
+不过, 在 Vim 中聊天会有一个小问题. 为了让聊天保持在线, 客户端会执行一个循环
+来不停地更新所有的东西. 如果用户移动到另一个和 IRC 客户端无关的缓冲区, 循环
+就会停止, 用户的聊天网络最终就会断开. 解决这个问题的技巧是让客户端在自己的
+Gvim 或 Vim 中启动, 这可以在命令行中完成:
+\begin{vimcode}
+gvim -i NONE -i .vimircrc -c VimIRC
+\end{vimcode}
+命令行中的 \texttt{.vimircrc} 是 VimIRC 配置文件的路径.
+
+VimIRC 的下载地址是 \url{http://www.vim.org/scripts/script.php?script_id=931}.
+
+\begin{warning}
+    Vim 用户常去的 IRC 网络与频道分别是 \texttt{irc.freenode.net} 和
+    \texttt{\#vim}.
+\end{warning}
