@@ -280,8 +280,8 @@ Elentok 的脚本的下载地址是
 \section{聊天}
 \label{sec:chat_with_vim}
 
-在如今这个时代里, 我们几乎找不到一台没有安装聊天程序的计算机, 但在过去可这是
-这样, 回到 20 世纪 80 年代后期, 当时因特网上的聊天仅限于 BBS 的公告板. 到了
+在如今这个时代, 我们几乎找不到一台没有安装聊天程序的计算机, 但在过去可不是
+这样. 回到 20 世纪 80 年代后期, 当时因特网上的聊天仅限于 BBS 的公告板. 到了
 1988 年, 芬兰人 Jarkko Oikarinen 开发一个客户端/服务器模式的聊天程序 ---
 Internet Relay Chat (IRC). 在接下来的十年, IRC 成为了一款非常流行的聊天程序,
 越来越多的人开始加入到聊天网络中. IRC 的使用方法非常简单: 下载一个 IRC 客户
@@ -294,6 +294,51 @@ Internet Relay Chat (IRC). 在接下来的十年, IRC 成为了一款非常流�
 
 IRC 客户端版本众多, 2004 年, 日本人 Madoka Machitani 在 Vim 中实现了一个 IRC
 客户端, 他把它叫作 VimIRC. VimIRC 功能丰富, 支持同时在多个网络的聊天频道中
-聊天. 在该客户端中还可以使用 Vim 命令, 比如 \texttt{I}, \texttt{/},
+聊天, 在客户端中还可以使用 Vim 命令, 比如 \texttt{I}, \texttt{/},
 \texttt{?} 等.
 \marginpar{212}
+
+不过, 在 Vim 中聊天会有一个小问题. 为了让聊天保持在线, 客户端会执行一个循环
+来不停地更新所有的东西. 如果用户移动到另一个和 IRC 客户端无关的缓冲区, 循环
+就会停止, 用户的聊天网络最终就会断开. 解决这个问题的技巧是让客户端在自己的
+Gvim 或 Vim 中启动, 这可以在命令行中完成:
+\begin{vimcode}
+gvim -i NONE -i .vimircrc -c VimIRC
+\end{vimcode}
+命令行中的 \texttt{.vimircrc} 是 VimIRC 配置文件的路径.
+
+VimIRC 的下载地址是 \url{http://www.vim.org/scripts/script.php?script_id=931}.
+
+\begin{warning}
+    Vim 用户常去的 IRC 网络与频道分别是 \texttt{irc.freenode.net} 和
+    \texttt{\#vim}.
+\end{warning}
+
+\section{Twitter 客户端}
+\label{sec:using_vim_as_a_twitter_client}
+
+最近几年社交网络变得越来越流行, Twitter (\url{http://www.twitter.com}) 是最流
+行的社区平台之一, 它的主要功能是和朋友分享 ``状态更新''.
+
+Po Shan Cheah 开发了一个 Vim 脚本, 使用这个脚本就可以在 Vim 中阅读朋友的状态
+更新, 还可以直接发送自己的状态更新, 以及向 Twitter 朋友发送私人消息.
+
+脚本的名字是 TwitVim, 下载地址是
+\url{http://www.vim.org/scripts/script.php?script_id=2204}.
+
+脚本的输出非常简单, 主要是列出用户所请求的朋友的最近一次状态更新, 它的示例输
+出如下图所示:
+\marginpar{213}
+\begin{center}
+    \includegraphics[scale=0.5]{./images/page213.png}
+\end{center}
+
+TwitVim 使用命令行程序 cURL (\url{http://curl.haxx.se/}) 从 Twitter 上抓取
+信息, 因此在使用 TwitVim 之前, 要先下载安装 cURL.
+
+\begin{warning}
+    关于 Twitter 的更多信息, 请登录 \url{http://www.twitter.com}, 在那里可
+    以免费注册一个账号.
+\end{warning}
+
+% End of appendix A
