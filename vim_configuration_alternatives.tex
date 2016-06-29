@@ -57,5 +57,8 @@
 	有时候, \texttt{vimrc} 可能会变得非常巨大, 无论怎么组织都显得非常混乱. 对
 	于这种情况, 最好把它切分成多个文件. 为了切分 \texttt{vimrc}, 首先把需要分
 	出的内容剪切到另一个文件中, 文件名最好能描述出文件的作用, 然后在
-	\texttt{vimrc} 中原来的位置用 \texttt{source} 命令
+	\texttt{vimrc} 中原来的位置用 \texttt{source} 命令从新文件读取命令.
+	比如, 我们把和按键映射相关的设置命令都剪切到 \texttt{mappings.vim},
+	然后在 \texttt{vimrc} 中添加 \texttt{source \$HOME/.vim/mappings.vim}.
 \end{enumerate}
+\marginpar{217}
