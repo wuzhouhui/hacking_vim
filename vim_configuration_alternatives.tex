@@ -60,5 +60,14 @@
 	\texttt{vimrc} 中原来的位置用 \texttt{source} 命令从新文件读取命令.
 	比如, 我们把和按键映射相关的设置命令都剪切到 \texttt{mappings.vim},
 	然后在 \texttt{vimrc} 中添加 \texttt{source \$HOME/.vim/mappings.vim}.
-\end{enumerate}
+
 \marginpar{217}
+    \item 测试时使用其他文件
+
+    从前, 当笔者想要测试某段新的 Vim 脚本代码或者宏时, 通常会把它们添加到
+    \texttt{vimrc} 的末尾, 在测试结束后, 笔者往往会忘记把它们删除, 经过一段
+    时间后, \texttt{vimrc} 就充满了我的测试代码. 为了避免重蹈我的覆辙, 读者
+    应该把测试代码写在另一个文件中, 然后用 \texttt{source} 命令执行文件中的
+    测试代码. 如果觉得不错, 就把代码移动到适当的地方, 否则, 只要把文件删掉即
+    可.
+\end{enumerate}
