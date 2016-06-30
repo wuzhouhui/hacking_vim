@@ -60,5 +60,45 @@
 	\texttt{vimrc} 中原来的位置用 \texttt{source} 命令从新文件读取命令.
 	比如, 我们把和按键映射相关的设置命令都剪切到 \texttt{mappings.vim},
 	然后在 \texttt{vimrc} 中添加 \texttt{source \$HOME/.vim/mappings.vim}.
-\end{enumerate}
+
 \marginpar{217}
+    \item 测试时使用其他文件
+
+    从前, 当笔者想要测试某段新的 Vim 脚本代码或者宏时, 通常会把它们添加到
+    \texttt{vimrc} 的末尾, 在测试结束后, 笔者往往会忘记把它们删除, 经过一段
+    时间后, \texttt{vimrc} 就充满了我的测试代码. 为了避免重蹈我的覆辙, 读者
+    应该把测试代码写在另一个文件中, 然后用 \texttt{source} 命令执行文件中的
+    测试代码. 如果觉得不错, 就把代码移动到适当的地方, 否则, 只要把文件删掉即
+    可.
+
+	\item 为不同的操作系统使用不同的文件
+
+	如果读者也像我一样, 在多个不同的系统中使用 Vim, 可能会发现有些配置不能
+	适应全部的系统. 原因可能是因为有些设置是和操作系统相关的, 又或者是硬件
+	配置不一样, 比如说有些系统的屏幕比较小, 而另一些则比较大. 如果出现这样
+	的情况, 最好把系统相关的设置写在不同的文件中, 然后把通用的文件拷到所有
+	的系统中, 再把系统相关的配置文件拷到各自的系统中.
+\end{enumerate}
+
+如果读者能够严格遵守这些技巧, 就很有希望把 \texttt{vimrc} 保持在一个非常整洁
+的状态下, 这样的话, 无论想修改什么内容, 你都能快速地找到.
+
+\section{vimrc 设置系统}
+\label{sec:a_vimrc_setup_system}
+
+使用 Vim 时, 为了永久地更改某项配置, 用户需要打开配置文件, 修改后再保存. 如果
+只是在 Vim 中修改, 而没有写到配置文件中, 程序退出后, 所有的修改都会丢失.
+
+假如有这样一个脚本, 它提供了一个设置菜单, 用户在其中所做的修改在程序退出后
+仍然有效, 那将会怎样? Jos van RisWick 就开发出了这样的脚本.
+
+通过使用他的脚本, 并按照他的语法来创建 \texttt{vimrc}, 用户不仅可以使新的配置
+持久化, 还可以根据向导的指引, 一步步地对配置加以修改.
+
+实现向导的方式是把配置项周围的注释用作占位符.
+% FIXME
+% This is achieved by using the comments surrounding the setting as a
+% placeholder for the information you are shown in the setup wizard.
+笔者发现这个脚本非常聪明, 而且和我们通常用的不太一样, 所以我们在这里简单地介绍
+一下如何使用它.
+\marginpar{218}
