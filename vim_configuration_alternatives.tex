@@ -22,3 +22,123 @@
 想要的内容, 笔者就曾经遇到过这种情况, 当时我的 \texttt{vimrc} 超过了 2000 行,
 到那时我才意识到整洁的必要性. 保持 \texttt{vimrc} 整洁并组织良好的技巧有:
 \marginpar{216}
+\begin{enumerate}
+	\item 保持 Vim 处于非兼容模式
+
+	这个技巧可能并不会让 \texttt{vimrc} 更整洁, 至少不能马上看出来, 然而
+	它却非常重要. 让 Vim 处于非兼容模式下就可以打开许多特性, 而这些特性
+	会被很多技巧和脚本使用到. 所以, 最好在 \texttt{vimrc} 的第一行总是写上
+	\texttt{set nocompatible}.
+	
+	\item 使用注释
+
+	有时候, 我们会在 Vim 中改变一些设置, 然后再把设置添加到 \texttt{vimrc},
+	过一段时间后, 当我们想要清理 \texttt{vimrc} 时, 就会发现我们已经记不住
+	某段脚本是干嘛的, 以及为什么要添加它, 甚至连代码是哪儿来的都已经记不清
+	了. 为了防止这种情况发生, 那就给新加的东西写上注释. 笔者建议在注释中包含这
+	些内容: 代码的作用 (描述), 从哪儿得到的 (来源), 代码的原作者. 有了注释的
+	帮助, 用户就能够方便地查询到代码的来源, 以及决定是否需要删除它们. 注释
+	用引号开始, 比如 \texttt{"This is a comment}.
+
+	\item 数据分组
+
+	脚本通常需要一些额外的设置, 或者是用户想要为脚本中的某些功能设置一些额外
+	的按键绑定 (映射). 为了能更方便地看出设置的归属, 最好为数据分组. 分组的
+	条件有很多种, 笔者推荐以下这些 (按照在文件中出现的顺序, 从上到下排列):
+	\begin{itemize}
+	  \item 通用的全局设置
+	  \item 自己私有的按键映射
+	  \item 特定于脚本的设置, 按脚本分组
+	  \item 其他设置
+	\end{itemize}
+
+	\item 使用多个文件
+	
+	有时候, \texttt{vimrc} 可能会变得非常巨大, 无论怎么组织都显得非常混乱. 对
+	于这种情况, 最好把它切分成多个文件. 为了切分 \texttt{vimrc}, 首先把需要分
+	出的内容剪切到另一个文件中, 文件名最好能描述出文件的作用, 然后在
+	\texttt{vimrc} 中原来的位置用 \texttt{source} 命令从新文件读取命令.
+	比如, 我们把和按键映射相关的设置命令都剪切到 \texttt{mappings.vim},
+	然后在 \texttt{vimrc} 中添加 \texttt{source \$HOME/.vim/mappings.vim}.
+
+\marginpar{217}
+    \item 测试时使用其他文件
+
+    从前, 当笔者想要测试某段新的 Vim 脚本代码或者宏时, 通常会把它们添加到
+    \texttt{vimrc} 的末尾, 在测试结束后, 笔者往往会忘记把它们删除, 经过一段
+    时间后, \texttt{vimrc} 就充满了我的测试代码. 为了避免重蹈我的覆辙, 读者
+    应该把测试代码写在另一个文件中, 然后用 \texttt{source} 命令执行文件中的
+    测试代码. 如果觉得不错, 就把代码移动到适当的地方, 否则, 只要把文件删掉即
+    可.
+
+	\item 为不同的操作系统使用不同的文件
+
+	如果读者也像我一样, 在多个不同的系统中使用 Vim, 可能会发现有些配置不能
+	适应全部的系统. 原因可能是因为有些设置是和操作系统相关的, 又或者是硬件
+	配置不一样, 比如说有些系统的屏幕比较小, 而另一些则比较大. 如果出现这样
+	的情况, 最好把系统相关的设置写在不同的文件中, 然后把通用的文件拷到所有
+	的系统中, 再把系统相关的配置文件拷到各自的系统中.
+\end{enumerate}
+
+如果读者能够严格遵守这些技巧, 就很有希望把 \texttt{vimrc} 保持在一个非常整洁
+的状态下, 这样的话, 无论想修改什么内容, 你都能快速地找到.
+
+\section{vimrc 配置系统}
+\label{sec:a_vimrc_setup_system}
+
+使用 Vim 时, 为了永久地更改某项配置, 用户需要打开配置文件, 修改后再保存. 如果
+只是在 Vim 中修改, 而没有写到配置文件中, 程序退出后, 所有的修改都会丢失.
+
+假如有这样一个脚本, 它提供了一个设置菜单, 用户在其中所做的修改在程序退出后
+仍然有效, 那将会怎样? Jos van RisWick 就开发出了这样的脚本.
+
+通过使用他的脚本, 并按照他的语法来创建 \texttt{vimrc}, 用户不仅可以反新的配置
+持久化, 还可以根据向导的指引, 一步步地对配置加以修改.
+
+实现向导的方式是把配置项周围的注释用作占位符.
+% FIXME
+% This is achieved by using the comments surrounding the setting as a
+% placeholder for the information you are shown in the setup wizard.
+笔者发现这个脚本非常聪明, 而且和我们通常用的不太一样, 所以我们在这里简单地介绍
+一下如何使用它.
+\marginpar{218}
+
+脚本的下载地址是 \url{http://www.vim.org/scripts/script.php?script_id=1894},
+下载的压缩包中包含了下面这些文件:
+\begin{itemize}
+  \item \texttt{setup.vim}: 主要的脚本
+  \item \texttt{array.vim}: 包含了处理字符串数组的函数
+  \item \texttt{arrayg.vim}: 包含了处理全局字符串数组的函数
+  \item \texttt{strfun.vim}: 包含了字符串处理函数
+  \item \texttt{tableaf.vim}: 用来在配置系统中显示 tab leaf
+    % TODO
+	% Script used to display tab leafs in the setup system
+\end{itemize}
+
+安装脚本的方法是把压缩包解压到 \texttt{VIMHOME} 目录下, 解压后, 文件就自动
+放到了 \texttt{plugin/} 子目录中.
+
+现在, 用户就可以准备好修改 \texttt{vimrc}, 但是在修改之前最好做个备份.
+
+在我们开始往 \texttt{vimrc} 添加设置之前, 先来看一下配置系统的使用语法. 前
+面我们已经说过, 技巧就是配置项周围的注释. 这些注释包含了很特殊的语法, 这样
+脚本才能知道这些注释是嘛用的, 语法的基本规则是
+\texttt{"|ID|tabname|text|command|extra|val1|val2|val3|}.
+
+其中每一项的意义如下表所示:
+\begin{center}
+  \begin{tabular}{ll}
+  \hline
+  项名 & 意义 \\
+  \hline
+   \texttt{"}	& 开始一个注释 \\
+   \texttt{ID}	& 一个标识符, 脚本可以用它来区分不同的配置组. 当脚本启动时,
+     用户要告诉脚本应该处理哪个配置组 \\
+   \texttt{tabname} & 应用配置的标签的名字 (在脚本中称为 leaf) \\
+   \texttt{text} & 和配置相关的文本信息 \\
+   \texttt{command} & 配置项所要执行的实际命令, 比如 \texttt{set textwidth=},
+     注意, 不需要填上具体的值
+	\hline
+  \end{tabular}
+\end{center}
+\marginpar{219}
