@@ -83,7 +83,7 @@
 如果读者能够严格遵守这些技巧, 就很有希望把 \texttt{vimrc} 保持在一个非常整洁
 的状态下, 这样的话, 无论想修改什么内容, 你都能快速地找到.
 
-\section{vimrc 设置系统}
+\section{vimrc 配置系统}
 \label{sec:a_vimrc_setup_system}
 
 使用 Vim 时, 为了永久地更改某项配置, 用户需要打开配置文件, 修改后再保存. 如果
@@ -102,3 +102,43 @@
 笔者发现这个脚本非常聪明, 而且和我们通常用的不太一样, 所以我们在这里简单地介绍
 一下如何使用它.
 \marginpar{218}
+
+脚本的下载地址是 \url{http://www.vim.org/scripts/script.php?script_id=1894},
+下载的压缩包中包含了下面这些文件:
+\begin{itemize}
+  \item \texttt{setup.vim}: 主要的脚本
+  \item \texttt{array.vim}: 包含了处理字符串数组的函数
+  \item \texttt{arrayg.vim}: 包含了处理全局字符串数组的函数
+  \item \texttt{strfun.vim}: 包含了字符串处理函数
+  \item \texttt{tableaf.vim}: 用来在配置系统中显示 tab leaf
+    % TODO
+	% Script used to display tab leafs in the setup system
+\end{itemize}
+
+安装脚本的方法是把压缩包解压到 \texttt{VIMHOME} 目录下, 解压后, 文件就自动
+放到了 \texttt{plugin/} 子目录中.
+
+现在, 用户就可以准备好修改 \texttt{vimrc}, 但是在修改之前最好做个备份.
+
+在我们开始往 \texttt{vimrc} 添加设置之前, 先来看一下配置系统的使用语法. 前
+面我们已经说过, 技巧就是配置项周围的注释. 这些注释包含了很特殊的语法, 这样
+脚本才能知道这些注释是嘛用的, 语法的基本规则是
+\texttt{"|ID|tabname|text|command|extra|val1|val2|val3|}.
+
+其中每一项的意义如下表所示:
+\begin{center}
+  \begin{tabular}{ll}
+  \hline
+  项名 & 意义 \\
+  \hline
+   \texttt{"}	& 开始一个注释 \\
+   \texttt{ID}	& 一个标识符, 脚本可以用它来区分不同的配置组. 当脚本启动时,
+     用户要告诉脚本应该处理哪个配置组 \\
+   \texttt{tabname} & 应用配置的标签的名字 (在脚本中称为 leaf) \\
+   \texttt{text} & 和配置相关的文本信息 \\
+   \texttt{command} & 配置项所要执行的实际命令, 比如 \texttt{set textwidth=},
+     注意, 不需要填上具体的值
+	\hline
+  \end{tabular}
+\end{center}
+\marginpar{219}
