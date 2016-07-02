@@ -143,21 +143,23 @@
 \end{center}
 \marginpar{219}
 \begin{center}
-	\begin{tabular}{ll}
+	\begin{tabular}{lp{30em}}
+	\hline
 	  \texttt{extra} & 比如说, 如果命令是一个映射, 则变量部分就是被映射的
 	  按键, 这时候用户还需要设置映射到的命令, 命令就是填在 \texttt{extra} 字
 	  段中, 如果不需要它, 就留空 \\
 
 	  \texttt{val1}-\texttt{val3} & 命令参数的默认值, 在配置系统中可以按
-	  Tab 键来遍历这三个值.
+	  Tab 键来遍历这三个值. \\
+	\hline
 	\end{tabular}
 \end{center}
 
 再在来看一个例子:
 \begin{vimcode}
-"|SETTING|Layout|Set the text width|set tw=|50|70|90|
+"|SETTINGS|Layout|Set the text width|set tw=|50|70|90|
 set tw=60
-"|SETTING|Layout|Show a ruler?|let &ruler=||0|1|
+"|SETTINGS|Layout|Show a ruler?|let &ruler=||0|1|
 let &ruler=1
 \end{vimcode}
 这个例子展示了设置 Vim 的两种典型方法 --- 用 \texttt{set} 与 \texttt{let} 来
@@ -167,7 +169,7 @@ let &ruler=1
 
 如果只是想在 tab 中添加一个注释, 只需要把命令替换成 \verb'%', 比如:
 \begin{vimcode}
-"|SETTING|Layout|Here you will find layout settings|%|
+"|SETTINGS|Layout|Here you will find layout settings|%|
 \end{vimcode}
 用户还可以利用它来插入空行, 这些空行将作为间距来使用, 方法是用空格替换掉文本.
 
@@ -178,6 +180,6 @@ let &ruler=1
 \begin{vimcode}
 " Import settings from these files HERE:
 let setup_files=Arr("settings.vim", "mappings.vim", "scripts.vim")
-let setup_group="SETTING"
+let setup_group="SETTINGS"
 \end{vimcode}
 \marginpar{220}
