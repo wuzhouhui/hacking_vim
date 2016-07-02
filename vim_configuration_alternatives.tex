@@ -175,11 +175,56 @@ let &ruler=1
 
 接下来讨论如何设置脚本.
 
-设置脚本的地方在 \texttt{setup.vim}, 在脚本中搜索 \texttt{HERE}, 找到该单词
+设置脚本的地方在 \texttt{setup.vim}, 在脚本中搜索 \texttt{HERE2}, 找到该单词
 出现的第二个地方, 你将会看到:
 \begin{vimcode}
-" Import settings from these files HERE:
+" Import settings from these files HERE2:
 let setup_files=Arr("settings.vim", "mappings.vim", "scripts.vim")
 let setup_group="SETTINGS"
 \end{vimcode}
 \marginpar{220}
+
+\texttt{setup\_files} 是一个数组, 数组中的每一个元素都是一个文件名, 文件包含
+了设置信息. 在上面的例子中, 我们用到了 \texttt{settings.vim},
+\texttt{mappings.vim}, \texttt{scripts.vim} 这三个文件.
+
+第二条命令告诉脚本当前设置使用哪一个配置组. 在示例中我们用的是
+\texttt{SETTINGS}, 因此如果某个设置的注释以 \texttt{|SETTINGS|} 开始, 那么这
+个设置就会被用到.
+
+在开始使用配置向导之前, 在 \texttt{setup.vim} 中还有一项需要修改.
+
+由于设置分散在多个文件中, 我们需要让 Vim 意识到这点, 因此 \texttt{vimrc} 要
+包含 (在 Vim 中称为 source) 这些文件, 除此之外, 为了让修改生效, 还要让 Vim
+重新加载 \texttt{vimrc}, 为了处理这种情况, 我们也提供了一个特殊的设置.
+
+在 \texttt{setup.vim} 中搜索 \texttt{HERE1}, 找到单词出现的第二个地方, 用户
+将会看到:
+\begin{vimcode}
+autocmd bufleave _setup source ~/.vimrc
+\end{vimcode}
+当用户离开配置向导时就会执行 \texttt{source \~/.vimrc}. 如果需要的话, 用户
+还可以添加其他外部配置文件.
+
+现在讨论如何启动 Vim 配置向导, 并在向导中导航. 为了启动配置向导, 先切换到普通
+模式, 然后按下 \texttt{s}, 启动后, 光标位于第一个 tab 的第一个设置上. 在向导
+中有很多快捷键可以使用:
+\begin{center}
+  \begin{tabular}{ll}
+    \hline
+	快捷键  & 描述 \\
+    \hline
+    \texttt{r} 或 \texttt{R}  & 进行替换模式 \\
+	\texttt{s} & 保存后退出 \\
+	\texttt{q} & 不保存退出 \\
+	\texttt{<space>} & 遍历所有的 tab leaf \\
+	\texttt{j} & 跳转到当前 tab leaf 的下一个设置 \\
+	\texttt{k} & 跳转到当前 tab leaf 的上一个设置 \\
+	\texttt{<tab>} & 显示被选中的设置的可选值 \\
+	\texttt{<cr>} & 接收当前行的修改 \\
+	\texttt{<esc>} & 重新绘制当前的 tab leaf (普通模式) \\
+	\texttt{<esc>} & 丢弃修改 (插入或替换模式) \\
+	\hline
+  \end{tabular}
+\end{center}
+\marginpar{221}
