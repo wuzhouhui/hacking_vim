@@ -259,7 +259,7 @@ function! GetNetVimrc(vimrc_url)
 endfunction
 \end{vimcode}
 \marginpar{222}
-读取 \texttt{vimrc} 的所有操作都在 \texttt{GetNetVimrc}. 函数的输入参数是
+读取 \texttt{vimrc} 的所有操作都在 \texttt{GetNetVimrc} 中完成. 函数的输入参数是
 \texttt{vimrc} 的 URL 地址, 函数开始时先加载 \texttt{netrw} 插件, 加载后
 Vim 就可以使用网络读写功能, 然后, 调用 \texttt{Nread} 从网络上读取
 \texttt{vimrc} 到当前缓冲区, 再把文件的内容写到一个临时文件, 加载它, 最后再
