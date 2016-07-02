@@ -203,7 +203,7 @@ let setup_group="SETTINGS"
 \begin{vimcode}
 autocmd bufleave _setup source ~/.vimrc
 \end{vimcode}
-当用户离开配置向导时就会执行 \texttt{source \~/.vimrc}. 如果需要的话, 用户
+当用户离开配置向导时就会执行 \verb'source ~/.vimrc'. 如果需要的话, 用户
 还可以添加其他外部配置文件.
 
 现在讨论如何启动 Vim 配置向导, 并在向导中导航. 为了启动配置向导, 先切换到普通
@@ -214,12 +214,12 @@ autocmd bufleave _setup source ~/.vimrc
     \hline
 	快捷键  & 描述 \\
     \hline
-    \texttt{r} 或 \texttt{R}  & 进行替换模式 \\
+    \texttt{r} 或 \texttt{R}  & 进入替换模式 \\
 	\texttt{s} & 保存后退出 \\
 	\texttt{q} & 不保存退出 \\
 	\texttt{<space>} & 遍历所有的 tab leaf \\
 	\texttt{j} & 跳转到当前 tab leaf 的下一个设置 \\
-	\texttt{k} & 跳转到当前 tab leaf 的上一个设置 \\
+	\texttt{k} & 跳转到当前 tab leaf 的前一个设置 \\
 	\texttt{<tab>} & 显示被选中的设置的可选值 \\
 	\texttt{<cr>} & 接收当前行的修改 \\
 	\texttt{<esc>} & 重新绘制当前的 tab leaf (普通模式) \\
