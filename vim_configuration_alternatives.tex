@@ -136,7 +136,7 @@
    \texttt{"}	& 开始一个注释 \\
    \texttt{ID}	& 一个标识符, 脚本可以用它来区分不同的配置组. 当脚本启动时,
      用户要告诉脚本应该处理哪个配置组 \\
-   \texttt{tabname} & 应用配置的标签的名字 (在脚本中称为 leaf) \\
+   \texttt{tabname} & 应用配置的 tab 的名字 (在脚本中称为 leaf) \\
    \texttt{text} & 和配置相关的文本信息 \\
    \texttt{command} & 配置项所要执行的实际命令, 比如 \texttt{set textwidth=},
      注意, 不需要填上具体的值 \\
@@ -144,3 +144,44 @@
   \end{tabular}
 \end{center}
 \marginpar{219}
+\begin{center}
+	\begin{tabular}{lp{30em}}
+	\hline
+	  \texttt{extra} & 比如说, 如果命令是一个映射, 则变量部分就是被映射的
+	  按键, 这时候用户还需要设置映射到的命令, 命令就是填在 \texttt{extra} 字
+	  段中, 如果不需要它, 就留空 \\
+
+	  \texttt{val1}-\texttt{val3} & 命令参数的默认值, 在配置系统中可以按
+	  Tab 键来遍历这三个值. \\
+	\hline
+	\end{tabular}
+\end{center}
+
+再在来看一个例子:
+\begin{vimcode}
+"|SETTINGS|Layout|Set the text width|set tw=|50|70|90|
+set tw=60
+"|SETTINGS|Layout|Show a ruler?|let &ruler=||0|1|
+let &ruler=1
+\end{vimcode}
+这个例子展示了设置 Vim 的两种典型方法 --- 用 \texttt{set} 与 \texttt{let} 来
+设置一个选项. 在变量名左边加上 \texttt{\&} 是在告诉 Vim 等号右边的表达式要在
+设置之前求值, 如果求值结果的类型和选项不一致, 还会自动转换类型. 注释下面是真
+正的设置命令.
+
+如果只是想在 tab 中添加一个注释, 只需要把命令替换成 \verb'%', 比如:
+\begin{vimcode}
+"|SETTINGS|Layout|Here you will find layout settings|%|
+\end{vimcode}
+用户还可以利用它来插入空行, 这些空行将作为间距来使用, 方法是用空格替换掉文本.
+
+接下来讨论如何设置脚本.
+
+设置脚本的地方在 \texttt{setup.vim}, 在脚本中搜索 \texttt{HERE}, 找到该单词
+出现的第二个地方, 你将会看到:
+\begin{vimcode}
+" Import settings from these files HERE:
+let setup_files=Arr("settings.vim", "mappings.vim", "scripts.vim")
+let setup_group="SETTINGS"
+\end{vimcode}
+\marginpar{220}
