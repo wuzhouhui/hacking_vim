@@ -230,3 +230,34 @@ autocmd bufleave _setup source ~/.vimrc
   \end{tabular}
 \end{center}
 \marginpar{221}
+
+使用配置向导的准备工作就是这些. 下面的截图展示了向导的使用效果:
+\begin{center}
+\includegraphics[scale=0.7]{./images/page221.png}
+\end{center}
+
+\section{在线存放 vimrc}
+\label{sec:storing_vimrc_online}
+
+假设用户要在多种不同的计算机中使用 Vim, 可能会因为每次都要重新设置 Vim, 或者
+使用不同的设置而感到很恼火.
+
+现在, 几乎每一台计算机都连接到了因特网上, 所以一个明显的解决办法是在线保存一
+份 \texttt{vimrc}. 我们之前已经说过 Vim 可以编辑远程主机上的文件, 但是, 如果
+要读取远程主机上的 \texttt{vimrc} 将会遇到一些问题. 通常情况下, 当 Vim 需要
+读取网络上的文件时, 它会用到插件 \texttt{netrw}, 然而, 当 Vim 读取
+\texttt{vimrc} 时, 这个插件还没有加载, 也就无法读取远程主机上的 \texttt{vimrc}.
+
+解决办法是使用下面的函数:
+\begin{vimcode}
+function! GetNetVimrc(vimrc_url)
+    source $VIMRUNTIME/plugin/netrwPlugin.vim
+    Nread a:vimrc_url
+    let tmpfile = tempname()
+    save! tmpfile
+    source tmpfile
+    delete(tmpfile)
+    enew
+endfunction
+\end{vimcode}
+\marginpar{222}
