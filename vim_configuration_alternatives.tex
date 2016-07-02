@@ -257,3 +257,28 @@ function! GetNetVimrc(vimrc_url)
 endfunction
 \end{vimcode}
 \marginpar{222}
+读取 \texttt{vimrc} 的所有操作都在 \texttt{GetNetVimrc}. 函数的输入参数是
+\texttt{vimrc} 的 URL 地址, 函数开始时先加载 \texttt{netrw} 插件, 加载后
+Vim 就可以使用网络读写功能, 然后, 调用 \texttt{Nread} 从网络上读取
+\texttt{vimrc} 到当前缓冲区, 再把文件的内容写到一个临时文件, 加载它, 最后再
+把临时文件删掉, 并打开一个干净的缓冲区.
+
+那么, 用户应该如何使用 \texttt{GetNetVimrc}?
+
+首先把 \texttt{vimrc} 保存到网络上的某台主机, 如果用户想要在某个系统中使
+用自己的在线 \texttt{vimrc}, 就把 \texttt{GetNetVimrc} 添加到系统本地的
+\texttt{vimrc}.
+
+调用函数的方式是:
+\begin{vimcode}
+:call GetNetVimrc("http://www.domain.com/myvimrc")
+\end{vimcode}
+还可以把上面这行代码添加到包含 \texttt{GetNetVimrc} 的 \texttt{vimrc} 文件中.
+
+现在, 用户所有系统中的 Vim 都具有了相同的配置, 如果在线的 \texttt{vimrc} 有
+了更新, 那么等下一次用户使用系统时, 这些更新也会反映在系统中.
+
+记住, 用户还可以用 \texttt{Nread} 和 \texttt{Nwrite} 这两个函数来直接修改
+在线 \texttt{vimrc}.
+
+% end of appendix B
