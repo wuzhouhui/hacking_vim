@@ -34,7 +34,7 @@
 
 	有时候, 我们会在 Vim 中改变一些设置, 然后再把设置添加到 \texttt{vimrc},
 	过一段时间后, 当我们想要清理 \texttt{vimrc} 时, 就会发现我们已经记不住
-	某段脚本是干嘛的, 以及为什么要添加它, 甚至连代码是哪儿来的都已经记不清
+	某段脚本是干嘛用的, 以及为什么要添加它, 甚至连代码是从哪儿来的都已经记不清
 	了. 为了防止这种情况发生, 那就给新加的东西写上注释. 笔者建议在注释中包含这
 	些内容: 代码的作用 (描述), 从哪儿得到的 (来源), 代码的原作者. 有了注释的
 	帮助, 用户就能够方便地查询到代码的来源, 以及决定是否需要删除它们. 注释
@@ -92,7 +92,7 @@
 假如有这样一个脚本, 它提供了一个设置菜单, 用户在其中所做的修改在程序退出后
 仍然有效, 那将会怎样? Jos van RisWick 就开发出了这样的脚本.
 
-通过使用他的脚本, 并按照他的语法来创建 \texttt{vimrc}, 用户不仅可以反新的配置
+通过使用他的脚本, 并按照他的语法来创建 \texttt{vimrc}, 用户不仅可以使新的配置
 持久化, 还可以根据向导的指引, 一步步地对配置加以修改.
 
 实现向导的方式是把配置项周围的注释用作占位符.
@@ -122,19 +122,19 @@
 
 在我们开始往 \texttt{vimrc} 添加设置之前, 先来看一下配置系统的使用语法. 前
 面我们已经说过, 技巧就是配置项周围的注释. 这些注释包含了很特殊的语法, 这样
-脚本才能知道这些注释是嘛用的, 语法的基本规则是
+脚本才能知道这些注释是干嘛用的, 语法的基本规则是
 \texttt{"|ID|tabname|text|command|extra|val1|val2|val3|}.
 
 其中每一项的意义如下表所示:
 \begin{center}
-  \begin{tabular}{ll}
+  \begin{tabular}{lp{30em}}
   \hline
   项名 & 意义 \\
   \hline
    \texttt{"}	& 开始一个注释 \\
    \texttt{ID}	& 一个标识符, 脚本可以用它来区分不同的配置组. 当脚本启动时,
      用户要告诉脚本应该处理哪个配置组 \\
-   \texttt{tabname} & 应用配置的标签的名字 (在脚本中称为 leaf) \\
+   \texttt{tabname} & 应用配置的 tab 的名字 (在脚本中称为 leaf) \\
    \texttt{text} & 和配置相关的文本信息 \\
    \texttt{command} & 配置项所要执行的实际命令, 比如 \texttt{set textwidth=},
      注意, 不需要填上具体的值 \\
@@ -142,3 +142,145 @@
   \end{tabular}
 \end{center}
 \marginpar{219}
+\begin{center}
+	\begin{tabular}{lp{30em}}
+	\hline
+	  \texttt{extra} & 比如说, 如果命令是一个映射, 则变量部分就是被映射的
+	  按键, 这时候用户还需要设置映射到的命令, 命令就是填在 \texttt{extra} 字
+	  段中, 如果不需要它, 就留空 \\
+
+	  \texttt{val1}-\texttt{val3} & 命令参数的默认值, 在配置系统中可以按
+	  Tab 键来遍历这三个值. \\
+	\hline
+	\end{tabular}
+\end{center}
+
+再在来看一个例子:
+\begin{vimcode}
+"|SETTINGS|Layout|Set the text width|set tw=|50|70|90|
+set tw=60
+"|SETTINGS|Layout|Show a ruler?|let &ruler=||0|1|
+let &ruler=1
+\end{vimcode}
+这个例子展示了设置 Vim 的两种典型方法 --- 用 \texttt{set} 与 \texttt{let} 来
+设置一个选项. 在变量名左边加上 \texttt{\&} 是在告诉 Vim 等号右边的表达式要在
+设置之前求值, 如果求值结果的类型和选项不一致, 还会自动转换类型. 注释下面是真
+正的设置命令.
+
+如果只是想在 tab 中添加一个注释, 只需要把命令替换成 \verb'%', 比如:
+\begin{vimcode}
+"|SETTINGS|Layout|Here you will find layout settings|%|
+\end{vimcode}
+用户还可以利用它来插入空行, 这些空行将作为间距来使用, 方法是用空格替换掉文本.
+
+接下来讨论如何设置脚本.
+
+设置脚本的地方在 \texttt{setup.vim}, 在脚本中搜索 \texttt{HERE2}, 找到该单词
+出现的第二个地方, 你将会看到:
+\begin{vimcode}
+" Import settings from these files HERE2:
+let setup_files=Arr("settings.vim", "mappings.vim", "scripts.vim")
+let setup_group="SETTINGS"
+\end{vimcode}
+\marginpar{220}
+
+\texttt{setup\_files} 是一个数组, 数组中的每一个元素都是一个文件名, 文件包含
+了设置信息. 在上面的例子中, 我们用到了 \texttt{settings.vim},
+\texttt{mappings.vim}, \texttt{scripts.vim} 这三个文件.
+
+第二条命令告诉脚本当前设置使用哪一个配置组. 在示例中我们用的是
+\texttt{SETTINGS}, 因此如果某个设置的注释以 \texttt{|SETTINGS|} 开始, 那么这
+个设置就会被用到.
+
+在开始使用配置向导之前, 在 \texttt{setup.vim} 中还有一项需要修改.
+
+由于设置分散在多个文件中, 我们需要让 Vim 意识到这点, 因此 \texttt{vimrc} 要
+包含 (在 Vim 中称为 source) 这些文件, 除此之外, 为了让修改生效, 还要让 Vim
+重新加载 \texttt{vimrc}, 为了处理这种情况, 我们也提供了一个特殊的设置.
+
+在 \texttt{setup.vim} 中搜索 \texttt{HERE1}, 找到单词出现的第二个地方, 用户
+将会看到:
+\begin{vimcode}
+autocmd bufleave _setup source ~/.vimrc
+\end{vimcode}
+当用户离开配置向导时就会执行 \verb'source ~/.vimrc'. 如果需要的话, 用户
+还可以添加其他外部配置文件.
+
+现在讨论如何启动 Vim 配置向导, 并在向导中导航. 为了启动配置向导, 先切换到普通
+模式, 然后按下 \texttt{s}, 启动后, 光标位于第一个 tab 的第一个设置上. 在向导
+中有很多快捷键可以使用:
+\begin{center}
+  \begin{tabular}{ll}
+    \hline
+	快捷键  & 描述 \\
+    \hline
+    \texttt{r} 或 \texttt{R}  & 进入替换模式 \\
+	\texttt{s} & 保存后退出 \\
+	\texttt{q} & 不保存退出 \\
+	\texttt{<space>} & 遍历所有的 tab leaf \\
+	\texttt{j} & 跳转到当前 tab leaf 的下一个设置 \\
+	\texttt{k} & 跳转到当前 tab leaf 的前一个设置 \\
+	\texttt{<tab>} & 显示被选中的设置的可选值 \\
+	\texttt{<cr>} & 接收当前行的修改 \\
+	\texttt{<esc>} & 重新绘制当前的 tab leaf (普通模式) \\
+	\texttt{<esc>} & 丢弃修改 (插入或替换模式) \\
+	\hline
+  \end{tabular}
+\end{center}
+\marginpar{221}
+
+使用配置向导的准备工作就是这些. 下面的截图展示了向导的使用效果:
+\begin{center}
+\includegraphics[scale=0.7]{./images/page221.png}
+\end{center}
+
+\section{在线存放 vimrc}
+\label{sec:storing_vimrc_online}
+
+假设用户要在多种不同的计算机中使用 Vim, 可能会因为每次都要重新设置 Vim, 或者
+使用不同的设置而感到很恼火.
+
+现在, 几乎每一台计算机都连接到了因特网上, 所以一个明显的解决办法是在线保存一
+份 \texttt{vimrc}. 我们之前已经说过 Vim 可以编辑远程主机上的文件, 但是, 如果
+要读取远程主机上的 \texttt{vimrc} 将会遇到一些问题. 通常情况下, 当 Vim 需要
+读取网络上的文件时, 它会用到插件 \texttt{netrw}, 然而, 当 Vim 读取
+\texttt{vimrc} 时, 这个插件还没有加载, 也就无法读取远程主机上的 \texttt{vimrc}.
+
+解决办法是使用下面的函数:
+\begin{vimcode}
+function! GetNetVimrc(vimrc_url)
+    source $VIMRUNTIME/plugin/netrwPlugin.vim
+    Nread a:vimrc_url
+    let tmpfile = tempname()
+    save! tmpfile
+    source tmpfile
+    delete(tmpfile)
+    enew
+endfunction
+\end{vimcode}
+\marginpar{222}
+读取 \texttt{vimrc} 的所有操作都在 \texttt{GetNetVimrc} 中完成. 函数的输入参数是
+\texttt{vimrc} 的 URL 地址, 函数开始时先加载 \texttt{netrw} 插件, 加载后
+Vim 就可以使用网络读写功能, 然后, 调用 \texttt{Nread} 从网络上读取
+\texttt{vimrc} 到当前缓冲区, 再把文件的内容写到一个临时文件, 加载它, 最后再
+把临时文件删掉, 并打开一个干净的缓冲区.
+
+那么, 用户应该如何使用 \texttt{GetNetVimrc}?
+
+首先把 \texttt{vimrc} 保存到网络上的某台主机, 如果用户想要在某个系统中使
+用自己的在线 \texttt{vimrc}, 就把 \texttt{GetNetVimrc} 添加到系统本地的
+\texttt{vimrc}.
+
+调用函数的方式是:
+\begin{vimcode}
+:call GetNetVimrc("http://www.domain.com/myvimrc")
+\end{vimcode}
+还可以把上面这行代码添加到包含 \texttt{GetNetVimrc} 的 \texttt{vimrc} 文件中.
+
+现在, 用户所有系统中的 Vim 都具有了相同的配置, 如果在线的 \texttt{vimrc} 有
+了更新, 那么等下一次用户使用系统时, 这些更新也会反映在系统中.
+
+记住, 用户还可以用 \texttt{Nread} 和 \texttt{Nwrite} 这两个函数来直接修改
+在线 \texttt{vimrc}.
+
+% end of appendix B
