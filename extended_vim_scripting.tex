@@ -185,7 +185,8 @@ noremap <SID>MyfunctionA :call <SID>MyfunctionA()<CR>
 设置完毕后, 当用户按下 \verb'\a' (把 \texttt{mapleader} 设置成 \verb'\'), 第
 一个映射把它翻译成 \texttt{<Plug>MyscriptMyfunctionA}, 它在脚本内定义, 因此
 \texttt{<SID>} 的值是正确的. 因此, \texttt{<Plug>MyscriptMyfunctionA} 再次
-被翻译成 \texttt{<SID>MyfunctionA}, 最终被映射到调用本地函数
+% FIXME 自动换行
+被翻译成 \\ \texttt{<SID>MyfunctionA}, 最终被映射到调用本地函数
 \texttt{s:MyfunctionA()}.
 
 读者可能觉得上面所说的有点复杂, 而且 \texttt{MyfunctionA()} 可能本来就是一个
@@ -842,7 +843,7 @@ Vim 会话期间都一直有效.
 用户经常会一次执行多个 Perl 命令, 这时候可以用下面这种形式的执行方式:
 \begin{vimcmdform}
 \texttt{:perl << }\textit{endpattern} \\
-\texttt{perl code here} \\
+\textit{perl code here} \\
 \textit{endpattern}
 \end{vimcmdform}
 上面的命令会执行第一个 \textit{endpattern} 与最后一个 \textit{endpattern}
@@ -924,7 +925,7 @@ endfunction
 	\item 如果想要一次执行大量的 Python 代码, 可以用:
 	\begin{vimcmdform}
 	\texttt{:python << }\textit{endpattern} \\
-	\texttt{python statements here} \\
+	\textit{python statements here} \\
 	\textit{endpattern}
 	\end{vimcmdform}
 	它们执行 \textit{endpattern} 之间的所有 Python 代码.
@@ -961,6 +962,126 @@ window.cursor = (1,1)
 \end{vimcode}
 
 \begin{warning}
-	如果要在 Vim 脚本中使用 Python 代码, 最好把它们封装在 Vim 的函数中.
+	如果要在 Vim 脚本中使用 Python 代码, 最好把它们封装在 Vim 函数内.
 \end{warning}
 \marginpar{198}
+
+\subsection{Ruby}
+\label{subsec:vim_scripting_in_ruby}
+
+在西方国家, Ruby 直到最近才成为一门流行的编程语言, 但是早在这之前, Ruby 就
+在亚洲流行开了, 而且, 自从它成为 Web 开发的脚本语言之后, 越来越多的程序员
+开始喜欢上它. Ruby 最大的优点是它是一门真正的面向对象编程语言, 因此 Ruby 是
+模块化的.
+
+Vim 对 Ruby 的支持非常完善, 因此用户可以在 Vim 中运行 Ruby 代码, 执行的方式
+有很多种, 其中最简单的一种是 \texttt{:ruby}\ \textit{command}.
+
+把 \textit{command} 替换成任意一个单行的 Ruby 命令, 比如:
+\begin{vimcode}
+:ruby print "Hello from Ruby"
+\end{vimcode}
+
+如果用户想要同时执行多行 Ruby 代码, 可以这样写:
+\begin{vimcmdform}
+\texttt{:ruby << }\textit{endpattern} \\
+\textit{python commands here} \\
+\textit{endpattern}
+\end{vimcmdform}
+上面的命令会执行两行 \textit{endpattern} 之间所有的 Ruby 代码. 如果在 Ruby
+代码中设置了某个变量, 或创建了某个对象, 那么在整个 Vim 会话期间, 它们都是可
+用的.
+
+一个使用示例是:
+\begin{vimcode}
+:ruby << EOF
+    window = VIM::Window.current
+    window.height = 250
+    window.width = 35
+    window.cursor = (10,10)
+EOF
+\end{vimcode}
+
+如果你想要执行的 Ruby 代码存放在某个文件中, 可以用下面的命令执行文件中的代码:
+\begin{vimcode}
+:rubyfile file.rb
+\end{vimcode}
+上面的命令还可以写成:
+\begin{vimcode}
+:ruby load 'file.rb'
+\end{vimcode}
+在 \texttt{file.rb} 中创建的所有对象与变量在整个 Vim 会话期间都是可用的,
+除非显式删除了它们.
+\marginpar{199}
+
+为了与 Vim 交互, Ruby 提供了一个专门用于 Vim 的模块, 叫做 \texttt{VIM}, 这个
+模块包含了许多访问与设置 Vim 的方法, 其中包括:
+\begin{itemize}
+    \item \texttt{VIM::Set\_option('}\textit{option}\texttt{')}: 设置 Vim
+        的 \textit{option} 选项
+    \item \texttt{VIM::Message("message")}: 在 Vim 中打印一条消息
+    \item \texttt{\$curwin.height}: 当前窗口的高度
+    \item \texttt{\$curbuf.width}: 当前缓冲区的宽度
+    \item \texttt{VIM::Buffer.current.append(10, "line")}: 在当前缓冲区的第
+        10 行新增一行文本
+    \item \texttt{VIM::Buffer.current.length}: 返回当前缓冲区的行数
+\end{itemize}
+
+用下面的命令获取所有的可用方法与对象:
+\begin{vimcode}
+:help 'ruby-vim'
+\end{vimcode}
+
+\begin{warning}
+    在使用 Ruby 代码之间, 要记得始终检查用户的 Vim 版本是否支持 Ruby.
+\end{warning}
+
+\section{小结}
+\label{sec:extended_vim_scripting_summary}
+
+这一章主要是为那些想开发 Vim 脚本的人写的.
+
+在介绍了 Vim 脚本的各个组成要素后, 现在要把它们都组装到一个完整的 Vim 脚本
+中, 我们采用了自顶向下的方法, 并且逐行地介绍了脚本中的每一行.
+
+一个很重要的一点是, 脚本开发人员无法预知用户是如何配置它们的 Vim 的, 因此,
+脚本需要检查某个设置是否可用, 而且不能破坏用户已有的设置.
+
+我们学习了如何在脚本作用域内使用变量与函数, 这样就避免了污染全局作用域.
+通过限定作用域, 可以确保用户只能访问到和他们相关的功能.
+% FIXME
+% Again this was to help the user such that only the relevant functionality
+% is available to him or her.
+
+在查看了几个 Vim 脚本的结构之后, 我们介绍了如何检查一些先决条件, 比如操作系统
+与 Vim 版本, 以便在继续执行之前, 判断某些条件是否满足.
+\marginpar{200}
+
+学习了如何创建 Vim 脚本之后, 我们介绍了如何调试 Vim 脚本. 这一节介绍了 Vim 的
+调试模式, 以及如何逐行地执行代码.
+
+脚本编写完成并且没有错误后, 接下来就可以发布脚本了. 这一节介绍了如何发布脚本,
+这样的话, 其他人就可以安装并使用你的脚本.
+
+文档是已发布脚本非常重要的一部分, 这一节介绍了如何使用 Vim 标记来编写文档.
+通过使用这些标记, Vim 的帮助系统就可以检索到我们自己编写的文档, 而且在文档
+中跳转也很方便.
+
+对于有些人来说, 光使用 Vim 脚本语言还不足以满足他们的需求, 因此接下来介绍
+如何在 Vim 中使用其他脚本语言.
+
+我们介绍了 Vim 中最流行的三种脚本语言 --- Perl, Python, 和 Ruby. Vim 默认不
+支持这三种语言, 所以在编译时必须手动开启相应的编译选项, 除了重新编译, 还可以
+直接从网络上下载支持它们的已编译安装包.
+
+我们逐一介绍了如何在 Vim 中执行这三种脚本语言, 对于 Python 与 Ruby, Vim 还
+可以直接执行整个 Pyton 或 Ruby 脚本文件.
+
+我们还看到这三种语言都提供了用于和 Vim 交互的模块, 这些模块可以访问 Vim 的
+许多信息, 因此开发人员可以直接在这些语言脚本中控制 Vim.
+
+看到这里, 读者就有能力自己编写 Vim 脚本, 调试它们并发布. 在附录里, 我们将会
+看到某些 Vim 用户开发的脚本几乎可以让 Vim 无所不能.
+% Puting page number in next chapter.
+% \marginpar{201}
+% end of chapter 7
