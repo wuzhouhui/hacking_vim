@@ -185,7 +185,8 @@ noremap <SID>MyfunctionA :call <SID>MyfunctionA()<CR>
 设置完毕后, 当用户按下 \verb'\a' (把 \texttt{mapleader} 设置成 \verb'\'), 第
 一个映射把它翻译成 \texttt{<Plug>MyscriptMyfunctionA}, 它在脚本内定义, 因此
 \texttt{<SID>} 的值是正确的. 因此, \texttt{<Plug>MyscriptMyfunctionA} 再次
-被翻译成 \texttt{<SID>MyfunctionA}, 最终被映射到调用本地函数
+% FIXME 自动换行
+被翻译成 \\ \texttt{<SID>MyfunctionA}, 最终被映射到调用本地函数
 \texttt{s:MyfunctionA()}.
 
 读者可能觉得上面所说的有点复杂, 而且 \texttt{MyfunctionA()} 可能本来就是一个
