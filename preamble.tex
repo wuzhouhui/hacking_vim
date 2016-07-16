@@ -16,6 +16,7 @@
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{multicol}
+\usepackage{tocloft}
 
 % for fixing "Unable to load picture or PDF file 'bc-book.mps'"
 \DeclareGraphicsRule{.mps}{eps}{*}{}
@@ -51,11 +52,15 @@
 }
 
 
-% 章节格式
 \setCJKfamilyfont{heiti}{FandolHei}
+% 章节格式
 \CTEXsetup[format={\CJKfamily{heiti}\large\upshape}]{subsection}
 \CTEXsetup[numberformat={\CJKfamily{heiti}\large\upshape\bfseries}]{subsection}
 \CTEXsetup[format={\CJKfamily{heiti}}]{subsubsection}
+% 目录格式
+\renewcommand\cftchapfont{\CJKfamily{heiti}}
+\settowidth\cftchapnumwidth{第几十几章} % 最宽的可能编号
+\renewcommand\cftchapaftersnumb{\hspace{2.2em}} % 额外间距
 
 % from package fontspec and xeCJK
 \setCJKmainfont{AR PL UMing CN}
