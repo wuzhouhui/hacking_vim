@@ -171,7 +171,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 字体, 每当用户切换到具有不同文件类型的缓冲区时, 字体就会发生变化, 于是
 窗口大小也会作相应的改变.
 \begin{warning}
-    用户可以到 Vim 帮助系统的 \textbf{Help | guifont} 中找到更多的资料.
+    用户可以到 Vim 帮助系统的 Help | guifont 中找到更多的资料.
 \end{warning}
 \section{修改配色方案}
 \label{sec:changing_color_scheme}
@@ -1172,7 +1172,7 @@ Vim 的设计哲学是: 如果用户曾经为某件事物写过一次, 那就不
 然而, 如果用户发现自己正在一次又一次地输入同一个内容, 那就说明他需要找到
 一个更好的办法.
 
-为了避免多次输入同一个内容, 用户可以使用 \textbf{缩写} (abbreviations).
+为了避免多次输入同一个内容, 用户可以使用 缩写 (abbreviations).
 
 根据不同的使用模式, 可以使用以下三个命令来创建缩写:
 \begin{itemize}
@@ -1206,7 +1206,7 @@ Vim 非常聪明, 它可以判断用户是在输入一个缩写词, 还是仅仅
 \begin{center}
 \begin{tabular}{ll}
     \hline
-    \texttt{abc<space>} and & 扩展 \\
+    \texttt{abc<space>}     & 扩展 \\
     \texttt{abc<enter>}     & 扩展 \\
     \texttt{123abc<space}   & 不会扩展, 因为缩写词现在是某个单词的一部分 \\
     \texttt{abcd<space>}    & 不会扩展, 因为在缩写词后面紧跟着的是字母 \\
@@ -1230,17 +1230,17 @@ Vim 非常聪明, 它可以判断用户是在输入一个缩写词, 还是仅仅
 这里有一些例子, 或许可以向你提供一些思路:
 \begin{itemize}
     \item 纠正常见的拼写错误:
-    \begin{vimcode}
-    :iabbr teh the
-    \end{vimcode}
+\begin{vimcode}
+:iabbr teh the
+\end{vimcode}
     \item 编程模版
-    \begin{vimcode}
-    :iabbr forx for(x=0;x<100;x++){<cr><cr>}
-    \end{vimcode}
+\begin{vimcode}
+:iabbr forx for(x=0;x<100;x++){<cr><cr>}
+\end{vimcode}
     \item 更短的命令
-    \begin{vimcode}
-    :cabbr csn colorscheme night
-    \end{vimcode}
+\begin{vimcode}
+:cabbr csn colorscheme night
+\end{vimcode}
 \end{itemize}
 
 如果读者发现了一个新的缩写, 或许它看起来有点古怪, 刚开始用的时候还有点麻烦,
