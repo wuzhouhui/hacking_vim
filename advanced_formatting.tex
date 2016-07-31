@@ -42,10 +42,8 @@ gqap
 \end{vimcode}
 上面的命令其时是两个命令的组合:
 \begin{itemize}
-    \item \texttt{gq}: Format everything the next movement moves
-        over\footnote{TODO}
-    \item \texttt{ap}: ``A paragraph'' moves over the current
-        paragraph\footnote{TODO}
+    \item \texttt{gq}: 把紧接在该命令后的动作所覆盖到的文本进行格式化
+    \item \texttt{ap}: 选择一个段落 (``a paragraph'')
 \end{itemize}
 
 换句话说, 由 \texttt{gq} 与 \texttt{ap} 组合而成的命令告诉 Vim 去遍历当前段落
@@ -61,9 +59,10 @@ Vim 所做的格式化实际上是让行作出更漂亮的断行, 使得每一�
 :set textwidth=80
 \end{vimcode}
 如果 \texttt{textwidth} 的值被设置为 0, 那么 Vim 就把它设置成窗口的宽度 ---
-但是永远不会多于 \texttt{textwidth} 所设置的字符个数.\footnote{If the option is
-    set to 0, the Vim sets it to the width of the window --- but never more than
-    the number of characters defined in the the \texttt{textwidth} setting.}
+但是永远不会多于 \texttt{textwidth} 所设置的字符个数.\footnote{ 原文是
+If the option is set to 0, the Vim sets it to the width of the window ---
+but never more than the number of characters defined in the the
+\texttt{textwidth} setting.}
 \marginpar{123}
 
 \begin{warning}
@@ -727,9 +726,10 @@ Par 不仅可以用在普通文本中, 对于代码的某些部分也可以使�
 
 Par 的手册页包含了许多例子.
 
-% TODO
-% You could easily map different Par commands to different keys in Vim and this
-% way have formatting keys for all text, comments, lists, and so on.
+\begin{warning}
+    读者很容易就可以把不同的 Par 命令映射到不同的按键上去, 通过这种办法, 可
+    以为所有的文本, 注释, 线性表等设置格式化快捷键.
+\end{warning}
 
 \subsection{Tidy}
 \label{subsec:tidy}

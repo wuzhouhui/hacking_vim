@@ -208,9 +208,8 @@ augroup END
 查找匹配的语法文件, 它会在目录 \texttt{VIMHOME/syntax/} 内查找以文件类型名开始
 的语法文件, 在这里就是 \texttt{my.vim}.
 
-% TODO
-% This is all you need to get started on creating your own syntax files that
-% Vim can automatically load whenever you open one of your files.
+为了创建自己的语法文件, 你所需要做的工作就是这些, 有了这些语法文件之后, 无
+论何时打开你的文件, Vim 都会自动加载它们.
 
 \begin{warning}
     学习编写语法文件的最佳方法是阅读别人写的语法文件. 安装 Vim 后, 就已经安装
@@ -634,9 +633,7 @@ Vim 有 5 种类型的变量, 使用方法大不相同 (虽然定义的方式是
 \end{itemize}
 
 \begin{warning}
-    % TODO
-    Did you know that comments in Vim scripts are created by having a quote as
-    the first non-space character on the line: \texttt{" this is a comment}?
+    Vim 脚本的注释以引号开始, 例如 \texttt{"this is a comment}.
 \end{warning}
 
 下面的程序用到了几个不同的作用域:
