@@ -329,10 +329,8 @@ endfunction
 \end{itemize}
 
 为了解决第一个问题, 必须查看范围内第一行与最后一行的行号, 两个行号之间的差就
-是行的个数, 于是我们就有了列表编号的最大值. 由于我们考虑了第二个问题, 所以这
-是唯一可能的解决办法, 如果不这样做, 那我们一次只能处理一行.\footnote{This is
-only possible because the second issue is also taken care of, without which
-the function would only know about the current line.}
+是行数, 于是我们就有了列表编号的最大值. 由于我们考虑了第二个问题, 所以这
+是唯一可能的解决办法, 如果不这样做的话, 那么函数每次就只能看到当前行.
 
 解决第二个问题的办法是在函数名的后面添加关键字 \texttt{range}, 这个关键字告诉
 Vim, 函数是对一个范围内的行作操作, 而不仅仅是一行.
