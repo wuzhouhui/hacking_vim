@@ -234,9 +234,8 @@ gD
 \end{vimcode}
 Vim 非常聪明, 它会自动忽略注释块中的变量引用, 因为这里绝不可能出现变量的声明.
 
-如果 Vim 找到了变量的定义 (或者是该变量在文件内的第一次使用\footnote{原文是
-or the first available usage of the variable in the file}), 那么光标就会跳转到
-该位置.
+如果 Vim 找到了变量的定义 (或者是该变量在文件中第一次被用到的地方),
+那么光标就会跳转到该位置.
 
 \begin{tips}
     在执行 \texttt{gd} 之前输入一个 \texttt{1} (即 \texttt{1gd}), 就可以让 Vim
