@@ -426,15 +426,12 @@ Cindent 经常被称为 clever indent(聪明的缩进) 或 configurable indent(�
     ......print "hello";
     ...}
         \end{vimcode}
-        % FIXME
-        \texttt{cinoptions} 的默认值是 \texttt{">s,e0,n0,f0,\{0,\}0,%
-        \textasciicircum 0,%
+        \texttt{cinoptions} 的默认值是 \path{">s,e0,n0,f0,{0,}0,^0,%
         :s,=s,l0,b0,gs,hs,ps,ts,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j0,%
         )20,*30"}, 更多的信息见 \texttt{:help 'cinoptions'}.
     \item \texttt{cinwords}: 这个选项包含的关键词会让 Vim 在下一行增加缩进. 一
-        % FIXME
-        个例子是 \texttt{:set cinwords="if,else,do,while,for,switch"}, 这同时
-        也是它的默认值. 更多的信息见 \texttt{:help 'cinwords'}.
+        个例子是 \texttt{:set }\path{cinwords="if,else,do,while,for,switch"},
+        这同时也是它的默认值. 更多的信息见 \texttt{:help 'cinwords'}.
 \end{itemize}
 \marginpar{132}
 
