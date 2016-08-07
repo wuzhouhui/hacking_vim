@@ -174,22 +174,21 @@ endif
 noremap <unique> <script> <Plug>MyscriptMyfunctionA <SID>MyfunctionA
 noremap <SID>MyfunctionA :call <SID>MyfunctionA()<CR>
 \end{vimcode}
-第一个命令把 \texttt{<Plug>MyscriptMyfunctionA} 映射到 \texttt{<SID>MyfunctionA}
+第一个命令把 \path{<Plug>MyscriptMyfunctionA} 映射到 \path{<SID>MyfunctionA}
 上. 我们在代码中用到了 \texttt{<SID>}, 这是因为这个小标签会被 Vim 为当前脚本所
 生成的唯一 ID 给替换掉. 如果我们想制作一个全局的函数映射, 并且只在当前脚本作
-用域内可用 (例如 \texttt{s:MyfunctionA()}), 就需要这样的技术.
+用域内可用 (例如 \path{s:MyfunctionA()}), 就需要这样的技术.
 
-第二个命令把真正的函数 (\texttt{<SID>MyfunctionA()}, 也就是
-\texttt{s:MyfunctionA()}) 绑定到 \texttt{<SID>MyfunctionA}.
+第二个命令把真正的函数 (\path{<SID>MyfunctionA()}, 也就是
+\path{s:MyfunctionA()}) 绑定到 \path{<SID>MyfunctionA}.
 
 设置完毕后, 当用户按下 \verb'\a' (把 \texttt{mapleader} 设置成 \verb'\'), 第
-一个映射把它翻译成 \texttt{<Plug>MyscriptMyfunctionA}, 它在脚本内定义, 因此
-\texttt{<SID>} 的值是正确的. 因此, \texttt{<Plug>MyscriptMyfunctionA} 再次
-% FIXME 自动换行
-被翻译成 \\ \texttt{<SID>MyfunctionA}, 最终被映射到调用本地函数
-\texttt{s:MyfunctionA()}.
+一个映射把它翻译成 \path{<Plug>MyscriptMyfunctionA}, 它在脚本内定义, 因此
+\texttt{<SID>} 的值是正确的. 因此, \path{<Plug>MyscriptMyfunctionA} 再次
+被翻译成 \path{<SID>MyfunctionA}, 最终被映射到调用本地函数
+\path{s:MyfunctionA()}.
 
-读者可能觉得上面所说的有点复杂, 而且 \texttt{MyfunctionA()} 可能本来就是一个
+读者可能觉得上面所说的有点复杂, 而且 \path{MyfunctionA()} 可能本来就是一个
 全局唯一的函数. 但是, 如果函数名是一些常见的名字, 比如 \texttt{Add()},
 \texttt{Delete()}, \texttt{Convert()} 等, 其他脚本很可能也实现了这些函数.
 在这些情况下, 这些冲突的函数名会让 Vim 无法判断到底应该使用哪个函数. 当然,
