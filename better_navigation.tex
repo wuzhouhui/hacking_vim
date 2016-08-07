@@ -331,9 +331,8 @@ nmap <buffer> S ?\|\S\+\|<CR>
 这个按键映射可以从帮助系统的外部调用, 也可以把它写到 \texttt{vimrc}, 但不能写
 到 \texttt{help.vim}.
 
-% FIXME: 应该是 section, 而非 subsection
-\subsection{在多个缓冲区中更快地导航}
-\label{subsec:faster_navigation_in_multiple_buffers}
+\section{在多个缓冲区中更快地导航}
+\label{sec:faster_navigation_in_multiple_buffers}
 
 许多情况下, 用户并不是在处理一个文件, 对于每一个打开过的文件, Vim 都会打开一个
 缓冲区. 缓冲区可以被显示出来或隐藏, 这意味着为了找到某个文件, 用户必须找到与它
@@ -379,8 +378,8 @@ map <C-left> <ESC>:bp<CR>
     用 \key{Ctrl+o} \key{Ctrl+6}) 或者 \texttt{:e \#}.
 \end{warning}
 
-\subsection{快速打开引用的文件}
-\label{subsec:open_referenced_files_faster}
+\section{快速打开引用的文件}
+\label{sec:open_referenced_files_faster}
 
 在许多程序设计语言中, 你可以在当前文件中包含其他文件, 这样就可以把一个文件的内
 容切分后放到多个文件中. 文件的包含类似于:
