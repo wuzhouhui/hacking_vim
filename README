@@ -7,3 +7,5 @@ Hacking Vim 7.2 (Kim Schulz 著) 的中文翻译, 采用 LaTeX 排版. 翻译的
 翻译进度: 全部翻译完成.
 
 编译: make
+
+本分支双面排版.
