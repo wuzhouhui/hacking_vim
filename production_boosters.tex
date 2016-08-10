@@ -236,7 +236,7 @@ snippet for
     }
 \end{vimcode}
 把上面这段文本写到一个文件中, 再把这个文件放到 \texttt{\$VIMHOME/snippets} 目
-录下, 把文件命名为 \texttt{FILETYPE.snippet} (\texttt{FILETYPE} 表示文件类型,
+录下, 把文件命名为 \path{FILETYPE.snippet} (\path{FILETYPE} 表示文件类型,
 比如 C 代码就是 \texttt{c}, PHP 代码就是 \texttt{php}).
 \marginpar{79}
 脚本的第一行表示开始一个新的 snippet, 当输入 \texttt{for} 并且后面再紧跟着一个
@@ -1550,9 +1550,8 @@ this section contains info about vim scripts.
 
 如果想要删除折叠, 只需要在可视模式下选中文本, 再按下 \texttt{zd}.
 
-% TODO: 还需要翻译得更好
 如果用户想让文本拥有不同的格式 (比如, 用 \texttt{= =} 包围 Section 的头部),
-这当然可以实现 --- 只要用户标记了自己的折叠区域, 那就不会感到有什么不同.
+这当然可以实现 --- 只要用户标记了自己的折叠区域, 那么实现起来就不会有什么问题.
 
 \subsection{使用 vimdiff 比较差异}
 \label{subsec:using_vimdiff_to_track_the_changes}
