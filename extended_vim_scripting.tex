@@ -3,7 +3,7 @@
 \label{chap:extended_vim_scripting}
 \marginpar{175}
 
-在前面一章, 我们已经学习了开发 Vim 脚本的基础知识, 现在, 我们将要把前面所学的
+在前面一章, 我们已经学习了开发 Vim 脚本的基础知识, 现在, 将要把前面所学的
 知识融会贯通, 按照结构化的方法把它们组织起来, 并对脚本进行测试.
 
 这一章涵盖的主题包括:
@@ -20,13 +20,13 @@
 \section{脚本结构}
 \label{sec:script_structure}
 
-前面我们已经介绍了 Vim 脚本的各个要素, 现在我们需要知道如何把它们组织在一起,
+前面已经介绍了 Vim 脚本的各个要素, 现在需要知道如何把它们组织在一起,
 从而形成一个完成的脚本.
 
 在大部分情况下, Vim 脚本仅由单个文件组成, 因此这一章的示例也仅限于单个文件. 我
 们还打算让其他人能够获取到脚本, 因此需要保证代码的可读性.
 
-在下面的几节里, 我们将会逐个介绍一个格式良好的脚本的各个要素.
+下面的几节将会逐个介绍一个格式良好的脚本的各个要素.
 \marginpar{176}
 
 \subsection{脚本头部}
@@ -103,7 +103,7 @@ let loaded_myscript = 1
 \subsection{脚本配置}
 \label{subsec:script_configuration}
 
-用户在阅读别人开发的脚本时, 总是从头开始看起, 所以我们最好把所有的配置选项都
+用户在阅读别人开发的脚本时, 总是从头开始看起, 所以最好把所有的配置选项都
 放在脚本的开始. 配置选项可以是外部程序的路径, 脚本依赖的特定文件的名字, 文件
 类型等.
 
@@ -134,7 +134,7 @@ else
 endif
 \end{vimcode}
 上面的例子设置了两个配置变量 --- \texttt{myscript\_path} 与
-\texttt{myscript\_indent}. 我们查找变量是否已存在, 如果不存在, 则在脚本的作用
+\texttt{myscript\_indent}. 先变量是否已存在, 如果不存在, 则在脚本的作用
 域内设置变量的默认值 (比如, \texttt{s:myscript\_path}).
 
 如果用户已经设置了变量, 那么变量的值就赋给脚本作用域内的同名变量.
@@ -153,7 +153,7 @@ if !hasmapto('<Plug>MyscriptMyfunctionA')
     map <unique> <Leader>a <Plug>MyscriptMyfunctionA
 endif
 \end{vimcode}
-在上面的代码中包含了一些我们以前没有介绍过的东西:
+在上面的代码中包含了一些以前没有介绍过的东西:
 \begin{itemize}
     \item \texttt{hasmapto()}: 用于检查某个函数映射是否存在的函数
     \item \texttt{<unique>}: 如果存在相同的映射存在, 则报错.
@@ -163,20 +163,20 @@ endif
         不会与全局作用域中的其他函数产生冲突.
 \end{itemize}
 \marginpar{179}
-把这些元素都组织在一起之后, 我们就创建一个脚本, 用来检查是否存在某个映射, 已经
+把这些元素都组织在一起之后, 创建一个脚本, 用来检查是否存在某个映射, 已经
 绑定到唯一的函数标识 \texttt{<Plug>MyscriptMyfunctionA} 上. 如果这样的映射不存
 在, 就把 \texttt{<Leader>a} 映射到标识符上 --- 除非 \texttt{<Leader>a} 已经被
 其他人占用了, 此时 Vim 就会报错.
 
 用户可能好奇 Vim 是如何从 \texttt{<Plug>MyscriptMyfunctionA} 得到
-\texttt{MyfunctionA()} 的. 为此, 我们还需要建立其他一些映射:
+\texttt{MyfunctionA()} 的. 为此, 还需要建立其他一些映射:
 \begin{vimcode}
 noremap <unique> <script> <Plug>MyscriptMyfunctionA <SID>MyfunctionA
 noremap <SID>MyfunctionA :call <SID>MyfunctionA()<CR>
 \end{vimcode}
 第一个命令把 \path{<Plug>MyscriptMyfunctionA} 映射到 \path{<SID>MyfunctionA}
-上. 我们在代码中用到了 \texttt{<SID>}, 这是因为这个小标签会被 Vim 为当前脚本所
-生成的唯一 ID 给替换掉. 如果我们想制作一个全局的函数映射, 并且只在当前脚本作
+上. 代码中用到了 \texttt{<SID>}, 这是因为这个小标签会被 Vim 为当前脚本所
+生成的唯一 ID 给替换掉. 如果想制作一个全局的函数映射, 并且只在当前脚本作
 用域内可用 (例如 \path{s:MyfunctionA()}), 就需要这样的技术.
 
 第二个命令把真正的函数 (\path{<SID>MyfunctionA()}, 也就是
@@ -237,7 +237,7 @@ endfunction
 如果读者已经看过前面几节, 那么现在读者手上就已经具备了构成一个完整的脚本的全部
 要素.
 
-现在, 让我们把所有的要素都集中在一起, 看一下一个完整的脚本是什么样子的:
+现在把所有的要素都集中在一起, 看一下一个完整的脚本是什么样子的:
 \begin{vimcode}
 " myscript.vim  - Example script to show how a script is structured.
 " Version       : 1.0.5
@@ -294,7 +294,7 @@ endfunction
 :let &cpo = s:global_cpo
 \end{vimcode}
 \marginpar{182}
-现在, 你手上就已经有了一个完整的脚本, 这是我们的第一个 Vim 脚本插件.  虽然它的功
+现在, 读者手上就已经有了一个完整的脚本, 这是我们的第一个 Vim 脚本插件.  虽然它的功
 能还不是很丰富, 但是它已经展现了一个 Vim 脚本的完整结构. Vim 还有其他几种类型的
 脚本, 比如文件类型插件, 编译器插件, 和库函数脚本, 关于如何编写这些脚本, 可以
 参考:
@@ -312,7 +312,7 @@ endfunction
 \section{脚本开发技术}
 \label{sec:scripting_tips}
 
-在这一节, 我们将会介绍一些脚本开发过程中的小技巧. 有些技巧非常简单, 例如可以
+这一节将会介绍一些脚本开发过程中的小技巧. 有些技巧非常简单, 例如可以
 直接插入到脚本的一小段代码, 还有一些则非常值得一学.
 
 \subsection{Gvim 或 Vim}
@@ -381,14 +381,14 @@ endif
     \item 检查用户所用的 Vim 是否过旧, 如果是的话, 就执行备用代码
 \end{enumerate}
 
-第一个选择实在不是个好主意, 所以我不推荐任何人使用它.
+第一个选择实在不是个好主意, 不推荐任何人使用它.
 
 如果脚本无法处理旧版 Vim, 那么第二个选择是可接受的. 可是, 如果对于旧版有备选
 方案可供选择, 那就最好用上.
 
 现在讨论如何检查 Vim 的版本.
 
-在检查 Vim 的版本之前, 我们得先看一下版本号的结构.
+在检查 Vim 的版本之前, 得先看一下版本号的结构.
 
 版本号由三部分组成:
 \begin{itemize}
@@ -456,7 +456,7 @@ endfunction
 有时候, 脚本并不会按照开发人员期望中的那样工作, 在这种情况下, 开发人员就得
 知道如何调试 Vim 脚本.
 
-在这一节, 我们将会介绍几种寻找错误的方法.
+这一节会介绍几种寻找错误的方法.
 
 \begin{warning}
     结构良好的脚本拥有更少的错误, 也更容易调试.
@@ -487,7 +487,7 @@ vim -D somefile.txt
 :debug help :debug
 \end{vimcode}
 
-接下来我们来看一下在调试模式下, 我们可以执行哪些操作.
+接下来看一下在调试模式下, 我们可以执行哪些操作.
 \marginpar{187}
 
 当执行到第一行需要调试的代码时, Vim 就停止加载, 显示一些类似于下面的信息:
@@ -585,7 +585,7 @@ vim -D -c 'breakadd file 15 */.vimrc' somefile.txt
 \label{sec:distributing_vim_scripts}
 
 脚本开发完成后, 就可以发布它们了 (当然, 也可以不这样做). Vim 在线社区已经成为
-实际上的脚本发布与搜索集散地, 因此, 我推荐读者也在这里发布自己开发的脚本. 但
+实际上的脚本发布与搜索集散地, 因此, 建议读者也在这里发布自己开发的脚本. 但
 是在发布之前, 还需要准备一些东西.
 
 首先, 开发人员需要判断自己的脚本是否需要打包成一个压缩文件, 比如 ZIP 文件, 又
@@ -593,7 +593,7 @@ vim -D -c 'breakadd file 15 */.vimrc' somefile.txt
 包含了多个文件 (这些文件可能包含主要的脚本文件, 文件类型插件, 语法文件, 以及
 文档等等).
 
-如何创建 ZIP 文件不在本书的讨论范围之内, 这里只介绍我是如何把待压缩的文件准备
+如何创建 ZIP 文件不在本书的讨论范围之内, 这里只介绍笔者是如何把待压缩的文件准备
 好的:
 \begin{itemize}
     \item 创建出的 ZIP 文件需要包含脚本文件所在的目录, 这里的目录指的是相对
@@ -612,14 +612,14 @@ VIMHOME/doc/myscript.txt
 \end{itemize}
 
 即使脚本只由单个文件组成, 也最好把它和帮助文件一起打包成一个 ZIP 文件. 这可以
-提醒开发人员时刻更新文档. 关于如何创建 Vim 文档, 我们将在下一节进行更深入地
+提醒开发人员时刻更新文档. 关于如何创建 Vim 文档, 将在下一节进行更深入地
 讨论.
 \marginpar{190}
 
 \subsection{制作 Vimball}
 \label{subsec:making_vimball}
 
-另一种发布方式是制作 Vimball 文件. 在前面我们已经介绍过如何用 Vimball 来安装
+另一种发布方式是制作 Vimball 文件. 在前面已经介绍过如何用 Vimball 来安装
 脚本, 现在来看一下如何制作 Vimball 文件.
 
 制作 Vimball 的命令是:
@@ -672,7 +672,7 @@ Vim 有一个非常完善的帮助系统, 几乎涵盖了使用 Vim 的方方面
 现在来看一下如何创建具有链接, 标记等信息的 Vim 文档.
 
 一个 Vim 文档文件就是一个普通的文本文件, 只不过带有一些特殊的标记. 当创建一
-个新的文档文件时, 开头第一行是最重要的, 让我们来看一个例子:
+个新的文档文件时, 开头第一行是最重要的, 先来看一个例子:
 \begin{vimcode}
 *docname.txt* single line of description
 \end{vimcode}
@@ -680,7 +680,7 @@ Vim 有一个非常完善的帮助系统, 几乎涵盖了使用 Vim 的方方面
 
 \texttt{docname.txt} 是当前正在编辑的文件名. 当 Vim 帮助系统需要链接到本地
 附加文件 (参考 \texttt{:help local-additions}) 时就会用到这个信息. 第二个
-\texttt{*} 后面的内容是关于本文档的简短描述. 对于前面我们开发的脚本来说, 可
+\texttt{*} 后面的内容是关于本文档的简短描述. 对于前面开发的脚本来说, 可
 以把文档的第一行写成:
 \begin{vimcode}
 *myscript.txt* Documentation for example script myscript.vim
@@ -688,7 +688,7 @@ Vim 有一个非常完善的帮助系统, 几乎涵盖了使用 Vim 的方方面
 写完这一行后, 就可以开始编写文档的实际内容.
 
 比较典型的做法是以一长串的介绍开始, 详细介绍本文档的主题内容. 这些内容可以
-包括作者的名字与联系方式. 然后, 如果文档比较长的话, 最好添加一个目录 (我们给
+包括作者的名字与联系方式. 然后, 如果文档比较长的话, 最好添加一个目录 (前面给
 的例子就包含了一个目录). 对于 \texttt{myscript.vim} 来说, 它的文档开头可以这
 样写:
 \begin{vimcode}
@@ -718,11 +718,11 @@ The following is covered in this document:
 	4. Todo						|myscript-todo|
 =============================================================
 \end{vimcode}
-在这个例子中, 我们用到了 Vim 文档中大部分会用到的格式化标记. 现在让我们一个
-个地介绍它们.
+这个例子用到了 Vim 文档中大部分会用到的格式化标记. 现在一个
+个地加以介绍.
 
 第一个标记是 \texttt{*...*}, 它把关键词标记成 Vim 帮助系统可以跳转到的位置.
-在这里我们把它写成了 \texttt{*myscript-intro*}, 这样的话, 我们就可以用下面
+在这里我们把它写成了 \texttt{*myscript-intro*}, 这样的话, 就可以用下面
 的命令跳转到该文档:
 \begin{vimcode}
 :help 'myscript-intro'
@@ -768,7 +768,7 @@ An example of usage could be: >
 		This is the script-scope function MyfunctionA speaking~
 =============================================================
 \end{vimcode}
-需要注意的标记是代码周围的 \texttt{>...<}, 它用来标记代码, 另外, 我们还用
+需要注意的标记是代码周围的 \texttt{>...<}, 它用来标记代码, 另外, 还用
 \verb'~' 标记了函数的返回信息.
 % This is used to mark the code, while we use the ~ colored lines to mark
 % the return from Vim.
@@ -800,7 +800,7 @@ An example of usage could be: >
 	\item Python
 	\item Ruby
 \end{itemize}
-在接下来的小节里, 我们将会简单介绍如何在 Vim 脚本中使用这三种语言.
+接下来的小节将会简单介绍如何在 Vim 脚本中使用这三种语言.
 
 Vim 默认上不支持这三种语言, 为了解决这个问题, 读者既可以选择自己重新编译
 Vim (在编译前开启相应的编译选项), 或者安装一个已经支持它们的 Vim 版本.
@@ -860,7 +860,7 @@ Vim 会话期间都一直有效.
 	VIM::Msg("this is a text");
 EOF
 \end{vimcode}
-现在, \texttt{EOF} 是 \textit{endpattern}, 在 Perl 代码中, 我们用函数
+现在, \texttt{EOF} 是 \textit{endpattern}, 在 Perl 代码中, 函数
 \texttt{VIM::Msg()} 向 Vim 打印一条消息. 除了这个函数, 还有许多函数可以用来
 沟通 Vim 与 Perl, 比较常见的有:
 \begin{itemize}
@@ -903,7 +903,7 @@ endfunction
 
 如果当前的 Vim 版本不支持 Perl, 函数就会打印一条关于这个事件的消息. 注意,
 即使其他代码是缩进过了, 但我们仍然把 \texttt{EOF} 写在一行中最靠左的位置上.
-为了能让 Vim 准确识别出 \textit{endpattern}, 我们必须严格遵守这条规则.
+为了能让 Vim 准确识别出 \textit{endpattern}, 用户必须严格遵守这条规则.
 
 \subsection{Python}
 \label{subsec:vim_scripting_in_python}
@@ -1049,18 +1049,18 @@ EOF
 我们学习了如何在脚本作用域内使用变量与函数, 这样就可以避免全局作用域受污染.
 通过限定作用域, 可以确保用户只能访问到和他们相关的功能.
 
-在查看了几个 Vim 脚本的结构之后, 我们介绍了如何检查一些先决条件, 比如操作系统
+在查看了几个 Vim 脚本的结构之后, 介绍了如何检查一些先决条件, 比如操作系统
 与 Vim 版本, 以便在继续执行之前, 判断某些条件是否满足.
 \marginpar{200}
 
-学习了如何创建 Vim 脚本之后, 我们介绍了如何调试 Vim 脚本. 这一节介绍了 Vim 的
+学习了如何创建 Vim 脚本之后, 介绍了如何调试 Vim 脚本. 这一节介绍了 Vim 的
 调试模式, 以及如何逐行地执行代码.
 
 脚本编写完成并且没有错误后, 接下来就可以发布脚本了. 这一节介绍了如何发布脚本,
 这样的话, 其他人就可以安装并使用你的脚本.
 
 文档是已发布脚本非常重要的一部分, 这一节介绍了如何使用 Vim 标记来编写文档.
-通过使用这些标记, Vim 的帮助系统就可以检索到我们自己编写的文档, 而且在文档
+通过使用这些标记, Vim 的帮助系统就可以检索到开发人员自己编写的文档, 而且在文档
 中跳转也很方便.
 
 对于有些人来说, 光使用 Vim 脚本语言还不足以满足他们的需求, 因此接下来介绍
@@ -1076,7 +1076,7 @@ EOF
 我们还看到这三种语言都提供了用于和 Vim 交互的模块, 这些模块可以访问 Vim 的
 许多信息, 因此开发人员可以直接在这些语言脚本中控制 Vim.
 
-看到这里, 读者就有能力自己编写 Vim 脚本, 调试它们并发布. 在附录里, 我们将会
+看到这里, 读者就有能力自己编写 Vim 脚本, 调试它们并发布. 附录将会
 看到某些 Vim 用户开发的脚本几乎可以让 Vim 无所不能.
 % Puting page number in next chapter.
 % \marginpar{201}
