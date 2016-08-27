@@ -24,7 +24,7 @@ Vim 的一个最强大之处是允许高级用户通过编写脚本来增强 Vim
 
 在许多程序员看来, 根据语法来高亮代码是 Vim 最重要的特性之一. 语法高亮不仅使代码
 看起来更清晰, 还可以帮助用户发现编码错误. Vim 语法高亮系统所使用的脚本非常像
-Vim 脚本, 但是语法高亮脚本定义的是颜色, 而不是功能. 在下面的一节里, 我们将会介
+Vim 脚本, 但是语法高亮脚本定义的是颜色, 而不是功能. 下面的一节将会介
 绍如何创建一个语法高亮方案.
 \marginpar{142}
 
@@ -33,7 +33,7 @@ Vim 脚本, 但是语法高亮脚本定义的是颜色, 而不是功能. 在下�
 
 简单来说, 语法高亮的关键是识别出文本中的特定单词与结构, 然后再给它们设置上对
 应的颜色. 然而, 大部分情况下要稍微复杂一点, 因为语法高亮还需要识别上下文语境.
-假设我们现在要语法高亮下面的代码:
+假设现在要语法高亮下面的代码:
 \begin{vimcode}
 /* if x equals y then return the value */
 if (x == y)
@@ -42,7 +42,7 @@ if (x == y)
   }
 \end{vimcode}
 
-如果我们仅仅是根据单词与符号来匹配, 那也可以得到一个相当不错的结果. 下面是具体
+如果仅仅是根据单词与符号来匹配, 那也可以得到一个相当不错的结果. 下面是具体
 的配置命令 (每个选项的意义已经在第 \ref{chap:personalizing_vim} 章中进行了介
 绍):
 \begin{vimcode}
@@ -64,8 +64,8 @@ if (x == y)
 \marginpar{143}
 
 那么, 我们可以从这个简单的例子里学习哪些东西呢? 那就是, 与高亮比起来, 更重要的
-是要找到期望中的单词, 然后再给它们设置对应的颜色. 现在让我们增加一些上下文的信
-息, 我们要把 \verb'/*' 与 \verb'*/' 之间的部分标记成注释, 然后再高亮其余的部
+是要找到期望中的单词, 然后再给它们设置对应的颜色. 现在增加一些上下文的信
+息, 把 \verb'/*' 与 \verb'*/' 之间的部分标记成注释, 然后再高亮其余的部
 分. 代码部分被标记上颜色之后, 就不需要再上色了, 因此规则的顺序很重要. 具体的
 配置代码是:
 \begin{vimcode}
@@ -84,13 +84,13 @@ if (x == y)
 \end{center}
 
 现在, 这段代码的高亮已经相当得体. 当然, 这只是一个小例子, 而且只用到了 Vim 语
-法高亮的一小部分功能, 接下来, 我们将会介绍更多的内容.
+法高亮的一小部分功能, 接下来将会介绍更多的内容.
 
 \section{区域高亮}
 \label{sec:syntax_regions}
 
-在前面的例子中, 我们用的是选项 \texttt{match} 来选择注释语句. 在某些情况下,
-我们很难创建一个适当的匹配语句, 这时候, 我们就需要用到其他一些更方便的做法.
+前面的例子是用选项 \texttt{match} 来选择注释语句. 在某些情况下,
+我们很难创建一个适当的匹配语句, 这时候, 就需要用到其他一些更方便的做法.
 
 在 Vim 中, 你可以选中一整个代码区, 然后再高亮它们, 为了选择一个代码区, 只需要
 提供区域的开始与结束. 对于前面的例子, 如果使用区域高亮的话, 具体的命令是:
@@ -109,7 +109,7 @@ if (x == y)
 \end{vimcode}
 
 除了设置区域开始与结束, 选项 \texttt{region} 还可以做更多的事. 它还可以根据其
-他语法规则来高亮区域内的某些代码. 我常做的一个操作是为函数注释设置几个关键词,
+他语法规则来高亮区域内的某些代码. 笔者常做的一个操作是为函数注释设置几个关键词,
 比如 \texttt{FIXME}, \texttt{OBSOLETE}, \texttt{TODO}, 等等, 这样, 我就可以把
 代码写成:
 \begin{vimcode}
@@ -124,7 +124,7 @@ function splitString(string) {
 \begin{vimcode}
 :syntax keyword myKeywords OBSOLETE FIXME TODO
 \end{vimcode}
-现在, 我们需要修改命令 \texttt{region} 的设置, 以允许区域内包含其他语法元素,
+现在, 需要修改命令 \texttt{region} 的设置, 以允许区域内包含其他语法元素,
 修改后的命令是:
 \begin{vimcode}
 :syntax region myComments start=/\/\*/ end=\/\*\// contains=myKeywords
@@ -184,14 +184,14 @@ contained
 语法组的名字以 \texttt{c} 开始, 比如 \texttt{cKeywords}, \texttt{cConditions},
 \texttt{cSymbols}, 等等).
 
-继续前面的例子, 我们刚才说到 \texttt{my} 语法文件所对应的编程语言源代码文件
-的后缀名是 \texttt{.my}, 为了简便起见, 我希望 Vim 把我的文件识别成具有文件类型
+继续前面的例子, 刚才说到 \texttt{my} 语法文件所对应的编程语言源代码文件
+的后缀名是 \texttt{.my}, 为了简便起见, 我希望 Vim 把文件识别成具有文件类型
 \texttt{my}.
 \marginpar{146}
 
 如果 Vim 无法识别用户正在编辑的文件, 那么就需要注册它们. 方法是在
 \texttt{VIMHOME} 目录下的 \texttt{filetype.vim} 中添加几行. 如果该文件不存在,
-可以手工创建. 对我的编程语言来说, 需要添加以下几行:
+可以手工创建. 对笔者的编程语言来说, 需要添加以下几行:
 \begin{vimcode}
 augroup filetypedetect
 autocmd BufNewFile,BufRead *.my setfiletype my
@@ -204,7 +204,7 @@ augroup END
 它的文件类型设置成 \texttt{my}. 如果用户还想区别其他文件类型, 还可以在两行
 \texttt{augroup} 之间添加其他 \texttt{autocmd}.
 
-注意, 如果 Vim 检查到我们正在编辑的文件的类型是 \texttt{my}, 它就会自动
+注意, 如果 Vim 检查到用户正在编辑的文件的类型是 \texttt{my}, 它就会自动
 查找匹配的语法文件, 它会在目录 \texttt{VIMHOME/syntax/} 内查找以文件类型名开始
 的语法文件, 在这里就是 \texttt{my.vim}.
 
@@ -243,7 +243,7 @@ augroup END
 \subsection{配色方案与语法高亮}
 \label{subsec:color_scheme_and_syntax_coloring}
 
-在前面的例子中, 我们通过命令 \texttt{:syntax} 添加了用户自己的高亮色彩组. 这
+在前面的例子中, 通过命令 \texttt{:syntax} 添加了用户自己的高亮色彩组. 这
 使得用户对配色具有了完全的控制权, 但同时也限制了你能使用的颜色的种类.
 因此, 在其他地方可能就不能用配色方案所定义的颜色了.
 
@@ -280,7 +280,7 @@ Vim.
 则比较复杂 (比如 IDE 编程环境), 但是实际上, Vim 只能识别某几种预定义的脚本类型
 组.
 
-如果我们认真查看一下脚本类型, 就会发现它们可以分为两组, 第一组是全局插件组, 该
+如果认真查看一下脚本类型, 就会发现它们可以分为两组, 第一组是全局插件组, 该
 组包含的脚本会在 Vim 启动时, 或者是在用户执行某些特定的函数调用时补始化. 这种
 脚本的典型例子包括为 Gvim 添加菜单, 为已经定义了的函数添加功能, 又或者是根据用
 户的需要修改某些特性.
@@ -409,13 +409,13 @@ Vimball 含有卸载机制.
     \item 尽量使得各个特性是可配置的, 因为其他人可能并不喜欢它原来的样子
 \end{itemize}
 
-把这些记在心里后, 接下来就可以学习开发 Vim 脚本, 现在, 先让我们来看一些实际
+把这些记在心里后, 接下来就可以学习开发 Vim 脚本, 现在, 先来看一些实际
 的例子.
 
 \subsection{脚本开发基础}
 \label{subsec:script_writing_basics}
 
-在接下来的几节, 我们将会介绍一些基本的类型与结构, 知道这些是开发出好脚本的
+接下来的几节将会介绍一些基本的类型与结构, 知道这些是开发出好脚本的
 前提.
 
 如果用户是一名程序员, 那就会对 Vim 的脚本语言感到很熟悉, 因为它的结构与其他
@@ -569,7 +569,7 @@ Vim 有 5 种类型的变量, 使用方法大不相同 (虽然定义的方式是
 可以看到, 上面定义的线性表包含了字符串, 数值, 和线性表. 因此线性表可以作为存
 放不同类型变量的容器.
 
-稍后, 我们将会介绍如何使用线性表中的变量, 以及如何与其他线性表一起工作.
+稍后将会介绍如何使用线性表中的变量, 以及如何与其他线性表一起工作.
 
 创建一个字典变量的命令是:
 \begin{vimcode}
@@ -587,7 +587,7 @@ Vim 有 5 种类型的变量, 使用方法大不相同 (虽然定义的方式是
 可以看到, 键不需要遵守特别的顺序, 也不一定非得是数值类型 (比如例子中的
 \texttt{"tens"}).
 
-稍后, 我们将会介绍如何访问字典中的值, 以及字典与线性表之间如何互相转换.
+稍后将会介绍如何访问字典中的值, 以及字典与线性表之间如何互相转换.
 
 最后一种变量类型是函数引用, 这种类型的变量包含了指向某个函数的引用, 和其他类
 型的变量相比, 其不同点是它是可执行的. 定义函数引用的命令是:
@@ -674,7 +674,7 @@ endif
 如果 \texttt{condition} 的值为真, \texttt{if} 和 \texttt{endif} 之间的语句就
 会执行, 否则就不执行.
 
-那么, 在这个 \texttt{if} 结构中我们可以使用哪些条件? 主要有两种 --- 使用逻辑
+那么, 在 \texttt{if} 结构中可以使用哪些条件? 主要有两种 --- 使用逻辑
 运算符的语句, 与使用字符串运算符的语句. 现在来看一下这两种运算符如何使用. 其
 总的形式都是:
 \begin{vimcode}
@@ -768,12 +768,12 @@ endif
 次数可以多于一次, 这就意味着可以在同一个结构中判断多个条件, 而不用担心会出现
 什么问题.
 
-稍后, 我们将会介绍如何在循环结构中使用条件判断.
+稍后将会介绍如何在循环结构中使用条件判断.
 
 \subsubsection{使用线性表与字典}
 \label{subsubsec:working_with_lists_and_dictionaries}
 
-在之前的内容中, 我们已经介绍了如何创建线性表与字典, 现在讨论如何访问这两个结
+之前的内容已经介绍了如何创建线性表与字典, 现在讨论如何访问这两个结
 绝中的数据.
 
 如果用户已经有了一个线性表变量, 并且想要访问表中的某个变量, 访问的方法是在线
@@ -784,7 +784,7 @@ endif
 :let mylistvar1 = [1,2,"three",0x04,myfivevar]
 \end{vimcode}
 \marginpar{160}
-\texttt{"three"} 的索引是 2, 所以我们可以这样访问它:
+\texttt{"three"} 的索引是 2, 所以可以这样访问它:
 \begin{vimcode}
 :echo mylistvar[2]
 \end{vimcode}
@@ -792,7 +792,7 @@ endif
 \begin{vimcode}
 :let mylistvar2 = [[1,2,3],["four","five","six"]]
 \end{vimcode}
-如果想要访问 \texttt{"four"} 所在的元素, 我们需要访问里面那个线性表的索引 0,
+如果想要访问 \texttt{"four"} 所在的元素, 就需要访问里面那个线性表的索引 0,
 与外面那个线性表的索引 1:
 \begin{vimcode}
 :echo mylistvar2[1][0]
@@ -860,13 +860,13 @@ endif
 \end{vimcode}
 这个命令从 \texttt{mylistvar5} 中移除索引为 \texttt{3} 的元素.
 
-现在开始介绍如何访问与修改字典变量. 在前面我们已经介绍过创建一个字典变量的命令
+现在开始介绍如何访问与修改字典变量. 前面已经介绍过创建一个字典变量的命令
 类似于:
 \begin{vimcode}
 :let mydictvar1 = {1: "one", 2: "two", 3: "three"}
 \end{vimcode}
 
-访问字典变量的方式与线性表非常类似. 假如我们想访问 \texttt{"two"}, 那就得在字
+访问字典变量的方式与线性表非常类似. 假如用户想访问 \texttt{"two"}, 那就得在字
 典变量的后面加个 \texttt{[]}, 并在括号内填上它的键值, 就像:
 \begin{vimcode}
 :echo mydictvar1[2]
@@ -877,7 +877,7 @@ endif
 \begin{vimcode}
 :let mydictvar4 = {'banana': 'yellow', 'apple': 'green'}
 \end{vimcode}
-现在, 我们想要访问苹果的颜色:
+现在, 用户想要访问苹果的颜色:
 \begin{vimcode}
 :echo mydictvar4['apple']
 \end{vimcode}
@@ -899,7 +899,7 @@ endif
 变量中未出现过的.
 
 用户可以在字典变量上附加一个函数, 使用该函数可以对字典变量中的元素进行一些操
-作, 接下来我们将通过一个例子来说明.
+作, 让我们通过一个例子来说明.
 
 比如说, 我们想要达到这样一个功能: 接收一个数值, 把数值中每一个数位上的数字转
 换成对应的英文拼写形式. 假设完成这个转换过程的函数是 \texttt{convert}, 而它
@@ -980,7 +980,6 @@ Vim 提供了两种形式的循环:
 	\item \texttt{for} 循环
 	\item \texttt{while} 循环
 \end{itemize}
-接下来, 我们将会介绍如何使用这两个循环.
 
 \paragraph{\texttt{for} 循环}
 \label{para:for_loops}
@@ -1021,7 +1020,7 @@ endfor
 循环遍历线性表的代码都遵循上面的形式.
 
 如果想要循环打印字典变量中的元素, 则需要多做一点工作, 这是因为字典变量的元素
-与一个键关联, 而不是索引. 但是有一个函数可以帮助我们从字典变量中提取键, 然后
+与一个键关联, 而不是索引. 但是有一个函数可以帮助用户从字典变量中提取键, 然后
 就可以像处理线性表那样, 遍历所有的键, 这个函数的名称是 \texttt{keys()}. 先
 来看一下使用示例:
 \begin{vimcode}
@@ -1030,7 +1029,7 @@ for keyvar in keys(mydict)
     echo mydict[keyvar]
 endfor
 \end{vimcode}
-在上面的例子中, 我们从字典变量 \texttt{mydict} 中获取到一个包含了所有键的线
+在上面的例子中, 从字典变量 \texttt{mydict} 中获取到一个包含了所有键的线
 性表, 然后遍历表中的每一个元素, 将元素的值放到变量 \texttt{keyvar} 中, 然后
 再用 \texttt{keyvar} 从字典变量中获取对应的值.
 
@@ -1120,8 +1119,8 @@ while x <= 5
 endwhile
 \end{vimcode}
 上面的代码把 \texttt{x} 从 \texttt{1} 递增到 \texttt{5}. 我们希望除了当
-\texttt{x} 等于 \texttt{2} 时, 代码把 \texttt{x} 的每一个值打印出来. 所以当
-我们发现 \texttt{x} 等于 \texttt{2}, 就通过 \texttt{continue} 语句马上结束
+\texttt{x} 等于 \texttt{2} 时, 代码把 \texttt{x} 的每一个值打印出来. 所以,
+如果 \texttt{x} 等于 \texttt{2}, 就通过 \texttt{continue} 语句马上结束
 掉当前循环, 开始下一次循环.
 
 代码的输出是:
@@ -1142,10 +1141,10 @@ x is now 5
 \subsubsection{创建函数}
 \label{subsubsec:creating_functions}
 
-在前面介绍的所有内容中, 我们已经用了相当多的代码片段, 这些片段都被组合成 Vim
+前面介绍的所有内容已经用了相当多的代码片段, 这些片段都被组合成 Vim
 函数. 但我们还没有真正讨论过如何构造函数, 以及函数到底是什么.
 
-让我们从一个简单的函数开始:
+从一个简单的函数开始讨论:
 \begin{vimcode}
 function Name(arg1, arg2, ...argN) keyword
     code-to-execute-when-function-is-called
@@ -1211,7 +1210,7 @@ echo sum
 \marginpar{170}
 
 \texttt{return} 语句使函数停止执行, 并返回一个值. 返回的值可以直接赋值给变量,
-现在让我们用 \texttt{return} 语句来修改上面的例子:
+现在用 \texttt{return} 语句来修改上面的例子:
 \begin{vimcode}
 function PrintSum(num1, num2)
     let sum = a:num1 + a:num2
@@ -1257,20 +1256,20 @@ endfunction
 \marginpar{171}
 上面这个新的函数引进了一些新的变量.
 
-\texttt{argnum} 是一个计数器, 我们用它来遍历 \texttt{num1} 与 \texttt{num2}
+\texttt{argnum} 是一个计数器, 用它遍历 \texttt{num1} 与 \texttt{num2}
 之后的所有参数.
 
-函数参数的个数存放在一个特殊的变量中 --- \texttt{a:0}, 所以我们用它来判断应该
+函数参数的个数存放在一个特殊的变量中 --- \texttt{a:0}, 所以用它来判断应该
 在什么时候停止循环.
 
-为了访问到每一个变量, 我们把 \texttt{argnum} 当作索引, 用于访问可选参数列表,
+为了访问到每一个变量, 把 \texttt{argnum} 当作索引, 用于访问可选参数列表,
 访问的方式是使用变量 \verb'a:{argnum}'. 用户可以把 \verb'a:{}' 看作是由可选
 参数组成的线性表, 而 \texttt{argnum} 是线性表的索引.
 
-对于参数列表中的每一个额外的参数, 我们都把它加到变量 \texttt{sum} 中, 当函数
+对于参数列表中的每一个额外的参数, 都把它加到变量 \texttt{sum} 中, 当函数
 执行结束时, 打印 \texttt{sum} 的值, 并把它返回.
 
-于是, 我们可以这样调用函数:
+于是, 可以这样调用函数:
 \begin{vimcode}
 let sum = 0
 let sum = PrintSum(4,5,6)
@@ -1288,7 +1287,7 @@ echo sum
 \end{vimcode}
 
 用户可能希望把所有的参数当作一个线性表来访问, Vim 提供了这个功能, 这个特殊的
-变量是 \texttt{a:000}, 它的类型是线性表. 通过这个变量, 我们可以把函数
+变量是 \texttt{a:000}, 它的类型是线性表. 通过这个变量, 可以把函数
 \texttt{PrintSum} 改写成:
 \begin{vimcode}
 function PrintSum(num1, num2,...)
@@ -1301,7 +1300,7 @@ function PrintSum(num1, num2,...)
 endfunction
 \end{vimcode}
 \marginpar{172}
-这次, 我们是通过 \texttt{for} 循环, 把可选参数一个接一个地传递给 \texttt{arg},
+这次, 通过 \texttt{for} 循环, 把可选参数一个接一个地传递给 \texttt{arg},
 然后再把变量 \texttt{arg} 中的值累加到 \texttt{sum} 上.
 
 如果用户不再想保留某个函数, 可以用下面的命令把它删除:
@@ -1329,23 +1328,23 @@ endfunction
 的 Vim 脚本类型 --- 语法高亮方案. 我们学习到了如何为编程语言 (或其他语法内容)
 创建一个语法高亮文件, 从而得到更好的高亮效果.
 
-之后, 我们讨论如何使用脚本文件, 介绍了几种 Vim 可用的脚本类型, 以及在
-哪里可以获取到它们. 在这一节结束时, 我们介绍了脚本的安装方法与卸载方法.
+之后, 讨论如何使用脚本文件, 介绍了几种 Vim 可用的脚本类型, 以及在
+哪里可以获取到它们. 在这一节结束时, 介绍了脚本的安装方法与卸载方法.
 % We ended this session by looking at not only how to install Vim scripts,
 % but also how to uninstall them again afterwards --- a functionality, it turns
 % out you can only easily use after installing a script in Vim.
 
-既然我们已经知道了如何安装以及如何使用脚本, 是时候介绍如何开发 Vim 脚本.
+既然已经知道了如何安装以及如何使用脚本, 是时候介绍如何开发 Vim 脚本.
 
-我们首先介绍了 Vim 脚本的基本变量类型, Vim 脚本变量几乎是无类型的 (只有两种基本
+首先介绍了 Vim 脚本的基本变量类型, Vim 脚本变量几乎是无类型的 (只有两种基本
 类型). 然而, 我们仍然可以利用这些类型存放各种各样的数据.
 
-在介绍完 Vim 脚本语言的基本结构之后, 我们开始介绍如何创建函数.
+在介绍完 Vim 脚本语言的基本结构之后, 开始介绍如何创建函数.
 \marginpar{173}
-我们学习到, 通过一个关键词, Vim 就会知道应该如何调用函数. 这就允许我们将函数
+通过一个关键词, Vim 就会知道应该如何调用函数. 这就允许我们将函数
 绑定到某种特定的变量上, 比如字典变量. 于是, 我们就能定义一些可以直接对字典变量
 进行操作的函数.
 
-在学习完这一章之后, 在下一章, 我们将会介绍如何运用本章所学的知识, 写出一个
+在学习完这一章之后, 下一章将会介绍如何运用本章所学的知识, 写出一个
 结构良好的脚本.
 % end of chapter 6
