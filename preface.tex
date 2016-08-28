@@ -44,18 +44,18 @@
 描述了模版, 自动补全, 拆叠, 会话, 和寄存器的使用方法.
 
 第 \ref{chap:advanced_formatting} 章: 格式化进阶, 讨论如何对文本和代码进
-行格式化. 它还介绍了如何使用外部工具, 使得 Vim 更加完美.
+行格式化. 它还介绍了如何借助外部工具, 使得 Vim 更加完美.
 
-第 \ref{chap:basic_vim_scripting} 章: Vim 脚本基础, 这一章是为那些想学习
-如何通过脚本来扩展 Vim 功能的人而准备的, 它介绍了脚本的基础知识, 经过
+第 \ref{chap:basic_vim_scripting} 章: Vim 脚本基础, 这一章是为那些想
+通过脚本来扩展 Vim 功能的人而准备的, 它介绍了脚本的基础知识, 经过
 这一章的学习, 读者应该能够写出一些简单的脚本.
 
 第 \ref{chap:extended_vim_scripting}: Vim 脚本进阶, 在第
-\ref{chap:basic_vim_scripting} 的基础上, 再继续讲一些高级的脚本知识,
+\ref{chap:basic_vim_scripting} 章的基础上, 再继续讲一些高级的脚本知识,
 包括如何在 Vim 脚本中使用外部的脚本语言.
 
 附录 \ref{chap:vim_can_do_everything}: 无所不能的 Vim, 提供了一张游戏
-列表, 它们都是用 Vim 脚本开发的, 这一章还简单讨论了如何使用脚本来实现
+列表, 它们都是用 Vim 脚本开发的, 这一章还简单讨论了如何使用脚本实现
 聊天和邮件工具, 另外还介绍了如何将 Vim 作为一个 IDE 使用.
 
 附录 \ref{chap:vim_configuration_alternatives}: Vim 配置管理, 展示如何
@@ -75,12 +75,12 @@ Vim 已经移植到了多种平台中, 但并不是所有的功能对任意一�
 
 \begin{warning}
 读者可以在 \url{www.vim.org} 上找到最新版的 Vim 源代码与二进制包. 如果
-你使用的是 Linux, 那么系统中很可能已经安装了 Vim, 而且是默认的编辑器.
+读者使用的是 Linux, 那么系统中很可能已经安装了 Vim, 而且是默认的编辑器.
 \end{warning}
 
 \section*{本书的目标读者}
 \label{sec:who_this_book_is_for}
-如果你已经是一位 Vim 用户, 而且想要学习更高级的技巧, 那么这本书就是为你
+如果读者已经是一位 Vim 用户, 而且想要学习更高级的技巧, 那么这本书就是为你
 而写的. 本书致力于帮助读者从一位Vim 中级用户, 上升为高级用户.
 
 \section*{Vim 新手?}
@@ -95,8 +95,8 @@ Vimtutor, 在安装 Vim 时, 会顺带安装这个 Vim 入门教程.
 
 Vimtutor 支持多国语言, 在启动程序时, 可以通过指定国家代码来选择一种语言,
 国家代码由 2 个字母组成, 比如 ca, cs, de, el, eo, es, fr, hr, hu, it, ja,
-no, ro, 和 zh). 例如, 如果想要阅读德语版的 Vimtutor, 只需要在命令行执行
-``vimtutor de''.
+no, ro, 和 zh. 例如, 如果想要阅读德语版的 Vimtutor, 只需要在命令行执行
+\texttt{vimtutor de}.
 
 \section*{排版约定}
 \label{sec:conventions}
@@ -153,15 +153,15 @@ Error (用脱字符 \textasciicircum 标记)''.
 \email{suggest@packtpub.com}.
 
 如果你对某个主题很有研究, 并且对写作也很感兴趣, 请阅读
-\url{www.packtpub.com/authors} 上的相关内容.
+\url{www.packtpub.com/authors} 的相关内容.
 
 \section*{客户支持}
 \label{sec:customer_support}
-既然你买了 Packt 出版的书籍, 那么我们会尽最大的努力让你觉得物有所值.
+既然读者买了 Packt 出版的书籍, 那么我们会尽最大的努力让你觉得物有所值.
 \begin{warning}
     下载书中的示例源代码:
 
-    登陆 \url{http://www.packtpub.com/files/code/0509_Code.zip} 下载书中
+    登陆 \url{http://www.packtpub.com/files/code/0509_Code.zip}, 下载书中
     的示例源代码, 下载的文件中含有使用方法.
 \end{warning}
 
@@ -171,7 +171,7 @@ Error (用脱字符 \textasciicircum 标记)''.
 我们已经尽了最大的努力来保证内容的正确性, 如果读者在书中发现
 了错误 --- 这个错误可能出现在正文中, 也可能出现在代码中 --- 请把错误反馈
 给我们. 通过反馈错误, 可以帮助其他读者更顺利地阅读, 也可以帮助我们提升
-后面版本的质量. 无论读者发现了什么类型的错误, 请登陆到
+后续版本的质量. 无论读者发现了什么类型的错误, 请登陆到
 \url{http://www.packtpub.com/support}, 选择对应的书籍, 点击 \texttt{let us
 know}, 然后输入相关的勘误信息. 一旦勘误通过了校验, 你的提交信息就会被接受,
 勘误也会上传到网页中, 或者加到书籍勘误列表, 这个列表可以在书籍的
@@ -185,7 +185,7 @@ know}, 然后输入相关的勘误信息. 一旦勘误通过了校验, 你的提
 因特网物品的版权一直是一个让人头疼的问题. Packt 对版权和授权的保护向来
 非常重视, 态度也很坚决. 如果读者怀疑有人在因特网上非法复制我们的作品 ---
 无论是什么形式 --- 请把相关的网址或网站名称发给我们
-(\email{copyright@packtpub.com}, 这样我们才能 快速地追回损失. 希望读者能
+(\email{copyright@packtpub.com}), 这样我们才能快速地追回损失. 希望读者能
 和我们一起尊重作者的辛勤付出, 这样我们才能继续为你奉献精彩的作品.
 \marginpar{6}
 
