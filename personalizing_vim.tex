@@ -2,7 +2,7 @@
 \chapter{定制 Vim}
 \label{chap:personalizing_vim}
 \marginpar{17}
-如果你经常使用你的计算机来编辑文件, 那么你应该会马上意识到拥有一款优秀的
+如果读者经常使用计算机编辑文件, 那么应该会马上意识到拥有一款优秀的
 编辑器是多么的重要. 一款优秀的编辑器能够成为你的好友, 帮助你高效地完成日常
 工作. 但是什么样的编辑器才能称之为优秀呢?
 
@@ -10,15 +10,15 @@
 的特性, 籍此希望编辑器越来越好用, 成为顶尖中的顶尖.  但是还有一些编辑器勇于
 承认自己的不足, 它们只希望能够尽量简单, 对用户友好, 能够更快速地启动.
 
-有了 Vim 编辑器, 没有人能够决定谁才是你的最佳选择. 相反, 你可以根据自己的
-需要, 对 Vim 进行大范围的修改, 使它更符合你的口味. 这就意味着力量掌握在
-你自己的手中, 而不是编辑器的开发人员.
+有了 Vim 编辑器, 没有人能够决定谁才是用户的最佳选择. 相反, 用户可以根据自己的
+需要, 对 Vim 进行大范围的修改, 使它更符合自己的口味: 力量掌握在用户手中,
+而不是编辑器的开发人员.
 
 有些设置和 Vim 的布局有关 (比如配色和菜单), 还有些设置可以影响用户使用
 Vim 的方式, 比如按键绑定 --- 把某个组合键映射到特定的操作上.
 
-这一章将介绍一些 Vim 定制配方, 它们可以帮助你把 Vim 配置成最符合
-你口味的编辑器.
+这一章将介绍一些 Vim 定制配方, 它们可以帮助用户把 Vim 配置成最适合自己的
+编辑器.
 
 这些处方主要针对下列配置操作:
 \begin{itemize}
@@ -38,10 +38,10 @@ Vim 的方式, 比如按键绑定 --- 把某个组合键映射到特定的操作
 
 \section{配置文件的存放位置}
 \label{sec:where_the_configuration_files}
-使用 Vim 时, 你必须了解它的一系列配置文件. 这些配置文件的存放位置取决于
-Vim 的安装目录, 以及你所使用的操作系统.
+使用 Vim 时, 用户必须了解它的一系列配置文件. 这些配置文件的存放位置取决于
+Vim 的安装目录, 以及所使用的操作系统.
 
-通常来说, 你只需要知道如何找到以下 3 个配置文件即可:
+通常来说, 用户只需要知道如何找到以下 3 个配置文件即可:
 \begin{enumerate}
     \item \file{vimrc}
     \item \file{gvimrc}
@@ -49,7 +49,7 @@ Vim 的安装目录, 以及你所使用的操作系统.
 \end{enumerate}
 \file{vimrc} 是 Vim 的主要配置文件, 它有两个版本 --- 全局的和个人的.
 
-全局的 \file{vimrc} 存放在 Vim 系统文件的安装目录中, 为了找到该目录, 你
+全局的 \file{vimrc} 存放在 Vim 系统文件的安装目录中, 为了找到该目录,
 需要启动 vim, 并在普通模式下执行
 \begin{vimcode}
 :echo $VIM
@@ -60,7 +60,7 @@ Vim 的安装目录, 以及你所使用的操作系统.
     \item Windows: \texttt{c:\textbackslash program files\textbackslash
         vim\textbackslash vimrc}
 \end{itemize}
-个人的 \file{vimrc} 在用户的家目录, 家目录的位置取决于你所用的操作系统.
+个人的 \file{vimrc} 在用户的家目录, 家目录的位置取决于用户所使用的操作系统.
 Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件名前加一个
 句点符号, 从而隐藏起来. 在 Unix 中, 以句点开始的文件名可以把文件隐藏起来,
 但在 Microsoft Windows 中不起作用, 作为替代, 在这些系统中 \file{vimrc} 的
@@ -98,9 +98,8 @@ source /path/to/external/file
 如何保持 \file{vimrc} 简练的更多方法, 请参考附录
 \ref{chap:vim_configuration_alternatives})
 
-\file{gvimrc} 是专门给 Gvim 使用的配置文件. 它类似于前面介绍过的
-\file{vimrc}, 个人的 \file{gvimrc} 存放目录与 \file{vimrc} 相同, 全局的
-同样如此. 比如:
+\file{gvimrc} 是专门给 Gvim 使用的配置文件, 类似于\file{vimrc}, 个人的
+\file{gvimrc} 存放目录与 \file{vimrc} 相同, 全局的配置同样如此. 比如:
 \begin{itemize}
     \item Linux: \texttt{/home/kim/.gvimrc} 与
         \texttt{/usr/share/vim/gvimrc}
@@ -119,21 +118,21 @@ source /path/to/external/file
 \file{gvimrc} 两个文件中.
 
 文件 \file{exrc} 只是为了保持对编辑器 vi/ex 的向后兼容. 它的存放位置
-与 \file{vimrc} 相同 (包括个人与全局), 使用方法也一样. 不过它很少被用到,
+与 \file{vimrc} 相同 (包括个人与全局), 使用方法也一样, 不过它很少被用到,
 除非用户把 Vim 设置成 vi 兼容模式.
 \marginpar{20}
 
 \section{更改字体}
 \label{sec:changing_the_fonts}
 对于普通版的 Vim 来说, 更改字体通常没什么好做的, 因为 Vim 的字体与终端
-字体一致. 然而, 对于 Gvim, 你可以根据自己的需要随意地修改字体.
+字体一致. 然而, 对于 Gvim, 用户可以根据自己的需要随意地修改字体.
 
 在 Linux 中, 设置字体的主要命令是 \file{guifont}, 例如:
 \begin{vimcode}
 :set guifont=Courier\ 14
 \end{vimcode}
 可以把 \texttt{Courier} 替换成你喜欢的任意一种字体的名字, 字体大小 14
-也能够按照你的需求更改 (字体大小的单位是点 --- pt).
+也可以根据需求进行更改 (字体大小的单位是点 --- pt).
 
 在 Windows 中修改字体用:
 \begin{vimcode}
@@ -178,27 +177,27 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 当在终端环境下工作时, 用户常常只能面对黑底白字的屏幕, 这样的屏幕不仅无趣,
 而且很昏暗, 如果能加点彩色就好了.
 
-在默认情况下, Vim 的窗口颜色与打开它的控制台相同, 但 Vim 还提供了更改颜色
+默认情况下, Vim 的窗口颜色与打开它的控制台相同, 但 Vim 还提供了更改颜色
 的能力. 通常情况下, 为了修改颜色, 只需要修改配色方案文件即可, 这些文件通常
 放在名为 \file{colors} 的目录中, 而目录 \file{colors} 位于 Vim 的安装目录.
 
-为了把配色方案修改成某个系统中已有的方案, 只需要执行:
+为了把配色方案修改成某个系统中已有的方案, 执行:
 \begin{vimcode}
 :colorscheme mycolors
 \end{vimcode}
-在这个命令中, \texttt{mycolors} 是系统中已安装的某个配色方案的名字. 如果你
+在这个命令中, \texttt{mycolors} 是系统中已安装的某个配色方案的名字. 如果读者
 不太清楚系统中已经安装了哪些配色方案, 请在输完
 \begin{vimcode}
 :colorscheme
 \end{vimcode}
 之后, 再键入至少一个空格, 然后就可以通过不断地按 \key{Tab} 键来浏览系统中
 可用的所有配色方案. 如果看到了一个感兴趣的配色方案, 只需要按下 \key{Enter}
-键就可以把该方案应用到 Vim 中.
+键就可以马上应用该方案.
 
 除了前景色与背景色, 配色方案还会影响代码高亮, 错误标记, 以及文件中的其他可
 视化标记.
 
-用户将会发现有些配色方案非常类似, 相互之间差别不大, 这是因为很多配色方案
+用户会发现有些配色方案非常类似, 相互之间差别不大, 这是因为很多配色方案
 都是由用户提供的, 如果用户对某个配色方案不太满意, 他可能会对方案中的某
 一条配置进行修改, 然后再用另外一个名字重新发布.
 \marginpar{22}
@@ -215,12 +214,12 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 在 Vim 中, 与高亮相关的最关键的技术是 \newterm{匹配} (\newterm{matching}).
 
 通过匹配, Vim 几乎可以标记字母, 单词, 数值, 语句, 和文本行的任意一种组合.
-你甚至可以决定如何标记它们 (例如 用红色标记错误, 用绿色标记重点内容).
+用户甚至可以决定如何标记它们 (例如 用红色标记错误, 用绿色标记重点内容).
 
 匹配通过下面这个命令完成:
-\begin{vimcode}
-:match Group /pattern/
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{:match }\textit{group}\texttt{ /}\textit{pattern}\texttt{/}
+\end{vimcmdform}
 命令带有两个参数, 第一个参数是高亮文本时使用的色彩组的名字.
 \begin{warning}
     配色方案影响的是全部的颜色设置, 而色彩组只是背景色 (或前景色) 的一个比
@@ -239,7 +238,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 \includegraphics[scale=0.7]{./images/page23.png}
 \end{center}
 
-这个命令查找位于行的开始位置的单词 \newterm{Error} (带有脱字符 \texttt{\^}),
+这个命令查找位于行的开始位置的单词 \newterm{Error} (带有脱字符\ \texttt{ \^}),
 如果找到了一个匹配, 就把匹配的文本用色彩组 \texttt{ErrorMsg} 的颜色
 标记起来 (通常是红底白字).
 
@@ -285,10 +284,10 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 \subsubsection{示例 1: 用彩色标记某列后面的文字}
 \label{subsubsec:mark_color_characters_after_a_certain}
 在写邮件时, 一条比较常见的规则是一行的长度不能超过 74 个字符 (在某些古老
-的编程语言中, 同样存在这样的规则). 在这种情况下, 当你在一行内写出的字符
+的编程语言中, 同样存在这样的规则). 在这种情况下, 当用户在一行内写出的字符
 数超过某个上限时, 如果 Vim 能够发出提醒那就再好不过了.
 
-只需要下面这个命令就可以完成上面提到的功能:
+下面这个命令就可以完成上面提到的功能:
 \begin{vimcode}
 :match ErrorMsg /\%>73v.\+/
 \end{vimcode}
@@ -316,10 +315,10 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 
 下面这条命令把所有的, 不在行的开始位置上的制表符用错误信息的颜色标记出来:
 \begin{vimcode}
-:match errorMsg /[^\t]\zs\t\+/
+:match ErrorMsg /[^\t]\zs\t\+/
 \end{vimcode}
-执行完该命令后, 你就可以看到是否违反了规则 --- 把制表符用在了代码内部. 把
-命令分解开来看, 它由下列这几个部分组成:
+执行完该命令后, 程序员就可以时刻知道编码是否违反了规则 --- 把制表符用在了
+代码内部. 把命令分解开来看, 它由下列这几个部分组成:
 \begin{center}
     \begin{tabular}{ll}
         \hline
@@ -341,7 +340,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 
 如果你想用空格来缩进代码, 而不是制表符, 为了检查代码, 只需要把命令改成:
 \begin{vimcode}
-:match errorMsg /[\t]/
+:match ErrorMsg /[\t]/
 \end{vimcode}
 这条命令的意思是: 匹配所有的制表符.
 \marginpar{26}
@@ -365,18 +364,18 @@ match errorMsg /\(2[5][6-9]\|2[6-9][0-9]\|[3-9][0-9][0-9]\)[.]
 相对于问题来说, 解决方法似乎有点太复杂了, 但请记住, 即使这条命令只能帮助你
 一次, 但也值得把它加到配置文件.
 \begin{warning}
-从另一方面来看, 如果想匹配有效的 IP 地址, 只需要执行:
+从另一方面来看, 如果想匹配有效的 IP 地址, 执行:
 \begin{vimcode}
-    match todo /\(\(25[0-5]\|2[0-4][0-9]\|[01]\?[0-9]
-                    [0-9]\?\)\.\)
-                    \\ \{3\}\(25[0-5]\|2[0-4][0-9]\|[01]\?
-                    [0-9][0-9]\?\)/
+:match Todo /\(\(25[0-5]\|2[0-4][0-9]\|[01]\?[0-9]
+                [0-9]\?\)\.\)
+                \\ \{3\}\(25[0-5]\|2[0-4][0-9]\|[01]\?
+                [0-9][0-9]\?\)/
 \end{vimcode}
 \end{warning}
 
 \section{更丰富的状态行}
 \label{sec:a_more_informative_status_line}
-在 Vim 窗口的底部, 你会发现两样东西:
+在 Vim 窗口的底部, 读者会发现两样东西:
 \begin{itemize}
     \item 命令行缓冲区 (输入命令的地方)
     \item 状态行
@@ -403,7 +402,7 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
 键入 \texttt{:help 'statusline'}, 打开 Vim 的帮助系统, 读者将会看到状态行
 可以包含相当多的信息, 其中有些信息在日常工作中非常有用.
 
-作者的状态行信息包括:
+笔者的状态行信息包括:
 \begin{itemize}
     \item 正在编辑的文件名
     \item 正在编辑的文件的格式 (比如 Dos, Unix)
@@ -412,7 +411,7 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
     \item 光标所在的行号与列号
     \item 文件的长度 (以行为单位)
 \end{itemize}
-下面的命令可以让你的 Vim 状态行包含上面提到的所有信息:
+下面的命令可以让读者的 Vim 状态行包含上面提到的所有信息:
 \begin{vimcode}
 :set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\
  [HEX=\%02.2B]\ [POS=%04l,%04v]\ [%p%%]\ [LEN=%L]
@@ -427,12 +426,12 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
 然而, 如果在安装 Vim 后没有做过多的配置, 即使执行了上面的状态行命令, 用
 户也看不到状态行有什么变化. 这是因为默认情况下 Vim 根本就不会显示状态行,
 它只会显示命令行缓冲区及其一小部分信息. 为了让 Vim 显示出真正的状态行, 用户
-必须把下面这条命令添加到 \file{vimrc} 文件中. 这条命令确保状态行始终显示在
+必须把下面这条命令添加到 \file{vimrc} 文件. 这条命令确保状态行始终显示在
 倒数第 2 行的位置上:
 \begin{vimcode}
 :set laststatus=2
 \end{vimcode}
-执行完该命令后, 你就会发现命令行缓冲区有了自己的位置: 窗口的最后一行. 通过
+执行完该命令后, 读者就会发现命令行缓冲区有了自己的位置: 窗口的最后一行. 通过
 这条命令就可以保证状态行始终拥有自己的显示位置, 而用户也就能一直看到文件的
 相关信息. 当然, 状态行会占据编辑区的一部分空间, 但是是否显示状态行由用户来
 决定. 下面这条命令关闭状态行, 直到当前会话结束:
@@ -443,15 +442,15 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
 \section{切换菜单与工具条}
 \label{sec:toggle_menu_and_toolbar}
 如果用户是在控制台中使用 Vim, 就会逐渐习惯没有菜单与工具条的窗口. 但是如果用
-的是 Gvim, 你就会发现窗口界面提供了菜单与工具条.
+的是 Gvim, 就会发现窗口界面提供了菜单与工具条.
 
-许多人认为应该把额外的空间分配给更重要的文本使用, 而不是菜单与工具条. 如果你
-也是这么认为的, 那么你可能希望在使用 Gvim 时, 移除菜单与工具条. 然而, 某
+许多人认为应该把额外的空间分配给更重要的文本使用, 而不是菜单与工具条. 如果
+读者也是这么认为的, 那么读者可能希望在使用 Gvim 时, 移除菜单与工具条. 然而, 某
 些脚本在菜单中增加许多有用的功能, 而这些功能也只能通过菜单来使用. 解决办法是
 根据实际需要, 随时切换菜单与工具条.
 
-下面的代码把组合键 \key{Ctrl+F2} 映射到菜单与工具条的切换操作上, 当然编辑
-器用的是 Gvim. 如果喜欢这个功能的话, 可以把代码写到 \file{vimrc} 中.
+下面的代码把 Gvim 的组合键 \key{Ctrl+F2} 映射到菜单与工具条的切换操作上,
+如果读者喜欢这个功能的话, 可以把代码写到 \file{vimrc} 中.
 \begin{vimcode}
 map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
                          \set guioptions-=T <Bar>
@@ -461,7 +460,7 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
                          \set guioptions+=m <Bar>
                       \endif<CR>
 \end{vimcode}
-现在, 无论何时, 只要你想关闭菜单与工具条, 好把空间留给文本, 只需要按下
+现在, 无论何时, 只要用户想关闭菜单与工具条, 好把空间留给文本, 只需要按下
 \key{Ctrl+F2} 即可, 如果想它们了, 再按一下 \key{Ctrl+F2}, 它们就回来了.
 \marginpar{29}
 如果用户希望一直隐藏菜单或工具条, 只需要在 \file{vimrc} 中添加下面两个命令
@@ -482,10 +481,10 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
     参考\texttt{:help 'guioptions'}.
 \end{warning}
 
-\section{添加自己菜单与工具条按钮}
+\section{添加自定义菜单与工具条按钮}
 \label{sec:adding_your_own_menu_and_toolbar_buttons}
-如果使用的是 Gvim, 那么用户可以把经常用到的功能加入到菜单中. 也许用户并不总
-是需要通过菜单来使用某项功能, 但是如果忘记了具体的操作步骤, 用户还可以通过
+如果使用的是 Gvim, 那么用户可以把经常用到的功能加到菜单中. 也许用户并不总
+是需要通过菜单来使用某项功能, 但是如果忘记了具体的操作步骤, 还可以通过
 菜单来完成. 如果用户确实需要快速地执行某个功能, 还可以把它直接加入到 Gvim
 的工具条中.
 
@@ -512,17 +511,17 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
 
 命令带有两个参数. 第 1 个参数是菜单项在菜单中的实际路径, 第 2 个参数是菜单项
 被点击时所执行的命令. 举个例子, 假设用户想要在菜单项 \newterm{Tabs} 中, 添加
-一个新菜单项 \newterm{Next}, 只需要执行:
+一个新菜单项 \newterm{Next}, 执行:
 \begin{vimcode}
 :menu Tabs.Next <ESC>:tabnext<cr>
 \end{vimcode}
-之后, 你就有了一个新菜单项 \newterm{Tabs}, 它只有一个子菜单项 \newterm{Next}.
+之后, 用户就有了一个新菜单项 \newterm{Tabs}, 它只有一个子菜单项 \newterm{Next}.
 现在, 如果用户点击菜单项 \newterm{Next}, 就会执行:
 \begin{vimcode}
 :tabnext
 \end{vimcode}
 命令前面的 \texttt{<ESC>} 为的是让 Vim 切换到普通模式,
-后面的 \texttt{<cr>} 是真正执行命令的地方. 如果漏掉了 \texttt{<ESC>}, 那么
+后面的 \texttt{<cr>} 是真正开始执行命令的地方. 如果漏掉了 \texttt{<ESC>}, 那么
 命令就无法正常地工作. 另外一种办法是根据当前的模式, 在命令前添加特定
 的菜单项, 为此, Vim 提供了几个 \texttt{:menu} 的替代命令:
 \begin{itemize}
@@ -537,7 +536,7 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
         模式, 前置 \verb'^C', 后置 \verb'^\^G'
 \end{itemize}
 \marginpar{31}
-前置部分 (\verb'^O' 与 \verb'^C') 用于将 Vim 切换到普通模式.
+前置部分 (\verb'^O' 与 \verb'^C') 把 Vim 切换到普通模式.
 
 \verb'^O' (\key{Ctrl+O}) 专门用于插入模式, 因为它会在执行完命令之后让编辑器
 重新回到插入模式.
@@ -566,7 +565,7 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
 第一个是 \texttt{<silent>}, 它可以阻止命令执行过程中, 命令的内容被回显到命令行
 缓冲区. 当然, 这个功能只是装饰性的, 相比之下, 菜单路径中的 \verb'&' 就实
 用多了. 把字符 \verb'&' 加在菜单路径的最后一个部分的某个字母之前, 就可以为该
-菜单项定义一个快捷键. 有了快捷键, 定位并执行菜单项就方便多了.
+菜单项定义一个快捷键. 有了快捷键, 定位并执行菜单项就可以更加方便.
 \begin{center}
 \includegraphics[scale=0.42]{./images/page31.png}
 \end{center}
@@ -750,21 +749,21 @@ function ShortTabLabel()
  endfunction
 \end{vimcode}
 \marginpar{36}
-只要把 \texttt{guitablabel} 的属性设置成函数的输出即可:
+再把 \texttt{guitablabel} 的属性设置成函数的输出:
 \begin{vimcode}
 :set guitablabel=%{ShortTabLabel()}
 \end{vimcode}
-命令的执行效果如下图所示:
+命令的执行效果是:
 \begin{center}
 \includegraphics[scale=0.5]{./images/page36}
 \end{center}
 
 \begin{warning}
-如果用户想要完全移除 Gvim 的标签栏, 只需要执行 \texttt{:set showtabline=0}
+如果用户想要完全移除 Gvim 的标签栏, 执行 \texttt{:set showtabline=0}
 (把 \texttt{showtabline} 设置成 1 则会重新显示标签栏).
 \end{warning}
 
-现在, 我们已经拥有了只含有有限的信息的标签, 但还是希望能从其他地方
+现在, 我们已经拥有了只含有有限信息的标签, 但还是希望能从其他地方
 得到信息, 为了完成这个功能需要用到一个小技巧 --- 使用工具提示.
 
 工具提示的优点是当用户没有激活它们时 (例如, 把鼠标移动到标签页的位置上,
@@ -1021,18 +1020,18 @@ Vim 会给出一长串的候选单词, 除非用户把单词完全拼写错了, 
 下面这几个命令:
 \begin{itemize}
     \item 第 1 个命令是在 Vim 中启用 balloons:
-    \begin{vimcode}
-    :set ballooneval
-    \end{vimcode}
+\begin{vimcode}
+:set ballooneval
+\end{vimcode}
     \item 第 2 个命令告诉 Vim 在显示信息之前需要等待多长时间 (默认是 600
     毫秒):
-    \begin{vimcode}
-    :set balloondelay=400
-    \end{vimcode}
+\begin{vimcode}
+:set balloondelay=400
+\end{vimcode}
     \item 最后一个命令是设置信息的内容:
-    \begin{vimcode}
-    :set balloonexpr="textstring"
-    \end{vimcode}
+\begin{vimcode}
+:set balloonexpr="textstring"
+\end{vimcode}
     信息的内容既可以是静态的文本字符串, 也可以是函数的返回值.
 \end{itemize}
 
@@ -1066,7 +1065,7 @@ endfunction
 set balloonexpr=SimpleBalloon()
 set ballooneval
 \end{vimcode}
-脚本的运行结果如下图所示:
+脚本的运行结果是:
 \begin{center}
     \includegraphics[scale=0.5]{./images/page44.png}
 \end{center}
@@ -1339,7 +1338,7 @@ endfunction
 \end{center}
 
 如果用户只可能在插入模式下才会保存文件, 而且在保存之后想要继续在插入模式下
-工作, 那么用户就需要执行:
+工作, 那就执行:
 \begin{vimcode}
 :imap <C-s> <esc>:w<cr>a
 \end{vimcode}
