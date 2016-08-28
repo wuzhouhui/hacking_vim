@@ -6,7 +6,7 @@
 \newterm{Vim} (\newterm{Vi IMproved}) 编辑器最早由 Bram Moolenaar 于
 1991 年 11 月发布, 当时只是作为 Unix vi 编辑器的 Amiga 平台克隆版.
 
-一年后, Unix 平台的 Vim 发布, 之后, 它迅速成为了 vi 的替代版本.
+一年后, Unix 平台的 Vim 发布, 接着, 它迅速成为了 vi 的替代版本.
 
 由于宽松的授权和丰富的功能, 在开源社区的帮助下, Vim 逐渐流行起来.
 越来越多的 Linux 发行版开始用 Vim 替换掉 vi. 虽然许多用户认为他们使用
@@ -38,19 +38,19 @@ vi 和 Vim 是同一个程序).
 读者也许对 Vim 有了一定的了解, 而且也使用了一段时间, 然而, 如果你还没有
 使用过 Vim, 那么最好趁现在这个时候, 在自己的系统中安装 Vim.
 
-你可以从网站 \url{http://www.vim.org} 下载到 Vim 的最新版.
+可以从网站 \url{http://www.vim.org} 下载到 Vim 的最新版.
 \begin{warning}
 本书主要讨论 Vim 7.2, 如果你用的 版本比较老, 请不要担心, 你可以随时
 更新到最新版.
 \end{warning}
-如果你所用的操作系统是 Microsoft Windows, 只需要双击运行下载的 \texttt{.exe}
+如果读者的操作系统是 Microsoft Windows, 只需要双击运行下载的 \texttt{*.exe}
 文件, 就可以开始安装过程. 安装完毕后, 在 ``开始'' 菜单中就会出现一个指
 向 gVim 的快捷键.
 
-如果是 Linux, 那么安装方式取决于你所使用的 Linux 发行版. 如今, 在大多数
-发行版中已经预先安装了 Vim, 如果没有, 具体的安装方法请参考发行版
+如果是 Linux, 那么安装方式取决于读者所使用的 Linux 发行版. 如今, 在大多数
+发行版中已经预装了 Vim, 如果没有, 具体的安装方法请参考发行版
 的软件包管理器 (例如, debian 的软件包管理器是 Aptitude, Mandriva 是
-urpmi, Ubuntu 的是 Synaptics). 如果系统中没有软件包管理器, 你可以从
+urpmi, Ubuntu 的是 Synaptics). 如果系统中没有软件包管理器, 还可以从
 上面所提供的网站中下载 Vim 的源代码, 手工编译安装, 具体的编译安装方法
 可以看一下源码包中的 \file{readme} 文件.
 
@@ -104,7 +104,7 @@ SUS 的系统才能称之为 Unix 系统.
 
 \subsection{Elvis}
 \label{subsec:elvis}
-STEVIE 是比较流行的编辑器之一, 但是它还有许多 bug, 限制也比较多. 当时
+STEVIE 是比较流行的编辑器之一, 但是它还有许多问题, 限制也比较多. 当时
 还在使用 Minix 的 Steve Kirkendall 注意到了 STEVIE 的一个缺点: 在编辑文件
 时, 它会把整个文件读取到内存中, 对 Minix 来说这并不是一个很明智的做法.
 于是 Steve 决定修改 STEVIE, 让编辑器把一个文件当做缓冲区使用, 而不是
@@ -146,7 +146,7 @@ Keith 希望新的编辑器和原始的 vi 尽量保持接近, 于是他采用�
 (\newterm{lisp edit}) 被剔除出去.
 
 随着 4.4BSD 的发布, nvi 完全替代了 vi 编辑器, 而且再次使用了完全免费的
-授权来发布该软件.
+授权.
 
 如今, 大多数基于 BSD 的操作系统都使用了 nvi 作为它们的默认 vi 编辑器,
 包括 NetBSD, FreeBSD, 还有 OpenBSD, 并且功能也越来越丰富.
@@ -160,7 +160,7 @@ Keith 希望新的编辑器和原始的 vi 尽量保持接近, 于是他采用�
     \item 简单的脚本支持, 脚本语言可以是 Perl 或 Tcl/Tk
 \end{itemize}
 
-Keith Bostic 现在依然在维护 nvi 的源代码, 但是开发量已经少了很多.
+Keith Bostic 现在依然在维护 nvi, 但是开发量已经少了很多.
 \begin{warning}
     可以到 \url{http://www.bostic.com/vi/} 获取最新版的 nvi.
 \end{warning}
@@ -179,7 +179,7 @@ Vim 的第 1 版和 Elvis 一样, 都是基于 STEVIE 的源代码. 然而, Bram
 可是就在一年之后, 到了 1992 年, Bram 把 Vim 移值到了 Unix 平台, 这样做
 的结果是 Vim 已经不仅仅是 vi 的衍生版, 而是变成了一个强有力的竞争对手. Vim
 的开发工作非常迅速, 仅用了很短的时间, Vim 就拥有了许多原始 vi 不支持
-的特性. 也正是由于这个原因, Vim 变成了 Vi IMproved 的缩写形式.
+的特性. 也正是由于这个原因, Vim 的全称变成了 Vi IMproved.
 
 两年之内, Vim 就拥有了一大堆 vi 用户朝思暮想的功能, 这也使得越来越多的
 vi 用户转而投向 Vim 的怀抱.
@@ -198,11 +198,11 @@ vi 用户转而投向 Vim 的怀抱.
 \begin{itemize}
     \item 在多个缓冲区, 窗口, 和标签页中同时编辑多个文件
     \item 高级脚本语言
-    \item 脚本语言支持 Perl 与 Python
+    \item 支持 Perl 与 Python
     \item 支持超过 200 种语言的语法高亮
     \item 带有分支的, 不限次数的撤消/重做
-    \item 根据上下文来补全单词和函数
-    \item 通过正则表达式, 支持高级的模式匹配
+    \item 根据上下文补全单词和函数
+    \item 借助正则表达式, 支持高级的模式匹配
     \item 与多种编译器, 解释器, 以及调试器的紧密结合
     \item 可在线免费获取超过 1500 份 Vim 脚本程序
 \end{itemize}
@@ -213,8 +213,8 @@ AmigaOS, Atari MiNT, OS/2, OS/390, MacOS, OpenVMS, RISC OS, 以及 QNX.
 \subsection{Vile}
 \label{subsec:vile}
 \newterm{Vile} 也许是所有衍生版中最不像vi的一个 --- 甚至有人认为它根本就
-不是 vi 的衍生版. Vile 试图把世界上最好的两个编辑器集成在一起 --- vi 的
-模式与 Emacs 的特性.
+不是 vi 的衍生版. Vile 试图把世界上最好的两个编辑器集成在一起 --- vi
+与 Emacs.
 
 这也解释了名字 Vile 的来源 --- \newterm{VI Like Emacs}.
 
@@ -222,20 +222,20 @@ Paul Fox 在 1990 年的夏季启动了 Vile 的开发计划, 其源代码基于
 \newterm{MicroEmacs} 编辑器, 在后面的日子里, Paul 为它添加了模式与其他
 的类 vi 特性.
 
-MicroEmacs 并没有具备 Emacs 编辑器的全部特性, 但是它支持冗长的文本行,
+MicroEmacs 并没有具备 Emacs 编辑器的全部特性, 但是它支持长文本行,
 以及在 多个窗口中同时编辑多个文件. 这些特性 vi 并不具备, 但是许多程序
 员却很 需要它们.
 
 为了把 MicroEmacs 改造成类 vi 编辑器, 开发人员做了大量的工作. 在这过程中
 陆续有几位新成员加入到开发团队中, 其中就包括 Thomas E. Dickey, 他在 1992
-参与进来, 他为 Vile 添加了许多新特性, 也修复了很多 bug.
+参与进来, 他为 Vile 添加了许多新特性, 也修复了很多问题.
 
 1994 年, Kevin Buettner 参与了进来, 着手开发 Vile 的 GUI 版本 ---
 \newterm{xvile}, xvile 支持当时最常用的一些图形部件, 比如 Athena,
 OpenLook, Motif, 以及 Xt Toolkit.
 
 如今 Thomas 是 Vile 的主要维护人员, 开发工作也由他掌控. 但是他花在开发
-上的时间十分有限, 在大多数情况下只是做一些 bug 修复工作.
+上的时间十分有限, 在大多数情况下只是做一些问题修复工作.
 
 Vi 与 Vile 在工作方式上不太一样, 而且只有一小部分的 vi 特性被保留到了
 Vile 中. Vile 的主要特性包括:
@@ -287,15 +287,15 @@ Vim 的语法文件, 那它就不能被 Elvis 所使用.
 
 表格只考虑了衍生版和 vi 共同拥有的特性, 也就是说虽然 Vim 拥有许多 vi 并
 不支持的特性, 但是在共同支持的特性上, Vim 仍然表现得和 vi 非常类似.
-除此之外, Vim 还实现了 vi 几乎所有的特性, 有一些特性--- Bram Moolenaar 把
-它们当作 vi 的 bug --- 所以在 Vim 中用了不同的方法来实现. 注意, 为了能让
+除此之外, Vim 几乎实现了 vi 的所有特性, 有一些特性, Bram Moolenaar 把
+它们当作 vi 的缺陷, 所以在 Vim 中用了不同的方法来实现. 注意, 为了能让
 Vim 达到 99\% 的 vi 兼容性, 你必须执行下列命令, 把它设置成兼容模式:
 \begin{vimcode}
 :set compatible
 \end{vimcode}
 \marginpar{15}
 \begin{warning}
-    如果你想要了解更多的关于 vi 与 Vim 之间的差异, 请在 Vim 中输入命令:
+    如果读者想要了解更多的关于 vi 与 Vim 之间的差异, 在 Vim 中输入命令:
     \texttt{:help vi-differences}
 \end{warning}
 另一个比较有趣的地方是, 虽然 STEVIE 非常精确地实现了 vi 的一部分功能集,
@@ -304,7 +304,7 @@ Vim 达到 99\% 的 vi 兼容性, 你必须执行下列命令, 把它设置成�
 \section{博爱的 Vim}
 \label{sec:vim_is_charityware}
 Vim 的开发人员 --- Bram Moolenaar --- 选择了一种称为慈善授权的许可证
-来发布 Vim. 该许可证允许你不受限制地复制 Vim, 但是它鼓励你向慈善团体捐赠.
+来发布 Vim. 该许可证允许用户不受限制地复制 Vim, 但是它鼓励大家向慈善团体捐赠.
 
 如果你想要了解更多的关于捐赠的信息, 在打开 Vim 后, 执行
 \begin{vimcode}
@@ -348,4 +348,4 @@ vi 编辑器的众多衍生版之一, 为了让读者对 vi 家族有一个感�
 善款, 从而帮助乌干达的儿童. 最后, 介绍了书中比较重要的几个术语,
 并解释了本书书名 ``Hacking Vim'' 的意义.
 
-现在, 你可以继续往下阅读, 学习如何定制 Vim 编辑器.
+现在, 读者可以继续往下阅读, 学习如何定制 Vim 编辑器.
