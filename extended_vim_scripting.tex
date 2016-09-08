@@ -69,16 +69,16 @@ if exists("loaded_myscript")
 endif
 let loaded_myscript = 1
 \end{vimcode}
-如果脚本未被加载, \texttt{if} 条件判断为假, 因此函数设置变量
-\texttt{loaded\_myscript}.
+如果脚本未被加载, \texttt{if} 条件判断为假, 函数把变量
+\texttt{loaded\_myscript} 设置成非零.
 
 当下一次加载脚本时, \texttt{if} 条件判断为真, 因为此时变量
 \texttt{loaded\_myscript} 已经存在, 然后函数停止加载脚本.
 \marginpar{177}
 
 在某些情况下, 停止加载脚本可能并不是最好的做法, 因为用户可能修改了
-\texttt{VIMHOME} 目录中的脚本版本. 所以, 这时候应该先卸载脚本, 然后再重新加载
-脚本. 完成这项功能的函数可以这样实现:
+\texttt{VIMHOME} 目录中的脚本版本. 所以, 这时候应该先卸载脚本, 然后再重新加载.
+完成这项功能的函数可以这样实现:
 \begin{vimcode}
 if exists("loaded_myscript")
     delfunction MyglobalfunctionB
@@ -209,7 +209,7 @@ noremap <SID>MyfunctionA :call <SID>MyfunctionA()<CR>
 \label{subsec:functions}
 
 函数几乎可以算作脚本开发过程中最重要的部分. 我们已经看到了如何创建一个函数,
-而且已经注意到, 用作用域标记 \texttt{s:} 把函数的作用域限定在脚本内, 通常要比
+而且已经注意到, 作用域标记 \texttt{s:} 把函数的作用域限定在脚本内, 通常要比
 全局范围内可见要好一点. 函数的一个例子是:
 \begin{vimcode}
 " this is our local function with a mapping
@@ -344,7 +344,7 @@ endif
 \subsection{操作系统类型}
 \label{subsec:which_operating_system}
 
-如果脚本将要在多种不同的操作系统中运行, 比如 Microsoft Windows, Linux, 你将
+如果脚本将要在多种不同的操作系统中运行, 比如 Microsoft Windows, Linux, 读者将
 会发现需要处理许多问题.
 
 需要处理的问题包括程序的存放位置, 程序是否可用, 以及文件的访问权限.
