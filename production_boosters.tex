@@ -21,7 +21,7 @@
     \item 寄存器与撤消分支
     \item 折叠
     \item 使用 \texttt{vimdiff} 分析差异
-    \item 使用 \texttt{netrw} 来随时随地地打开文件
+    \item 使用 \texttt{netrw} 随时随地地打开文件
 \end{itemize}
 
 阅读完这一章之后, 用户使用 Vim 的工作效率应该可以提高好几个百分点.
@@ -49,9 +49,9 @@
         \texttt{main()} 函数.
     \item 在 Java 文件中添加主类.
 \end{itemize}
-除了这些, 你应该还能想到其他一些例子.
+除了这些, 读者应该还能想到其他一些例子.
 
-那么, 怎么才能创建一个模版文件? 不妨让我们用 HTML 文件作为例子来进行讲解.
+那么, 怎么才能创建一个模版文件? 不妨用 HTML 文件作为例子来进行讲解.
 这种文件的结构是静态的, 因此非常适合用模版来处理. HTML 模版的内容是:
 \begin{vimcode}
 <html>
@@ -68,7 +68,7 @@
 在 \texttt{VIMHOME} 目录下创建一个新目录 \texttt{templates/}, 并把上面的
 模版文件保存到这个目录中, 假设把模版文件命令为 \texttt{html.tpl}.
 \marginpar{75}
-现在, 第一个模版已经准备就绪, 不过, 当我们创建一个新的 HTML 文件时, 需要加载
+现在, 第一个模版已经准备就绪, 不过, 创建一个新的 HTML 文件时, 需要加载
 模版文件, 为了完成加载, 把下面这行命令添加到 \texttt{vimrc} 中:
 \begin{vimcode}
 :autocmd BufNewFile *.html 0r $VIMHOME/templates/html.tpl
@@ -128,8 +128,7 @@ inoremap <c-j> <ESC>/<+.\{-1,}+><cr>c/+>/e<cr>
 \subsection{把缩写作为模版}
 \label{subsec:abbreviations_as_templates}
 
-在前面的小节里, 我们学习了如何为不同类型的文件制作模版. 那么, 现在就来介绍一下
-如何为文件的内容制作模版.
+上一小节介绍了如何为不同类型的文件制作模版, 这一节介绍如何为文件内容制作模版.
 
 第 \ref{chap:personalizing_vim} 章简单地介绍了如何通过缩写来减少击键的
 次数, 现在把缩写应用到模版中. 回忆一下下面这个命令的作用:
@@ -170,10 +169,10 @@ iabbrev for( for(!cursor!;<+++>;<+++>){<cr><+++><cr>}<Esc>
 
 现在, 无论何时输入 \texttt{for(}, Vim 都会自动插入一段 \texttt{for} 循环, 然后
 把光标移动到占位符 \texttt{!cursor!} (当光标移过来时, 占位符上原来的内容会自动
-被移除). 接下来, 你就可以方便地填写 \texttt{for} 循环的参数, 并用 \key{Ctrl+j}
+被移除). 接下来, 用户就可以方便地填写 \texttt{for} 循环的参数, 并用 \key{Ctrl+j}
 跳转到下一个参数的位置.
 
-也许你已经知道, 许多编程语言都有相同的主要结构 (比如 \texttt{for} 循环), 但是
+也许读者已经知道, 许多编程语言都有相同的主要结构 (比如 \texttt{for} 循环), 但是
 它们之间的差异导致了无法使用同一个模式模版. 再回过头来看一下手上已有的东西,
 看看是否可以让它们识别文件类型.
 
@@ -182,7 +181,7 @@ iabbrev for( for(!cursor!;<+++>;<+++>){<cr><+++><cr>}<Esc>
 \begin{vimcode}
 :autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
 \end{vimcode}
-让我们对这个命令进行修改, 使得 Vim 可以根据文件的类型, 为模式模版自动加
+对这个命令进行修改, 使得 Vim 可以根据文件的类型, 为模式模版自动加
 载适当的缩写.
 
 为了能让命令更聪明一点, 把命令的功能用函数来实现. 函数的代码是:
@@ -197,7 +196,7 @@ endfunction
 :autocmd BufNewFile * silent! call LoadTemplate('%:e')
 \end{vimcode}
 函数 \texttt{LoadTemplate} 在 \texttt{\$VIMHOME} 的 \texttt{templates} 子目录
-下搜索两个文件: \texttt{EXTENSION.tpl} 与 \texttt{EXTENSION.patterns.tpl}.
+下搜索两个文件: \texttt{EXTENSION.tpl} 与 \texttt{EXTENSION.patterns.tpl},
 其中 \texttt{EXTENSION} 表示当前打开着的文件的扩展名.
 \marginpar{78}
 第 1 个文件包含了特定文件类型的模版, 而第 2 个文件则包含了特定文件类型的缩写
@@ -221,7 +220,7 @@ endfunction
 用户可以使用 snippet 脚本. Snippet 和用在模版中的缩写有点类似, 但是要更高级一
 点.
 
-如果你想在 Vim 中使用 snippet, 笔者推荐你看一下 snipMate 脚本, 下载地址是
+如果读者想在 Vim 中使用 snippet, 笔者推荐 snipMate 脚本, 下载地址是
 \url{http://www.vim.org/scripts/script.php?script_id=2540}.
 
 snipMate 可以让用户在不需要了解 Vim 脚本的前提下, 为自己的文件格式定义高级的
@@ -251,34 +250,34 @@ snippet for
 \end{vimcode}
 
 snippet 被插入之后, 它把光标放在了第 1 个 \texttt{i} 的位置, 并切换到插入
-模式, 因此你可以轻易地把 \texttt{i} 换成另一个变量. 现在, 最神奇的事情发生了,
+模式, 可以轻易地把 \texttt{i} 换成另一个变量. 现在, 最神奇的事情发生了,
 % FIXME
-当你把第 1 个 \texttt{i} 换掉之后, 第 2 个 \texttt{i} (后面带有 \texttt{++}
+第 1 个 \texttt{i} 被换掉之后, 第 2 个 \texttt{i} (后面带有 \texttt{++}
 的那个) 也会被自动更新成新变量. 修改了 \texttt{i} 之后 (如果需要的话), 按下
 \key{Tab} 键, 光标就会跳转到 \texttt{count}, 并再次切换到插入模式. 现在你可以
-以同样的步骤来修改 \texttt{count} 并按下 \key{Tab} 键, 之后, 光标跳转到
+以同样的步骤修改 \texttt{count} 并按下 \key{Tab} 键, 之后, 光标跳转到
 \texttt{++}, 再按下 \key{Tab} 跳到 \texttt{/* code */}, 你可以在这里写下其他代
 码.
 
 在 snippet 的不同变量之间跳转, 简直不能再简单了.
 
-snipMate 系统通过查找由 \texttt{\$\{NUMBER:INITIAL\_VALUE\}} 创建的特殊标记来进行
-工作. 标记中的 \texttt{NUMBER} 指出了当你按下 \key{Tab} 时, 将要跳转到的序列.
+snipMate 系统通过查找由 \texttt{\$\{NUMBER:INITIAL\_VALUE\}} 创建的特殊标记进行
+工作. 标记中的 \texttt{NUMBER} 指出了按下 \key{Tab} 时, 将要跳转到的序列.
 如果 \texttt{NUMBER} 是 1, 那么光标会首先处在这个位置上, 如果 \texttt{NUMBER}
 是 3, 那么它就是按下两次 \key{Tab} 后光标所在的位置, 以此类推.
-\texttt{INITIAL\_VALUE} 是在你修改 snippet 之前, 首先插入到 snippet 中的文本.
+\texttt{INITIAL\_VALUE} 是在修改 snippet 之前, 首先插入到 snippet 中的文本.
 比如 \texttt{\$\{1:i\}} 把 \texttt{i} 作为文本插入到 snippet 中, 并首先把光标
 放在此处.
 
-如果你需要在多个地方使用同一个变量, 可以通过 \texttt{\$NUMBER} 来引用. 比如说,
-你想要让 \texttt{i} 出现在多个地方, 那就在需要出现 \texttt{i} 的地方写上
+如果需要在多个地方使用同一个变量, 可以通过 \texttt{\$NUMBER} 来引用. 比如说,
+想要让 \texttt{i} 出现在多个地方, 那就在需要出现 \texttt{i} 的地方写上
 \texttt{\$1} 即可. 写上 \texttt{\$1} 所有地方在开始时都会显示成 \texttt{i},
 当改变 \texttt{i} 时, 其他地方的 \texttt{i} 也会自动更新.
 
-这里介绍的只是创建 snippet 的基础知识, 不过一旦在你的系统中安装了 snipMate,
-你就可以通过 Vim 的帮助系统学习到更多的高级知识.
+这里介绍的只是创建 snippet 的基础知识, 不过一旦在系统中安装了 snipMate,
+就可以通过 Vim 的帮助系统学习到更多的高级知识.
 
-用户还可以在 snipMate 中找到更多的惊喜. 你将会发现, snipMate 已经为许多常见
+还可以在 snipMate 中找到更多的惊喜. 用户会发现, snipMate 已经为许多常见
 的文件格式准备好了 snippet 脚本, 包括 \texttt{.c}, \texttt{.php},
 \texttt{.perl}, \texttt{.java}, \texttt{.html}, \texttt{.tex}, 甚至还包括 Vim
 脚本.
@@ -306,9 +305,9 @@ Tag list 就像是程序员的字典. Tag list 实际上是一个包含了所有
 \end{itemize}
 
 因为 Exuberant Ctags (简称 Ctags) 使用得最为广泛, 支持的语言也是最多的, 因此
-在下面的例子里我们用它来生成 tag list.
+在下面的例子里我们用它生成 tag list.
 
-以一个小项目来进行讲解, 这个项目包含了 3 个 C 文件:
+以一个小项目进行讲解, 这个项目包含了 3 个 C 文件:
 \begin{itemize}
     \item \texttt{main.c}: 包含 \texttt{main} 函数的文件
     \item \texttt{myfunctions.c}: 包含了程序中用到的各个函数
@@ -320,7 +319,7 @@ Tag list 就像是程序员的字典. Tag list 实际上是一个包含了所有
 \begin{vimcode}
 ctags *.c *.h
 \end{vimcode}
-命令执行完毕后, 你将会发现在当前目录下出现了一个新文件, 文件名是 \texttt{tags}.
+命令执行完毕后, 会在当前目录下创建一个新文件, 文件名是 \texttt{tags}.
 这个文件就是 tag list 文件, 它包含了源代码中所有函数与变量的信息.
 \marginpar{81}
 \begin{warning}
@@ -332,7 +331,7 @@ ctags *.c *.h
 \begin{vimcode}
 :set tags=/path/to/tags
 \end{vimcode}
-现在, Vim 已经知道了 \texttt{tags} 文件的存在, 接下来, 你就可以在 Vim  使用它.
+现在, Vim 已经知道了 \texttt{tags} 文件的存在, 接下来就可以在 Vim 使用它.
 
 \texttt{main.c} 调用了 \texttt{myfunctions.c} 中定义的函数. 假设用户
 知道有一个函数叫作 \texttt{calcValue}, 但却不知道该函数接收什么样的参数, 比较
@@ -398,7 +397,7 @@ myvalue = calcValue(
 \label{subsec:easier_taglist_navigation}
 
 在大多数的非英文键盘布局中, 按键 \texttt{]} 无法直接使用, 必须通过其他的组合
-键 --- 比如 \key{Ctrl+Alt+G+r+9} --- 来完成 \key{Ctrl+]} 的功能. 在这种情况下,
+键 --- 比如 \key{Ctrl+Alt+G+r+9} --- 完成 \key{Ctrl+]} 的功能. 在这种情况下,
 把命令映射到直接可用的按键上会更方便一点, 对此, 笔者使用了下面的映射:
 \begin{vimcode}
 :nmap <buffer> <F7> <C-]>
@@ -467,8 +466,6 @@ Taglist 不仅可以用来查找函数与变量的定义, 还可以用来查找�
 完单词的头两个字母后, 按下组合键 \key{Ctrl+n}.
 \marginpar{85}
 
-示例:
-
 假设用户想要在 Vim 中输入 ``I have beautiful flowers in my flower garden''.
 
 在刚开始时, 文件中没有任何其他的内容, 因此用户不得不一个字母一个字母地写下
@@ -478,7 +475,7 @@ Taglist 不仅可以用来查找函数与变量的定义, 还可以用来查找�
 当输入 ``f'' 后, 按下 \key{Ctrl+n}, Vim 就会把 ``f'' 自动扩展为 ``flowers'',
 只要把多余的 ``s'' 删掉即可. 和输入整个单词相比, 这要快很多.
 
-随着文本的增多, 你会发现越来越多的单词可以自动补全.
+随着文本的增多, 读者会发现越来越多的单词可以自动补全.
 
 组合键 \key{Ctrl+n} 所做的工作是向前搜索匹配的单词. 如果用户知道自己刚刚才输入
 过同样的单词, 那么用 \key{Ctrl+p} 会更快一点, 因为这个组合键是向后搜索匹配.
@@ -536,7 +533,7 @@ Vim 7.0 引入了一种全新的补全技术 --- omnicompletion. 它使得用户
 \begin{vimcode}
 :set omnifunc=MyCompleteFunction
 \end{vimcode}
-现在, 你只需要定义函数 \texttt{MyCompleteFunction}, 这个函数用于完成补全操作.
+现在, 用户只需要定义函数 \texttt{MyCompleteFunction}, 这个函数用于完成补全操作.
 上面的命令只在当前活动缓冲区内才有效, 如果希望每个缓冲区都可以使用该补全函数,
 那么就要对每个缓冲区执行这个设置命令.
 \begin{warning}
@@ -544,7 +541,7 @@ Vim 7.0 引入了一种全新的补全技术 --- omnicompletion. 它使得用户
     定到特定的文件类型上.
 \end{warning}
 
-现在来看一个补全函数的例子. 假设你有一个通讯录文件, 文件的内容是人名及其邮件
+现在来看一个补全函数的例子. 假设用户有一个通讯录文件, 文件的内容是人名及其邮件
 地址, 就像:
 \begin{vimcode}
 Kim Schulz|kim@schulz.dk
@@ -554,7 +551,7 @@ Johannes Burg|jobu@somedomain3.net
 Kimberly B. Schwartz|kbs@somedomain.com
 \end{vimcode}
 
-现在, 你想在写完一个人名后, 通过补全插入对应的邮件地址, 完成这个功能的函数是:
+用户想在写完一个人名后, 通过补全插入对应的邮件地址, 完成这个功能的函数是:
 \begin{vimcode}
 function! CompleteEmails(findstart, base)
 	  if a:findstart
@@ -675,7 +672,7 @@ endfunction
 inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 \end{vimcode}
 
-把函数的代码与按键绑定添加到 \texttt{vimrc} 中, 然后你就可以用 \key{Tab} 键来
+把函数的代码与按键绑定添加到 \texttt{vimrc} 中, 然后用户就可以用 \key{Tab} 键来
 完成各种类型的补全.
 
 按下 \key{Tab} 键进行补全时, 函数检查此时是否是要插入一个制表符. 如果不是, 那
@@ -703,7 +700,7 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 可以在 \texttt{@} 前加上任意的数字, 表示重复执行该命令多少次. 例如,
 \texttt{15@a} 表示把寄存器 \texttt{a} 中所记录的命令重复执行 15 遍.
 
-现在让我们看一下一次普通的录制会话过程:
+先看一个普通的录制会话过程:
 \begin{vimcode}
 qq
 command1
@@ -716,7 +713,7 @@ q
 读者可能会好奇这有什么用, 因为这只是在重复执行一串命令罢了. 这种问题最好通过
 例子来说明.
 
-想像一下你有一大串的信息需要处理, Unix 系统的日志文件就属于这种类型. 日志文件
+想像一下用户有一大串的信息需要处理, Unix 系统的日志文件就属于这种类型. 日志文件
 的内容类似于:
 \begin{vimcode}
 Mar 20 17:23:54 Inspiron kernel: [33604.866998] ath9k 0000:09:00.0: no hotplug settings from platform
@@ -768,10 +765,10 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
     \key{Enter}.
 \end{warning}
 
-现在我们已经准备好了完整的宏, 光标的位置也已就位, 这意味着现在可以重复地
-执行宏, 并且在每次执行完宏后, 光标都会处在就绪的位置下.
+宏准备好了, 光标的位置也已就位, 现在可以重复地执行宏, 并且在每次执行完宏后,
+光标都会处在就绪的位置上.
 
-用户可以用 \texttt{@a} 来回放存放在寄存器 \texttt{a} 中的宏, 除此之外, 用户还
+用户可以用 \texttt{@a} 回放存放在寄存器 \texttt{a} 中的宏, 除此之外, 用户还
 需要做的就是添加 HTML 的头部与尾部信息, 这很简单.
 \marginpar{93}
 这只是宏应用的一个简单示例, 如果读者认真回忆一下, 可能会想到更多的, 可以用宏
@@ -825,8 +822,8 @@ Mar 20 17:23:54 Inspiron kernel: [33604.867089] pci 0000:00:1f.3: using default 
     尾紧跟上一个感叹号 \texttt{!}.
 \end{warning}
 
-使用视图时, 你可以同时拥有多个不同的视图. 如果每个视图都保存到当前工作目录下, 那
-么不用多长时间, 工作目录就会被视图文件填满. 为了避免这个问题, 可以用下面的命令
+使用视图时, 用户可以同时拥有多个不同的视图. 如果每个视图都保存到当前工作目录下, 那
+么用不了多长时间, 工作目录就会被视图文件填满. 为了避免这个问题, 可以用下面的命令
 告诉 Vim, 应该把视图文件放到哪个目录下:
 \begin{vimcode}
 :set viewdir=$HOME/.vim/views
@@ -894,11 +891,11 @@ endfunction
         被打开.
 \end{itemize}
 
-如果你希望在会话文件中存放更多的信息, 可以把额外的信息存放到额外的会话文件中.
+如果用户希望在会话文件中存放更多的信息, 可以把额外的信息存放到额外的会话文件中.
 方法是创建一个其名字类似于会话文件的文件, 不过要把扩展名 \texttt{.vim} 改成
 \texttt{x.vim}. 例如, \texttt{Session.vim} 的额外会话文件是
-\texttt{Sessionx.vim}. 额外的会话文件应该和其所属的会话文件放在同一目录下. 你
-可以把你想要添加的命令全写到这个文件中, 当 Vim 加载会话文件时, 会把额外的会话
+\texttt{Sessionx.vim}. 额外的会话文件应该和其所属的会话文件放在同一目录下. 用户
+可以把想要添加的命令全写到这个文件中, 当 Vim 加载会话文件时, 会把额外的会话
 文件中的命令执行一遍.
 \marginpar{96}
 
@@ -943,12 +940,12 @@ endfunction
 \marginpar{97}
 粗体显示的是 Vim 的默认设置选项. 每次设置选项时并不需要全部设置, 可以通过运算符
 \texttt{+=} 和 \texttt{-=} 来增加或移除选项. 比如说, 用户想要在默认选项的基础上
-添加 \texttt{winpos}, 并移除 \texttt{folds}, 则可以这样做:
+添加 \texttt{winpos}, 并移除 \texttt{folds}, 可以这样做:
 \begin{vimcode}
 :set sessionoptions+=winpos
 :set sessionoptions-=folds
 \end{vimcode}
-可以用下面的命令显示当前的会话选项:
+用下面的命令显示当前的会话选项:
 \begin{vimcode}
 :echo &sessionoptions
 \end{vimcode}
@@ -1127,7 +1124,7 @@ Vim 是不会让这种事情发生的.
 \label{subsubsec:the_read_only_registers}
 
 有四个只读寄存器, 它们的特殊之外在于只有 Vim 才有权限修改它们. 用户只能
-通过命令 \texttt{P}, \texttt{p} 或 \texttt{:put} 来访问它们的内容. 四个只读寄
+通过命令 \texttt{P}, \texttt{p} 或 \texttt{:put} 访问它们的内容. 四个只读寄
 存器存放的内容有所不同:
 \begin{itemize}
     \item \texttt{"\%}: 该寄存器包含了当前活动缓冲区的文件名.
@@ -1357,8 +1354,8 @@ Vim 提供了两个命令, 分别用来在撤消历史中向前跳转和向后�
 \label{sec:folding}
 
 一般来说, 编辑大型文件时 (尤其是源代码文件), 用户很难获取一份好的概览. Vim 提
-供了一个特性用来帮助用户解决这个问题 --- 折叠文本块. 这一节介绍如
-利用折叠来更方便地获取文本内容的概览.
+供了一个特性可以解决这个问题 --- 折叠文本块. 这一节介绍如
+利用折叠获取文本内容的概览.
 
 折叠指的是将一个范围内的行 (比如一个函数的定义) 折叠成一行, 但不丢失文本内容.
 比如折叠下面的文本:
@@ -1559,10 +1556,10 @@ this section contains info about vim scripts.
 在 Unix 系统中, 有一个称为 \texttt{diff} 的命令, 这个命令很早就开始被人们使用
 (最早出现于 1974 年), 但是其他系统很可能没有该命令. 这个命令的功能是显示两个
 文件的差异, Vim 也提供了一个用于比较差异的工具 --- \texttt{vimdiff}. 这一节介
-绍如何使用 Vim 来比较文件的差异.
+绍如何使用 Vim 比较文件的差异.
 \marginpar{112}
 
-\texttt{vimdiff} 是 Vim 内置的差异比较工具, 它使用颜色来显示文件间的差异 (被
+\texttt{vimdiff} 是 Vim 内置的差异比较工具, 它使用颜色显示文件间的差异 (被
 比较的两个文件分别处在两个纵向切割或横向切割的窗口中). 下面的图片显示了
 \texttt{vimdiff} 的工作界面:
 \begin{center}
@@ -1570,7 +1567,7 @@ this section contains info about vim scripts.
 \end{center}
 
 有若干种方式可以用来启动 \texttt{vimdiff}. 在安装了 Vim 的系统中, 一般都有一
-个叫作 \texttt{vimdiff} 的程序快捷键, 用户可以通过它来启动 \texttt{vimdiff}:
+个叫作 \texttt{vimdiff} 的程序快捷键, 用户可以通过它启动 \texttt{vimdiff}:
 \begin{vimcode}
 vimdiff file1 file2
 \end{vimcode}
@@ -1710,7 +1707,7 @@ function! DiffWithFileFromDisk()
 \label{sec:open_files_anywhere}
 
 系统管理员与网站开发人员经常会被同一个问题所困扰, 如果解决得不好的话, 会给人带
-来很大的麻烦, 这个问题就是他们所浏览的文件, 大部分是存放在远程服务器上.
+来很大的麻烦, 这个问题就是他们所浏览的文件大部分都存放在远程服务器上.
 
 系统管理员对此问题的解决办法通常是远程登录到服务器上 (比如用 ssh (Secure
 Shell), 然后再在服务器上直接修改配置文件.
@@ -1721,8 +1718,8 @@ Shell), 然后再在服务器上直接修改配置文件.
 
 如果不使用上面提到的方法, 那又应该怎么办呢? 为什么他们就不能在本地直接编辑远程
 服务器上的文件? Vim 可以在不需要额外扩展的前提下完成这件事. Vim 含有一个称为
-netrw (Net Read/Write) 的系统, 它可以用来帮助用户编辑远程服务器上的文件,
-通过例子来介绍如何使用它.
+netrw (Net Read/Write) 的系统, 它可以用来编辑远程服务器上的文件,
+通过例子介绍如何使用它.
 
 假设有一个网站开发人员, 叫作 John, 他把他的主页放在远程服务器
 \texttt{remote.server.com} 上. 现在他想要编辑文件 \texttt{index.html}, 这个文
@@ -1732,7 +1729,7 @@ vim ftp://john@remote.server.com/public_html/index.html
 \end{vimcode}
 
 Vim 根据参数识别出它需要使用 FTP 协议连接到服务器 \texttt{remote.server.com},
-所使用的用户名是 \texttt{john}, 如果还需要输入密码, 则 Vim 就会在连接时给出
+所使用的用户名是 \texttt{john}, 如果还需要输入密码, Vim 就会在连接时给出
 提示信息. Vim 从服务器上下载一份文件的副本到本地, 用户所编辑的正是该副本, 所
 不同的是每当用户保存文件时, Vim 都会同时保存一份到服务器上.
 

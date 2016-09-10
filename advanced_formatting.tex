@@ -93,7 +93,7 @@ but never more than the number of characters defined in the the
 这个函数定义在 Vim 为 C 文件自动加载的文件中.
 
 \begin{warning}
-    自动回载的文件可以在 \texttt{VIMHOME} 的子目录 \texttt{autoload} 中找到.
+    自动加载的文件可以在 \texttt{VIMHOME} 的子目录 \texttt{autoload} 中找到.
     文件根据所服务的文件类型来命令, 以后缀 \texttt{.vim} 结束. 例如, 为 C 文
     件自动加载的文件是 \texttt{VIMHOME/autoload/c.vim}.
 \end{warning}
@@ -117,7 +117,7 @@ function! MyFormatter()
     endwhile
 endfunction
 \end{vimcode}
-这个格式化文本接收所有的行, 在每一行的开始添加 \texttt{>}, 就像 E-mail 中的引
+这个格式化文本接收所有的行, 在每一行的开始添加 \texttt{>}, 就像电子邮件中的引
 用.
 
 上面展示的格式化函数非常简单, 如果需要更高级一点的, 那么函数的复杂度就会快速
@@ -277,7 +277,7 @@ endfunction
 \end{vimcode}
 \marginpar{128}
 
-认真看一下函数的实现, 读者就会发现它所做的不过是获取当前行, 然后再用它的一份
+认真看一下函数的实现, 就会发现它所做的不过是获取当前行, 然后再用它的一份
 拷贝替换掉自身, 在前面添加一个空格, 一个星号, 然后是一个制表符.
 
 很显然, 函数只对一行有效, 然而, 如果用户选中了一个范围内的所有行, 那么 Vim 就
@@ -329,7 +329,7 @@ endfunction
 \end{itemize}
 
 为了解决第一个问题, 必须查看范围内第一行与最后一行的行号, 两个行号之间的差就
-是行数, 于是我们就有了列表编号的最大值. 由于考虑了第二个问题, 所以这
+是行数, 于是就得到了列表编号的最大值. 由于考虑了第二个问题, 所以这
 是唯一可能的解决办法, 如果不这样做的话, 那么函数每次就只能看到当前行.
 
 解决第二个问题的办法是在函数名的后面添加关键字 \texttt{range}, 这个关键字告诉
@@ -358,7 +358,7 @@ Vim, 函数是对一个范围内的行作操作, 而不仅仅是一行.
 
 虽然具体的格式化细节不尽相同, 但是它们都遵循一些基本的规则, 也就是说, 用户只
 需要关心不同的地方即可. 在大部分情况下, 格式化规则的修改可以通过一系列的 Vim
-选项来设置, 在这些选项当中, 比较重要的有以下几个:
+选项设置, 在这些选项当中, 比较重要的有以下几个:
 \begin{itemize}
     \item \texttt{formatoptions}: 这个选项负责特定格式的设置 (见 \texttt{:help
         'fo'})
@@ -419,13 +419,19 @@ Cindent 经常被称为 clever indent(聪明的缩进) 或 configurable indent(�
         个例子是 \texttt{cinoptions=">2,\{3,\}3"}, 意思是说在正常的缩进之上,
         再额外添加两个空格, 另外, 在 \verb'{' 与 \verb'}' 的左边添加三个空格,
         以便与前一行作比较. 因此, 如果目前的缩进是 4 个空格, 那么刚才所说的
-        设置会使代码变成 (代码中的点表示一个空格):
-        \begin{vimcode}
-    if (a == b)
-    ...{
-    ......print "hello";
-    ...}
-        \end{vimcode}
+        设置会使代码变成:
+\begin{lstlisting}[
+    basicstyle=\ttfamily,
+        xleftmargin=2em,
+        breaklines=true,
+        tabsize=4,
+        showspaces=true,
+]
+if (a == b)
+   {
+      print "hello";
+   }
+\end{lstlisting}
         \texttt{cinoptions} 的默认值是 \path{">s,e0,n0,f0,{0,}0,^0,%
         :s,=s,l0,b0,gs,hs,ps,ts,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j0,%
         )20,*30"}, 更多的信息见 \texttt{:help 'cinoptions'}.
@@ -621,7 +627,7 @@ p=`]
 即使是经验丰富的 Vim 用户也会经常说 Vim 可以做任何事情, 虽然事实上并不是这样,
 但其实已经很接近了 --- 对于 Vim 不能做的事, 最好借助外部工具来完成.
 
-下面的小节将会介绍最经常使用的格式化工具, 以及如何使用它们.
+下面的小节介绍最经常使用的格式化工具, 以及如何使用它们.
 
 \subsection{Indent}
 \label{subsec:indent}
@@ -629,7 +635,7 @@ p=`]
 程序 Indent 可能是最常使用的 Vim 外部工具. 从 80 年代开始, 它就被安装到了各种
 不同的 Unix 平台中, 后来还被移值到了 Microsoft Windows.
 
-如同它的名字那样, 这个程序的功能就是缩进代码 --- 特别是那些类 C 代码. 用户可
+顾名思义, 这个程序的功能就是缩进代码 --- 特别是那些类 C 代码. 用户可
 会感到奇怪 --- 既然 Vim 本来就可以缩进代码, 而且做得也很不错, 那干嘛还要用外
 部工具呢? 这个问题非常好, 答案是 Vim 确实在这一方面做得很好, 但是 Indent 做得
 更好, 并且更容易在多个编辑器之间对缩进进行标准化.

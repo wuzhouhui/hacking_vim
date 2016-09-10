@@ -118,7 +118,7 @@
 现在, 用户就可以准备好修改 \texttt{vimrc}, 但是在修改之前最好做个备份.
 
 在我们开始往 \texttt{vimrc} 添加设置之前, 先来看一下配置系统的使用语法. 前
-面我们已经说过, 技巧就是配置项周围的注释. 这些注释包含了很特殊的语法, 这样
+面已经说过, 技巧就是配置项周围的注释. 这些注释包含了很特殊的语法, 这样
 脚本才能知道这些注释是干嘛用的, 语法的基本规则是
 \texttt{"|ID|tabname|text|command|extra|val1|val2|val3|}.
 
@@ -182,10 +182,10 @@ let setup_group="SETTINGS"
 \marginpar{220}
 
 \texttt{setup\_files} 是一个数组, 数组中的每一个元素都是一个文件名, 文件包含
-了设置信息. 在上面的例子中, 我们用到了 \texttt{settings.vim},
+了设置信息. 上面的例子用到了 \texttt{settings.vim},
 \texttt{mappings.vim}, \texttt{scripts.vim} 这三个文件.
 
-第二条命令告诉脚本当前设置使用哪一个配置组. 在示例中我们用的是
+第二条命令告诉脚本当前设置使用哪一个配置组. 在示例中用的是
 \texttt{SETTINGS}, 因此如果某个设置的注释以 \texttt{|SETTINGS|} 开始, 那么这
 个设置就会被用到.
 
@@ -193,7 +193,7 @@ let setup_group="SETTINGS"
 
 由于设置分散在多个文件中, 我们需要让 Vim 意识到这点, 因此 \texttt{vimrc} 要
 包含 (在 Vim 中称为 source) 这些文件, 除此之外, 为了让修改生效, 还要让 Vim
-重新加载 \texttt{vimrc}, 为了处理这种情况, 我们也提供了一个特殊的设置.
+重新加载 \texttt{vimrc}, 为了处理这种情况, 脚本提供了一个特殊的设置.
 
 在 \texttt{setup.vim} 中搜索 \texttt{HERE1}, 找到单词出现的第二个地方, 用户
 将会看到:
@@ -238,7 +238,7 @@ autocmd bufleave _setup source ~/.vimrc
 使用不同的设置而感到很恼火.
 
 现在, 几乎每一台计算机都连接到了因特网上, 所以一个明显的解决办法是在线保存一
-份 \texttt{vimrc}. 我们之前已经说过 Vim 可以编辑远程主机上的文件, 但是, 如果
+份 \texttt{vimrc}. 之前已经说过 Vim 可以编辑远程主机上的文件, 但是, 如果
 要读取远程主机上的 \texttt{vimrc} 将会遇到一些问题. 通常情况下, 当 Vim 需要
 读取网络上的文件时, 它会用到插件 \texttt{netrw}, 然而, 当 Vim 读取
 \texttt{vimrc} 时, 这个插件还没有加载, 也就无法读取远程主机上的 \texttt{vimrc}.
