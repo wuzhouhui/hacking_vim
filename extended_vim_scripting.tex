@@ -456,7 +456,7 @@ endfunction
 有时候, 脚本并不会按照开发人员期望中的那样工作, 在这种情况下, 开发人员就得
 知道如何调试 Vim 脚本.
 
-这一节会介绍几种寻找错误的方法.
+这一节会介绍几种调试错误的方法.
 
 \begin{warning}
     结构良好的脚本拥有更少的错误, 也更容易调试.
@@ -597,7 +597,7 @@ vim -D -c 'breakadd file 15 */.vimrc' somefile.txt
 好的:
 \begin{itemize}
     \item 创建出的 ZIP 文件需要包含脚本文件所在的目录, 这里的目录指的是相对
-        于 \texttt{VIMHOME} 的目录, 比如, 假设你有:
+        于 \texttt{VIMHOME} 的目录, 比如, 假设用户开发的脚本包含了:
 \begin{vimcode}
 VIMHOME/plugin/myscript.vim
 VIMHOME/syntax/mylang.vim
@@ -664,8 +664,9 @@ Vim 自动地把选中的行的起始与结束行号添加到命令的前面. �
 \section{注意文档}
 \label{sec:remember_the_documentation}
 
-Vim 有一个非常完善的帮助系统, 几乎涵盖了使用 Vim 的方方面面. 用户在安装完你
-开发的脚本后, 如果想要搜索相关的帮助信息, 此时会发生什么? 如果你没有在脚本
+Vim 有一个非常完善的帮助系统, 几乎涵盖了 Vim 的方方面面. 用户安装完其他人
+开发的脚本后, 如果想要搜索相关的帮助信息, 此时会发生什么? 如果开发人员没有
+在脚本
 的安装包中添加文档, 那么用户就无法在 Vim 的帮助系统中找到相关的信息. 所以,
 请在发布脚本时, 加上相应的文档.
 
@@ -902,7 +903,7 @@ endfunction
 的位置上.
 
 如果当前的 Vim 版本不支持 Perl, 函数就会打印一条关于这个事件的消息. 注意,
-即使其他代码是缩进过了, 但我们仍然把 \texttt{EOF} 写在一行中最靠左的位置上.
+即使其他代码是缩进过了的, 但我们仍然把 \texttt{EOF} 写在一行中最靠左的位置上.
 为了能让 Vim 准确识别出 \textit{endpattern}, 用户必须严格遵守这条规则.
 
 \subsection{Python}
@@ -911,22 +912,22 @@ endfunction
 在最近的这几年中, Python 已经成为众多程序员最喜欢的脚本语言之一. 这主要是因为
 它的易用性, 以及对缩进的严格规定 (缩进提高了代码的可读性).
 
-和 Perl 一样, Python 也有一些接口, 用来同 Vim 交互. 在 Vim 中使用 Python
+和 Perl 一样, Python 也有一些接口同 Vim 交互. 在 Vim 中使用 Python
 主要有以下三种方式:
 \marginpar{197}
 \begin{enumerate}
 	\item 如果只是想在 Vim 中执行一条 Python 语句, 可以用 \texttt{:python}\
 		\textit{statement}, 例如:
-	\begin{vimcode}
-	:python print "hello Vim developer"
-	\end{vimcode}
+\begin{vimcode}
+:python print "hello Vim developer"
+\end{vimcode}
 
 	\item 如果想要一次执行大量的 Python 代码, 可以用:
-	\begin{vimcmdform}
-	\texttt{:python << }\textit{endpattern} \\
-	\textit{python statements here} \\
-	\textit{endpattern}
-	\end{vimcmdform}
+\begin{vimcmdform}
+\texttt{:python << }\textit{endpattern} \\
+\textit{python statements here} \\
+\textit{endpattern}
+\end{vimcmdform}
 	它们执行 \textit{endpattern} 之间的所有 Python 代码.
 
 	\item 最后一种方法是在 Vim 中执行一个 Python 脚本, 比如:
@@ -939,7 +940,7 @@ endfunction
 有时候, Python 脚本可能需要从命令行获取一些参数, 如果使用的是 \texttt{:pyfile},
 就做不到这点.
 
-不过, 可以通过设置 \texttt{sys.argv} 来解决这个问题, 一个使用示例是:
+不过, 可以通过设置 \texttt{sys.argv} 解决这个问题, 一个使用示例是:
 \begin{vimcode}
 :python import sys
 :python sys.argv = ["argument1", "argument2"]
@@ -1001,7 +1002,7 @@ Vim 对 Ruby 的支持非常完善, 因此用户可以在 Vim 中运行 Ruby 代
 EOF
 \end{vimcode}
 
-如果你想要执行的 Ruby 代码存放在某个文件中, 可以用下面的命令执行文件中的代码:
+如果用户想要执行的 Ruby 代码存放在某个文件中, 可以用下面的命令执行文件中的代码:
 \begin{vimcode}
 :rubyfile file.rb
 \end{vimcode}
