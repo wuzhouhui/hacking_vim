@@ -458,7 +458,7 @@ Vim 当然也可以搜索. Vim 的搜索可以分成三类:
 \begin{vimcode}
 /someWord
 \end{vimcode}
-被搜索的单词可能会多次出现, 第一次找到的地方可能不是你所想要的. 不用担心, 按下
+被搜索的单词可能会多次出现, 第一次找到的地方可能不是用户想要的. 不用担心, 按下
 \texttt{n} 就可以按照搜索方向, 前进到单词的下一次出现. 如果想要临时改变搜索方向,
 按下 \texttt{N}, 就会跳转到单词的前一次出现.
 
@@ -553,10 +553,10 @@ quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信
 
 为了解决这个问题, Vim 提供了一个专门的命令. 在前一节中, 用的是
 \texttt{vimgrep}, 而对于 Vim 帮助系统, 则用的是下面这个命令:
-\begin{vimcode}
-:helpgrep pattern [@LANG]
-\end{vimcode}
-命令需要一个必填参数 --- 你所想要搜索的模式 --- 还有一个是可选参数, 用于限定语
+\begin{vimcmdform}
+\texttt{:helpgrep }\textit{pattern}\texttt{ [@LANG]}
+\end{vimcmdform}
+命令需要一个必填参数 --- 待搜索的模式 --- 还有一个是可选参数, 用于限定语
 言, 先来看一个例子. 比如说用户需要一些关于自动补全的帮助信息, 但是不知道
 从哪里开始查找. 因为用户只了解英文, 所以你希望帮助信息也是英文的. 完成这个搜索
 的命令是:
@@ -572,8 +572,8 @@ quickfix 列表中, 以便于后面的检索 (关于 quickfix 列表的更多信
     替换掉 \texttt{:helpgrep}.
 \end{warning}
 
-实际上, 命令 \texttt{helpgrep} 并没有遍历所有的文档, 而且使用了 tag list 来搜索
-模式. tag list 并不会自动生成, 所以, 如果用户安装的插件带有自己的文档, 那就必须
+实际上, 命令 \texttt{helpgrep} 并没有遍历所有的文档, 而是使用了 tag list 来搜索
+模式. Tag list 并不会自动生成, 所以, 如果用户安装的插件带有自己的文档, 那就必须
 使用下面的命令:
 \begin{vimcode}
     :helptags /path/to/documentation
