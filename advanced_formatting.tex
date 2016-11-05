@@ -413,7 +413,7 @@ Cindent 经常被称为 clever indent(聪明的缩进) 或 configurable indent(�
             行 (很多语言的 \texttt{switch} 结构都用到了 \verb':'), Vim 都要
             再缩进一层. \texttt{cinkeys} 的默认值是 \texttt{"0\{, 0\}, 0), :,
         0\#, !\textasciicircum F, o, O, e"}, 更多的信息见 
-        texttt{:help cinkeys}.
+        \texttt{:help cinkeys}.
     \item \texttt{cinoptions}: 这个选项包含了所有的, 专门用于 cindent 的选项.
         它是一个各项之间由逗号分开的列表, 通过这个列表可以设置大量的选项. 一
         个例子是 \texttt{cinoptions=">2,\{3,\}3"}, 意思是说在正常的缩进之上,
@@ -646,13 +646,13 @@ p=`]
 
 那么, 在 Vim 中应该如何使用 Indent? 前面的几节已经介绍了 Vim 关于缩
 进的几个选项, 然而, 现在只需要一个选项即可:
-\begin{vimcode}
-:set equalprg=PROGRAM
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{:set equalprg=}\textit{program}
+\end{vimcmdform}
 
 这个选项的功能是当使用命令 \texttt{=} 缩进代码时, Vim 应该使用哪种外部工具.
 对于
-Indent, 只要把 \texttt{PROGRAM} 替换成程序 Indent 的路径即可. 设置之后, 无论
+Indent, 只要把 \textit{program} 替换成程序 Indent 的路径即可. 设置之后, 无论
 何时使用缩进命令 (比如 \texttt{1G=G}), Vim 就会把待缩进的文本输送给程序
 Indent. 甚至可以在选项中加上命令行选项.
 

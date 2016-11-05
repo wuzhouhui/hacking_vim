@@ -7,7 +7,7 @@
 有些技巧是由 Vim 的特性提供的, 另外一些则需要用户自已编写一些脚本.
 
 无论你把 Vim 当成一个修改配置文件的小工具, 还是把它用作某个大型开发项目的主要
-编辑器, 你都可以发现本章介绍的方法可以极大地促进 Vim 的使用效率.
+编辑器, 你都可以发现本章介绍的方法可以极大地提高 Vim 的使用效率.
 
 这一章讨论的主题包括:
 \begin{itemize}
@@ -88,8 +88,8 @@
 
 如果没有找到指定的模版, Vim 就创建一个空文件.
 
-再把模版写得更完善一点: 添加对占位符 (占位符指的是你将要添加文本的地方) 的
-支持. 一个占位符看起来可以非常得与众不同, 这取决于你, 笔者通常把它们显示成类似
+再把模版写得更完善一点: 添加对占位符 (占位符指的是将要添加文本的地方) 的
+支持. 一个占位符看起来可以非常得与众不同, 这取决于用户, 我通常把它们显示成类似
 于 \texttt{<+KERWORD+>} 的形式. 如果在前面的 HTML 模版中添加上占位符,
 模版的内容就变成了:
 \begin{vimcode}
@@ -235,8 +235,9 @@ snippet for
     }
 \end{vimcode}
 把上面这段文本写到一个文件中, 再把这个文件放到 \texttt{\$VIMHOME/snippets} 目
-录下, 把文件命名为 \path{FILETYPE.snippet} (\path{FILETYPE} 表示文件类型,
-比如 C 代码就是 \texttt{c}, PHP 代码就是 \texttt{php}).
+录下, 把文件命名为 \textit{filetype}\texttt{.snippet} (\textit{filetype}
+表示文件类型,
+比如 C 代码就写成 \texttt{c.snippet}, PHP 代码就写成 \texttt{php.snippet}).
 \marginpar{79}
 脚本的第一行表示开始一个新的 snippet, 当输入 \texttt{for} 并且后面再紧跟着一个
 \key{Tab} 键时, 执行 snippet 脚本.
@@ -1141,7 +1142,7 @@ Vim 是不会让这种事情发生的.
 \subsubsection{选择与投递寄存器}
 \label{subsubsec:the_selection_and_drop_registers}
 
-这种寄存器类型包含了三个寄存器: \texttt{"*}, \texttt{"+} 与 \texttt{"\~}. 这 3
+这种寄存器类型包含了三个寄存器: \texttt{"*}, \texttt{"+} 与 \verb'"~'. 这 3
 个寄存器用于存放与检索用户在 Gvim 中选择的文本. 寄存器 \texttt{"*} 实际上访问
 的是窗口系统的剪贴板. 如果使用的操作系统是 Miscrosoft Windows, 那么用户在使用
 寄存器 \texttt{"*} 与 寄存器 \texttt{"+} 并不会感到有什么不同. 然而, 如果是
@@ -1153,9 +1154,9 @@ Linux, 那就不一样了, 因为 X11 (Linux 的窗口系统) 的选择寄存器
 任意一个 GUI 应用程序都可以访问这些寄存器, 它们的使用方法和日常的复制粘贴没
 什么区别.
 
-最后一个寄存器 \texttt{"\~} 称为投递寄存器, 它包含了最近一次投递到 Vim 的文本.
+最后一个寄存器 \verb'"~' 称为投递寄存器, 它包含了最近一次投递到 Vim 的文本.
 所以说, 如果用户在另一个程序中选择了一段文本, 并把它拖动到 Vim 的窗口中, 那么
-寄存器 \texttt{"\~} 就包含了这段文本.
+寄存器 \verb'"~' 就包含了这段文本.
 
 \subsubsection{黑洞寄存器}
 \label{subsubsec:the_black_hole_register}
@@ -1242,8 +1243,7 @@ Vim 的最后一种寄存器类型是表达式寄存器, 然而, 称它为寄存
 :undolist
 \end{vimcode}
 命令会显示分支的三种信息 --- 修改号 (用于标识一条分支), 分支所包含的修改的次
-数, 分支上最后一次修改发生的时间\footnote{英文原版说这是分支创建的时间, 这是
-不对的. --- 译者注}, 命令的输出信息就像:
+数, 分支上最后一次修改发生的时间, 命令的输出信息就像:
 \begin{vimcode}
 number  changes time ~
 6       5       12:12:11
