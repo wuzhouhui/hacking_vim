@@ -365,14 +365,14 @@ Vimball 含有卸载机制.
 
 如果用户记得安装时所用的 Vimball 文件名, 就可以通过它来卸载脚本. 卸载 Vimball
 的命令是:
-\begin{vimcode}
-:RmVimball VIMBALLNAME
-\end{vimcode}
-把 \texttt{VIMBALLNAME} 替换成安装脚本时所用的 Vimball 文件名. 如果脚本不是
+\begin{vimcmdform}
+\texttt{:RmVimball }\textit{vimballname}
+\end{vimcmdform}
+把 \textit{vimballname} 替换成安装脚本时所用的 Vimball 文件名. 如果脚本不是
 安装有默认路径下 (通过 \texttt{:UseVimball} 命令), 就在命令的末尾加上安装路径:
-\begin{vimcode}
-:RmVimball VIMBALLNAME PATH
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{:RmVimball }\textit{vimballname path}
+\end{vimcmdform}
 
 为了把 Vimball 与将要删除的文件关联起来, 脚本会在 \texttt{VIMHOME} 下创建一个
 名为 \texttt{.VimballRecord} 的文件. 注意, 如果你把这个文件删除了, 就不能卸载
@@ -428,12 +428,14 @@ Vimball 含有卸载机制.
 简单来说, Vim 只有两种类型的数据 --- 字符串与数值. 之所以是简单来说, 是因为
 这两种类型还包含了其他的子类型. 一个数值可以有三种表示方法:
 \begin{itemize}
-    \item 十进制: 1, 2, 3, 100 等
-    \item 十六进制: 0x01, 0x02, 0x03, 0xa0, 0x64 等
-    \item 八进制: 01, 02, 03, 012, 0144 等
+    \item 十进制: \texttt{1}, \texttt{2}, \texttt{3}, \texttt{100} 等
+    \item 十六进制: \texttt{0x01}, \texttt{0x02}, \texttt{0x03}, \texttt{0xa0},
+        \texttt{0x64} 等
+    \item 八进制: \texttt{01}, \texttt{02}, \texttt{03}, \texttt{012},
+        \texttt{0144} 等
 \end{itemize}
 
-在表示十六进制与八进制数时, 需要分别在数的前面加外 \texttt{0x} 与 \texttt{0}.
+在表示十六进制与八进制数时, 需要分别在数的左边加上 \texttt{0x} 与 \texttt{0}.
 Vim 可以方便地对数字进行运算, 即使数字间的进制不太相同, 比如, 可以计算下面的
 表达式:
 \begin{vimcode}
@@ -472,7 +474,7 @@ Vim 中的字符串用一对单引号或双引号括起来, 比如:
 
 \begin{center}
 \begin{tabular}{ll}
-   \hline \\
+   \hline
    \verb'\n'    & 换行符 \\
    \verb'\r'    & 回车符 \\
    \verb'\t'    & 制表符 \\
@@ -544,9 +546,9 @@ Vim 有 5 种类型的变量, 使用方法大不相同 (虽然定义的方式是
 的表格汇总了类型转换的各种情况:
 \begin{center}
     \begin{tabular}{ll}
-        \hline \\
+        \hline
         输入类型 & 结果类型 \\
-        \hline \\
+        \hline
         \texttt{"hello" . "world"}  & \texttt{"hello world"} (字符串) \\
         \texttt{"number" .123}  & \texttt{"number 123"}(字符串) \\
         \texttt{"123" + 10} & \texttt{133} (数字) \\
