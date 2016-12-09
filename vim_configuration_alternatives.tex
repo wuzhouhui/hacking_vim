@@ -1,6 +1,4 @@
 % vim: ts=4 sts=4 sw=4 tw=80
-% FIXME
-% 这个附录翻译得很不好, 有很多问题.
 \chapter{Vim 配置管理}
 \label{chap:vim_configuration_alternatives}
 \marginpar{215}
@@ -49,7 +47,7 @@
 	条件有很多种, 笔者推荐以下这些 (按照在文件中出现的顺序, 从上到下排列):
 	\begin{itemize}
 	  \item 通用的全局设置
-	  \item 自己私有的按键映射
+	  \item 用户个人的按键映射
 	  \item 特定于脚本的设置, 按脚本分组
 	  \item 其他设置
 	\end{itemize}
@@ -109,7 +107,7 @@
   \item \texttt{array.vim}: 包含了处理字符串数组的函数
   \item \texttt{arrayg.vim}: 包含了处理全局字符串数组的函数
   \item \texttt{strfun.vim}: 包含了字符串处理函数
-  \item \texttt{tableaf.vim}: 用来在配置系统中显示 tab leaf
+  \item \texttt{tableaf.vim}: 用来在配置系统中显示标签页
 \end{itemize}
 
 安装脚本的方法是把压缩包解压到 \texttt{VIMHOME} 目录下, 解压后, 文件就自动
@@ -131,17 +129,10 @@
    \texttt{"}	& 开始一个注释 \\
    \texttt{ID}	& 一个标识符, 脚本可以用它来区分不同的配置组. 当脚本启动时,
      用户要告诉脚本应该处理哪个配置组 \\
-   \texttt{tabname} & 应用配置的 tab 的名字 (在脚本中称为 leaf) \\
+   \texttt{tabname} & 应用配置的标签页的名字 \\
    \texttt{text} & 和配置相关的文本信息 \\
    \texttt{command} & 配置项所要执行的实际命令, 比如 \texttt{set textwidth=},
      注意, 不需要填上具体的值 \\
-	\hline
-  \end{tabular}
-\end{center}
-\marginpar{219}
-\begin{center}
-	\begin{tabular}{lp{30em}}
-	\hline
 	  \texttt{extra} & 比如说, 如果命令是一个映射, 则变量部分就是被映射的
 	  按键, 这时候用户还需要设置映射到的命令, 命令就是填在 \texttt{extra} 字
 	  段中, 如果不需要它, 就留空 \\
@@ -151,15 +142,16 @@
 	\hline
 	\end{tabular}
 \end{center}
+\marginpar{219}
 
-再在来看一个例子:
+再在看一个例子:
 \begin{vimcode}
 "|SETTINGS|Layout|Set the text width|set tw=|50|70|90|
 set tw=60
 "|SETTINGS|Layout|Show a ruler?|let &ruler=||0|1|
 let &ruler=1
 \end{vimcode}
-这个例子展示了设置 Vim 的两种典型方法 --- 用 \texttt{set} 与 \texttt{let} 来
+这个例子展示了设置 Vim 的两种典型方法 --- 用 \texttt{set} 与 \texttt{let}
 设置一个选项. 在变量名左边加上 \texttt{\&} 是在告诉 Vim 等号右边的表达式要在
 设置之前求值, 如果求值结果的类型和选项不一致, 还会自动转换类型. 注释下面是真
 正的设置命令.
@@ -214,12 +206,12 @@ autocmd bufleave _setup source ~/.vimrc
     \texttt{r} 或 \texttt{R}  & 进入替换模式 \\
 	\texttt{s} & 保存后退出 \\
 	\texttt{q} & 不保存退出 \\
-	\texttt{<space>} & 遍历所有的 tab leaf \\
-	\texttt{j} & 跳转到当前 tab leaf 的下一个设置 \\
-	\texttt{k} & 跳转到当前 tab leaf 的前一个设置 \\
+	\texttt{<space>} & 遍历所有的标签页 \\
+	\texttt{j} & 跳转到当前标签页的下一个设置 \\
+	\texttt{k} & 跳转到当前标签页的前一个设置 \\
 	\texttt{<tab>} & 显示被选中的设置的可选值 \\
 	\texttt{<cr>} & 接收当前行的修改 \\
-	\texttt{<esc>} & 重新绘制当前的 tab leaf (普通模式) \\
+	\texttt{<esc>} & 重新绘制当前的标签页 (普通模式) \\
 	\texttt{<esc>} & 丢弃修改 (插入或替换模式) \\
 	\hline
   \end{tabular}
