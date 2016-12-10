@@ -1175,7 +1175,6 @@ Linux, 那就不一样了, 因为 X11 (Linux 的窗口系统) 的选择寄存器
 引号, 表明这是一个寄存器. 如果打开了选项 \texttt{hlsearch}, Vim 就会根据寄存
 器中的内容来高亮文本. 用户可以利用这个特点, 修改寄存器的内容, 从而高亮显示
 其他文本. 在不执行搜索的前提下修改寄存器内容的方法是:
-\footnote{原文是 \texttt{:let "/ = }\textit{pattern}, 应该是笔误. --- 译者注}
 \marginpar{103}
 \begin{vimcmdform}
     \texttt{:let @/="}\textit{pattern}\texttt{"}
@@ -1496,7 +1495,6 @@ if (x != y) {
     用户可以对打开或关闭着的所有折叠执行某个命令:
     \begin{itemize}
         \item \texttt{:folddoopen }\textit{cmd}: 对所有未在关闭的折叠中的行
-            \footnote{不仅是处在打开的折叠中的行, 也包括不包含折叠信息的行}
             执行命令 \textit{cmd}
         \item \texttt{:folddoclose }\textit{cmd}: 对所有处在关闭的折叠中的行
             执行命令 \textit{cmd}
