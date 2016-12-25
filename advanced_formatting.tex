@@ -43,7 +43,7 @@ gqap
 上面的命令其时是两个命令的组合:
 \begin{itemize}
     \item \texttt{gq}: 把紧接在该命令后的动作所覆盖到的文本进行格式化
-    \item \texttt{ap}: 选择一个段落 (``a paragraph'')
+    \item \texttt{ap}: 选择一个段落
 \end{itemize}
 
 换句话说, 由 \texttt{gq} 与 \texttt{ap} 组合而成的命令告诉 Vim 去遍历当前段落
@@ -51,7 +51,7 @@ gqap
 落, 只需要添加一个空行即可.
 
 Vim 所做的格式化实际上是让行作出更漂亮的断行, 使得每一行的长度都不会超过某个
-特定的大小 (Vim 自动地在适当的两个单词间作出断行).
+特定的大小 (Vim 自动地在适当的两个单词间断行).
 
 格式化后文本的宽度由选项 \texttt{textwidth} 定义, 如果用户希望每行最大的宽度不
 超过 80 个字符, 那就在 \texttt{vimrc} 中添加:
@@ -117,7 +117,7 @@ function! MyFormatter()
     endwhile
 endfunction
 \end{vimcode}
-这个格式化文本接收所有的行, 在每一行的开始添加 \texttt{>}, 就像电子邮件中的引
+这个格式化文本接收所有的行, 在每一行的开头添加 \texttt{>}, 就像电子邮件中的引
 用.
 
 上面展示的格式化函数非常简单, 如果需要更高级一点的, 那么函数的复杂度就会快速
@@ -145,35 +145,35 @@ Vim 支持三种类型的对齐 --- 左对齐, 右对齐, 居中. 在介绍它�
 进行格式化. 例如, 为了让编辑器知道对齐时所需的边缘, 用户需要设置文本的宽度.
 
 说完了这些, 先来看一下居中排列的命令:
-\begin{vimcode}
-:[range]center WIDTH
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{:[}\textit{range}\texttt{]center }\textit{width}
+\end{vimcmdform}
 \marginpar{125}
-命令中的 \texttt{range} 是用户希望居中的行的范围, \texttt{WIDTH} 是每行最多的
+命令中的 \textit{range} 是用户希望居中的行的范围, \textit{width} 是每行最多的
 字符数. 典型的用法是在可视模式下选中待居中的文本 (按住 \key{Shift+v}, 然后移
 动光标), 然后再输入命令. 按下 \texttt{:} 后, 用户将会发现 Vim 自动地把选中的
 文本的范围记成 \texttt{'<,'>}, 这表示从选中文本的第一行到最后一行.
 
 接下来, 用户需要输入 \texttt{center} 与文本的宽度. 如果选项 \texttt{textwidth}
-已经设置妥当, 那就不需要输入 \texttt{WIDTH}.
+已经设置妥当, 那就不需要输入 \textit{width}.
 
-如果选项 \texttt{textwidth} 的值为 0, 用户又没有在命令中设置 \texttt{WIDTH},
+如果选项 \texttt{textwidth} 的值为 0, 用户又没有在命令中设置 \textit{width},
 那么 Vim 就默认使用 80 个字符的宽度. 在字处理程序中, 用户很容易就可以看出文本
 是否是居中的, Vim 对文本进行居中时, 只是在前面加上适当数量的空格, 这样
 做意味着无论是在什么时候修改了文本, 用户都要重新对文本进行居中.
 
 下面的命令用于左对齐:
-\begin{vimcode}
-:[range]left INDENT
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{:[}\textit{range}\texttt{]left }\textit{indent}
+\end{vimcmdform}
 同样, 执行这个命令时需要提供行的范围, 如果需要的话, 再提供缩进的宽度. 这个命令
 可以用来精确地设置文本的左边边缘.
 
 最后是右对齐命令. 同样的, Vim 可能并不知道一行的宽度, 因此执行命令时还要提供
 宽度信息. 命令的形式是:
-\begin{vimcode}
-:[range]right WIDTH
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{:[}\textit{range}\texttt{]right }\textit{width}
+\end{vimcmdform}
 范围内的行用空格缩进, 使得每一行的结束都是对齐的, 宽度由用户指定. 和居中一样,
 无论何时修改了文本, 都要重新对文本进行右对齐.
 
@@ -383,16 +383,16 @@ Vim, 函数是对一个范围内的行作操作, 而不仅仅是一行.
 Autoindent 是缩进代码最简单的方式. 它的功能仅仅是与上一行保持相同的缩进层次.
 所以说, 如果当前行缩进了 4 个空格, 按下 \key{Enter} 后插入的空行也会缩进 4 个
 空格. 至于什么时候修改缩进的层次则完成取决于用户. 这种缩进方式适用于若干行需
-要保持相同缩进层次的语言. 打开 autoindent 的命令是 \texttt{:set autoindent}
+要保持相同缩进层次的语言. 打开 Autoindent 的命令是 \texttt{:set autoindent}
 或 \texttt{:set ai}.
 
 \subsection{Smartindent}
 \label{subsec:smartindent}
 
-Smartindent 比 autoindent 稍微智能一些. 它仍然可以让上一行的缩进层次保持到下
+Smartindent 比 Autoindent 稍微智能一些. 它仍然可以让上一行的缩进层次保持到下
 一行, 但用户无需手动修改缩进层次. Smartindent 可以识别出 C 语言的大部分结构,
 并根据它们来决定何时增加/减少缩进层次. 由于许多编程语言都或多或少地都继承了 C
-语言的语法, 所以 smartindent 也可以应用到其他语言. 打开 smartindent 可以用下
+语言的语法, 所以 Smartindent 也可以应用到其他语言. 打开 Smartindent 可以用下
 面两个命令中的任意一个:
 \begin{itemize}
     \item \texttt{:set smartindent}
@@ -400,10 +400,10 @@ Smartindent 比 autoindent 稍微智能一些. 它仍然可以让上一行的缩
 \end{itemize}
 \marginpar{131}
 
-\subsection{cindent}
+\subsection{Cindent}
 \label{subsec:cindent}
 
-Cindent 经常被称为 clever indent(聪明的缩进) 或 configurable indent(可配置的
+Cindent 经常被称为 clever indent (聪明的缩进) 或 configurable indent (可配置的
 缩进), 这是因为与前面介绍的两种缩进相比, 它的可配置性更强. 有三种设置选项:
 \begin{itemize}
     \item \texttt{cinkeys}: 这个选项包含了一个列表, 列表中的各项之间用逗号分
@@ -414,7 +414,7 @@ Cindent 经常被称为 clever indent(聪明的缩进) 或 configurable indent(�
             再缩进一层. \texttt{cinkeys} 的默认值是 \texttt{"0\{, 0\}, 0), :,
         0\#, !\textasciicircum F, o, O, e"}, 更多的信息见 
         \texttt{:help cinkeys}.
-    \item \texttt{cinoptions}: 这个选项包含了所有的, 专门用于 cindent 的选项.
+    \item \texttt{cinoptions}: 这个选项包含了所有的, 专门用于 Cindent 的选项.
         它是一个各项之间由逗号分开的列表, 通过这个列表可以设置大量的选项. 一
         个例子是 \texttt{cinoptions=">2,\{3,\}3"}, 意思是说在正常的缩进之上,
         再额外添加两个空格, 另外, 在 \verb'{' 与 \verb'}' 的左边添加三个空格,
@@ -444,7 +444,7 @@ if (a == b)
 \subsection{Indentexpr}
 \label{subsec:indentexpr}
 
-Indentexpr 是最灵活的缩进选项, 但同时也是最复杂的. 使用 indentexpr 时, 它会
+Indentexpr 是最灵活的缩进选项, 但同时也是最复杂的. 使用 Indentexpr 时, 它会
 对一个表达式求值, 然后计算出一行的缩进. 因此, 用户写出的表达式必须能被 Vim
 求值. 打开这个选项的方法是为它设置一个表达式, 比如:
 \begin{vimcode}
@@ -452,7 +452,7 @@ Indentexpr 是最灵活的缩进选项, 但同时也是最复杂的. 使用 inde
 \end{vimcode}
 命令中的 \texttt{MyIndenter()} 是一个函数, 负责计算行的缩进.
 
-函数的一个简单例子是模仿选项 autoindent 的功能:
+函数的一个简单例子是模仿选项 Autoindent 的功能:
 \begin{vimcode}
 function! MyIndenter()
    " Find previous line and get it's indentation
@@ -640,7 +640,7 @@ p=`]
 部工具呢? 这个问题非常好, 答案是 Vim 确实在这一方面做得很好, 但是 Indent 做得
 更好, 并且更容易在多个编辑器之间对缩进进行标准化.
 
-由于 indent 专门用于缩进代码, 所以它的效率和 Vim 相比会高出很多, 对于后者来
+由于 Indent 专门用于缩进代码, 所以它的效率和 Vim 相比会高出很多, 对于后者来
 说, 缩进代码只是一项特性而已, 而不是唯一的特性. Indent 对代码的理解力很高, 可
 以根据代码来缩进 --- 即使含有语法错误.
 
@@ -690,8 +690,8 @@ Indent 有着非常丰富的命令行选项, 另外还可以通过它的配置�
 \end{warning}
 
 前面曾经提到过, Vim 无法对文本进行两端对齐, 幸运的是, Par 可以帮助 Vim
-完成这件工作. 只需要在上面的命令行参数中加上 \texttt{j} (意思是 justify),
-就可完成两端对齐:
+完成这件工作. 只需要在上面的命令行参数中加上 \texttt{j} (意思是 justify ---
+对齐), 就可完成两端对齐:
 \begin{vimcode}
 :set formatprg=par\ -w78j
 \end{vimcode}
@@ -735,12 +735,12 @@ Par 的手册页包含了许多例子.
 \subsection{Tidy}
 \label{subsec:tidy}
 
-如果用户从事网页开发, 或者 XML 文件编辑, 那么程序 tidy 就会成为你的好帮手. 这
+如果用户从事网页开发, 或者 XML 文件编辑, 那么 \texttt{tidy} 就会成为你的好帮手. 这
 个程序可以清理代码, 使之符合 W3C 规范. 符合 W3C 规范指的是代码的构造必须遵守
 由 W3C 规定的 HTML 守则.
 
 作为一个网页开发人员, 笔者有时候会浏览别人写的 HTML 或 XML 文件, 打开后只看
-到了一团乱麻. 后来, 笔者会在打开之前, 先用 tidy 处理一下所有的 \texttt{.xml},
+到了一团乱麻. 后来, 笔者会在打开之前, 先用 Tidy 处理一下所有的 \texttt{.xml},
 \texttt{.html} 或 \texttt{.html} 文件. 这个工作可以借助 Vim 的自动命令来完成,
 自动命令可以添加在文件 \texttt{vimrc} 中.
 
@@ -754,16 +754,16 @@ au FileType html exe ":silent 1,$!tidy --indent yes -q"
 \end{vimcode}
 \marginpar{139}
 需要注意得是, 这个命令会在打开文件时悄无声息地修改掉文件内容. 在上面两个命令
-中, Vim 会在指定的路径中搜索程序 tidy, 无论是 Linux 还是 Windows.
+中, Vim 会在指定的路径中搜索程序 Tidy, 无论是 Linux 还是 Windows.
 
-观察 tidy 的命令行参数后可以看到, 它也可以用来重新缩进 HTML/XML. 这个选项提高
+观察 Tidy 的命令行参数后可以看到, 它也可以用来重新缩进 HTML/XML. 这个选项提高
 了文件的可读性, 也更容易获取文件的概览.
 
-因为 tidy 可以检查出文档的错误, 所以用户可以把 tidy 的命令映射到一个键上, 这
+因为 Tidy 可以检查出文档的错误, 所以用户可以把 Tidy 的命令映射到一个键上, 这
 样的话就可以随时检查文档是否符合 W3C 规范.
 
 \begin{warning}
-    可以到 \url{http://tidy.sourceforge.net} 下载到最新版的 tidy.
+    可以到 \url{http://tidy.sourceforge.net} 下载到最新版的 Tidy.
 \end{warning}
 
 \section{小结}
