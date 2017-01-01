@@ -348,9 +348,9 @@ nmap <buffer> S ?\|\S\+\|<CR>
 这个数字表示文件所在的缓冲区号码. 有了这个号码, 用户就可以直接打开与该号码对应的
 缓冲区, 具体的命令是:
 \begin{vimcmdform}
-\texttt{:buffer }\textit{N}
+\texttt{:buffer }\textit{n}
 \end{vimcmdform}
-\textit{N} 表示缓冲区的号码.
+\textit{n} 表示缓冲区的号码.
 
 这种打开缓冲区的方法并不总是最高效的. 用户还可以用下面这两个命令来循环遍历所有
 的缓冲区:
@@ -447,8 +447,8 @@ Vim 当然也可以搜索. Vim 的搜索可以分成三类:
 \subsubsection{示例 1: 搜索单词的下一次出现}
 \label{subsubsec:example_1_find_the_next_occurrence_of_a_word}
 
-用户知道在单词 ``someWord'' 的附近有自己感兴趣的内容, 为了找到它, 可以在普通模
-式下执行:
+用户知道在单词 \texttt{someWord} 的附近有自己感兴趣的内容, 为了找到它, 可以
+在普通模式下执行:
 \begin{vimcode}
 ?someWord
 \end{vimcode}
@@ -498,8 +498,8 @@ g#
 g*
 \end{vimcode}
 现在, 光标不仅会跳转到单词的下一次出现, 还包括包含该单词的单词. 例如: 把光标移
-到单词 ``foo'' 上, 再按下 \texttt{g\#}, 如果上文含有单词 ``foobar'' 与 ``food'',
-光标就会陆续跳转到这两个单词上.
+到单词 \texttt{foo} 上, 再按下 \texttt{g\#}, 如果上文含有单词 \texttt{foobar}
+与 \texttt{food}, 光标就会陆续跳转到这两个单词上.
 
 \subsection{在多个文件内搜索}
 \label{subsec:search_in_multiple_files}
@@ -510,9 +510,9 @@ g*
 \texttt{FINDSTR}, 但是用户很少使用它们. 为了向所有的的 Vim 用户 (无论他们使用
 的是什么操作系统) 提供在多个文件内搜索的方法, Vim 配备了自己的 \texttt{grep}
 命令. 命令的使用方式是:
-\begin{vimcode}
-:vimgrep /pattern/[j][g] file file2... fileN
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{:vimgrep /}\textit{pattern}\texttt{/[j][g] }\textit{file file2... fileN}
+\end{vimcmdform}
 \marginpar{66}
 这个命令需要两个参数. 第一个参数是用户想要搜索的模式, 用户既可以使用 Vim 的正
 则表达式, 也可以直接输入单词. 模式需要用一对 \texttt{/} 括起来, 在右边的
