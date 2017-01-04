@@ -22,7 +22,7 @@ Vim 的一个最强大之处是允许高级用户通过编写脚本增强 Vim �
 \section{语法高亮方案}
 \label{sec:syntax_color_schemes}
 
-在许多程序员看来, 根据语法来高亮代码是 Vim 最重要的特性之一. 语法高亮不仅使代码
+在许多程序员看来, 根据语法来高亮显示代码是 Vim 最重要的特性之一. 语法高亮不仅使代码
 看起来更清晰, 还可以帮助用户发现编码错误. Vim 语法高亮系统所使用的脚本非常像
 Vim 脚本, 但是语法高亮脚本定义的是颜色, 而不是功能. 下一节介
 绍如何创建一个语法高亮方案.
@@ -31,7 +31,7 @@ Vim 脚本, 但是语法高亮脚本定义的是颜色, 而不是功能. 下一�
 \subsection{第一个语法高亮文件}
 \label{subsec:your_first_syntax_color_file}
 
-简单来说, 语法高亮的关键是识别出文本中的特定单词与结构, 然后再给它们设置上对
+简单来说, 语法高亮的关键是识别出文本中的特定单词与结构, 然后再给它们设置对
 应的颜色. 然而, 大部分情况下要稍微复杂一点, 因为语法高亮还要识别上下文语境.
 假设现在要语法高亮下面的代码:
 \begin{vimcode}
@@ -501,7 +501,7 @@ Vim 有 5 种类型的变量, 使用方法大不相同 (虽然定义的方式是
     \item 字符串: \texttt{"this is a string"} 就是一个简单的字符串
     \item 数值: 比如 \texttt{123} 或 \texttt{0x123}
     \item 线性表: 含有多个条目的有序序列 (或有序数组)
-    \item 字典: 一个无序的关联数组, 保存有\ 键-值\ 对
+	\item 字典: 一个无序的关联数组, 保存有\ \mbox{键}-值\ 对
     \item 函数引用: 指向一个函数的引用
 \end{itemize}
 
@@ -814,7 +814,7 @@ endif
 \end{warning}
 
 如果想要往一个已存在的线性表中添加一个新元素, 有很多种方法都可以做到. 最简单的
-方式是用函数 \texttt{add()}, 它的一个使用示例是:
+方式是用函数 \texttt{add()}, 它的一个示例是:
 \begin{vimcode}
 :let mylistvar3 = [1,2,3,4]
 :call add(mylistvar3, 5)
@@ -822,7 +822,7 @@ endif
 \end{vimcode}
 上面的命令在 \texttt{mylistvar3} 添加一个新元素 \texttt{5}, 然后打印整个线性
 表. 添加元素的另一种方法是使用 Vim 的拼接功能. 运算符 \texttt{+} 可以用来拼接
-两个线性表, 它的一个使用示例是:
+两个线性表, 它的一个示例是:
 \begin{vimcode}
 :let mylistvar4 = [1,2,3,4]
 :let mylistvar4 = mylistvar4 + [5,6,7,8]
@@ -840,8 +840,8 @@ endif
 
 如果待拼接的线性表只含有一个元素, 那么它的效果与添加一个新元素是相同的.
 
-除了运算符 \texttt{+}, 还可以用函数 \texttt{extend()} 来完成拼接. 它的一个使
-用例子是:
+除了运算符 \texttt{+}, 还可以用函数 \texttt{extend()} 来完成拼接. 它的一个
+例子是:
 \begin{vimcode}
 :let mylistvar5 = [1,2,3,4]
 :call extend(mylistvar5, [5,6,7,8])
@@ -1011,7 +1011,7 @@ for var in list
 endfor
 \end{vimcode}
 \marginpar{165}
-上面的命令形式非常简单, 现在来看一个具体的使用例子:
+上面的命令形式非常简单, 现在来看一个具体的例子:
 \begin{vimcode}
 let mylist = ['a','b','c','d','e','f','g','h','i','j','k']
 for itemvar in mylist
@@ -1227,7 +1227,7 @@ echo sum
 \end{vimcode}
 
 如果在 \texttt{return} 语句之后还有其他语句, 那么这些语句永远也不会执行, 这
-是因为函数在执行完 \texttt{return} 语句后就会马止结束. 这也就是说每次只能返回
+是因为函数在执行完 \texttt{return} 语句后就会马止结束, 也就是说每次只能返回
 一个值.
 
 \begin{warning}
