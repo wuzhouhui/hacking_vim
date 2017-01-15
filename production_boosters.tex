@@ -218,16 +218,16 @@ endfunction
 
 虽然已经有大量的模版系统脚本可供使用, 而且它们中的大部分都是以本章介绍的概念
 为基础, 但是有时候对于特定的文件格式, Vim 还是没有提供足够的支持. 对于这些情况,
-用户可以使用 snippet 脚本. Snippet 和用在模版中的缩写有点类似, 但是要更高级一
+用户可以使用代码片断脚本.代码片断和用在模版中的缩写有点类似, 但是要更高级一
 点.
 
-如果读者想在 Vim 中使用 snippet, 笔者推荐 snipMate 脚本, 下载地址是
+如果读者想在 Vim 中使用代码片断, 笔者推荐 snipMate 脚本, 下载地址是
 \url{http://www.vim.org/scripts/script.php?script_id=2540}.
 
 snipMate 可以让用户在不需要了解 Vim 脚本的前提下, 为自己的文件格式定义高级的
-snippet.
+代码片断.
 
-假设用户想为 \texttt{for} 循环创建一个 snippet (在前面的一节里用的是
+假设用户想为 \texttt{for} 循环创建一个代码片断 (在前面的一节里用的是
 \texttt{iabbrev}),  那就这样做:
 \begin{vimcode}
 snippet for
@@ -240,8 +240,8 @@ snippet for
 表示文件类型,
 比如 C 代码就写成 \texttt{c.snippet}, PHP 代码就写成 \texttt{php.snippet}).
 \marginpar{79}
-脚本的第一行表示开始一个新的 snippet, 当输入 \texttt{for} 并且后面再紧跟着一个
-\key{Tab} 键时, 执行 snippet 脚本.
+脚本的第一行表示开始一个新的代码片断, 当输入 \texttt{for} 并且后面再紧跟着一个
+\key{Tab} 键时, 执行代码片断脚本.
 
 再接下来的一行是最神奇的, 脚本实际生成的代码就像:
 \begin{vimcode}
@@ -250,7 +250,7 @@ snippet for
     }
 \end{vimcode}
 
-snippet 被插入之后, 它把光标放在了第 1 个 \texttt{i} 的位置, 并切换到插入
+代码片断被插入之后, 它把光标放在了第 1 个 \texttt{i} 的位置, 并切换到插入
 模式, 可以轻易地把 \texttt{i} 换成另一个变量. 现在, 最神奇的事情发生了,
 第 1 个 \texttt{i} 被换掉之后, 第 2 个 \texttt{i} (后面带有 \texttt{++}
 的那个) 也会自动更新成新变量. 修改了 \texttt{i} 之后 (如果需要的话), 按下
@@ -259,14 +259,14 @@ snippet 被插入之后, 它把光标放在了第 1 个 \texttt{i} 的位置, �
 \texttt{++}, 再按下 \key{Tab} 跳到 \texttt{/* code */}, 你可以在这里写下其他代
 码.
 
-在 snippet 的不同变量之间跳转, 简直不能再简单了.
+在代码片断的不同变量之间跳转, 简直不能再简单了.
 
 snipMate 系统通过查找由 \texttt{\$\{NUMBER:INITIAL\_VALUE\}} 创建的特殊标记进行
 工作. 标记中的 \texttt{NUMBER} 指出了按下 \key{Tab} 时, 将要跳转到的序列.
 如果 \texttt{NUMBER} 是 1, 那么光标会首先处在这个位置上, 如果 \texttt{NUMBER}
 是 3, 那么它就是按下两次 \key{Tab} 后光标所在的位置, 以此类推.
-\texttt{INITIAL\_VALUE} 是在修改 snippet 之前, 首先插入到 snippet 中的文本.
-比如 \texttt{\$\{1:i\}} 把 \texttt{i} 作为文本插入到 snippet 中, 并首先把光标
+\texttt{INITIAL\_VALUE} 是在修改代码片断之前, 首先插入到代码中的文本.
+比如 \texttt{\$\{1:i\}} 把 \texttt{i} 作为文本插入到代码中, 并首先把光标
 放在此处.
 
 如果需要在多个地方使用同一个变量, 可以通过 \texttt{\$NUMBER} 来引用. 比如说,
@@ -274,11 +274,11 @@ snipMate 系统通过查找由 \texttt{\$\{NUMBER:INITIAL\_VALUE\}} 创建的特
 \texttt{\$1} 即可. 写上 \texttt{\$1} 所有地方在开始时都会显示成 \texttt{i},
 当改变 \texttt{i} 时, 其他地方的 \texttt{i} 也会自动更新.
 
-这里介绍的只是创建 snippet 的基础知识, 不过一旦在系统中安装了 snipMate,
+这里介绍的只是创建代码片断的基础知识, 不过一旦在系统中安装了 snipMate,
 就可以通过 Vim 的帮助系统学习到更多的高级知识.
 
 还可以在 snipMate 中找到更多的惊喜. 用户会发现, snipMate 已经为许多常见
-的文件格式准备好了 snippet 脚本, 包括 \texttt{.c}, \texttt{.php},
+的文件格式准备好了代码片断脚本, 包括 \texttt{.c}, \texttt{.php},
 \texttt{.perl}, \texttt{.java}, \texttt{.html}, \texttt{.tex}, 甚至还包括 Vim
 脚本.
 \marginpar{80}
@@ -1817,7 +1817,7 @@ set bufhidden=hide
 
 首先是介绍了如何利用模版来降低文本输入的工作量. 最开始是使用缩写来插入模版,
 然后, 是根据不同的文件类型来制作并插入对应的模版文本. 最后, 讨论如何使用
-snipMate 脚本来为任意的文件格式制作高级 snippet.
+snipMate 脚本来为任意的文件格式制作代码片断脚本.
 
 接着是自动补全. 我们介绍了各种不同的补全方法, 还说明了如何把众多补全方法都绑
 定到 \key{Tab} 键上.
