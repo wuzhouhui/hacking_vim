@@ -243,19 +243,17 @@ snippet for
 脚本的第一行表示开始一个新的 snippet, 当输入 \texttt{for} 并且后面再紧跟着一个
 \key{Tab} 键时, 执行 snippet 脚本.
 
-再接下来的一行是最神奇的, 脚本实际生成的代码看起来就像:
-% FIXME
+再接下来的一行是最神奇的, 脚本实际生成的代码就像:
 \begin{vimcode}
-    for (i = 0; I < count; i++) {
+    for (i = 0; i < count; i++) {
         /* code */
     }
 \end{vimcode}
 
 snippet 被插入之后, 它把光标放在了第 1 个 \texttt{i} 的位置, 并切换到插入
 模式, 可以轻易地把 \texttt{i} 换成另一个变量. 现在, 最神奇的事情发生了,
-% FIXME
 第 1 个 \texttt{i} 被换掉之后, 第 2 个 \texttt{i} (后面带有 \texttt{++}
-的那个) 也会被自动更新成新变量. 修改了 \texttt{i} 之后 (如果需要的话), 按下
+的那个) 也会自动更新成新变量. 修改了 \texttt{i} 之后 (如果需要的话), 按下
 \key{Tab} 键, 光标就会跳转到 \texttt{count}, 并再次切换到插入模式. 现在你可以
 以同样的步骤修改 \texttt{count} 并按下 \key{Tab} 键, 之后, 光标跳转到
 \texttt{++}, 再按下 \key{Tab} 跳到 \texttt{/* code */}, 你可以在这里写下其他代
