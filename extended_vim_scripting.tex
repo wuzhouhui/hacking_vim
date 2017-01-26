@@ -183,9 +183,9 @@ noremap <SID>MyfunctionA :call <SID>MyfunctionA()<CR>
 \path{s:MyfunctionA()}) 绑定到 \path{<SID>MyfunctionA}.
 
 设置完毕后, 当用户按下 \verb'\a' (把 \texttt{mapleader} 设置成 \verb'\'), 第
-一个映射把它翻译成 \path{<Plug>MyscriptMyfunctionA}, 它在脚本内定义, 因此
+一个映射把它解释成 \path{<Plug>MyscriptMyfunctionA}, 它在脚本内定义, 因此
 \texttt{<SID>} 的值是正确的. 因此, \path{<Plug>MyscriptMyfunctionA} 再次
-被翻译成 \path{<SID>MyfunctionA}, 最终被映射到调用本地函数
+被解释成 \path{<SID>MyfunctionA}, 最终被映射到调用本地函数
 \path{s:MyfunctionA()}.
 
 读者可能觉得上面所说的有点复杂, 而且 \path{MyfunctionA()} 可能本来就是一个
@@ -295,7 +295,7 @@ endfunction
 \end{vimcode}
 \marginpar{182}
 现在, 读者手上就已经有了一个完整的脚本, 这是我们的第一个 Vim 脚本插件.  虽然它的功
-能还不是很丰富, 但是它已经展现了一个 Vim 脚本的完整结构. Vim 还有其他几种类型的
+能还不是很丰富, 但是它已经展示了一个 Vim 脚本的完整结构. Vim 还有其他几种类型的
 脚本, 比如文件类型插件, 编译器插件, 和库函数脚本, 关于如何编写这些脚本, 可以
 参考:
 \begin{vimcode}
@@ -344,7 +344,7 @@ endif
 \subsection{操作系统类型}
 \label{subsec:which_operating_system}
 
-如果脚本将要在多种不同的操作系统中运行, 比如 Microsoft Windows, Linux, 读者将
+如果脚本将要在多种不同的操作系统中运行, 比如 Microsoft Windows 和 Linux, 读者将
 会发现需要处理许多问题.
 
 需要处理的问题包括程序的存放位置, 程序是否可用, 以及文件的访问权限.
@@ -521,7 +521,7 @@ cmd: call MyFunction()
 的命令, 只需要按下回车键.
 
 如果需要的话, 可以在任意时刻执行另一个 \texttt{Ex} 命令 (参考 \texttt{:help
-'ex-command-index'}\footnote{应该是个笔误 --- 译者注}), 但是需要注意的是, 在
+'ex-command-index'}), 但是需要注意的是, 在
 调试器内无法直接访问变量, 除非它们是全局的.
 
 有时候, 开发人员想要查看的地方在很多行代码的后面, 而他不想一步一步地执行代码,
@@ -531,13 +531,13 @@ cmd: call MyFunction()
 对于这种情况, 开发人员可以在需要停止的地方插入一个断点, 然后在开始时执行
 \texttt{cont}. 插入断点的命令有以下三种, 具体使用哪一种取决于开发人员的实际
 需求:
-\begin{vimcode}
-:breakadd func linenum functionname
-:breakadd file linenum filename
-:breakadd here
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{:breakadd func} \textit{linenum functionname} \\
+\texttt{:breakadd file} \textit{linenum filename} \\
+\texttt{:breakadd here}
+\end{vimcmdform}
 
-第一个命令把断点插入在特定的函数入口. 函数名 \texttt{functionname} 可以是模式,
+第一个命令把断点插入在特定的函数入口. 函数名 \textit{functionname} 可以是模式,
 比如 \texttt{Myfunction*}, 此时断点会插入在所有的, 其函数名以
 \texttt{MyFunction} 开始的函数的入口.
 
@@ -555,17 +555,17 @@ cmd: call MyFunction()
 当断点不再需要时就可以把它删除, 和添加断点一样, 有若干种删除断点的方法.
 
 最简单的一种是用命令 \texttt{:breaklist} 找到断点的编号, 然后用下命令删除它:
-\begin{vimcode}
-:breakdel number
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{:breakdel} \textit{number}
+\end{vimcmdform}
 
 其他删除办法与添加断点的方法相同, 只不过要把 \texttt{breakadd} 改成
 \texttt{breakdel}:
-\begin{vimcode}
-:breakdel func linenum functionname
-:breakdel file linenum file
-:breakdel here
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{:breakdel func} \textit{linenum functionname} \\
+\texttt{:breakdel file} \textit{linenum file} \\
+\texttt{:breakdel here}
+\end{vimcmdform}
 
 如果想要一次性删除全部的断点, 执行:
 \begin{vimcode}
@@ -661,7 +661,7 @@ Vim 自动地把选中的行的起始与结束行号添加到命令的前面. �
 \end{warning}
 \marginpar{191}
 
-\section{注意文档}
+\section{文档}
 \label{sec:remember_the_documentation}
 
 Vim 有一个非常完善的帮助系统, 几乎涵盖了 Vim 的方方面面. 用户安装完其他人
@@ -834,10 +834,10 @@ vim --version
 Perl 是一门非常流行的脚本语言, 在文本处理方面非常强大, 在 Vim 中同样有用.
 
 在 Vim 使用 Perl 的最简单方式是:
-\begin{vimcode}
-:perl command
-\end{vimcode}
-这表示执行 Perl 命令 \texttt{command}. 注意, 在 Perl 命令中设置的值在整个
+\begin{vimcmdform}
+\texttt{:perl} \textit{command}
+\end{vimcmdform}
+这表示执行 Perl 命令 \textit{command}. 注意, 在 Perl 命令中设置的值在整个
 Vim 会话期间都一直有效.
 
 用户经常会一次执行多个 Perl 命令, 这时候可以用下面这种形式的执行方式:
