@@ -59,7 +59,7 @@ if (x == y)
 \end{center}
 
 从上图中可以看到, 代码部分的高亮还不错, 可是注释语句却不令人满意. 这是因为我们
-只是对单个单词进行匹配, 所以注释中的相同单词也会被匹配. 这种配置方法很难分辨出
+只是对单个单词进行匹配, 所以注释中的相同单词也会被匹配. 这种配置方法很难区分
 代码与注释.
 \marginpar{143}
 
@@ -341,11 +341,11 @@ Vim 接收若干个文件, 然后把它们组合成一个单一的 Vim 脚本归
 \end{vimcode}
 命令会把脚本安装到从选项 \texttt{runtimepath} 中找到的第一个目录内. 如果想修改
 安装目录, 就把命令换成:
-\begin{vimcode}
-:UseVimball PATH
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{:UseVimball} \textit{path}
+\end{vimcmdform}
 \marginpar{150}
-用户需要把 \texttt{PATH} 替换成脚本的安装路径. 需要注意的是, 有些脚本只能安装在
+\textit{path} 是脚本的安装路径. 需要注意的是, 有些脚本只能安装在
 特定的目录下, 否则的话, 脚本就不能正常工作.
 
 有时候, 用户可能想在安装之前查看一下 Vimball 中包含的文件. Vim 提供了一个这样
@@ -517,10 +517,10 @@ Vim 有 5 种类型的变量, 使用方法大不相同 (虽然定义的方式是
 \marginpar{154}
 
 所有类型的变量都是通过命令 \texttt{:let} 定义:
-\begin{vimcode}
-:let myvar = VALUE
-\end{vimcode}
-命令中的 \texttt{VALUE} 取决于变量的具体类型. 对于字符串与数字, 定义的方式与
+\begin{vimcmdform}
+\texttt{:let myvar =} \textit{value}
+\end{vimcmdform}
+命令中的 \textit{value} 取决于变量的具体类型. 对于字符串与数字, 定义的方式与
 前面讲过的相同, 比如:
 \begin{vimcode}
 :let mystringvar = "a string"
@@ -668,21 +668,21 @@ echo g:sum
 
 开发 Vim 脚本时, 有时候在执行代码之前需要检查某个条件是否满足. 大多数现代
 编程语言使用条件语句进行条件检查. Vim 同样也有这种语句, 它的格式是:
-\begin{vimcode}
-if condition
-    code-to-execute-if-condition-is-met
-endif
-\end{vimcode}
-如果 \texttt{condition} 的值为真, \texttt{if} 和 \texttt{endif} 之间的语句就
+\begin{vimcmdform}
+\texttt{if} \textit{condition} \\
+\phantom{4em}\textit{code-to-execute-if-condition-is-met} \\
+\texttt{endif}
+\end{vimcmdform}
+如果 \textit{condition} 的值为真, \texttt{if} 和 \texttt{endif} 之间的语句就
 会执行, 否则就不执行.
 
 那么, 在 \texttt{if} 结构中可以使用哪些条件? 主要有两种 --- 使用逻辑
 运算符的语句, 与使用字符串运算符的语句. 现在来看一下这两种运算符如何使用. 其
 总的形式都是:
-\begin{vimcode}
-value1 OPERATOR value2
-\end{vimcode}
-命令中的 \texttt{OPERATOR} 是用于比较 \texttt{value1} 与 \texttt{value2} 的运
+\begin{vimcmdform}
+\texttt{value1} \textit{operator} \texttt{value2}
+\end{vimcmdform}
+命令中的 \textit{operator} 是用于比较 \texttt{value1} 与 \texttt{value2} 的运
 算符. 比如:
 \begin{vimcode}
 value1 >= value2
@@ -733,38 +733,38 @@ value1 >= value2
 为真, 另一个用于检查条件是否为假. 不过, 还有另一种方法.
 
 另一种方法是使用 \texttt{if-else-endif} 语句, 它的使用方法是:
-\begin{vimcode}
-if condition
-    code-to-execute-if-condition-is-true
-else
-    code-to-execute-if-condition-is-NOT-true
-endif
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{if} \textit{condition} \\
+\phantom{4em}\textit{code-to-execute-if-condition-is-true} \\
+\texttt{else} \\
+\phantom{4em}\textit{code-to-execute-if-condition-is-NOT-true} \\
+\texttt{endif}
+\end{vimcmdform}
 \marginpar{159}
 
 另一种情况是需要检查多个条件, 而且只有其中一个条件会满足, 代码的形式是:
-\begin{vimcode}
-if condition1
-    code-to-execute-if-condition1-is-true
-else
-    if condition2
-        code-to-execute-if-condition2-is-true
-    endif
-endif
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{if} \textit{condition1} \\
+\phantom{4em}\textit{code-to-execute-if-condition1-is-true} \\
+\texttt{else} \\
+\phantom{4em}\texttt{if} \textit{condition2} \\
+\hspace*{4em}\textit{code-to-execute-if-condition2-is-true} \\
+\phantom{4em}\texttt{endif} \\
+\texttt{endif}
+\end{vimcmdform}
 
-可以看到, \texttt{condition1} 与 \texttt{condition2} 中只有一个的值可以为真,
+可以看到, \textit{condition1} 与 \textit{condition2} 中只有一个的值可以为真,
 并且两个都可以为假. 但是这样的代码是成簇的, 额外的 \texttt{endif} 如果放的位
 置不对, 会导致错误的 \texttt{if} 结构.
 
 一个更好的方式是使用 \texttt{if-elseif-else} 结构:
-\begin{vimcode}
-if condition1
-    code-to-execute-if-condition1-is-true
-elseif condition2
-    code-to-execute-if-condition2-is-true
-endif
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{if} \textit{condition1} \\
+\phantom{4em}\textit{code-to-execute-if-condition1-is-true} \\
+\texttt{elseif} \textit{condition2} \\
+\phantom{4em}\textit{code-to-execute-if-condition2-is-true} \\
+\texttt{endif}
+\end{vimcmdform}
 
 这段代码所做的工作与前一个的相同, 但是它的可读性更高. \texttt{elseif} 出现的
 次数可以多于一次, 这就意味着可以在同一个结构中判断多个条件, 而不用担心会出现
@@ -776,7 +776,7 @@ endif
 \label{subsubsec:working_with_lists_and_dictionaries}
 
 之前的内容已经介绍了如何创建线性表与字典, 现在讨论如何访问这两个结
-绝中的数据.
+构中的数据.
 
 如果用户已经有了一个线性表变量, 并且想要访问表中的某个变量, 访问的方法是在线
 性表变量的名字后面加上一对方括号, 并在括号内填上所要访问的值在线性表中的索引.
@@ -805,7 +805,7 @@ endif
 \begin{vimcode}
 :echo mylistvar2[-1][-3]
 \end{vimcode}
-因为 $-0$ 与 $0$ 是相同的, 所以最后一项的索引是 $-1$.
+因为不存在 $-0$, 所以最后一项的索引是 $-1$.
 
 \begin{warning}
     如果试图访问一个不存在的元素, Vim 就会返回一个错误. 为了避免返回错误信息,
@@ -834,7 +834,7 @@ endif
 
 \begin{warning}
     在拼接两个线性表时, 还有一个更方便的运算符: \texttt{+=}. 这个运算符可以把
-    右手边的线性表拼接到左手边的线性表上, 比如: \texttt{:let mylistvar4 +=
+    右边的线性表拼接到左边的线性表上, 比如: \texttt{:let mylistvar4 +=
     [5,6,7,8,]}
 \end{warning}
 
@@ -921,7 +921,7 @@ endfunction
 第一个需要注意的地方是函数的定义方式与普通函数的定义方式相同, 除了函数名需要
 包含字典变量的名字, 并且在函数参数的后面需要加上关键字 \texttt{dict}.
 \marginpar{163}
-这个关键词告诉 Vim 把该函数当成一个字典函数, 并对一个特殊的变量作操作 ---
+这个关键词告诉 Vim 把该函数当成一个字典函数, 并对一个特殊的变量做操作 ---
 \texttt{self}, 在这个例子中, 变量 \texttt{self} 指向函数所关联的字典变量.
 这意味着我们可以通过 \texttt{self[1]} 获取值 \texttt{"one"}, 以此类推. 函数
 的实现由四个子函数组成:
@@ -987,12 +987,12 @@ Vim 提供了两种形式的循环:
 \label{para:for_loops}
 
 \texttt{for} 循环可以有多种构造方式, 其中最简单的一种是:
-\begin{vimcode}
-for var in ranges
-	do-something
-endfor
-\end{vimcode}
-在上面的形式中, 循环依次遍历每一个元素, 每次迭代都会更新变量 \texttt{myvar} 的
+\begin{vimcmdform}
+\texttt{for} \textit{var} \texttt{in} \textit{ranges} \\
+\phantom{4em}\textit{do-something} \\
+\texttt{endfor}
+\end{vimcmdform}
+在上面的形式中, 循环依次遍历每一个元素, 每次迭代都会更新变量 \textit{var} 的
 值, 一个例子是:
 \begin{vimcode}
 for myvar in range(1,10)
@@ -1058,11 +1058,11 @@ endfor
 
 接下来讨论的是 \texttt{while} 循环. 正如它的名字所表现得那样, 当条件为真时
 执行循环. \texttt{while} 循环的基本结构是:
-\begin{vimcode}
-while condition
-    execute-this-code
-endwhile
-\end{vimcode}
+\begin{vimcmdform}
+\texttt{while} \textit{condition} \\
+\phantom{4em}\textit{execute-this-code} \\
+\texttt{endwhile}
+\end{vimcmdform}
 只要条件为真, 就会循环执行 \texttt{while} 与 \texttt{endwhile} 之间的代码.
 现在来看一个具体的例子:
 \begin{vimcode}
@@ -1146,15 +1146,16 @@ x is now 5
 前面介绍的所有内容已经用了相当多的代码片段, 这些片段都被组合成 Vim
 函数. 但我们还没有真正讨论过如何构造函数, 以及函数到底是什么.
 
-从一个简单的函数开始讨论:
-\begin{vimcode}
-function Name(arg1, arg2, ...argN) keyword
-    code-to-execute-when-function-is-called
-endfunction
-\end{vimcode}
-\texttt{Name} 是函数的名字, 函数名以字母开始, 并且只能包含字母, 数字, 下划线.
+函数的定义形式是:
+\begin{vimcmdform}
+\texttt{function} \textit{Name}\texttt{(}\textit{arg1}\texttt{,}
+\textit{arg2}\texttt{,} \textit{...argN}\texttt{)} \textit{keyword} \\
+\phantom{4em}\textit{code-to-execute-when-function-is-called} \\
+\texttt{endfunction}
+\end{vimcmdform}
+\textit{Name} 是函数的名字, 函数名以字母开始, 并且只能包含字母, 数字, 下划线.
 
-\texttt{arg1} 到 \texttt{argN} 是函数的参数, 它们是调用函数时必须提供的东西.
+\textit{arg1} 到 \textit{argN} 是函数的参数, 它们是调用函数时必须提供的东西.
 如果不需要提供参数, 那就留空 (在函数名之后填一对空的括号: \texttt{()}). 函数
 最多可以有 20 个参数, 可以按照自己的喜好给这些参数命名.
 
@@ -1306,10 +1307,10 @@ endfunction
 然后再把变量 \texttt{arg} 中的值累加到 \texttt{sum} 上.
 
 如果用户不再想保留某个函数, 可以用下面的命令把它删除:
-\begin{vimcode}
-:delfunction function-name
-\end{vimcode}
-其中, \texttt{function-name} 是用户想要删除的函数的名字.
+\begin{vimcmdform}
+\texttt{:delfunction} \textit{function-name}
+\end{vimcmdform}
+其中, \textit{function-name} 是用户想要删除的函数的名字.
 
 \begin{warning}
     如果想看某个函数的具体实现, 可以用命令 \texttt{:function}. 例如, 对于前面
