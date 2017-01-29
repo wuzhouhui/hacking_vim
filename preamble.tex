@@ -65,6 +65,8 @@
 
 \setCJKfamilyfont{heiti}{FandolHei}
 % 章节格式
+\CTEXsetup[format+={\CJKfamily{heiti}}]{section}
+\CTEXsetup[format+={\textmd}]{section}
 \CTEXsetup[format={\CJKfamily{heiti}\large\upshape}]{subsection}
 \CTEXsetup[numberformat={\CJKfamily{heiti}\large\upshape\bfseries}]{subsection}
 \CTEXsetup[format={\CJKfamily{heiti}}]{subsubsection}
@@ -74,13 +76,13 @@
 \renewcommand\cftchapaftersnumb{\hspace{2.2em}} % 额外间距
 
 % from package fontspec and xeCJK
-\setCJKmainfont{AR PL UMing CN}
-\setCJKsansfont{AR PL UMing CN}
-\setCJKmonofont[Scale=0.9]{AR PL UMing CN}
-\setmainfont{FreeSerif}
+\setCJKmainfont{FandolSong}
+\setCJKsansfont{FandolSong}
+\setCJKmonofont{FandolFang}
+\setmainfont{Nimbus Roman No9 L}
 \setsansfont{FreeSans}
 % "Mapping={}" make quote symbol straight
-\setmonofont[Mapping={}]{FreeMono}
+\setmonofont[Mapping={}]{Courier 10 Pitch}
 
 \newcommand\vi{\texttt{vi}}
 \newcommand\vim{\texttt{vim}}
