@@ -8,6 +8,3 @@ Hacking Vim 7.2 (Kim Schulz 著) 的中文翻译, 采用 LaTeX 排版. 双面排
 编译: make
 
 本分支双面排版.
-
-待办事宜 (FIXME):
-	偶数页边注出现的位置与奇数页不对称
