@@ -19,6 +19,12 @@
 \usepackage{tocloft}
 \usepackage{fancyhdr}
 
+% for bracketframe environment
+\usepackage[tikz]{bclogo,rotating}
+\usepackage{tikz}
+\usepackage{mdframed}
+\usepackage{minted}
+
 % for fixing "Unable to load picture or PDF file 'bc-book.mps'"
 \DeclareGraphicsRule{.mps}{eps}{*}{}
 
@@ -84,27 +90,57 @@
 \newcommand\vi{\texttt{vi}}
 \newcommand\vim{\texttt{vim}}
 
-% TODO: warning 与 tips 环境有一对中括号, 而且高度随内容而改变.
+\usetikzlibrary{calc}
+\newenvironment{bracketframe}[1]
+{\par\medskip\noindent
+\begin{tikzpicture}
+  \node[inner sep = 0pt] (box) \bgroup%
+  \begin{minipage}[t]{44em}
+    \begin{minipage}{6em}
+        \centering
+        \includegraphics[scale=1.8]{#1}
+    \end{minipage}%
+    \begin{minipage}{36em}
+    \par\smallskip
+    \surroundwithmdframed
+      [topline=false, bottomline=false, leftline=false, rightline=false,
+      backgroundcolor=lbcolor]
+      {minted}}% former part
+{%
+    \end{minipage}\hfill
+  \end{minipage}%
+  \egroup;
+  \draw[black,line width=3pt]
+    ( $ (box.north east) + (-5pt,3pt) $ ) -- ( $ (box.north east) + (0,3pt) $ )
+        -- ( $ (box.south east) + (0,-3pt) $ ) -- + (-5pt,0);
+  \draw[black,line width=3pt]
+    ( $ (box.north west) + (5pt,3pt) $ ) -- ( $ (box.north west) + (0,3pt) $ )
+        -- ( $ (box.south west) + (0,-3pt) $ ) -- + (5pt,0);
+\end{tikzpicture}
+\par\medskip}
+
 \newenvironment{warning}%
 {
-    \begin{quotation}
-        \parbox[c]{4em}{\includegraphics[scale=1.8]{./images/bc-book.mps}}
-    \begin{minipage}{33em}
+    \begin{center}
+    \begin{minipage}{44em}
+    \begin{bracketframe}{./images/bc-book.mps}
 }
 {
+    \end{bracketframe}
     \end{minipage}
-    \end{quotation}
+    \end{center}
 }
 
 \newenvironment{tips}%
 {
-    \begin{quotation}
-        \parbox[c]{4em}{\includegraphics[scale=1.8]{./images/bc-lampe.mps}}
-    \begin{minipage}{33em}
+    \begin{center}
+    \begin{minipage}{44em}
+    \begin{bracketframe}{./images/bc-lampe.mps}
 }
 {
+    \end{bracketframe}
     \end{minipage}
-    \end{quotation}
+    \end{center}
 }
 
 \newcommand\file[1]{\texttt{#1}}
