@@ -27,6 +27,8 @@
 \usepackage{mdframed}
 \usepackage{minted}
 
+\usepackage{pdfpages}
+
 % for fixing "Unable to load picture or PDF file 'bc-book.mps'"
 \DeclareGraphicsRule{.mps}{eps}{*}{}
 
@@ -78,8 +80,7 @@
 \CTEXsetup[format={\CJKfamily{heiti}}]{subsubsection}
 % 目录格式
 \renewcommand\cftchapfont{\CJKfamily{heiti}}
-\settowidth\cftchapnumwidth{第几十几章} % 最宽的可能编号
-\renewcommand\cftchapaftersnumb{\hspace{2.2em}} % 额外间距
+\settowidth\cftchapnumwidth{第几章} % 最宽的可能编号
 
 % from package fontspec and xeCJK
 \setCJKmainfont{FandolSong}
