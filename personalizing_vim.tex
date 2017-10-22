@@ -31,7 +31,7 @@ Vim 的方式, 比如按键绑定 --- 把某个组合键映射到特定的操作
     \item 个性化的工作区
 \end{itemize}
 \marginpar{18}
-其中有些配置可用多种方法来实现, 读者可以根据自已的喜好来选择.
+其中有些配置可用多种方法实现, 读者可以根据自已的喜好进行选择.
 
 在正式使用 Vim 之前, 还需要知道一些和安装相关的事情, 比如 Vim
 配置文件的存放位置.
@@ -73,7 +73,7 @@ Vim 主要是为 Unix 系统开发的, 所以个人的 \file{vimrc} 会在文件
 \marginpar{19}
 个人的 \file{vimrc} 配置会覆盖全局的 \file{vimrc} 配置效果, 因此, 即使
 用户没有权限修改 (甚至访问) 全局 \file{vimrc}, 也可以通过修改个人的
-\file{vimrc} 来得到自己想要的配置效果.
+\file{vimrc} 得到自己想要的配置效果.
 
 如果想要得到用户的家目录路径, 只需要在 Vim 的普通模式下执行命令:
 \begin{vimcode}
@@ -190,7 +190,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 \begin{vimcode}
 :colorscheme
 \end{vimcode}
-之后, 再键入至少一个空格, 然后就可以通过不断地按 \key{Tab} 键来浏览系统中
+之后, 再键入至少一个空格, 然后就可以通过不断地按 \key{Tab} 键浏览系统中
 可用的所有配色方案. 如果看到了一个感兴趣的配色方案, 只需要按下 \key{Enter}
 键就可以马上应用该方案.
 
@@ -240,7 +240,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 
 这个命令查找位于行的开始位置的单词 \textit{Error} (带有脱字符\ \texttt{ \^}),
 如果找到了一个匹配, 就把匹配的文本用色彩组 \texttt{ErrorMsg} 的颜色
-标记起来 (通常是红底白字).
+标记 (通常是红底白字).
 
 如果读者不太喜欢已有的色彩组, 也可以自己定义一个, 定义色彩组的命令是:
 \begin{vimcode}
@@ -313,7 +313,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 符. 然而, 对某些人来说常常会忘记该规则. 现在, 只需要一条简单的匹配命令, 就
 可以时刻提醒着程序员.
 
-下面这条命令把所有的, 不在行的开始位置上的制表符用错误信息的颜色标记出来:
+下面这条命令把所有的, 不在行的开始位置上的制表符用错误信息的颜色进行标记:
 \begin{vimcode}
 :match ErrorMsg /[^\t]\zs\t\+/
 \end{vimcode}
@@ -338,7 +338,7 @@ autocmd BufEnter *.txt set guifont=Arial\ 12
 
 这个命令的意思是: 匹配所有的, 不在行的开始位置上的制表符 (忽略任意的空格).
 
-如果你想用空格来缩进代码, 而不是制表符, 为了检查代码, 只需要把命令改成:
+如果你想用空格对代码进行缩进, 而不是制表符, 为了检查代码, 只需要把命令改成:
 \begin{vimcode}
 :match ErrorMsg /[\t]/
 \end{vimcode}
@@ -387,9 +387,9 @@ match errorMsg /\(2[5][6-9]\|2[6-9][0-9]\|[3-9][0-9][0-9]\)[.]
 命令带有输出信息, 那么这些信息就会出现在状态行的右侧.
 \marginpar{27}
 对于简单的文本编辑来说, 这样的状态行已经足够用了. 但是, 如果用户需要天天使用
-Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将会提供很大的帮助.
+Vim 处理不同格式的文件, 那么一条信息量丰富的状态行将会提供很大的帮助.
 
-这一节将会通过几个例子, 说明如何利用简单的办法来配置状态行, 使它
+这一节将会通过几个例子, 说明如何利用简单的办法去配置状态行, 使它
 具有更丰富的信息.
 
 配置状态行的命令具有形式:
@@ -433,7 +433,7 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
 \end{vimcode}
 执行完该命令后, 读者就会发现命令行缓冲区有了自己的位置: 窗口的最后一行. 通过
 这条命令就可以保证状态行始终拥有自己的显示位置, 而用户也就能一直看到文件的
-相关信息. 当然, 状态行会占据编辑区的一部分空间, 但是是否显示状态行由用户来
+相关信息. 当然, 状态行会占据编辑区的一部分空间, 但是是否显示状态行由用户
 决定. 下面这条命令关闭状态行, 直到当前会话结束:
 \begin{vimcode}
 :set laststatus=0
@@ -446,7 +446,7 @@ Vim 来处理不同格式的文件, 那么一条信息量丰富的状态行将�
 
 许多人认为应该把额外的空间分配给更重要的文本使用, 而不是菜单与工具条. 如果
 读者也是这么认为的, 那么读者可能希望在使用 Gvim 时, 移除菜单与工具条. 然而, 某
-些脚本在菜单中增加许多有用的功能, 而这些功能也只能通过菜单来使用. 解决办法是
+些脚本在菜单中增加许多有用的功能, 而这些功能也只能通过菜单进行使用. 解决办法是
 根据实际需要, 随时切换菜单与工具条.
 
 下面的代码把 Gvim 的组合键 \key{Ctrl+F2} 映射到菜单与工具条的切换操作上,
@@ -485,7 +485,7 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
 \label{sec:adding_your_own_menu_and_toolbar_buttons}
 如果使用的是 Gvim, 那么用户可以把经常用到的功能加到菜单中. 也许用户并不总
 是需要通过菜单来使用某项功能, 但是如果忘记了具体的操作步骤, 还可以通过
-菜单来完成. 如果用户确实需要快速地执行某个功能, 还可以把它直接加入到 Gvim
+菜单完成. 如果用户确实需要快速地执行某个功能, 还可以把它直接加入到 Gvim
 的工具条中.
 
 这一节讨论如何在 Gvim 中制作菜单, 以及如何往工具条中加入额外
@@ -570,10 +570,10 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
 \includegraphics[scale=0.42]{./images/page31.png}
 \end{center}
 \marginpar{32}
-假设用户想通过执行菜单项 \newterm{Tabs | Next} 来切换到下一个标签页, 现在,
+假设用户想通过执行菜单项 \newterm{Tabs | Next} 切换到下一个标签页, 现在,
 只需要按下 \key{Alt + T + N} 即可. \key{Alt + T} 打开 \newterm{Tabs}, 再
 按 \key{N} (之所以是 \key{N}, 是因为 \verb'&' 放在 \texttt{Next} 的
-\texttt{N} 的前面) 来执行 \newterm{Next}. 如果有其他的菜单项使用了相同的
+\texttt{N} 的前面) 执行 \newterm{Next}. 如果有其他的菜单项使用了相同的
 快捷键字母, 只需要一直按 \key{Alt} 就可以遍历所有的菜单项.
 \begin{warning}
     如果用户希望下拉菜单的各项之间用一条横线分开, 可以使用 \texttt{SEP}
@@ -597,7 +597,7 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
 
 只需要遵循菜单路径的命名规范就可以创建出子菜单. 于是, 如果用户想要的菜单是
 \newterm{Tabs | Navigation | Next}, 只需要用菜单路径
-\texttt{Tabs.Navigation.\&Next} 来添加子菜单项 \newterm{Next}.
+\texttt{Tabs.Navigation.\&Next} 添加子菜单项 \newterm{Next}.
 
 \subsubsection{添加工具条图标}
 \label{subsubsec:adding_toolbar_icons}
@@ -629,7 +629,7 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
 
 \begin{warning}
 默认情况下, 新增的菜单或按钮图标处在已有的菜单或图标的右边, 可以通过优
-先级来改变默认行为. 更多的信息请参考 \texttt{help menu-priority} 与
+先级改变默认行为. 更多的信息请参考 \texttt{help menu-priority} 与
 \texttt{:help sub-menu-priority}.
 \end{warning}
 
@@ -650,7 +650,7 @@ Vim 中, 它是组织打开文件的一种方式. 每一个标签都可以包含
 \end{center}
 \marginpar{34}
 有时候用户希望标签页的标签能提供更多的信息, 比如, 如果用户需要为每一个
-项目建一个标签页, 要是能根据项目的名称来对标签页进行命名的话, 那就方便
+项目建一个标签页, 要是能根据项目的名称对标签页进行命名的话, 那就方便
 多了.
 \begin{center}
 \includegraphics[scale=0.48]{./images/page34-1.png}
@@ -814,8 +814,8 @@ endfunction
     \includegraphics[scale=0.4]{images/page37.png}
 \end{center}
 
-用户还可以想到许多其他有趣的用法, 来使用标签与工具提示所提供的功能, 有了前
-面的示例, 用户就可以自己动手来实现它们了.
+用户还可以想到许多其他有趣的用法来使用标签与工具提示所提供的功能, 有了前
+面的示例, 用户就可以自己动手实现它们了.
 
 \section{工作区定制}
 \label{sec:work_area_personalization}
@@ -828,9 +828,9 @@ endfunction
 有时候, 用户正在编辑的文件可能带有多种颜色的语法高亮, 这些颜色会干扰用户
 追踪光标的位置, 如果可以标记出光标当前所在的行, 那就方便多了.
 
-已经有很多人写过 Vim 脚本来解决这个问题, 但是绝大部分都没什么用 (主要
+已经有很多人通过编写 Vim 脚本解决这个问题, 但是绝大部分都没什么用 (主要
 是因为太慢了, 当文本过长时, 滚动速度就难以接受). 直到 Vim 版本 7, 这个
-问题才得以解决, 而且, 它还提供了两种可能的办法来追踪光标的位置.
+问题才得以解决, 而且, 它还提供了两种可能的办法去追踪光标的位置.
 \marginpar{38}
 第一种办法是命令 \texttt{cursorline}, 它可以标记当前光标所在的行, 比如把
 当前行的背景色设置成另一种颜色, 而且不会破坏原来的语法高亮. 为了打开它,
@@ -855,7 +855,7 @@ endfunction
 :set cursorcolumn
 \end{vimcode}
 
-这个命令标记光标当前所在的列, 例如, 可以用另外一种颜色来标记.
+这个命令标记光标当前所在的列, 例如, 可以用另外一种颜色进行标记.
 
 和 \texttt{cursorline} 类似, 用户可以修改 \texttt{cursorcolumn} 的标记设置,
 它的色彩组是 \texttt{CursorColumn}.
@@ -910,7 +910,7 @@ endfunction
 \end{center}
 
 \begin{warning}
-    用户可以通过修改色彩组 \texttt{LineNr} 来改变行号及其所在列的风格.
+    用户可以通过修改色彩组 \texttt{LineNr} 改变行号及其所在列的风格.
 \end{warning}
 
 \subsection{拼写检查}
@@ -937,7 +937,7 @@ endfunction
 :set spelllang=de
 \end{vimcode}
 \marginpar{41}
-在这个命令中语言被设置为德语. 同一种语言可以用多种形式的格式来表达, 比如美式
+在这个命令中语言被设置为德语. 同一种语言可以用多种形式的格式表达, 比如美式
 英文可以写成:
 \begin{itemize}
     \item \texttt{en\_us}
@@ -957,7 +957,7 @@ endfunction
 现在用的是什么语言.
 
 对此 Vim 也有解决办法. 只要在设置属性 \texttt{spelllang} 时, 给它同时带上
-多种语言即可 (语言之间用逗号分开), 这样 Vim 就可以用多种语言来进行语法检查.
+多种语言即可 (语言之间用逗号分开), 这样 Vim 就可以用多种语言进行语法检查.
 \begin{vimcode}
 :set spelllang=en,da,de,it
 \end{vimcode}
@@ -977,8 +977,8 @@ Vim 与 Gvim 对错误单词的标记方法稍有不同.
 是红底白字).
 \marginpar{42}
 
-在 Gvim 中, 拼写错误的单词用红色的波浪线标记, 当然, 这也可以通过设置色彩组
-来改变颜色 (关于如何设置色彩组见 \ref{subsec:personal_highlighting} 节).
+在 Gvim 中, 拼写错误的单词用红色的波浪线标记, 当然, 改变颜色也可以通过设置色彩
+组实现 (关于如何设置色彩组见 \ref{subsec:personal_highlighting} 节).
 
 \begin{center}
     \includegraphics[scale=0.5]{./images/page42-1.png}
@@ -1002,7 +1002,7 @@ Vim 会给出一长串的候选单词, 除非用户把单词完全拼写错了, 
 \begin{vimcmdform}
 \texttt{:set spellsuggest=}\textit{width}
 \end{vimcmdform}
-来限制列表的长度, 其中 \textit{width} 是列表的最大长度.
+限制列表的长度, 其中 \textit{width} 是列表的最大长度.
 \marginpar{43}
 
 \subsection{添加工具提示}
@@ -1048,7 +1048,7 @@ Vim 会给出一长串的候选单词, 除非用户把单词完全拼写错了, 
 \end{tabular}
 \end{center}
 \marginpar{44}
-有了这些变量之后, 来看一些具体的例子.
+有了这些变量之后, 看一些具体的例子.
 
 \subsubsection{示例 1}
 \label{subsubsec:example_1}
@@ -1073,7 +1073,7 @@ set ballooneval
 \subsubsection{示例 2}
 \label{subsubsec:example_2}
 
-现在来看一个更高级的例子, 这个例子把 balloons 应用到编辑区的特定区域上.
+现在看一个更高级的例子, 这个例子把 balloons 应用到编辑区的特定区域上.
 在这个例子中, 我们将会开发一个函数, 这个函数可以同时显示两种 balloons
 信息:
 \begin{itemize}
@@ -1154,7 +1154,7 @@ set ballooneval
 
 \begin{warning}
     在第 \ref{chap:production_boosters} 章, 读者将会学习到如何利用行
-    的折叠来提高 Vim 的生产力.
+    的折叠提高 Vim 的生产力.
 \end{warning}
 
 \subsection{使用缩写}
@@ -1168,7 +1168,7 @@ Vim 的设计哲学是: 如果用户曾经为某件事物写过一次, 那就不
 
 为了避免多次输入同一个内容, 用户可以使用 缩写 (abbreviations).
 
-根据不同的使用模式, 可以使用以下三个命令来创建缩写:
+根据不同的使用模式, 可以使用以下三个命令创建缩写:
 \begin{itemize}
     \item \texttt{:abbreviate}: 创建在所有模式中均可使用的缩写
     \item \texttt{:iabbrev}: 创建只能在插入模式中使用的缩写
@@ -1177,9 +1177,9 @@ Vim 的设计哲学是: 如果用户曾经为某件事物写过一次, 那就不
 
 上面所说的三个命令都需要两个参数 --- 文本的缩写形式与完整形式.
 
-先用一个简单的例子来说明在什么情况下应该使用缩写.
+先用一个简单的例子说明在什么情况下应该使用缩写.
 
-\subsubsection{用缩写来快速插入地址}
+\subsubsection{使用缩写完成快速插入地址}
 \label{subsubsec:using_abbreviations_for_quick_address_insertion}
 在过去的几年我更换了几次住所, 所以我的一个经常性的工作就是把新住址
 告诉给别人. 为地址准备一个缩写并不会花上太多时间, 有了缩写之后, 就不用每
@@ -1212,7 +1212,7 @@ Vim 非常聪明, 它可以判断用户是在输入一个缩写词, 还是仅仅
 
 为了避免每次都执行一次缩写命令, 用户可以把它们放在 \texttt{VIMHOME} 的某个
 文件中, 假设文件名就叫 \texttt{abbreviations.vim}, 然后在文件 \texttt{vimrc}
-使用命令 \texttt{source} 来使能该文件 (需确保该文件是可读的):
+使用命令 \texttt{source} 使能该文件 (需确保该文件是可读的):
 \begin{vimcode}
 :source $VIM/abbreviations.vim
 \end{vimcode}
@@ -1271,7 +1271,7 @@ endfunction
 \label{subsec:modifying_key_bindings}
 
 我们中的大部分人可能除了 Vim 之外, 还用过其他的编辑器, 正因为如此, 我们经常
-需要用到一些特定的快捷键来完成不同的任务.
+需要用到一些特定的快捷键完成不同的任务.
 
 虽然 Vim 中的快捷键绑定在最开始设计时都是力求使用方便且快速, 但是在某些情况
 下, 使用用户已经熟悉的快捷键可能会更快.
@@ -1292,7 +1292,7 @@ endfunction
 每一个命令都需要两个参数, 第一个参数是被绑定的按键, 第二个参数是被绑定的命
 令. 先看几个例子.
 
-假设用户不太习惯在普通模式下用命令 \texttt{:w} 来保存文件, 因为你已经习惯了
+假设用户不太习惯在普通模式下用命令 \texttt{:w} 保存文件, 因为你已经习惯了
 \key{Ctrl-S}, 并且想继续使用下去.
 \marginpar{50}
 解决这个问题的一个映射可以是:
@@ -1349,7 +1349,7 @@ endfunction
 \texttt{:w<cr>} 完成实际的文件保存操作. 最后, 用 \texttt{a} 再回到插入模式,
 并将光标移到行的末尾.
 
-用户可以通过映射来适应大多数应用程序的标准的 复制/粘贴/剪切/保存 快捷键,
+用户可以通过映射来适应大多数应用程序标准的 复制/粘贴/剪切/保存 快捷键,
 具体来说, 可以这样做:
 \begin{vimcode}
 " save file (ctrl-s)
@@ -1395,11 +1395,11 @@ endfunction
 \section{小结}
 \label{sec:personalizing_vim_summary}
 
-在这一章, 我们学习了如何根据自己的具体需求来配置 Vim.
+在这一章, 我们学习了如何根据自己的具体需求配置 Vim.
 
-首先学习了字体与配色方案的基本修改方法, 通过它们来修改 Vim 的外观.
+首先学习了字体与配色方案的基本修改方法, 通过它们修改 Vim 的外观.
 
-接下来, 讨论了如何使用颜色来标记搜索匹配, 从而使得它们更容易被识别.
+接下来, 讨论了如何使用颜色标记搜索匹配, 从而使得它们更容易被识别.
 
 为了最大限度地利用 Vim, 用户通常将大部分的区域用于编辑, 而将小部分区域用于
 其他功能. 因此, 我们介绍了如何配置状态行与标签列表, 使得它们占用更少的空间,
