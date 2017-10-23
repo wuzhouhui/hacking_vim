@@ -619,8 +619,8 @@ VIMHOME/doc/myscript.txt
 \subsection{制作 Vimball}
 \label{subsec:making_vimball}
 
-另一种发布方式是制作 Vimball 文件. 在前面已经介绍过如何用 Vimball 来安装
-脚本, 现在来看一下如何制作 Vimball 文件.
+另一种发布方式是制作 Vimball 文件. 在前面已经介绍过如何用 Vimball 安装
+脚本, 现在看一下如何制作 Vimball 文件.
 
 制作 Vimball 的命令是:
 \begin{vimcode}
@@ -633,7 +633,7 @@ VIMHOME/doc/myscript.txt
 :enew
 \end{vimcode}
 然后, 写上所有相关的文件路径 (相对于 \texttt{VIMHOME} 目录), 每行一个. 例如,
-对于上面提到过的 ZIP 文件来说, 它包含的文件有:
+对于上面提到过的 ZIP 文件而言, 它包含的文件有:
 \begin{vimcode}
 plugin/myscript.vim
 doc/myscript.txt
@@ -652,7 +652,7 @@ Vim 自动地把选中的行的起始与结束行号添加到命令的前面. �
 
 如果开发人员确实想要覆盖掉原来的文件, 就在 \texttt{MkVimball} 后面加上
 \texttt{!}. 命令执行结束后, 你就有了一个名为 \texttt{myscript.vba} 的 Vimball
-文件, 别人可以用它来安装你的脚本.
+文件, 别人可以用它安装你的脚本.
 
 \begin{warning}
     在安装 Vimball 文件之前, 先要确保 Vim 已经安装了 Vimball 脚本. Vimball 脚
@@ -670,10 +670,10 @@ Vim 有一个非常完善的帮助系统, 几乎涵盖了 Vim 的方方面面. �
 的安装包中添加文档, 那么用户就无法在 Vim 的帮助系统中找到相关的信息. 所以,
 请在发布脚本时, 加上相应的文档.
 
-现在来看一下如何创建具有链接, 标记等信息的 Vim 文档.
+现在看一下如何创建具有链接, 标记等信息的 Vim 文档.
 
 一个 Vim 文档文件就是一个普通的文本文件, 只不过带有一些特殊的标记. 当创建一
-个新的文档文件时, 开头第一行是最重要的, 先来看一个例子:
+个新的文档文件时, 开头第一行是最重要的, 先看一个例子:
 \begin{vimcode}
 *docname.txt* single line of description
 \end{vimcode}
@@ -681,7 +681,7 @@ Vim 有一个非常完善的帮助系统, 几乎涵盖了 Vim 的方方面面. �
 
 \texttt{docname.txt} 是当前正在编辑的文件名. 当 Vim 帮助系统需要链接到本地
 附加文件 (参考 \texttt{:help local-additions}) 时就会用到这个信息. 第二个
-\texttt{*} 后面的内容是关于本文档的简短描述. 对于前面开发的脚本来说, 可
+\texttt{*} 后面的内容是关于本文档的简短描述. 对于前面开发的脚本而言, 可
 以把文档的第一行写成:
 \begin{vimcode}
 *myscript.txt* Documentation for example script myscript.vim
@@ -690,7 +690,7 @@ Vim 有一个非常完善的帮助系统, 几乎涵盖了 Vim 的方方面面. �
 
 比较典型的做法是以一长串的介绍开始, 详细介绍本文档的主题内容. 这些内容可以
 包括作者的名字与联系方式. 然后, 如果文档比较长的话, 最好添加一个目录 (前面给
-的例子就包含了一个目录). 对于 \texttt{myscript.vim} 来说, 它的文档开头可以这
+的例子就包含了一个目录). 对于 \texttt{myscript.vim} 而言, 它的文档开头可以这
 样写:
 \begin{vimcode}
 *myscript.txt* Documentation for example script myscript.vim
@@ -737,7 +737,7 @@ The following is covered in this document:
 们并不是真正的标记, 没有特殊的功能.
 
 文档中接下来的各小节用同样的格式编写, 但是, 如果它们包含了一小段 Vim 代码,
-那就需要另一个标记来指明, 比如包含函数的章节就有可能含有 Vim 代码, 先来看一个
+那就需要另一个标记进行指明, 比如包含函数的章节就有可能含有 Vim 代码, 先看一个
 具体的例子:
 \begin{vimcode}
 =============================================================
@@ -819,7 +819,7 @@ vim --version
 名字左边的 \texttt{+} 表示 Vim 支持该语言, 如果是 \texttt{-}, 比如
 \texttt{-perl}, 则表示该版本 Vim 不支持 Perl.
 
-除了在命令行查看, 还可以在启动 Vim 后, 用函数 \texttt{has()} 来检查:
+除了在命令行查看, 还可以在启动 Vim 后, 用函数 \texttt{has()} 进行检查:
 \begin{vimcode}
 :echo has("perl")
 :echo has("python")
@@ -1060,7 +1060,7 @@ EOF
 脚本编写完成并且没有错误后, 接下来就可以发布脚本了. 这一节介绍了如何发布脚本,
 这样的话, 其他人就可以安装并使用你的脚本.
 
-文档是已发布脚本非常重要的一部分, 这一节介绍了如何使用 Vim 标记来编写文档.
+文档是已发布脚本非常重要的一部分, 这一节介绍了如何使用 Vim 标记编写文档.
 通过使用这些标记, Vim 的帮助系统就可以检索到开发人员自己编写的文档, 而且在文档
 中跳转也很方便.
 
