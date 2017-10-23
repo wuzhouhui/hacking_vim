@@ -31,7 +31,7 @@ Vim 脚本, 但是语法高亮脚本定义的是颜色, 而不是功能. 下一�
 \subsection{第一个语法高亮文件}
 \label{subsec:your_first_syntax_color_file}
 
-简单来说, 语法高亮的关键是识别出文本中的特定单词与结构, 然后再给它们设置对
+简单而言, 语法高亮的关键是识别出文本中的特定单词与结构, 然后再给它们设置对
 应的颜色. 然而, 大部分情况下要稍微复杂一点, 因为语法高亮还要识别上下文语境.
 假设现在要语法高亮下面的代码:
 \begin{vimcode}
@@ -42,7 +42,7 @@ if (x == y)
   }
 \end{vimcode}
 
-如果仅仅是根据单词与符号来匹配, 那也可以得到一个相当不错的结果. 下面是具体
+如果仅仅是根据单词与符号进行匹配, 那也可以得到一个相当不错的结果. 下面是具体
 的配置命令 (每个选项的意义已经在第 \ref{chap:personalizing_vim} 章中进行了介
 绍):
 \begin{vimcode}
@@ -63,7 +63,7 @@ if (x == y)
 代码与注释.
 \marginpar{143}
 
-那么, 我们可以从这个简单的例子里学习哪些东西呢? 那就是, 与高亮比起来, 更重要的
+那么, 我们可以从这个简单的例子里学习哪些东西呢? 那就是, 与高亮相比, 更重要的
 是要找到期望中的单词, 然后再给它们设置对应的颜色. 现在增加一些上下文的信
 息, 把 \verb'/*' 与 \verb'*/' 之间的部分标记成注释, 然后再高亮其余的部
 分. 代码部分被标记上颜色之后, 就不需要再上色了, 因此规则的顺序很重要. 具体的
@@ -89,7 +89,7 @@ if (x == y)
 \section{区域高亮}
 \label{sec:syntax_regions}
 
-前面的例子是用选项 \texttt{match} 来选择注释语句. 在某些情况下,
+前面的例子是用选项 \texttt{match} 选择注释语句. 在某些情况下,
 我们很难创建一个适当的匹配语句, 这时候, 就需要用到其他一些更方便的做法.
 
 在 Vim 中, 用户可以选中一整个代码区, 然后再高亮它们, 为了选择一个代码区, 只需要
@@ -191,7 +191,7 @@ contained
 
 如果 Vim 无法识别用户正在编辑的文件, 那么就需要注册它们. 方法是在
 \texttt{VIMHOME} 目录下的 \texttt{filetype.vim} 中添加几行. 如果该文件不存在,
-可以手工创建. 对笔者的编程语言来说, 需要添加以下几行:
+可以手工创建. 对笔者的编程语言而言, 需要添加以下几行:
 \begin{vimcode}
 augroup filetypedetect
 autocmd BufNewFile,BufRead *.my setfiletype my
@@ -319,7 +319,7 @@ Vim.
     装方法.
 \end{warning}
 
-最后一种格式需要通过 Vimball 来安装, Vimball 是为 7 及以上版本的 Vim 而开发的.
+最后一种格式需要通过 Vimball 安装, Vimball 是为 7 及以上版本的 Vim 而开发的.
 Vim 接收若干个文件, 然后把它们组合成一个单一的 Vim 脚本归档文件, 文件的后缀名
 是 \texttt{.vba}, 意思是 Vimball.
 
@@ -331,7 +331,7 @@ Vim 接收若干个文件, 然后把它们组合成一个单一的 Vim 脚本归
     到最新版的 Vimball.
 \end{warning}
 
-安装完 Vimball 脚本后, 就可以用它来安装其他 Vim 脚本.
+安装完 Vimball 脚本后, 就可以用它安装其他 Vim 脚本.
 
 假设用户现在有一个名为 \texttt{myscript.vba} 的 Vimball 文件, 为了安装它, 先
 在 Vim 中打开该文件, 打开文件后, Vim 就会告诉用户如何安装
@@ -363,7 +363,7 @@ Vim 接收若干个文件, 然后把它们组合成一个单一的 Vim 脚本归
 通常来说, 不存在用于卸载脚本的自动化方法, 用户必须手动地把文件删除掉. 不过
 Vimball 含有卸载机制.
 
-如果用户记得安装时所用的 Vimball 文件名, 就可以通过它来卸载脚本. 卸载 Vimball
+如果用户记得安装时所用的 Vimball 文件名, 就可以通过它卸载脚本. 卸载 Vimball
 的命令是:
 \begin{vimcmdform}
 \texttt{:RmVimball }\textit{vimballname}
@@ -376,7 +376,7 @@ Vimball 含有卸载机制.
 
 为了把 Vimball 与将要删除的文件关联起来, 脚本会在 \texttt{VIMHOME} 下创建一个
 名为 \texttt{.VimballRecord} 的文件. 注意, 如果你把这个文件删除了, 就不能卸载
-之前所有的, 通过 Vimball 安装的脚本 (当然, 还可以通过手工删除来卸载).
+之前所有的, 通过 Vimball 安装的脚本 (当然, 还可以通过手工删除进行卸载).
 
 \section{脚本开发}
 \label{sec:script_development}
@@ -443,7 +443,7 @@ Vim 可以方便地对数字进行运算, 即使数字间的进制不太相同, 
 \end{vimcode}
 运算结果是 \texttt{30}.
 
-Vim 中的字符串用一对单引号或双引号括起来, 比如:
+Vim 中的字符串用一对单引号或双引号包围起来, 比如:
 \begin{vimcode}
 :echo "this is a string"
 :echo 'this is a string'
@@ -677,7 +677,7 @@ echo g:sum
 会执行, 否则就不执行.
 
 那么, 在 \texttt{if} 结构中可以使用哪些条件? 主要有两种 --- 使用逻辑
-运算符的语句, 与使用字符串运算符的语句. 现在来看一下这两种运算符如何使用. 其
+运算符的语句, 与使用字符串运算符的语句. 现在看一下这两种运算符如何使用. 其
 总的形式都是:
 \begin{vimcmdform}
 \texttt{value1} \textit{operator} \texttt{value2}
@@ -726,7 +726,7 @@ value1 >= value2
 所有的这些条件运算符都可以用于 \texttt{if} 语句内, 稍后你将会看到, 它们还可以
 用在其他地方.
 
-现在来看几个条件表达式的具体使用示例.
+现在看几个条件表达式的具体使用示例.
 
 在某些情况下, 用户可能希望某块代码只在某个条件满足时才执行, 当条件不满足时执行
 另一块代码. 这种情况下可以使用两个 \texttt{if} 条件 ---  一个用于检查条件是否
@@ -840,7 +840,7 @@ value1 >= value2
 
 如果待拼接的线性表只含有一个元素, 那么它的效果与添加一个新元素是相同的.
 
-除了运算符 \texttt{+}, 还可以用函数 \texttt{extend()} 来完成拼接. 它的一个
+除了运算符 \texttt{+}, 还可以用函数 \texttt{extend()} 完成拼接. 它的一个
 例子是:
 \begin{vimcode}
 :let mylistvar5 = [1,2,3,4]
@@ -901,7 +901,7 @@ value1 >= value2
 变量中未出现过的.
 
 用户可以在字典变量上附加一个函数, 使用该函数可以对字典变量中的元素进行一些操
-作, 让我们通过一个例子来说明.
+作, 让我们通过一个例子进行说明.
 
 比如说, 我们想要达到这样一个功能: 接收一个数值, 把数值中每一个数位上的数字转
 换成对应的英文拼写形式. 假设完成这个转换过程的函数是 \texttt{convert}, 而它
@@ -999,7 +999,7 @@ for myvar in range(1,10)
 	echo myvar
 endfor
 \end{vimcode}
-上面的命令使用了函数 \texttt{range()} 来生成从 1 到 10 的整数, 循环从 1 开始
+上面的命令使用了函数 \texttt{range()} 生成从 1 到 10 的整数, 循环从 1 开始
 遍历所有的数. 循环的每次迭代都会把变量 \texttt{myvar} 的值更新成当前从范围中
 所取得的值. 循环结束后, 将会打印出 1 到 10 这十个数字.
 
@@ -1011,7 +1011,7 @@ for var in list
 endfor
 \end{vimcode}
 \marginpar{165}
-上面的命令形式非常简单, 现在来看一个具体的例子:
+上面的命令形式非常简单, 现在看一个具体的例子:
 \begin{vimcode}
 let mylist = ['a','b','c','d','e','f','g','h','i','j','k']
 for itemvar in mylist
@@ -1024,7 +1024,7 @@ endfor
 如果想要循环打印字典变量中的元素, 则需要多做一点工作, 这是因为字典变量的元素
 与一个键关联, 而不是索引. 但是有一个函数可以帮助用户从字典变量中提取键, 然后
 就可以像处理线性表那样, 遍历所有的键, 这个函数的名称是 \texttt{keys()}. 先
-来看一下使用示例:
+看一个使用示例:
 \begin{vimcode}
 let mydict = {a:"apple", b:"banana", c:"citrus" }
 for keyvar in keys(mydict)
@@ -1064,7 +1064,7 @@ endfor
 \texttt{endwhile}
 \end{vimcmdform}
 只要条件为真, 就会循环执行 \texttt{while} 与 \texttt{endwhile} 之间的代码.
-现在来看一个具体的例子:
+现在看一个具体的例子:
 \begin{vimcode}
 let x=0
 while x <= 5
@@ -1213,7 +1213,7 @@ echo sum
 \marginpar{170}
 
 \texttt{return} 语句使函数停止执行, 并返回一个值. 返回的值可以直接赋值给变量,
-现在用 \texttt{return} 语句来修改上面的例子:
+现在用 \texttt{return} 语句修改上面的例子:
 \begin{vimcode}
 function PrintSum(num1, num2)
     let sum = a:num1 + a:num2
@@ -1262,7 +1262,7 @@ endfunction
 \texttt{argnum} 是一个计数器, 用它遍历 \texttt{num1} 与 \texttt{num2}
 之后的所有参数.
 
-函数参数的个数存放在一个特殊的变量中 --- \texttt{a:0}, 所以用它来判断应该
+函数参数的个数存放在一个特殊的变量中 --- \texttt{a:0}, 所以用它判断应该
 在什么时候停止循环.
 
 为了访问到每一个变量, 把 \texttt{argnum} 当作索引, 用于访问可选参数列表,
@@ -1289,7 +1289,7 @@ echo sum
 9999
 \end{vimcode}
 
-用户可能希望把所有的参数当作一个线性表来访问, Vim 提供了这个功能, 这个特殊的
+用户可能希望把所有的参数当作一个线性表进行访问, Vim 提供了这个功能, 这个特殊的
 变量是 \texttt{a:000}, 它的类型是线性表. 通过这个变量, 可以把函数
 \texttt{PrintSum} 改写成:
 \begin{vimcode}
@@ -1327,7 +1327,7 @@ endfunction
 \section{小结}
 \label{sec:basic_vim_scripting_summary}
 
-这一章主要是为那些想通过脚本来扩展 Vim 功能的人而写. 本章开始先介绍了一种最简单
+这一章主要是为那些想通过脚本扩展 Vim 功能的人而写. 本章开始先介绍了一种最简单
 的 Vim 脚本类型 --- 语法高亮方案. 我们学习到了如何为编程语言 (或其他语法内容)
 创建一个语法高亮文件, 从而得到更好的高亮效果.
 
