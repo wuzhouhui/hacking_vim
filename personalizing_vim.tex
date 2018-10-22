@@ -159,7 +159,7 @@ source /path/to/external/file
 
 用户可以根据不同的文件类型 (源代码文件, 普通文本文件, 日志文件等)
 设置不同的字体. 例如, 假设用户希望如果打开的是一个普通文本文件
-(\texttt{.txt}),
+(\texttt{*.txt}),
 就把字体设置为 Arial, 大小 12. 完成这个操作只需要在 \file{vimrc} 中添加:
 \begin{vimcode}
 autocmd BufEnter *.txt set guifont=Arial\ 12
@@ -629,7 +629,7 @@ map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>
 
 \begin{warning}
 默认情况下, 新增的菜单或按钮图标处在已有的菜单或图标的右边, 可以通过优
-先级改变默认行为. 更多的信息请参考 \texttt{help menu-priority} 与
+先级改变默认行为. 更多的信息请参考 \texttt{:help menu-priority} 与
 \texttt{:help sub-menu-priority}.
 \end{warning}
 
